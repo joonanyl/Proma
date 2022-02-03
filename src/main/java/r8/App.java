@@ -10,6 +10,9 @@ import java.io.IOException;
 
 /**
  * JavaFX App
+ * 
+ * Sannan testikommentti vielä mainiin 2
+ * 
  */
 public class App extends Application {
 
