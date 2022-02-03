@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  * 
- * Sannan testikommentti vielä mainiin 2
+ * Sannan testikommentti vielä mainiin 3
  * 
  */
 public class App extends Application {
