@@ -1,7 +1,6 @@
 .vscode/settings.json
 .vscode/tasks.json
 /target/
-<<<<<<< HEAD
-=======
 /bin/
->>>>>>> sanna
+.project
+.classpath
