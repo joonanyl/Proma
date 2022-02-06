@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F6F6F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.navigation.NavigationHandler">
+<AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F6F6F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.MainViewController">
    <children>
       <BorderPane fx:id="mainViewPane" prefHeight="714.0" prefWidth="1030.0" style="-fx-background-color: #F6F6F6;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
       <!-- Left Navbar Elements -->
@@ -140,9 +141,9 @@
             </MenuButton>
             <MenuButton id="button-topnav-right" fx:id="menuBtnAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="acIcon" textFill="#15191c">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Dark Mode" />
-                  <MenuItem mnemonicParsing="false" text="Profile" />
-                  <MenuItem mnemonicParsing="false" text="Log out" />
+                  <RadioMenuItem fx:id="menuItemDarkMode" mnemonicParsing="false" text="Dark Mode" />
+                  <MenuItem fx:id="menuItemProfile" mnemonicParsing="false" onAction="#handleProfileClick" text="Profile" userData="profile-view" />
+                  <MenuItem fx:id="menuItemLogOut" mnemonicParsing="false" onAction="#switchToLoginScene" text="Log out" />
                </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />

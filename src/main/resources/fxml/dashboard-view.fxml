@@ -100,7 +100,7 @@
                </font>
             </Label>
             <TextField layoutX="29.0" layoutY="190.0" prefHeight="30.0" prefWidth="220.0" />
-            <Button id="button-tracker" layoutX="276.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="Start Tracking" textFill="#f8f6f6">
+            <Button id="button-tracker" layoutX="276.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="Start Tracking" textFill="#f8f6f6" userData="management-view">
                <font>
                   <Font size="16.0" />
                </font>
