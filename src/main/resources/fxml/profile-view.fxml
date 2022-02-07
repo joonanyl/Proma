@@ -37,7 +37,7 @@
                 </VBox>
             </children>
         </HBox>
-        <Pane id="container-dashboard" layoutX="30.0" layoutY="125.0" prefHeight="635.0" prefWidth="933.0" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="125.0">
+        <Pane id="container-dashboard" fx:id="profileResPane" layoutX="30.0" layoutY="125.0" prefHeight="635.0" prefWidth="933.0" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
             <children>
                 <Label layoutX="15.0" layoutY="8.0" text="Profile information" textFill="#757171">
                     <font>
