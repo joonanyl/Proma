@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 .vscode/settings.json
 .vscode/tasks.json
 /target/
-/bin/
+=======
+.idea
+.settings
 .project
 .classpath
+>>>>>>> refs/heads/aarni
+/bin/
+<<<<<<< HEAD
+.project
+.classpath
+=======
+/target/
+
+>>>>>>> refs/heads/aarni
