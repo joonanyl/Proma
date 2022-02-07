@@ -1,6 +1,3 @@
 .vscode/settings.json
 .vscode/tasks.json
 /target/
-/bin/
-.project
-.classpath
