@@ -1,4 +1,4 @@
-package r8;
+package hibis;
 
 import javax.persistence.*;
 

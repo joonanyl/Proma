@@ -1,5 +1,6 @@
-package r8;
+package hibis;
 
+import hibis.Postinumero;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 

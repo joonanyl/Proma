@@ -1,4 +1,6 @@
-r8/PrimaryController.class
-r8/App.class
-r8/SecondaryController.class
-module-info.class
+r8\SesFac.class
+r8\PrimaryController.class
+r8\App.class
+r8\Postinumero.class
+r8\SecondaryController.class
+r8\Main.class
