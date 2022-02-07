@@ -15,6 +15,7 @@ public class App extends Application
 {
 	/* tämä on testikommentti. 
 	 * aion kohta tehä modelia
+	 * haloo
 	 */
 	
     @FXML
