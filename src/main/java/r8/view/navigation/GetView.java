@@ -10,7 +10,6 @@ public class GetView {
 
     //get generic class reference from calling class?
     public Pane getView(String viewName) {
-
         try {
             URL viewUrl = NavigationHandler.class.getResource("/fxml/" + viewName + ".fxml");
             if (viewUrl == null) {
