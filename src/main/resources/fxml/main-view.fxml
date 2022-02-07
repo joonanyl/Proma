@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F6F6F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.MainViewController">
+   <children>
+      <BorderPane fx:id="mainViewPane" prefHeight="714.0" prefWidth="1030.0" style="-fx-background-color: #F6F6F6;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
+      <!-- Left Navbar Elements -->
+      <VBox prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #15191C;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="70.0" prefWidth="250.0">
+               <children>
+                  <Label id="button-leftnav" alignment="CENTER" graphicTextGap="0.0" layoutX="67.0" layoutY="18.0" text="Promalogo" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Dashboard" textFill="#ddd8d8" userData="dashboard-view">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font name="Myanmar Text" size="18.0" />
+               </font>
+            </Button>
+            <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Management" textFill="#ddd8d8" userData="time-management-view">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font name="Myanmar Text" size="18.0" />
+               </font>
+            </Button>
+            <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Project" textFill="#ddd8d8" userData="project-view">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font name="Myanmar Text" size="18.0" />
+               </font>
+            </Button>
+            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Team" textFill="#ddd8d8" userData="teams-view">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font name="Myanmar Text" size="18.0" />
+               </font>
+            </Button>
+            <Button id="button-leftnav" fx:id="btnTasks" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Tasks" textFill="#ddd8d8" userData="task-view">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font name="Myanmar Text" size="18.0" />
+               </font>
+            </Button>
+            <Button id="button-leftnav" fx:id="btnArchive" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Archive" textFill="#ddd8d8" userData="archive-view">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font name="Myanmar Text" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <!-- Top Navbar Left Elements -->
+      <HBox id="hbox-topnav" layoutX="250.0" prefHeight="50.0" prefWidth="540.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="250.0" HBox.hgrow="ALWAYS">
+         <children>
+            <MenuButton id="button-topnav" fx:id="menuBtnCreate" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="120.0" stylesheets="@../styling/main-view-styling.css" text="Create" textFill="#15191c">
+              <items>
+                <MenuItem mnemonicParsing="false" text="+ New Project" />
+                <MenuItem mnemonicParsing="false" text="+ New Team" />
+                <MenuItem mnemonicParsing="false" text="+ New Task" />
+                <MenuItem mnemonicParsing="false" text="+ New Time Entry" />
+              </items>
+               <font>
+                  <Font name="Myanmar Text" size="16.0" />
+               </font>
+            </MenuButton>
+            <MenuButton id="button-topnav" fx:id="menuBtnExport" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" stylesheets="@../styling/main-view-styling.css" text="Export" textFill="#15191c">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Time Management -&gt; PDF" />
+                  <MenuItem mnemonicParsing="false" text="Time Management -&gt; Excel" />
+               </items>
+               <font>
+                  <Font name="Myanmar Text" size="16.0" />
+               </font>
+            </MenuButton>
+            <MenuButton id="button-topnav" fx:id="menuBtnView" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="View" textFill="#15191c">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Toggle Quick Navigation Bar" />
+                  <MenuItem mnemonicParsing="false" text="Go To..." />
+               </items>
+               <font>
+                  <Font name="Myanmar Text" size="16.0" />
+               </font>
+            </MenuButton>
+            <MenuButton id="button-topnav" fx:id="menuBtnHelp" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="Help" textFill="#15191c">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About Proma" />
+                  <MenuItem mnemonicParsing="false" text="What's new?" />
+                  <MenuItem mnemonicParsing="false" text="Help Center" />
+                  <MenuItem mnemonicParsing="false" text="Check for updates..." />
+               </items>
+               <font>
+                  <Font name="Myanmar Text" size="16.0" />
+               </font>
+            </MenuButton>
+         </children>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </HBox>
+      <!-- Top Navbar Right Elements -->
+      <HBox id="hbox-topnav" alignment="CENTER_RIGHT" layoutX="790.0" prefHeight="50.0" prefWidth="490.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="790.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <MenuButton id="button-topnav-right" fx:id="menuBtnNotification" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="ntfIcon" textFill="#15191c">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+               <font>
+                  <Font name="Myanmar Text" size="16.0" />
+               </font>
+            </MenuButton>
+            <MenuButton id="button-topnav-right" fx:id="menuBtnAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="acIcon" textFill="#15191c">
+               <items>
+                  <RadioMenuItem fx:id="menuItemDarkMode" mnemonicParsing="false" text="Dark Mode" />
+                  <MenuItem fx:id="menuItemProfile" mnemonicParsing="false" onAction="#handleProfileClick" text="Profile" userData="profile-view" />
+                  <MenuItem fx:id="menuItemLogOut" mnemonicParsing="false" onAction="#switchToLoginScene" text="Log out" />
+               </items>
+               <font>
+                  <Font name="Myanmar Text" size="16.0" />
+               </font>
+            </MenuButton>
+         </children>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </HBox>
+      <!-- Breadcrumbs -->
+      <HBox id="hbox-breadcrumb" alignment="CENTER_LEFT" layoutX="250.0" layoutY="50.0" prefHeight="40.0" prefWidth="1030.0" style="-fx-background-color: #E3E3E3;" stylesheets="@../styling/main-view-styling.css" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button id="button-breadcrumb" fx:id="btnBreadcrumb" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="144.0" stylesheets="@../styling/main-view-styling.css" text="Dashboard      &gt;" textFill="#655959">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children></HBox>
+   </children>
+</AnchorPane>

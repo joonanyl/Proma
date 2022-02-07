@@ -22,6 +22,6 @@
         <property name="show_sql">
             false
         </property>
-        <mapping class="r8.Postinumero" />
+        <mapping class="hibis.Postinumero" />
     </session-factory>
 </hibernate-configuration>

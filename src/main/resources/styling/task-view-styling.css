@@ -1,0 +1,28 @@
+#button-new-task
+{
+    -fx-background-color: linear-gradient(from 1% 1% to 25% 40%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+}
+
+#button-new-task:hover
+{
+    -fx-background-color: linear-gradient(from 15% 15% to 100% 100%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+}
+
+#button-new-task:pressed
+{
+    -fx-background-color: linear-gradient(from 80% 80% to 100% 100%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+}
+
+#taskResPane
+{
+    -fx-background-color: #F6F6F6;
+}
