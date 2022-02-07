@@ -17,6 +17,7 @@ public class App extends Application
 	 * aion kohta tehä modelia
 	 * haloo
 	 * HALOOO 2
+	 * metropolia -> gmail
 	 */
 	
     @FXML
