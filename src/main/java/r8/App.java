@@ -13,12 +13,8 @@ import java.util.Objects;
 
 public class App extends Application
 {
-	/* tämä on testikommentti. 
-	 * aion kohta tehä modelia
-	 * haloo
-	 * HALOOO 2
-	 * metropolia -> gmail
-	 * abcdrfg
+	/* 
+	 * sannabranch
 	 */
 	
     @FXML
