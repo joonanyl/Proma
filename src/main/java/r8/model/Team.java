@@ -1,5 +1,7 @@
 package r8.model;
 
+import java.util.LinkedList;
+
 /**
  * Luokka, joka kuvaa työryhmiä
  * 
@@ -7,6 +9,9 @@ package r8.model;
  *
  */
 
+/*
+ * oisko tiimeillekin enum?
+ */
 
 /* direct association w/ */
 /* ACCOUNT, TASK */
@@ -17,6 +22,7 @@ public class Team {
 	 * tiimin nimi
 	 */
 	private String teamName;
+	private LinkedList<Account> teamMembers;
 
 	/**
 	 * Constructor
@@ -24,6 +30,7 @@ public class Team {
 	 */
 	public Team(String tn) {
 		this.teamName = tn;
+		this.teamMembers = new LinkedList<Account>();
 	}
 
 	/**
@@ -36,6 +43,42 @@ public class Team {
 
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
+	}
+	
+	/**
+	 * Lisää yksi (1) tiiminjäsenen 
+	 * @param newMember tiimiin lisättävä tili
+	 */
+	public void addMember(Account newMember) {
+		this.teamMembers.add(newMember);
+	}
+	
+	/**
+	 * Lisää monta jäsentä kerralla
+	 * @param newMembers LinkedList uusista jäsenistä
+	 */
+	public void addMembers(LinkedList<Account> newMembers) {
+		// tästä testi että ei olisi duplikaattijäseniä
+		for(Account a : newMembers) {
+			if(!teamMembers.contains(a))
+				teamMembers.add(a);
+		}		
+	}
+	
+	/**
+	 * Palauttaa listan tiiminjäsenistä
+	 * @return lista tilejä, jotka kuuluvat kyseiseen tiimiin
+	 */
+	public LinkedList<Account> getMembers(){
+		return this.teamMembers;
+	}
+	
+	public String toString() {
+		String ret = "";
+		for(Account acc : teamMembers) {
+			ret += acc.toString() + "; ";
+		}
+		return ret;
 	}
 	
 }

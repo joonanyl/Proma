@@ -37,7 +37,9 @@ public class Account {
 	/**
 	 * Käyttäjätilin haltijan tilin id
 	 */
-	private int accountID;	// pitäskö olla static
+	private int accountID;	
+	
+	private static int id = 1; // väliaikainen ratkaisu
 
 	
 	/**
@@ -52,12 +54,17 @@ public class Account {
 		this.lastName = lN;
 		this.phoneNumber = pN;
 		this.email = eM;
+		this.accountID = this.id;
+		id++;
+	}
+	
+	public int getAccountID() {
+		return this.accountID;
 	}
 	
 	
-	
-	
-	
-	
+	public String toString() {
+		return accountID + " " + firstName + " " + lastName;
+	}
 	
 }

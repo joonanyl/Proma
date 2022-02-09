@@ -11,6 +11,10 @@ package r8.model;
 /* direct association w/ */
 /* ACCOUNT */
 
+/*
+ * saisko tää tyylii accountin vastaan? en jtnki hahmota just nyt
+ */
+
 public class AppState {
 	
 /**
