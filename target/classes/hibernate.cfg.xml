@@ -22,9 +22,5 @@
         <property name="show_sql">
             false
         </property>
-<<<<<<< HEAD
-=======
-        <mapping class="hibis.Postinumero" />
->>>>>>> branch 'main' of https://gitlab.metropolia.fi/joonanyl/proma.git
     </session-factory>
 </hibernate-configuration>

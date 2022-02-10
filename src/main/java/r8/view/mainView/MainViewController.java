@@ -12,6 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import r8.view.dashboardView.DashboardViewController;
 import r8.view.navigation.GetView;
+import r8.view.navigation.GlobalControllerRef;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -43,6 +45,7 @@ public class MainViewController {
 
     @FXML
     private void handleNavigation(ActionEvent event) throws IOException {
+        GlobalControllerRef.getInstance().setMainViewController(this);
         System.out.println(event);
         final Node eventSource = (Node) event.getSource();
         String userData = (String) eventSource.getUserData();

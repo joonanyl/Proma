@@ -1,6 +1,7 @@
 package r8.view.navigation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import r8.view.loginView.LoginCredentialsViewController;
 
 import java.net.URL;
 
@@ -8,7 +9,6 @@ public class GetView {
 
     private Pane view;
 
-    //get generic class reference from calling class?
     public Pane getView(String viewName) {
         try {
             URL viewUrl = NavigationHandler.class.getResource("/fxml/" + viewName + ".fxml");

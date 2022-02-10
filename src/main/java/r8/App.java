@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import r8.view.loginView.LoginViewController;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -22,10 +23,11 @@ public class App extends Application
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(App.class.getResource("/fxml/login-view.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(App.class.getResource("/fxml/login-view.fxml")));
+        Parent root = loader.load();
+        //LoginViewController loginViewController = loader.getController();
         Scene scene = new Scene(root);
         stage.setTitle("Proma - Login");
-
         stage.setScene(scene);
         stage.show();
     }
