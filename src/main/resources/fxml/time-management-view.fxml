@@ -86,13 +86,33 @@
             <DatePicker fx:id="datePickerCalendarEntry" layoutX="30.0" layoutY="80.0" prefHeight="30.0" prefWidth="220.0" />
          </children>
       </Pane>
-      <Pane id="container-dashboard" layoutX="360.0" layoutY="115.0" prefHeight="570.0" prefWidth="612.0" stylesheets="@../styling/dashboard-view-styling.css">
+      <Pane id="container-dashboard" layoutX="360.0" layoutY="115.0" prefHeight="570.0" prefWidth="612.0" stylesheets="@../styling/time-management-styling.css">
          <children>
             <Label layoutX="15.0" layoutY="8.0" text="Time Tracker" textFill="#757171">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
+            <Button id="button-day-view" layoutX="358.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Day">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button id="button-week-view" layoutX="418.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Week">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button id="button-sprint-view" layoutX="478.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Sprint">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button id="button-project-view" layoutX="538.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Project">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
