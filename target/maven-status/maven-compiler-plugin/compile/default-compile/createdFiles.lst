@@ -3,6 +3,7 @@ r8\view\profileView\ProfileViewController.class
 r8\model\dao\DAO.class
 r8\view\teamView\TeamViewController.class
 r8\view\mainView\MainViewController.class
+r8\view\taskView\NewTaskViewController.class
 r8\view\teamsView\TeamsViewController.class
 r8\view\loginView\LoginCredentialsViewController.class
 r8\view\projectView\ProjectViewController.class
