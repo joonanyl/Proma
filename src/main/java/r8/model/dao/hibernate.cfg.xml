@@ -6,8 +6,9 @@
         <property name="dialect">
             org.hibernate.dialect.MySQL5Dialect
         </property>
+        <!-- DB name: proma -->
         <property name="connection.url">
-            jdbc:mariadb://localhost/test?createDatabaseIfNotExist=true
+            jdbc:mariadb://localhost/proma?createDatabaseIfNotExist=true
         </property>
         <property name="connection.username">
             root
