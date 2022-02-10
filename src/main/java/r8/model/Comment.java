@@ -1,10 +1,11 @@
 package r8.model;
 
+import javax.persistence.*;
 import java.util.LinkedList;
 
 /**
  * 
- * @author sanku
+ * @author sanku, joonanyl
  *
  */
 
@@ -12,18 +13,34 @@ import java.util.LinkedList;
  * kelasin et hashmap<comment, linkedlist<comment>> -mapillä pystyis ehkä tulostamaan koko puun.
  *  
  */
+
+@Table(name = "comment")
 public class Comment {
 	//authorID or account?? date/time?
-	private int commentID; // pitäskö olla static?
-	
-	private Account author; 
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int comment_id;
+
+	@Column(name = "author_id")
+	private int authorID;
+
+	@Column(name = "task_id")
+	private int taskID;
+
+	@Column(name = "parent_comment_id")
+	private int parentCommentID;
+
+	@Column(name = "title")
+	private String title;
+
 	/**
 	 * Kommentti merkkijonona
 	 */
-	private String commentText;
+	@Column(name = "content")
+	private String content;
 	
 	private LinkedList<Comment> childComments = null;
+	private Account author;
 	
 	
 	/**
@@ -32,16 +49,20 @@ public class Comment {
 	 * @param t Comment's text
 	 */
 	public Comment(Account a, String t) {
-		this.author = a;	
-		this.commentText = t;
+		this.author = a;
+		this.authorID = a.getAccountID();
+
+		this.content = t;
 	}
+
+	public Comment() {}
 	
 	/**
 	 * Muokkaa kommenttia
 	 * @param newText uusi teksti
 	 */
 	public void editText(String newText) {
-		this.commentText = newText;
+		this.content = newText;
 	}
 	
 	public void addReply(Comment reply) {
@@ -67,6 +88,6 @@ public class Comment {
 	}
 	
 	public String toString() {
-		return commentText + " // author: " + author;
+		return content + " // author: " + author;
 	}
 }
