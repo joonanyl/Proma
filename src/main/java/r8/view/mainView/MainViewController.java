@@ -44,7 +44,7 @@ public class MainViewController {
     }
 
     @FXML
-    private void handleNavigation(ActionEvent event) throws IOException {
+    public void handleNavigation(ActionEvent event) throws IOException {
         GlobalControllerRef.getInstance().setMainViewController(this);
         System.out.println(event);
         final Node eventSource = (Node) event.getSource();

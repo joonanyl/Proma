@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.CreateTaskView">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.taskView.NewTaskViewController">
    <children>
       <Text layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new task" wrappingWidth="191.03125" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="35.0">
          <font>
@@ -89,7 +89,7 @@
             </VBox>
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: White;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="675.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
+      <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="675.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
          <children>
             <VBox prefHeight="670.0" prefWidth="305.0" spacing="20.0">
                <children>
@@ -152,6 +152,6 @@
             </VBox>
          </children>
       </Pane>
-      <Region layoutX="10.0" layoutY="10.0" prefHeight="1.0" prefWidth="1.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="664.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="130.0" />
+      <Region layoutX="10.0" layoutY="10.0" maxWidth="1.0" prefHeight="600.0" prefWidth="1.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="664.0" AnchorPane.topAnchor="130.0" />
    </children>
 </AnchorPane>
