@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="560.0" prefWidth="415.0" style="-fx-background-color: F9F9F9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.createAccountView.CreateAccountViewController">
     <children>
-        <Label layoutX="58.0" layoutY="65.0" text="Create a new account">
+        <Label layoutX="58.0" layoutY="65.0" text="Create new account">
             <font>
                 <Font name="Microsoft New Tai Lue Bold" size="28.0" />
             </font>
