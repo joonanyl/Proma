@@ -25,7 +25,6 @@ public class App extends Application
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(App.class.getResource("/fxml/login-view.fxml")));
         Parent root = loader.load();
-        //LoginViewController loginViewController = loader.getController();
         Scene scene = new Scene(root);
         stage.setTitle("Proma - Login");
         stage.setScene(scene);
