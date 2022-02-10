@@ -16,6 +16,11 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.CreateTaskView">
    <children>
+      <Text layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new task" wrappingWidth="191.03125" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="35.0">
+         <font>
+            <Font name="Arial" size="26.0" />
+         </font>
+      </Text>
       <Region prefHeight="1.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
       <Pane layoutY="101.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="110.0">
          <children>
