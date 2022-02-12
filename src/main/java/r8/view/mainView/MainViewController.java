@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -33,14 +32,6 @@ public class MainViewController {
         view = viewLoader.getView("dashboard-view");
         System.out.println(view);
         mainViewPane.setCenter(view);
-        /*dvc.valueProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                System.out.println("New navigation value is" + newValue);
-                handleNavigation(newValue);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });*/
     }
 
     @FXML
