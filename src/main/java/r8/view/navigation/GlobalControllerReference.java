@@ -3,17 +3,18 @@ package r8.view.navigation;
 import r8.view.loginView.LoginViewController;
 import r8.view.mainView.MainViewController;
 
-public class GlobalControllerRef {
+public class GlobalControllerReference {
 
-    private static GlobalControllerRef globalControllerRef = null;
+    private static GlobalControllerReference globalControllerReference = null;
     private LoginViewController loginViewController = null;
     private MainViewController mainViewController = null;
 
-    private GlobalControllerRef() {}
+    private GlobalControllerReference() {}
 
-    public static GlobalControllerRef getInstance() {
-        if (globalControllerRef == null) {globalControllerRef = new GlobalControllerRef();}
-        return globalControllerRef;
+    public static GlobalControllerReference getInstance() {
+        if (globalControllerReference == null) {
+            globalControllerReference = new GlobalControllerReference();}
+        return globalControllerReference;
     }
 
     public LoginViewController getLoginViewController() {
