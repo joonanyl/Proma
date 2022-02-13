@@ -53,7 +53,7 @@
                   <Font name="Myanmar Text" size="18.0" />
                </font>
             </Button>
-            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Teams" textFill="#ddd8d8" userData="teams-view">
+            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Teams" textFill="#ddd8d8" userData="team-view">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -84,8 +84,8 @@
          <children>
             <MenuButton id="button-topnav" fx:id="menuBtnCreate" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="120.0" stylesheets="@../styling/main-view-styling.css" text="Create" textFill="#15191c">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Project" userData="create-project-view"/>
-                <MenuItem mnemonicParsing="false" text="+ New Team" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Project" userData="create-project-view" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Team" userData="create-team-view" />
                 <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Task" userData="create-task-view" />
                 <MenuItem mnemonicParsing="false" text="+ New Time Entry" />
               </items>
@@ -105,7 +105,7 @@
             <MenuButton id="button-topnav" fx:id="menuBtnView" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="View" textFill="#15191c">
                <items>
                   <MenuItem mnemonicParsing="false" text="Toggle Quick Navigation Bar" />
-                  <MenuItem mnemonicParsing="false" text="Go To..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="Go To..." userData="sprint-view"/>
                </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />

@@ -54,7 +54,7 @@
                 </VBox>
             </children>
         </HBox>
-        <Pane id="container-dashboard" layoutX="30.0" layoutY="115.0" prefHeight="276.0" prefWidth="440.0" stylesheets="@../styling/dashboard-view-styling.css">
+        <Pane id="container-personal-tasks" layoutX="30.0" layoutY="115.0" prefHeight="276.0" prefWidth="440.0" stylesheets="@../styling/task-view-styling.css">
             <children>
                 <Label layoutX="15.0" layoutY="8.0" text="Personal Tasks" textFill="#757171">
                     <font>
@@ -65,17 +65,17 @@
             </children>
         </Pane>
         <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <Pane id="container-dashboard" layoutX="30.0" layoutY="411.0" prefHeight="276.0" prefWidth="440.0" stylesheets="@../styling/dashboard-view-styling.css">
+      <Pane id="container-team-tasks" layoutX="30.0" layoutY="411.0" prefHeight="276.0" prefWidth="440.0" stylesheets="@../styling/task-view-styling.css">
          <children>
             <Label layoutX="15.0" layoutY="8.0" text="Team Tasks" textFill="#757171">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <ListView id="container-team-tasks" layoutX="3.0" layoutY="38.0" prefHeight="235.0" prefWidth="434.0" stylesheets="@../styling/task-view-styling.css" />
+            <ListView id="listview-team-tasks" layoutX="3.0" layoutY="38.0" prefHeight="235.0" prefWidth="434.0" stylesheets="@../styling/task-view-styling.css" />
          </children>
       </Pane>
-        <Pane id="container-dashboard" layoutX="532.0" layoutY="188.0" prefHeight="497.0" prefWidth="440.0" stylesheets="@../styling/dashboard-view-styling.css">
+        <Pane id="container-task-info" layoutX="532.0" layoutY="188.0" prefHeight="497.0" prefWidth="440.0" stylesheets="@../styling/task-view-styling.css">
             <children>
                 <Label layoutX="15.0" layoutY="14.0" text="Task Info" textFill="#757171">
                     <font>
@@ -87,7 +87,7 @@
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Button id="button-go-to-task-view" layoutX="150.0" layoutY="431.0" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Go To Task View" textFill="#f8f6f6" userData="tas-view">
+                <Button id="button-go-to-task-view" layoutX="150.0" layoutY="431.0" userData="task-view" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Go To Task View" textFill="#f8f6f6">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -125,7 +125,7 @@
             </Label>
             </children>
         </Pane>
-      <Pane id="container-dashboard" layoutX="532.0" layoutY="115.0" prefHeight="45.0" prefWidth="440.0" stylesheets="@../styling/dashboard-view-styling.css">
+      <Pane id="container-search" layoutX="532.0" layoutY="115.0" prefHeight="45.0" prefWidth="440.0" stylesheets="@../styling/task-view-styling.css">
          <children>
             <Label layoutX="15.0" layoutY="8.0" text="Task Search" textFill="#757171">
                <font>

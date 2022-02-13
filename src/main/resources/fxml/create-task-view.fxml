@@ -93,7 +93,7 @@
          <children>
             <VBox prefHeight="670.0" prefWidth="305.0" spacing="20.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign">
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign to">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
