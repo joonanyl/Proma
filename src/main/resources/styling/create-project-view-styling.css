@@ -22,42 +22,14 @@
     -fx-border-width: 5px;
 }
 
-#container-personal-tasks
+#container-project-info
 {
-    -fx-background-color: EAEAEA;
+    -fx-background-color: #EAEAEA;
     -fx-background-radius: 5;
 }
 
-#container-task-info
+#container-project-teams
 {
-    -fx-background-color: EAEAEA;
-    -fx-background-radius: 5;
-}
-
-#container-team-tasks
-{
-    -fx-background-color: EAEAEA;
-    -fx-background-radius: 5;
-}
-
-#container-search
-{
-    -fx-background-color: EAEAEA;
-    -fx-background-radius: 5;
-}
-
-#listview-personal-tasks
-{
-    -fx-background-color: transparent;
-}
-
-#listview-team-tasks
-{
-    -fx-background-color: transparent;
-}
-
-.region
-{
-    -fx-background-color: F6F6F6;
+    -fx-background-color: #EAEAEA;
     -fx-background-radius: 5;
 }

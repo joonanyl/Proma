@@ -1,4 +1,5 @@
-package r8.view.createAccountView;
+package r8.view.projectView;
+
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,10 +7,10 @@ import r8.view.navigation.GlobalControllerReference;
 
 import java.io.IOException;
 
-public class CreateAccountViewController {
+public class CreateProjectViewController {
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        GlobalControllerReference.getInstance().getLoginViewController().handleNavigation(event);
+        GlobalControllerReference.getInstance().getMainViewController().handleNavigation(event);
     }
 }

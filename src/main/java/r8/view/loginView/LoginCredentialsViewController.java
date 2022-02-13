@@ -7,9 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import r8.view.navigation.GlobalControllerRef;
+import r8.view.navigation.GlobalControllerReference;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -31,6 +30,6 @@ public class LoginCredentialsViewController {
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        GlobalControllerRef.getInstance().getLoginViewController().handleNavigation(event);
+        GlobalControllerReference.getInstance().getLoginViewController().handleNavigation(event);
     }
 }

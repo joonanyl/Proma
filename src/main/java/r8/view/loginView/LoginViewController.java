@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import r8.view.navigation.GetView;
-import r8.view.navigation.GlobalControllerRef;
+import r8.view.navigation.GlobalControllerReference;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class LoginViewController {
     private BorderPane mainViewPane;
 
     public void initialize() {
-        GlobalControllerRef.getInstance().setLoginViewController(this);
+        GlobalControllerReference.getInstance().setLoginViewController(this);
         System.out.println("pewpew");
         GetView viewLoader = new GetView();
         Pane view = viewLoader.getView("login-credentials-view");
