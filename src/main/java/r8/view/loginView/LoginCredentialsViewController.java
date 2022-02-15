@@ -15,8 +15,7 @@ import r8.view.navigation.GlobalControllerReference;
 import java.io.IOException;
 import java.util.Objects;
 
-// TODO remove controller implementation if not used as intended
-public class LoginCredentialsViewController implements IController {
+public class LoginCredentialsViewController {
 
     private App app;
 
@@ -32,7 +31,7 @@ public class LoginCredentialsViewController implements IController {
     }
 
     //TODO: implement this without GlobalControllerReference
-    @Override
+
     public void setApp(App app) {
         this.app = app;
     }

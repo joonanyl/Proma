@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
-public class LoginViewController implements IController {
+public class LoginViewController {
 
     private App app;
 
@@ -87,7 +87,6 @@ public class LoginViewController implements IController {
         }
     }
 
-    @Override
     public void setApp(App app) {
         this.app = app;
     }

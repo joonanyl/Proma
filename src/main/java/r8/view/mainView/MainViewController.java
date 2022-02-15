@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainViewController implements IController {
+public class MainViewController {
 
     private App app;
 
@@ -144,7 +144,6 @@ public class MainViewController implements IController {
         return this.app;
     }
 
-    @Override
     public void setApp(App app) {
         this.app = app;
     }
