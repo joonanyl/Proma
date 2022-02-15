@@ -1,4 +1,4 @@
-package r8.view.teamsView;
+package r8.view.teamView;
 
 public class TeamsViewController {
 }

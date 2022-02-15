@@ -1,5 +1,7 @@
 package r8.model;
 
+import javax.persistence.*;
+
 /**
  * 
  * @author sanku
@@ -11,60 +13,71 @@ package r8.model;
 /* EVENT, TASK */
 
 /* association w/ PROJECT */
-
+@Entity
+@Table(name = "account")
 public class Account {
-	
+
+	/**
+	 * Käyttäjätilin haltijan tilin id
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int account_id;
+
+	// private static int id = 1; // väliaikainen ratkaisu
+
 	/**
 	 * Käyttäjätilin haltijan etunimi
 	 */
+	@Column(name = "first_name")
 	private String firstName;
 	
 	/**
 	 * Käyttäjätilin haltijan sukunimi
 	 */
+	@Column(name = "last_name")
 	private String lastName;
 	
 	/**
 	 * Käyttäjätilin haltijan puhelinnumero merkkijonona
 	 */
+	@Column(name = "phone_number")
 	private String phoneNumber;
 	
 	/**
 	 * Käyttäjätilin haltijan sähköpostiosoite merkkijonona
 	 */
+	@Column(name = "email")
 	private String email;
-	
-	/**
-	 * Käyttäjätilin haltijan tilin id
-	 */
-	private int accountID;	
-	
-	private static int id = 1; // väliaikainen ratkaisu
 
 	
 	/**
 	 * Constructor
-	 * @param fN etunimi
-	 * @param lN sukunimi
-	 * @param pN puhelinnumero
-	 * @param eM sähköposti
+	 * @param fName etunimi
+	 * @param lName sukunimi
+	 * @param pNumber puhelinnumero
+	 * @param email sähköposti
 	 */
-	public Account(String fN, String lN, String pN, String eM) {
-		this.firstName = fN;
-		this.lastName = lN;
-		this.phoneNumber = pN;
-		this.email = eM;
+	public Account(String fName, String lName, String pNumber, String email) {
+		this.firstName = fName;
+		this.lastName = lName;
+		this.phoneNumber = pNumber;
+		this.email = email;
+		/*
 		this.accountID = this.id;
 		id++;
+		 */
 	}
+
+	public Account() {}
 	
 	public int getAccountID() {
-		return this.accountID;
+		return this.account_id;
 	}
 	
 	
 	public String toString() {
-		return accountID + " " + firstName + " " + lastName;
+		return account_id + " " + firstName + " " + lastName;
 	}
 	
 }

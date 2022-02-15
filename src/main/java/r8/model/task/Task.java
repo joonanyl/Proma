@@ -1,5 +1,8 @@
 package r8.model.task;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 
  * @author sanku
@@ -8,16 +11,17 @@ package r8.model.task;
 
 /* direct association w/  */
 /* COMMENT, tasktype, taskstate*/
-
 public class Task {
-	private String name;
+
+	private String title;
+
 	
 	/**
 	 * Constructor
 	 * @param n Task's name
 	 */
 	public Task(String n) {
-		this.name = n;
+		this.title = n;
 	}
 	
 }

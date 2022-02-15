@@ -48,25 +48,31 @@
     -fx-background-color : #40515D;
 }
 
-#button-breadcrumb
+.button
 {
     -fx-border-color: transparent;
     -fx-border-width: 0;
     -fx-background-radius: 0;
     -fx-background-color: transparent;
 }
-#button-breadcrumb:hover
+.button:hover
 {
     -fx-background-color : #E3E3E3;
 }
-#button-breadcrumb:pressed
+.button:pressed
 {
     -fx-font-weight: bold;
 }
 
 #hbox-breadcrumb
 {
+    -fx-background-color: #E3E3E3;
     -fx-border-color: #CDCDCD transparent transparent transparent;
+}
+
+#main-view-pane
+{
+    -fx-background-color: F6F6F6;
 }
 
 .table-view .column-header,
