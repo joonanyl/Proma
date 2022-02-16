@@ -30,6 +30,7 @@ public class HibernateUtil {
                 settings.put(Environment.HBM2DDL_AUTO, "validate");
 
                 configuration.setProperties(settings);
+                // Add classes to here
                 configuration.addAnnotatedClass(Account.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()

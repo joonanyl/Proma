@@ -1,6 +1,8 @@
 package r8.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 
@@ -50,6 +52,8 @@ public class Account {
 	@Column(name = "email")
 	private String email;
 
+	@ManyToMany(mappedBy = "accounts")
+	private Set<Project> projects = new HashSet<Project>();
 	
 	/**
 	 * Constructor
@@ -63,10 +67,6 @@ public class Account {
 		this.lastName = lName;
 		this.phoneNumber = pNumber;
 		this.email = email;
-		/*
-		this.accountID = this.id;
-		id++;
-		 */
 	}
 
 	public Account() {}
@@ -74,8 +74,15 @@ public class Account {
 	public int getAccountID() {
 		return this.account_id;
 	}
-	
-	
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
 	public String toString() {
 		return account_id + " " + firstName + " " + lastName;
 	}
