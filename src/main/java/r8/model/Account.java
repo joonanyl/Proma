@@ -24,7 +24,8 @@ public class Account {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int account_id;
+	@Column(name = "account_id")
+	private int accountId;
 
 	// private static int id = 1; // väliaikainen ratkaisu
 
@@ -70,9 +71,21 @@ public class Account {
 	}
 
 	public Account() {}
-	
-	public int getAccountID() {
-		return this.account_id;
+
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
+	}
+
+	public Set<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
 	}
 
 	public String getFirstName() {
@@ -84,7 +97,7 @@ public class Account {
 	}
 
 	public String toString() {
-		return account_id + " " + firstName + " " + lastName;
+		return accountId + " " + firstName + " " + lastName;
 	}
-	
+
 }

@@ -46,7 +46,7 @@ public class Comment {
 	 */
 	public Comment(Account a, String content) {
 		this.author = a;
-		this.authorID = a.getAccountID();
+		this.authorID = a.getAccountId();
 		this.content = content;
 	}
 

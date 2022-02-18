@@ -27,7 +27,7 @@ public class Event {
         this.description = desc;
         this.date = date;
         this.hours = hours;
-        this.accountId = a.getAccountID();
+        this.accountId = a.getAccountId();
         this.taskId = taskId;
     }
 

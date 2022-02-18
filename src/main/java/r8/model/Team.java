@@ -99,7 +99,7 @@ public class Team {
 	// Seuraavasta kahdesta metodista tulee DAO-versiot tietokannan avulla
 	public Account getMemberById(int id) {
 		for (Account a: teamMembers) {
-			if (a.getAccountID() == id)
+			if (a.getAccountId() == id)
 				return a;
 		}
 		return null;

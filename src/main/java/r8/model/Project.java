@@ -22,18 +22,24 @@ import java.util.Set;
 @Entity
 @Table(name = "project")
 public class Project {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "project_id")
 	private int projectId;
+
+	@Column(name = "name")
 	private String name;
 
-	@ManyToMany
-	@JoinTable(name = "project_account", joinColumns = { @JoinColumn(name = "project_id") },
-			inverseJoinColumns = { @JoinColumn(name = "account_id") })
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name = "project_account", joinColumns = {@JoinColumn(name = "project_id")},
+			inverseJoinColumns = {@JoinColumn(name = "account_id")})
 	private Set<Account> accounts = new HashSet<Account>();
 
-	@OneToMany
+	/*
+	@Transient
 	private Set<Team> teams = new HashSet<Team>();
+	 */
 
 	@Column(name = "budget")
 	private String budget;
@@ -48,13 +54,25 @@ public class Project {
 	 * Contructor
 	 * @param pn Project's name
 	 */
-	public Project(String pn, String budget) {
+	public Project(String pn, String description, String budget) {
 		this.name = pn;
 		this.budget = budget;
+		this.description = description;
 	}
 
 	public Project() {}
-	
+
+	public void addAccount(Account account) {
+		accounts.add(account);
+		account.getProjects().add(this);
+	}
+
+	public void removeAccount(Account account) {
+		accounts.remove(account);
+		account.getProjects().remove(this);
+	}
+
+	/*
 	public void addTeam(Team t) {
 		this.teams.add(t);
 	}
@@ -62,7 +80,9 @@ public class Project {
 	public Set<Team> getTeamsList(){
 		return this.teams;
 	}
-	
+*/
+
+	/*
 	// del a team
 	public void removeTeam(int teamId) {
 		this.teams.remove(teamId);
@@ -82,6 +102,7 @@ public class Project {
 		return ret;
 	}
 
+	 */
 
 	public int getProjectId() {
 		return projectId;
@@ -89,6 +110,14 @@ public class Project {
 
 	public void setProjectId(int projectId) {
 		this.projectId = projectId;
+	}
+
+	public Set<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
 	}
 
 	public String getName() {
