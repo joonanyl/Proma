@@ -17,9 +17,8 @@ import java.util.LinkedList;
 @Table(name = "comment")
 public class Comment {
 	//authorID or account?? date/time?
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int comment_id;
+
+	private int commentId;
 
 	@Column(name = "author_id")
 	private int authorID;
@@ -29,9 +28,6 @@ public class Comment {
 
 	@Column(name = "parent_comment_id")
 	private int parentCommentID;
-
-	@Column(name = "title")
-	private String title;
 
 	/**
 	 * Kommentti merkkijonona
@@ -46,13 +42,12 @@ public class Comment {
 	/**
 	 * Constructor
 	 * @param a Author
-	 * @param t Comment's text
+	 * @param content Comment's text
 	 */
-	public Comment(Account a, String t) {
+	public Comment(Account a, String content) {
 		this.author = a;
 		this.authorID = a.getAccountID();
-
-		this.content = t;
+		this.content = content;
 	}
 
 	public Comment() {}
@@ -86,7 +81,68 @@ public class Comment {
 		}
 		return ret;
 	}
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "comment_id")
+	public int getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
+	}
+
+	// Pitää muistaa muuttaa tämä tietokannasta authorid:ksi
+	@Column(name = "account_id")
+	public int getAuthorID() {
+		return authorID;
+	}
+
+	public void setAuthorID(int authorID) {
+		this.authorID = authorID;
+	}
+
+	public int getTaskID() {
+		return taskID;
+	}
+
+	public void setTaskID(int taskID) {
+		this.taskID = taskID;
+	}
+
+	public int getParentCommentID() {
+		return parentCommentID;
+	}
+
+	public void setParentCommentID(int parentCommentID) {
+		this.parentCommentID = parentCommentID;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public LinkedList<Comment> getChildComments() {
+		return childComments;
+	}
+
+	public void setChildComments(LinkedList<Comment> childComments) {
+		this.childComments = childComments;
+	}
+
+	public Account getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Account author) {
+		this.author = author;
+	}
+
 	public String toString() {
 		return content + " // author: " + author;
 	}

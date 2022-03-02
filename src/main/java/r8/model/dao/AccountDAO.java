@@ -6,9 +6,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import r8.model.Account;
 
+import java.util.List;
+
 public class AccountDAO {
-    private final String tableName = "account";
-    private SessionFactory sessionFactory;
 
     public void addAccount(Account acc) {
         Transaction tx = null;
@@ -22,5 +22,25 @@ public class AccountDAO {
             }
             e.printStackTrace();
         }
+    }
+
+    public Account getAccountById(int id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Account account = (Account) session.get(Account.class, id);
+            return account;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Account> getAllAccounts() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Account> accountList = (List<Account>) session.createQuery("from Account").list();
+            return accountList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

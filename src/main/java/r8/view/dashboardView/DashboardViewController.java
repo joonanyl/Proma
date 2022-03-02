@@ -23,8 +23,6 @@ public class DashboardViewController {
         @FXML
         private Button btnCustomizeView;
 
-        //private MainViewController mvc = new MainViewController();
-
         private App app;
 
         private final StringProperty value = new SimpleStringProperty();
