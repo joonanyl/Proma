@@ -1,11 +1,12 @@
 package r8.model;
 
 import javax.persistence.*;
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 
- * @author sanku, joonanyl
+ * @author sanku
  *
  */
 
@@ -13,15 +14,18 @@ import java.util.LinkedList;
  * kelasin et hashmap<comment, linkedlist<comment>> -mapillä pystyis ehkä tulostamaan koko puun.
  *  
  */
-
+@Entity
 @Table(name = "comment")
 public class Comment {
 	//authorID or account?? date/time?
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "comment_id")
 	private int commentId;
 
-	@Column(name = "author_id")
-	private int authorID;
+	@Column(name = "account_id")
+	private int accountId;
 
 	@Column(name = "task_id")
 	private int taskID;
@@ -34,9 +38,12 @@ public class Comment {
 	 */
 	@Column(name = "content")
 	private String content;
-	
-	private LinkedList<Comment> childComments = null;
-	private Account author;
+	// Kenties tämä hakisi tietokannasta kommentit, jossa parent_comment_id == comment_id
+	@Transient
+	private Set<Comment> childComments = new HashSet<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "account_id")
+	private Account account;
 	
 	
 	/**
@@ -45,8 +52,8 @@ public class Comment {
 	 * @param content Comment's text
 	 */
 	public Comment(Account a, String content) {
-		this.author = a;
-		this.authorID = a.getAccountId();
+		this.account = a;
+		this.accountId = a.getAccountId();
 		this.content = content;
 	}
 
@@ -62,7 +69,7 @@ public class Comment {
 	
 	public void addReply(Comment reply) {
 		if(childComments == null)
-			this.childComments = new LinkedList<Comment>();
+			this.childComments = new HashSet<Comment>();
 		
 		childComments.add(reply);
 	}
@@ -82,9 +89,6 @@ public class Comment {
 		return ret;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "comment_id")
 	public int getCommentId() {
 		return commentId;
 	}
@@ -93,14 +97,12 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
-	// Pitää muistaa muuttaa tämä tietokannasta authorid:ksi
-	@Column(name = "account_id")
-	public int getAuthorID() {
-		return authorID;
+	public int getAccountId() {
+		return accountId;
 	}
 
-	public void setAuthorID(int authorID) {
-		this.authorID = authorID;
+	public void setAccountId(int authorID) {
+		this.accountId = authorID;
 	}
 
 	public int getTaskID() {
@@ -127,23 +129,23 @@ public class Comment {
 		this.content = content;
 	}
 
-	public LinkedList<Comment> getChildComments() {
+	public Set<Comment> getChildComments() {
 		return childComments;
 	}
 
-	public void setChildComments(LinkedList<Comment> childComments) {
+	public void setChildComments(Set<Comment> childComments) {
 		this.childComments = childComments;
 	}
 
-	public Account getAuthor() {
-		return author;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setAuthor(Account author) {
-		this.author = author;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public String toString() {
-		return content + " // author: " + author;
+		return content + " // author: " + account;
 	}
 }

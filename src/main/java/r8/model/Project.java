@@ -5,7 +5,6 @@ import r8.model.task.Task;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -24,29 +23,25 @@ import java.util.Set;
 public class Project {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "project_id")
 	private int projectId;
 
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name = "project_account", joinColumns = {@JoinColumn(name = "project_id")},
-			inverseJoinColumns = {@JoinColumn(name = "account_id")})
-	private Set<Account> accounts = new HashSet<Account>();
+	@ManyToMany(mappedBy = "projects")
+	private Set<Account> accounts;
 
-	/*
 	@Transient
-	private Set<Team> teams = new HashSet<Team>();
-	 */
+	private Set<Team> teams;
 
 	@Column(name = "budget")
 	private String budget;
 
 	@Column(name = "description")
 	private String description;
-	// linkedlist tasks?
+
 	@Transient
 	private ArrayList<Task> tasks;
 
@@ -58,51 +53,21 @@ public class Project {
 		this.name = pn;
 		this.budget = budget;
 		this.description = description;
+		this.accounts = new HashSet<>();
+		this.teams = new HashSet<>();
 	}
 
 	public Project() {}
 
-	public void addAccount(Account account) {
-		accounts.add(account);
-		account.getProjects().add(this);
-	}
 
-	public void removeAccount(Account account) {
-		accounts.remove(account);
-		account.getProjects().remove(this);
-	}
-
-	/*
 	public void addTeam(Team t) {
 		this.teams.add(t);
+		t.setProject(this);
 	}
 	
 	public Set<Team> getTeamsList(){
 		return this.teams;
 	}
-*/
-
-	/*
-	// del a team
-	public void removeTeam(int teamId) {
-		this.teams.remove(teamId);
-		System.out.println("Team " + teamId + " removed");
-	}
-	
-	
-	public String printTeamsList() {
-		String ret = "No Teams assigned to " + this.name + " yet";
-		if(teams.size()>0) {
-			ret = "Teams in " + this.name + ": \n \t ";
-
-			for(Team t : teams) {
-				ret += t.getTeamName() + ": " + t.toString() + " \n \t ";
-			}
-		}
-		return ret;
-	}
-
-	 */
 
 	public int getProjectId() {
 		return projectId;
@@ -150,5 +115,13 @@ public class Project {
 
 	public void setTasks(ArrayList<Task> tasks) {
 		this.tasks = tasks;
+	}
+
+	public Set<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
 	}
 }

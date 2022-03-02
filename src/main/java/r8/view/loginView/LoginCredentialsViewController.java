@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import r8.App;
-import r8.view.IController;
+// import r8.view.IController;
 import r8.view.navigation.GlobalControllerReference;
 
 import java.io.IOException;

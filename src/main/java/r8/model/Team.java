@@ -1,8 +1,10 @@
 package r8.model;
 
+import r8.model.task.Task;
+
 import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Luokka, joka kuvaa työryhmiä
@@ -21,31 +23,46 @@ import java.util.List;
 @Table(name = "team")
 public class Team {
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "team_id")
 	private int teamId;
 	/**
 	 * tiimin nimi
 	 */
-	private int projectId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id")
+	private Project project;
+
+	@Column(name = "name")
 	private String teamName;
 
-	@Transient
-	private LinkedList<Account> teamMembers;
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(
+			name = "account_team",
+			joinColumns = @JoinColumn(name = "team_id"),
+			inverseJoinColumns = @JoinColumn(name = "account_id")
+	)
+	private Set<Account> accounts = new HashSet<>();
+
+	@ManyToMany(mappedBy = "teams")
+	private Set<Task> tasks = new HashSet<>();
 
 	/**
 	 * Constructor
 	 * @param tn name
 	 */
-	public Team(String tn) {
+	public Team(String tn, Project project) {
 		this.teamName = tn;
-		this.teamMembers = new LinkedList<Account>();
+		this.project = project;
 	}
 
 	public Team() {}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "team_id")
 	public int getTeamId() {
 		return teamId;
 	}
@@ -58,7 +75,6 @@ public class Team {
 	 * palauttaa tiimin nimen
 	 * @return tiimin nimi
 	 */
-	@Column(name = "name", nullable = false)
 	public String getTeamName() {
 		return teamName;
 	}
@@ -68,57 +84,69 @@ public class Team {
 	}
 	
 	/**
-	 * Lisää yksi (1) tiiminjäsenen 
-	 * @param newMember tiimiin lisättävä tili
+	 * Lisää jäsen
+	 * @param account LinkedList uusista jäsenistä
 	 */
-	public void addMember(Account newMember) {
-		this.teamMembers.add(newMember);
-	}
-	
-	/**
-	 * Lisää monta jäsentä kerralla
-	 * @param newMembers LinkedList uusista jäsenistä
-	 */
-	public void addMembers(List<Account> newMembers) {
+	public void addAccount(Account account) {
 		// tästä testi että ei olisi duplikaattijäseniä
-		for(Account a : newMembers) {
-			if(!teamMembers.contains(a))
-				teamMembers.add(a);
-		}		
+		System.out.println(this.accounts);
+		if(!accounts.contains(account)) {
+			accounts.add(account);
+			account.getTeams().add(this);
+		}
+	}
+
+	public void removeAccount(Account account) {
+		accounts.remove(account);
+		account.getTeams().remove(this);
 	}
 	
 	/**
 	 * Palauttaa listan tiiminjäsenistä
 	 * @return lista tilejä, jotka kuuluvat kyseiseen tiimiin
 	 */
-	@Transient
-	public LinkedList<Account> getMembers(){
-		return this.teamMembers;
+	public Set<Account> getAccounts(){
+		return this.accounts;
 	}
 
 	// Seuraavasta kahdesta metodista tulee DAO-versiot tietokannan avulla
 	public Account getMemberById(int id) {
-		for (Account a: teamMembers) {
+		for (Account a: accounts) {
 			if (a.getAccountId() == id)
 				return a;
 		}
 		return null;
 	}
 
-	public Account getMemberByName(String fName, String lName) {
-		for (Account a: teamMembers) {
+	public Account getAccountByName(String fName, String lName) {
+		for (Account a: accounts) {
 			if (a.getFirstName() == fName && a.getLastName() == lName)
 				return a;
 		}
 		return null;
 	}
 
-	public String toString() {
-		String ret = "";
-		for(Account acc : teamMembers) {
-			ret += acc.toString() + "; ";
-		}
-		return ret;
+
+	public Project getProject() {
+		return project;
 	}
+
+	public void setProject(Project projects) {
+		this.project = projects;
+	}
+
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
+	}
+
+	public Set<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public String toString() { return this.teamName; }
 	
 }

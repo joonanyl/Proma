@@ -1,11 +1,11 @@
 package r8.model.task;
 
-import r8.model.Account;
-import r8.model.Comment;
+import r8.model.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Set;
 
 /**
  * 
@@ -20,20 +20,65 @@ import java.util.Date;
 public class Task {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "task_id")
 	private int taskId;
+
+	@Column(name = "name")
 	private String name;
-	private TaskState ts;
-	private TaskType tt;
-	private String description;
-	private float hours;
-	private Date startDate;
-	private Date endDate;
+
 	@Transient
-	private ArrayList<Account> assignedAccounts;
-	private int sprintId;
-	private int projectId;
-	private int teamId;
+	private TaskState taskState;
+
+	@Column(name = "state")
+	private String taskStateString;
+
+	@Transient
+	private TaskType taskType;
+
+	@Column(name = "task_type_id")
+	private int taskTypeId;
+
+	@Column(name = "description")
+	private String description;
+
+	@Column(name = "hours")
+	private float hours;
+
+	@Column(name = "start_date")
+	private LocalDate startDate;
+
+	@Column(name = "end_date")
+	private LocalDate endDate;
+
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(
+			name = "account_task",
+			joinColumns = @JoinColumn(name = "task_id"),
+			inverseJoinColumns = @JoinColumn(name = "account_id")
+	)
+	private Set<Account> accounts;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "sprint_id")
+	private Sprint sprint;
+
+	@ManyToOne
+	@JoinColumn(name = "project_id")
+	private Project project;
+
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(
+			name = "task_team",
+			joinColumns = @JoinColumn(name = "task_id"),
+			inverseJoinColumns = @JoinColumn(name = "team_id"))
+	private Set<Team> teams;
 	
 	/**
 	 * Constructor
@@ -41,26 +86,21 @@ public class Task {
 	 */
 	public Task(String n, TaskState ts, TaskType tt) {
 		this.name = n;
-		this.ts = ts;
-		this.tt = tt;
+		this.taskState = ts;
+		this.taskStateString = taskState.toString();
+		this.taskType = tt;
 	}
 
 	public Task() {}
 
-	public void assignToTeam(int id) {
-		this.teamId = id;
+	public void assignToTeam(Team team) {
+		teams.add(team);
+		team.getTasks().add(this);
 	}
 
-	public void assignToProject(int id) {
-		this.teamId = id;
-	}
-
-	public void assignToSprint(int id) {
-		this.teamId = id;
-	}
-
-	public Comment createComment(Account a, String comment) {
-		return new Comment(a, comment);
+	public void removeFromTeam(Team team) {
+		teams.remove(team);
+		team.getTasks().remove(this);
 	}
 
 	public int getTaskId() {
@@ -79,20 +119,36 @@ public class Task {
 		this.name = name;
 	}
 
-	public TaskState getTs() {
-		return ts;
+	public TaskState getTaskState() {
+		return taskState;
 	}
 
-	public void setTs(TaskState ts) {
-		this.ts = ts;
+	public void setTaskState(TaskState taskState) {
+		this.taskState = taskState;
 	}
 
-	public TaskType getTt() {
-		return tt;
+	public String getTaskStateString() {
+		return taskStateString;
 	}
 
-	public void setTt(TaskType tt) {
-		this.tt = tt;
+	public void setTaskStateString(String taskStateString) {
+		this.taskStateString = taskStateString;
+	}
+
+	public TaskType getTaskType() {
+		return taskType;
+	}
+
+	public void setTaskType(TaskType taskType) {
+		this.taskType = taskType;
+	}
+
+	public int getTaskTypeId() {
+		return taskTypeId;
+	}
+
+	public void setTaskTypeId(int taskTypeId) {
+		this.taskTypeId = taskTypeId;
 	}
 
 	public String getDescription() {
@@ -111,31 +167,51 @@ public class Task {
 		this.hours = hours;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
-	public ArrayList<Account> getAssignedAccounts() {
-		return assignedAccounts;
+	public Set<Account> getAccounts() {
+		return accounts;
 	}
 
-	public void setAssignedAccounts(ArrayList<Account> assignedAccounts) {
-		this.assignedAccounts = assignedAccounts;
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
 	}
 
-	public String toString() {
-		return this.name + " " + this.tt + " " + this.ts;
+	public Sprint getSprint() {
+		return sprint;
+	}
+
+	public void setSprint(Sprint sprint) {
+		this.sprint = sprint;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public Set<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(Set<Team> teams) {
+		this.teams = teams;
 	}
 }
