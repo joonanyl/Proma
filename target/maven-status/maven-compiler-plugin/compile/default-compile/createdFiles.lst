@@ -13,10 +13,12 @@ r8\view\loginView\LoginViewController.class
 r8\view\navigation\GlobalControllerReference.class
 r8\view\archiveView\ArchiveViewController.class
 r8\model\Project.class
+r8\model\TextFieldValidator$1.class
 r8\view\forgotPasswordView\ForgotPasswordViewController.class
 r8\view\dashboardView\DashboardViewController.class
 r8\view\taskView\TasksViewController.class
 r8\view\projectView\CreateProjectViewController.class
+r8\model\TextFieldValidator.class
 r8\App.class
 r8\model\dao\HibernateUtil.class
 r8\view\navigation\NavigationHandler.class
