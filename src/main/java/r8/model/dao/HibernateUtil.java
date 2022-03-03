@@ -8,6 +8,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import r8.model.Account;
+import r8.model.Project;
+import r8.model.Team;
 
 import java.util.Properties;
 
@@ -32,6 +34,8 @@ public class HibernateUtil {
                 configuration.setProperties(settings);
                 // Add classes to here
                 configuration.addAnnotatedClass(Account.class);
+                configuration.addAnnotatedClass(Project.class);
+                configuration.addAnnotatedClass(Team.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

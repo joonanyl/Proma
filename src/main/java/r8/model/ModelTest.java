@@ -1,6 +1,10 @@
 package r8.model;
 
 
+import r8.model.dao.AccountDAO;
+import r8.model.dao.DAO;
+import r8.model.dao.ProjectDAO;
+import r8.model.dao.TeamDAO;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
@@ -8,17 +12,25 @@ import r8.model.task.TaskType;
 public class ModelTest {
 
     public static void main(String args[]) {
-        Project project = new Project("Testiprojecti", "1000€");
-        Team team = new Team("Team 1");
-        Account account = new Account("Testi", "Käyttäjä", "0401234567", "testi@testi.com");
+        AccountDAO accountDAO = new AccountDAO();
+        TeamDAO teamDAO = new TeamDAO();
+        ProjectDAO projectDAO = new ProjectDAO();
 
-        team.addMember(account);
-        System.out.println(team.getMembers());
-        project.addTeam(team);
-        System.out.println("Projekti: " + project.getTeamsList());
+        Project project1 = new Project("Projektitesti 2", "Test project with teams.", "2");
+        Team team1 = new Team();
+        Account account = new Account("Test", "Account", "014412312", "test@test.com");
+        Account account2 = new Account("Testi", "Käyttäjä", "112311332", "testi@sposti.fi");
 
-        Task task = new Task("Testitask", TaskState.NOT_STARTED, TaskType.MEETING);
-        task.assignToTeam(team.getTeamId());
-        // Tämän jälkeen hibernatella yhteydet kuntoon
+        Project project = projectDAO.getProject(1);
+
+        team1.setTeamName("Testitiimi");
+        team1.setProject(project);
+
+        team1.addAccount(account);
+        team1.addAccount(account2);
+
+        teamDAO.addTeam(team1);
+
+
     }
 }

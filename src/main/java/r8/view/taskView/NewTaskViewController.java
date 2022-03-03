@@ -3,7 +3,7 @@ package r8.view.taskView;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import org.controlsfx.control.textfield.TextFields;
+// import org.controlsfx.control.textfield.TextFields;
 import r8.model.Account;
 import r8.model.Team;
 
@@ -31,8 +31,8 @@ public class NewTaskViewController {
         comboBoxTeam.setEditable(true);
         comboBoxUser.setEditable(true);
 
-        TextFields.bindAutoCompletion((TextField) comboBoxTeam.getEditor(), comboBoxTeam.getItems());
-        TextFields.bindAutoCompletion((TextField) comboBoxUser.getEditor(), comboBoxUser.getItems());
+      //  TextFields.bindAutoCompletion((TextField) comboBoxTeam.getEditor(), comboBoxTeam.getItems());
+    //    TextFields.bindAutoCompletion((TextField) comboBoxUser.getEditor(), comboBoxUser.getItems());
 
     }
 }
