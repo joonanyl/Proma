@@ -23,7 +23,7 @@
          </font>
       </Text>
       <Region prefHeight="1.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-      <Pane layoutY="101.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="110.0" stylesheets="@../styling/create-project-view-styling.css">
+      <Pane layoutY="101.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="110.0" stylesheets="@../styling/create-task-view-styling.css">
          <children>
             <VBox layoutY="-1.0" prefHeight="700.0" prefWidth="640.0" spacing="25.0">
                <children>
