@@ -68,10 +68,6 @@
     <orderEntry type="library" name="Maven: javax.persistence:javax.persistence-api:2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-params:5.7.2" level="project" />
     <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:11.1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars.npm:md5:2.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars.npm:charenc:0.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars.npm:crypt:0.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars.npm:is-buffer:1.1.6" level="project" />
     <orderEntry type="library" name="Maven: org.mindrot:jbcrypt:0.4" level="project" />
   </component>
 </module>
