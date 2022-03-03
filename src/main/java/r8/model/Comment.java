@@ -24,9 +24,6 @@ public class Comment {
 	@Column(name = "comment_id")
 	private int commentId;
 
-	@Column(name = "account_id")
-	private int accountId;
-
 	@Column(name = "task_id")
 	private int taskID;
 
@@ -53,7 +50,6 @@ public class Comment {
 	 */
 	public Comment(Account a, String content) {
 		this.account = a;
-		this.accountId = a.getAccountId();
 		this.content = content;
 	}
 
@@ -95,14 +91,6 @@ public class Comment {
 
 	public void setCommentId(int commentId) {
 		this.commentId = commentId;
-	}
-
-	public int getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(int authorID) {
-		this.accountId = authorID;
 	}
 
 	public int getTaskID() {

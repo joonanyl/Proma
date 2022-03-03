@@ -43,6 +43,13 @@ public class AccountDAO {
         return account;
     }
 
+    public String getPassword(String login) {
+        // TODO: FIX
+        Account account = entityManager.getReference(Account.class, login);
+        System.out.println("DAO get: " + account);
+        return account.getPassword();
+    }
+
     public void removeAccount(Account account) {
         entityManager.getTransaction().begin();
         entityManager.remove(account);

@@ -14,6 +14,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="Proma" />
           <factory-entry name="proma" />
         </datasource-mapping>
         <naming-strategy-map />
@@ -34,14 +35,14 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:17.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:17.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-media:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-media:win:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:17.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:17.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:17.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.mariadb.jdbc:mariadb-java-client:2.7.4" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.6.5.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.4.3.Final" level="project" />
@@ -65,5 +66,12 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.8.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:javax.persistence-api:2.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-params:5.7.2" level="project" />
+    <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:11.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.npm:md5:2.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.npm:charenc:0.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.npm:crypt:0.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.npm:is-buffer:1.1.6" level="project" />
+    <orderEntry type="library" name="Maven: org.mindrot:jbcrypt:0.4" level="project" />
   </component>
 </module>

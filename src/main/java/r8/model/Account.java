@@ -38,6 +38,12 @@ public class Account {
 	@Column(name = "email")
 	private String email;
 
+	@Column(name = "login")
+	private String login;
+
+	@Column(name = "password")
+	private String password;
+
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
@@ -51,16 +57,18 @@ public class Account {
 	@ManyToMany(mappedBy = "accounts")
 	private Set<Team> teams;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "teams")
 	private Set<Task> tasks;
 
-	public Account(String fName, String lName, String pNumber, String email) {
+	public Account(String fName, String lName, String pNumber, String email, String login, String pw) {
 		this.firstName = fName;
 		this.lastName = lName;
 		this.phoneNumber = pNumber;
 		this.email = email;
 		this.projects = new HashSet<>();
 		this.teams = new HashSet<>();
+		this.login = login;
+		this.password = pw;
 	}
 
 	public Account() {}
@@ -113,6 +121,22 @@ public class Account {
 
 	public void setTasks(Set<Task> tasks) {
 		this.tasks = tasks;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String toString() {
