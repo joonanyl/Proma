@@ -6,8 +6,8 @@ package r8.model.task;
  *
  */
 public enum TaskState {
-	COMPLETED,
+	READY,
+	DONE,
 	IN_PROGRESS,
-	UNDEFINED,
 	NOT_STARTED
 }

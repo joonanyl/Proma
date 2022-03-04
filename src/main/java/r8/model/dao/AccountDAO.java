@@ -1,46 +1,68 @@
 package r8.model.dao;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import r8.model.Account;
 
+import javax.persistence.EntityManager;
 import java.util.List;
+
 
 public class AccountDAO {
 
-    public void addAccount(Account acc) {
-        Transaction tx = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            tx = session.beginTransaction();
-            session.save(acc);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        }
+    private EntityManager entityManager;
+
+    public AccountDAO() {
+        this.entityManager = DAO.getEntityManager();
     }
 
-    public Account getAccountById(int id) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Account account = (Account) session.get(Account.class, id);
-            return account;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void persist(Account account) {
+        entityManager.getTransaction().begin();
+
+        entityManager.persist(account);
+        entityManager.getTransaction().commit();
+
+        /*
+        TAI TÄHÄN TYYLIIN KENTIES?
+        setterit haettaisiin kontrollerin avulla UI:sta
+
+        Account account = new Account();
+        account.setAccountId();
+        account.setProjects();
+         */
     }
 
-    public List<Account> getAllAccounts() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            List<Account> accountList = (List<Account>) session.createQuery("from Account").list();
-            return accountList;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void update(Account account) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(account);
+        entityManager.getTransaction().commit();
+
+    }
+
+    public Account get(int accountId) {
+        Account account = entityManager.find(Account.class, accountId);
+        entityManager.detach(account);
+        return account;
+    }
+
+    public List<Account> getAll() {
+        return entityManager.createQuery("SELECT a FROM Account a", Account.class).getResultList();
+    }
+
+    public String getLoginInfo(String login) {
+        Account account = (Account) entityManager.createQuery("SELECT a FROM Account a WHERE a.login LIKE :login")
+                .setParameter("login", login)
+                .getSingleResult();
+        return account.getPassword();
+    }
+
+    public void removeAccount(Account account) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(account);
+        entityManager.getTransaction().commit();
+    }
+
+    public void removeAccountById(int accountId) {
+        Account account = entityManager.find(Account.class, accountId);
+        entityManager.remove(account);
     }
 }
