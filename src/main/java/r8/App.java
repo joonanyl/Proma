@@ -20,7 +20,6 @@ public class App extends Application
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-
         switchToLoginScene();
     }
 
@@ -31,6 +30,7 @@ public class App extends Application
             Scene scene = new Scene(root);
             stage.setTitle("Proma - Login");
             stage.setScene(scene);
+            stage.setResizable(false);
 
             LoginViewController controller = loader.getController();
             controller.setApp(this);
@@ -53,6 +53,9 @@ public class App extends Application
             Scene scene = new Scene(root);
             stage.setTitle("Proma - Project Manager v0.1");
             stage.setScene(scene);
+            stage.setResizable(true);
+            stage.setFullScreen(true);
+            stage.setFullScreenExitHint("Press ESC to exit fullscreen mode.");
 
             MainViewController controller = loader.getController();
             controller.setApp(this);
