@@ -45,10 +45,6 @@ public class Project {
 	@Transient
 	private ArrayList<Task> tasks;
 
-	/**
-	 * Contructor
-	 * @param pn Project's name
-	 */
 	public Project(String pn, String description, String budget) {
 		this.name = pn;
 		this.budget = budget;
@@ -61,10 +57,12 @@ public class Project {
 
 
 	public void addTeam(Team t) {
-		this.teams.add(t);
-		t.setProject(this);
+		if(!this.teams.contains(t)){
+			this.teams.add(t);
+			t.setProject(this);
+		}
 	}
-	
+
 	public Set<Team> getTeamsList(){
 		return this.teams;
 	}
@@ -124,4 +122,5 @@ public class Project {
 	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
 	}
+
 }

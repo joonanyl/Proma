@@ -9,6 +9,7 @@ class TeamTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+
 	}
 
 	@Test

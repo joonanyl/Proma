@@ -1,3 +1,4 @@
+C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\CommentDAO.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\Project.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\teamView\TeamViewController.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\Test.java
@@ -5,6 +6,7 @@ C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\ModelTest.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\archiveView\ArchiveViewController.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\navigation\GlobalControllerReference.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\timeManagementView\TimeManagementViewController.java
+C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\EventDAO.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\loginView\LoginViewController.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\projectView\ProjectViewController.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\projectView\CreateProjectViewController.java
@@ -13,8 +15,10 @@ C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\taskView\TaskViewControl
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\dashboardView\DashboardViewController.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\Event.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\navigation\BreadcrumbObject.java
+C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\AuthService.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\teamView\CreateTeamViewController.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\ProjectDAO.java
+C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\SprintDAO.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\profileView\ProfileViewController.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\teamView\TeamsViewController.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\App.java
@@ -31,6 +35,9 @@ C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\Team.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\AccountDAO.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\task\TaskState.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\Comment.java
+C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\TaskDAO.java
+C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\IDAO.java
+C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\TeamDAO.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\dao\HibernateUtil.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\model\Sprint.java
 C:\Users\sanku\IdeaProjects\proma\src\main\java\r8\view\navigation\NavigationHandler.java

@@ -88,8 +88,6 @@ public class Team {
 	 * @param account LinkedList uusista jäsenistä
 	 */
 	public void addAccount(Account account) {
-		// tästä testi että ei olisi duplikaattijäseniä
-		System.out.println(this.accounts);
 		if(!accounts.contains(account)) {
 			accounts.add(account);
 			account.getTeams().add(this);
@@ -125,7 +123,6 @@ public class Team {
 		}
 		return null;
 	}
-
 
 	public Project getProject() {
 		return project;

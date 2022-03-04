@@ -1,7 +1,6 @@
 package r8.model;
 
 
-import org.mindrot.jbcrypt.BCrypt;
 import r8.model.dao.AccountDAO;
 import r8.model.dao.DAO;
 import r8.model.dao.ProjectDAO;
@@ -17,26 +16,30 @@ import java.util.Scanner;
 public class ModelTest {
 
     public static void main(String args[]) throws NoSuchAlgorithmException, NoSuchProviderException {
-        /*
+
         AccountDAO accountDAO = new AccountDAO();
         TeamDAO teamDAO = new TeamDAO();
         ProjectDAO projectDAO = new ProjectDAO();
 
         Project project1 = new Project("Projektitesti 2", "Test project with teams.", "2");
-        Team team1 = new Team();
-        Account account = new Account("Test", "Account", "014412312", "test@test.com");
-        Account account2 = new Account("Testi", "Käyttäjä", "112311332", "testi@sposti.fi");
 
-        Project project = projectDAO.getProject(1);
+        Team team1 = new Team();
+        Account account = new Account("Test", "Account", "014412312", "test@test.com", "jtn", "jtn");
+        Account account2 = new Account("Testi", "Käyttäjä", "112311332", "testi@sposti.fi", "jtn234", "jtn234");
+
+        projectDAO.addProject(project1);
+
+        //Project project = projectDAO.getProject(1);
 
         team1.setTeamName("Testitiimi");
-        team1.setProject(project);
+        team1.setProject(project1);
 
         team1.addAccount(account);
         team1.addAccount(account2);
 
         teamDAO.addTeam(team1);
-        */
+
+         /*
 
         Scanner scanner = new Scanner(System.in);
         AccountDAO accountDAO = new AccountDAO();
@@ -47,6 +50,6 @@ public class ModelTest {
 
         String verifier = accountDAO.getLoginInfo("joona");
         boolean login = AuthService.authenticatePassword("joona", "xd", verifier);
-        System.out.println(login);
+        System.out.println(login);*/
     }
 }
