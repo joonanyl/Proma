@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import r8.model.Account;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 
 public class AccountDAO {
@@ -43,10 +44,10 @@ public class AccountDAO {
         return account;
     }
 
-    public String getPassword(String login) {
-        // TODO: FIX
-        Account account = entityManager.getReference(Account.class, login);
-        System.out.println("DAO get: " + account);
+    public String getLoginInfo(String login) {
+        Account account = (Account) entityManager.createQuery("SELECT a FROM Account a WHERE a.login LIKE :login")
+                .setParameter("login", login)
+                .getSingleResult();
         return account.getPassword();
     }
 

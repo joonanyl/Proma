@@ -18,7 +18,7 @@ public class AuthService {
     public static boolean authenticatePassword(String login, String userInput, String hashedpw) {
         //Käytä loginia db queryyn
         AccountDAO accountDAO = new AccountDAO();
-        accountDAO.getPassword(login);
+        accountDAO.getLoginInfo(login);
         boolean pwCheck = BCrypt.checkpw(userInput, hashedpw);
         return pwCheck;
     }

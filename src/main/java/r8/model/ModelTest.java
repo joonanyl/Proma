@@ -41,11 +41,12 @@ public class ModelTest {
         Scanner scanner = new Scanner(System.in);
         AccountDAO accountDAO = new AccountDAO();
 
-        Account account = new Account("Login", "Testi", "044400112", "testi@sposti.com",
-                "joona", AuthService.hashPassword("salasana"));
-        accountDAO.addAccount(account);
+        // Account account = new Account("Login", "Testi", "044400112", "testi@sposti.com",
+           //     "joona", AuthService.hashPassword("salasana"));
+        // accountDAO.addAccount(account);
 
-        boolean login = AuthService.authenticatePassword("joona", "salasana", "salasana");
+        String verifier = accountDAO.getLoginInfo("joona");
+        boolean login = AuthService.authenticatePassword("joona", "xd", verifier);
         System.out.println(login);
     }
 }
