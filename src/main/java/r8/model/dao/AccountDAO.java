@@ -15,7 +15,7 @@ public class AccountDAO {
         this.entityManager = DAO.getEntityManager();
     }
 
-    public void addAccount(Account account) {
+    public void persist(Account account) {
         entityManager.getTransaction().begin();
 
         entityManager.persist(account);
@@ -31,17 +31,21 @@ public class AccountDAO {
          */
     }
 
-    public void updateAccount(Account account) {
+    public void update(Account account) {
         entityManager.getTransaction().begin();
         entityManager.merge(account);
         entityManager.getTransaction().commit();
 
     }
 
-    public Account getAccount(int accountId) {
+    public Account get(int accountId) {
         Account account = entityManager.find(Account.class, accountId);
         entityManager.detach(account);
         return account;
+    }
+
+    public List<Account> getAll() {
+        return entityManager.createQuery("SELECT a FROM Account a", Account.class).getResultList();
     }
 
     public String getLoginInfo(String login) {
