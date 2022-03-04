@@ -58,7 +58,7 @@
         </HBox>
         <HBox alignment="CENTER_RIGHT" layoutX="602.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
             <children>
-                <Button id="button-new-project" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="New Project" textFill="#f8f6f6" userData="create-task-view">
+                <Button id="button-new-project" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="New Project" textFill="#f8f6f6" userData="create-project-view">
                     <font>
                         <Font size="16.0" />
                     </font>

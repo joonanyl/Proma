@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.w3c.dom.Text;
@@ -71,22 +72,38 @@ public class CreateAccountViewController {
     private void createAccount(ActionEvent event) throws IOException {
         if(!textFieldEmail.getText().equals(textFieldConfirmEmail.getText())){
             System.out.println("email comparison");
+            showAlert("Emails don't match", "The emails you put in do not match!");
             return;
         }
         if(!textFieldEmail.getText().matches(emailRegEx)){
             System.out.println("Email exception");
+            showAlert("Invalid email", "The email you put in is invalid!");
             return;
         }
         if(!textFieldPassword.getText().matches(passwordRegEx)){
             System.out.println("Password Exception");
+            showAlert("Password is invalid", "The password you put is doesn't meet the requirements!");
             return;
         }
         if(!textFieldFirstName.getText().matches(nameRegEx) || !textFieldLastName.getText().matches(nameRegEx)){
             System.out.println("Name Exception");
+            showAlert("Name is invalid", "The name you put in contains Illegal characters, or is invalid!");
             return;
         }
         Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(),"000", textFieldEmail.getText());
         System.out.println(account.getFirstName());
+        showAlert("Success", "Successfully created account!");
         navigate(event);
+    }
+
+    private void showAlert(String title, String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+
+        // Header Text: null
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+
+        alert.showAndWait();
     }
 }
