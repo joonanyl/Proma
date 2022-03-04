@@ -42,3 +42,4 @@ r8\model\Sprint.class
 r8\model\AppState.class
 r8\model\task\Task.class
 r8\view\projectView\ProjectsViewController.class
+r8\view\createAccountView\CreateAccountViewController$1.class
