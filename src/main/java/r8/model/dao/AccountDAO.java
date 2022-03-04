@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import r8.model.Account;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 
 public class AccountDAO {
@@ -41,6 +42,13 @@ public class AccountDAO {
         Account account = entityManager.find(Account.class, accountId);
         entityManager.detach(account);
         return account;
+    }
+
+    public String getLoginInfo(String login) {
+        Account account = (Account) entityManager.createQuery("SELECT a FROM Account a WHERE a.login LIKE :login")
+                .setParameter("login", login)
+                .getSingleResult();
+        return account.getPassword();
     }
 
     public void removeAccount(Account account) {

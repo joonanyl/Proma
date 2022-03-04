@@ -65,7 +65,15 @@
             <artifactId>controlsfx</artifactId>
             <version>11.1.1</version>
         </dependency>
-        
+        <!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
+
+
         <!-- JUNIT -->
         <dependency>
 	    <groupId>org.junit.jupiter</groupId>
@@ -74,7 +82,7 @@
 	    <scope>test</scope>
 	</dependency>
 
-  	 <dependency>           
+  	 <dependency>
 	     <groupId>org.junit.jupiter</groupId>
 	     <artifactId>junit-jupiter-params</artifactId>
 	     <version>5.7.2</version>
