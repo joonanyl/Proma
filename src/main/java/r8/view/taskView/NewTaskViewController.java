@@ -16,6 +16,7 @@ import r8.model.task.TaskType;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class NewTaskViewController {
 
@@ -72,8 +73,13 @@ public class NewTaskViewController {
     private void saveTask(){
         if(!taskName.getText().matches("([A-Za-z0-9 ]{1,20})")){
             System.out.println("didn't match");
+            showAlert("Invalid input", "Invalid task name!", Alert.AlertType.INFORMATION);
             return;
         }
+        if(!showAlert("Confirmation", "Are you sure you want to save this task?", Alert.AlertType.CONFIRMATION)){
+            return;
+        }
+        showAlert("Success", "Successfully saved this task!", Alert.AlertType.INFORMATION);
         Task newTask = new Task(taskName.getText(), TaskState.NOT_STARTED, taskType.getValue());
         newTask.setDescription(descField.getText());
         ArrayList<Account> accountArrayList = new ArrayList<Account>();
@@ -102,6 +108,22 @@ public class NewTaskViewController {
         if(acc != null){
             listViewAssignedTo.getItems().remove(acc);
             comboBoxUser.getItems().add(acc);
+        }
+    }
+
+    private boolean showAlert(String title, String text, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+
+        // Header Text: null
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if(!result.isPresent() || result.get() != ButtonType.OK) {
+            return false;
+        } else {
+            return true;
         }
     }
 
