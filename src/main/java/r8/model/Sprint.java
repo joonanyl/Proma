@@ -1,6 +1,7 @@
 package r8.model;
 
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
  * 
@@ -9,26 +10,35 @@ import java.util.Date;
  */
 /* direct association w/ */
 /* TASK */
+@Entity
+@Table(name = "sprint")
 public class Sprint {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sprint_id")
 	private int sprintId;
+	@Column(name = "name")
 	private String name;
-	// startDate & endDate ?
-	private Date startDate;
-	private Date endDate;
-	private int projectId;
-
+	@Column(name = "start_date")
+	private LocalDate startDate;
+	@Column(name = "end_date")
+	private LocalDate endDate;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id")
+	private Project project;
+	//OneToMany to Task?
 	
 	/**
 	 * Constructor
 	 * @param n Sprint's name
 	 */
-	public Sprint(String n, Date sD, Date eD, int projectId) {
+	public Sprint(String n, LocalDate sD, LocalDate eD, int projectId) {
 		this.name = n;
 		this.startDate = sD;
 		this.endDate = eD;
-		this.projectId = projectId;
 	}
+
+	public Sprint() {}
 
 	public int getSprintId() {
 		return sprintId;
@@ -46,32 +56,32 @@ public class Sprint {
 		this.name = name;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
-	public int getProjectId() {
-		return projectId;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setProjectId(int projectId) {
-		this.projectId = projectId;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	@Override
 	public String toString() {
-		return this.name + " " + this.startDate + " " + this.endDate + " " + "projectID: " + this.projectId;
+		return this.name + " " + this.startDate + " " + this.endDate + " ";
 	}
 }
