@@ -54,8 +54,7 @@ public class App extends Application
             stage.setTitle("Proma - Project Manager v0.1");
             stage.setScene(scene);
             stage.setResizable(true);
-            stage.setFullScreen(true);
-            stage.setFullScreenExitHint("Press ESC to exit fullscreen mode.");
+            stage.setMaximized(true);
 
             MainViewController controller = loader.getController();
             controller.setApp(this);
