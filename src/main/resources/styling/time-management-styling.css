@@ -98,7 +98,8 @@
 
 }
 
-#container-dashboard
+#container-time-tracker
 {
-    -fx-background-color: F1F1F1;
+    -fx-background-color: EAEAEA;
+    -fx-background-radius: 5;
 }

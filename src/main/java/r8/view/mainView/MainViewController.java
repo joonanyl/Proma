@@ -44,7 +44,7 @@ public class MainViewController {
     @FXML
     private ObservableList<Button> breadcrumbButtons;
 
-    // used to prevent loading current view again
+    // used to prevent loading current view repeatedly
     private String currentView;
 
     public void initialize() {
