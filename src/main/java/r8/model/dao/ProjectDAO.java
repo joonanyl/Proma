@@ -1,32 +1,37 @@
 package r8.model.dao;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import r8.model.Account;
+
+
+
 import r8.model.Project;
 
-public class ProjectDAO {
+import javax.persistence.EntityManager;
 
-    public void addProject(Project project) {
-        Transaction tx = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            tx = session.beginTransaction();
-            session.save(project);
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        }
+public class ProjectDAO {
+    private EntityManager entityManager;
+
+    public ProjectDAO() {
+        this.entityManager = DAO.getEntityManager();
     }
 
-    public Project getProjectById(int id) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Project project = (Project) session.get(Project.class, id);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
+    public void addProject(Project project) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(project);
+        entityManager.getTransaction().commit();
+    }
+
+    public Project getProject(int projectId) {
+        Project project = entityManager.getReference(Project.class, projectId);
+        entityManager.detach(project);
+        return project;
+    }
+
+    public void removeProject(Project project) {
+        entityManager.remove(entityManager.merge(project));
+    }
+
+    public void removeProjectById(int projectId) {
+        Project project = entityManager.find(Project.class, projectId);
+        entityManager.remove(entityManager.contains(project) ? project : entityManager.merge(project));
     }
 }

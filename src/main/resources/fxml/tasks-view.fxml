@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.taskView.TasksViewController">
+<AnchorPane prefHeight="990.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.taskView.TasksViewController">
     <children>
         <HBox id="button-tracker" alignment="CENTER_LEFT" layoutY="-6.0" prefHeight="80.0" prefWidth="700.0" AnchorPane.topAnchor="-6.0">
             <children>
@@ -87,7 +87,7 @@
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Button id="button-go-to-task-view" layoutX="150.0" layoutY="431.0" userData="task-view" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Go To Task View" textFill="#f8f6f6">
+                <Button id="button-go-to-task-view" layoutX="150.0" layoutY="431.0" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Go To Task View" textFill="#f8f6f6" userData="task-view">
                     <font>
                         <Font size="16.0" />
                     </font>

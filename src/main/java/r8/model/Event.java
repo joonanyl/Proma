@@ -1,8 +1,9 @@
 package r8.model;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Date;
+import r8.model.task.Task;
+
+import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
  * 
@@ -13,23 +14,36 @@ import java.util.Date;
 
 /* direct association w/ */
 /* TASK */
+@Entity
+@Table(name = "event")
 public class Event {
-		// date + hours
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "event_id")
     private int eventId;
+    @Column(name = "description")
     private String description;
-    private Date date;
+    @Column(name = "date")
+    private LocalDate date;
+    @Column(name = "hours")
     private float hours;
-    private int accountId;
-    private int taskId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private Account account;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_id")
+    private Task task;
 
-    public Event(String desc, Date date, float hours, int taskId, Account a) {
+    public Event(String desc, LocalDate date, float hours, Task task, Account account) {
         this.description = desc;
         this.date = date;
         this.hours = hours;
-        this.accountId = a.getAccountID();
-        this.taskId = taskId;
+        this.account = account;
+        this.task = task;
     }
+
+    public Event() {}
 
     public int getEventId() {
         return eventId;
@@ -47,11 +61,11 @@ public class Event {
         this.description = description;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -63,17 +77,25 @@ public class Event {
         this.hours = hours;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 
     @Override
     public String toString() {
         return "Event " + this.eventId + ": " + this.date + " " + this.description + " associated with task "
-                + this.taskId + " created by " + this.accountId;
+                + this.task + " created by " + this.account;
     }
 }
