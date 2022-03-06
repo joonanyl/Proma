@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="990.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.teamView.TeamViewController">
+<AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.teamView.TeamViewController">
     <children>
         <HBox id="button-tracker" alignment="CENTER_LEFT" layoutY="-6.0" prefHeight="80.0" prefWidth="600.0" AnchorPane.topAnchor="-6.0">
             <children>

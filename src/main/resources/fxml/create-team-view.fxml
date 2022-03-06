@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="990.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.teamView.CreateTeamViewController">
+<AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.teamView.CreateTeamViewController">
     <children>
         <Text fontSmoothingType="LCD" layoutX="35.0" layoutY="48.10546875" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Team" wrappingWidth="230.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="30.0">
             <font>
@@ -167,10 +167,14 @@
             </children>
         </Pane>
         <Region layoutX="645.0" layoutY="130.0" maxWidth="1.0" prefHeight="600.0" prefWidth="1.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="645.0" AnchorPane.topAnchor="130.0" />
-        <Button fx:id="btnNewTask" layoutX="801.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/create-project-view-styling.css" text="Show Teams" textFill="#f8f6f6" userData="create-task-view">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Button>
+      <HBox alignment="CENTER" layoutX="1470.0" layoutY="-8.0" prefHeight="95.0" prefWidth="233.0" AnchorPane.rightAnchor="0.0">
+         <children>
+              <Button fx:id="btnNewTask" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/create-project-view-styling.css" text="Show Teams" textFill="#f8f6f6" userData="create-task-view">
+                  <font>
+                      <Font size="16.0" />
+                  </font>
+              </Button>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

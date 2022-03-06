@@ -24,30 +24,25 @@ public class App extends Application
     }
 
     public void switchToLoginScene() {
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/login-view.fxml")));
             root = loader.load();
             Scene scene = new Scene(root);
             stage.setTitle("Proma - Login");
             stage.setScene(scene);
             stage.setResizable(false);
-
             LoginViewController controller = loader.getController();
             controller.setApp(this);
-
             GlobalControllerReference.getInstance().setLoginViewController(controller);
-
             System.out.println("controller App: " + controller.getApp());
-
             stage.show();
-
         } catch (IOException | IllegalArgumentException e) {
            e.printStackTrace();
         }
     }
 
     public void switchToWorkScene() {
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/main-view.fxml")));
             root = loader.load();
             Scene scene = new Scene(root);
@@ -55,14 +50,10 @@ public class App extends Application
             stage.setScene(scene);
             stage.setResizable(true);
             stage.setMaximized(true);
-
             MainViewController controller = loader.getController();
             controller.setApp(this);
-
             GlobalControllerReference.getInstance().setMainViewController(controller);
-
             stage.show();
-
         } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
         }
