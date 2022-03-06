@@ -55,9 +55,9 @@ public class NewTaskViewController {
     public void initialize(){
         taskType.getItems().setAll(TaskType.values());
 
-        Account acc1 = new Account("Teemu", "Tallskog", "000", "email");
-        Account acc2 = new Account("Teemua", "Tallskoga", "0001", "email");
-        Account acc3 = new Account("Teemub", "Tallskogb", "0002", "email");
+        Account acc1 = new Account("Teemu", "Tallskog", "000", "email", "login", "password");
+        Account acc2 = new Account("Teemua", "Tallskoga", "0001", "email", "login", "password");
+        Account acc3 = new Account("Teemub", "Tallskogb", "0002", "email", "login", "password");
 
         comboBoxUser.getItems().add(acc1);
         comboBoxUser.getItems().add(acc2);

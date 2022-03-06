@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -37,7 +38,7 @@
          </font>
       </Button>
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox layoutX="111.0" layoutY="133.0" prefHeight="278.0" prefWidth="220.0" spacing="5.0" AnchorPane.leftAnchor="111.0" AnchorPane.rightAnchor="109.0">
+      <VBox layoutX="113.0" layoutY="114.0" prefHeight="278.0" prefWidth="220.0" spacing="5.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="107.0">
          <children>
               <Label text="Email">
                   <font>
@@ -45,16 +46,6 @@
                   </font>
               </Label>
               <TextField id="textEmail" fx:id="textFieldEmail" prefHeight="30.0" prefWidth="300.0">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-              <Label text="Confirm Email">
-                  <font>
-                      <Font name="Arial" size="14.0" />
-                  </font>
-              </Label>
-              <TextField id="textEmailConfirm" fx:id="textFieldConfirmEmail" prefHeight="30.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -84,8 +75,20 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <TextField id="textPassword" fx:id="textFieldPassword" prefHeight="30.0" prefWidth="300.0" />
+            <PasswordField fx:id="passwordField">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Label text="Confirm Password">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="confirmPasswordField" />
          </children>
       </VBox>
+      <Label layoutX="117.0" layoutY="413.0" text="Password must contain atleast 8 characters, " textFill="#000000b2" />
+      <Label layoutX="117.0" layoutY="430.0" text="1 uppercase character and 1 number." textFill="#000000b2" />
     </children>
 </AnchorPane>

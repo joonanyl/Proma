@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.w3c.dom.Text;
 import r8.model.Account;
@@ -20,10 +21,10 @@ public class CreateAccountViewController {
     private TextField textFieldEmail;
 
     @FXML
-    private TextField textFieldConfirmEmail;
+    private PasswordField passwordField;
 
     @FXML
-    private TextField textFieldPassword;
+    private PasswordField confirmPasswordField;
 
     @FXML
     private TextField textFieldFirstName;
@@ -37,22 +38,29 @@ public class CreateAccountViewController {
     }
 
     private String emailRegEx = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
-    private String passwordRegEx = "";
+    private String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
     private String nameRegEx = "([A-Za-z0-9]{1,30})";
 
     public void initialize(){
         TextFieldValidator textFieldValidator = new TextFieldValidator();
 
         textFieldValidator.setValidation(textFieldEmail, emailRegEx);
-        textFieldValidator.setValidation(textFieldPassword, passwordRegEx);
         textFieldValidator.setValidation(textFieldFirstName, nameRegEx);
         textFieldValidator.setValidation(textFieldLastName, nameRegEx);
-        compareEmail();
+        comparePassword();
     }
 
 
-    private void compareEmail(){
-        textFieldConfirmEmail.textProperty().addListener(new ChangeListener<String>() {
+
+
+    private void comparePassword(){
+        passwordField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                compare();
+            }
+        });
+        confirmPasswordField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 compare();
@@ -61,18 +69,23 @@ public class CreateAccountViewController {
         compare();
     }
     private void compare(){
-        if(!textFieldConfirmEmail.getText().equals(textFieldEmail.getText())){
-            textFieldConfirmEmail.setStyle("-fx-border-color: red;");
+        if(!passwordField.getText().matches(passwordRegEx)){
+            passwordField.setStyle("-fx-border-color: red;");
         }else{
-            textFieldConfirmEmail.setStyle("-fx-border-color: null;");
+            passwordField.setStyle("-fx-border-color: null;");
+        }
+        if(!confirmPasswordField.getText().equals(passwordField.getText())){
+            confirmPasswordField.setStyle("-fx-border-color: red;");
+        }else{
+            confirmPasswordField.setStyle("-fx-border-color: null;");
         }
     }
 
     @FXML
     private void createAccount(ActionEvent event) throws IOException {
-        if(!textFieldEmail.getText().equals(textFieldConfirmEmail.getText())){
-            System.out.println("email comparison");
-            showAlert("Emails don't match", "The emails you put in do not match!");
+        if(!passwordField.getText().equals(confirmPasswordField.getText())){
+            System.out.println("Password comparison");
+            showAlert("Passwords don't match!", "The Passwords you put in do not match!");
             return;
         }
         if(!textFieldEmail.getText().matches(emailRegEx)){
@@ -80,9 +93,9 @@ public class CreateAccountViewController {
             showAlert("Invalid email", "The email you put in is invalid!");
             return;
         }
-        if(!textFieldPassword.getText().matches(passwordRegEx)){
+        if(!passwordField.getText().matches(passwordRegEx)){
             System.out.println("Password Exception");
-            showAlert("Password is invalid", "The password you put is doesn't meet the requirements!");
+            showAlert("Password is invalid", "The password you put in doesn't meet the requirements!");
             return;
         }
         if(!textFieldFirstName.getText().matches(nameRegEx) || !textFieldLastName.getText().matches(nameRegEx)){
@@ -90,7 +103,7 @@ public class CreateAccountViewController {
             showAlert("Name is invalid", "The name you put in contains Illegal characters, or is invalid!");
             return;
         }
-        Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(),"000", textFieldEmail.getText());
+        Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(),"000", textFieldEmail.getText(), "Login", passwordField.getText());
         System.out.println(account.getFirstName());
         showAlert("Success", "Successfully created account!");
         navigate(event);
