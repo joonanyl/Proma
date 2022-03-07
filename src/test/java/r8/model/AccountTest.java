@@ -27,6 +27,10 @@ class AccountTest {
         team1 = new Team("tiimi1", project1);
         team2 = new Team("tiimi2", project2);
         team3 = new Team("tiimi3", project3);
+
+        task1 = new Task();
+        task2 = new Task();
+        task3 = new Task();
     }
 
     @Test
@@ -111,16 +115,36 @@ class AccountTest {
 
         assertEquals(3, account1.getTeams().size(), "Tiimimäärä väärin");
     }
-/*
-    @Disabled
+
+
     @Test
     void getTasks() {
+        Set<Task> tasks = new HashSet<Task>();
+        tasks.add(task1);
+        tasks.add(task2);
+        tasks.add(task3);
+
+        account1.setTasks(tasks);
+
+        assertEquals(3, account1.getTasks().size(), "Käyttäjän tehtävien määrä virheellinen");
     }
 
-    @Disabled
     @Test
-    void setTasks() {
+    void setTask() {
+        Set<Task> tasks = new HashSet<Task>();
+        tasks.add(task1);
+        tasks.add(task2);
+
+        System.out.println("tasks size = " + tasks.size());
+
+        account1.setTasks(tasks);
+        assertEquals(2, account1.getTasks().size(), "Käyttäjän tehtävien määrä virheellinen");
+
+        account1.setTask(task3);
+        assertEquals(3, account1.getTasks().size(), "Käyttäjän tehtävien määrä virheellinen");
+
+        account1.setTask(task3);
+        assertEquals(3, account1.getTasks().size(), "Duplikaatti tehtävä");
     }
 
-    */
 }
