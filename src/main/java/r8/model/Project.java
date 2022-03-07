@@ -47,10 +47,10 @@ public class Project {
 
 	/**
 	 * Contructor
-	 * @param pn Project's name
+	 * @param name Project's name
 	 */
-	public Project(String pn, String description, String budget) {
-		this.name = pn;
+	public Project(String name, String description, String budget) {
+		this.name = name;
 		this.budget = budget;
 		this.description = description;
 		this.accounts = new HashSet<>();

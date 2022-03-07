@@ -49,7 +49,7 @@ public class Task {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 
-	/*
+
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
@@ -58,9 +58,6 @@ public class Task {
 			name = "account_task",
 			joinColumns = @JoinColumn(name = "task_id"),
 			inverseJoinColumns = @JoinColumn(name = "account_id"))
-
-	 */
-	@Transient
 	private Set<Account> accounts;
 
 	@ManyToOne(fetch = FetchType.LAZY)

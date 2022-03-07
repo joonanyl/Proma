@@ -1,9 +1,11 @@
 package r8.model.dao;
 
 
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import r8.model.Account;
 
 import javax.persistence.EntityManager;
+
 import java.util.List;
 
 
@@ -17,18 +19,8 @@ public class AccountDAO {
 
     public void persist(Account account) {
         entityManager.getTransaction().begin();
-
         entityManager.persist(account);
         entityManager.getTransaction().commit();
-
-        /*
-        TAI TÄHÄN TYYLIIN KENTIES?
-        setterit haettaisiin kontrollerin avulla UI:sta
-
-        Account account = new Account();
-        account.setAccountId();
-        account.setProjects();
-         */
     }
 
     public void update(Account account) {
@@ -39,31 +31,74 @@ public class AccountDAO {
     }
 
     public Account get(int accountId) {
-        Account account = entityManager.find(Account.class, accountId);
-        entityManager.detach(account);
+        Account account = null;
+
+        try {
+            account = entityManager.find(Account.class, accountId);
+            entityManager.detach(account);
+        } catch (NullPointerException e) {
+            System.out.println("Account wasn't found");
+            e.printStackTrace();
+        }
+        return account;
+    }
+
+    public Account getByEmail(String email) {
+        Account account = null;
+        try {
+            account = (Account) entityManager.createQuery(
+                            "SELECT a FROM Account a WHERE a.email LIKE :email")
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NullPointerException e) {
+            System.out.println("Account wasn't found");
+            e.printStackTrace();
+        }
         return account;
     }
 
     public List<Account> getAll() {
-        // Hae vaan nimet, email
-        return entityManager.createQuery("SELECT a FROM Account a", Account.class).getResultList();
+        List<Account> results = null;
+        try {
+            results = entityManager.createQuery("SELECT a FROM Account a", Account.class)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            System.out.println("No accounts found.");
+            e.printStackTrace();
+        }
+        return results;
     }
 
-    public String getLoginInfo(String login) {
-        Account account = (Account) entityManager.createQuery("SELECT a FROM Account a WHERE a.login LIKE :login")
-                .setParameter("login", login)
-                .getSingleResult();
+    public String getHashedPw(String email) {
+        Account account = null;
+        try {
+            account = (Account) entityManager.createQuery(
+                    "SELECT a FROM Account a WHERE a.email LIKE :email")
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NullPointerException e) {
+            System.out.println("No account found with given email address");
+            e.printStackTrace();
+        }
+
         return account.getPassword();
     }
 
     public void removeAccount(Account account) {
         entityManager.getTransaction().begin();
-        entityManager.remove(account);
+        entityManager.remove(entityManager.contains(account) ? account : entityManager.merge(account));
         entityManager.getTransaction().commit();
     }
 
     public void removeAccountById(int accountId) {
-        Account account = entityManager.find(Account.class, accountId);
-        entityManager.remove(account);
+        Account account = null;
+        try {
+            account = entityManager.find(Account.class, accountId);
+            entityManager.remove(entityManager.contains(account) ? account : entityManager.merge(account));
+        } catch (NullPointerException e) {
+            System.out.println("Account not found");
+            e.printStackTrace();
+        }
+
     }
 }

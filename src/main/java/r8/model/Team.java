@@ -27,9 +27,6 @@ public class Team {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "team_id")
 	private int teamId;
-	/**
-	 * tiimin nimi
-	 */
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id")
