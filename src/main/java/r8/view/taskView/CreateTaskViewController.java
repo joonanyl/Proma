@@ -1,12 +1,9 @@
 package r8.view.taskView;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.controlsfx.control.SearchableComboBox;
-import org.controlsfx.control.textfield.TextFields;
 import r8.model.Account;
 import r8.model.Team;
 import r8.model.TextFieldValidator;
@@ -14,11 +11,10 @@ import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class NewTaskViewController {
+public class CreateTaskViewController {
 
     @FXML
     private SearchableComboBox<Account> comboBoxUser;
