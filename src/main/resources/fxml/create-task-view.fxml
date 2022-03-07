@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.taskView.NewTaskViewController">
    <children>
@@ -22,7 +23,7 @@
          </font>
       </Text>
       <Region prefHeight="1.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-      <Pane layoutY="101.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="110.0">
+      <Pane layoutY="101.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="110.0" stylesheets="@../styling/create-task-view-styling.css">
          <children>
             <VBox layoutY="-1.0" prefHeight="700.0" prefWidth="640.0" spacing="25.0">
                <children>
@@ -76,7 +77,7 @@
                         </TextArea>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                            <children>
-                              <Button fx:id="btnSave" mnemonicParsing="false" text="Save task" />
+                              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveTask" text="Save task" />
                               <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" />
                            </children>
                            <VBox.margin>
@@ -91,7 +92,7 @@
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="675.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
          <children>
-            <VBox prefHeight="670.0" prefWidth="305.0" spacing="20.0">
+            <VBox prefHeight="670.0" prefWidth="305.0">
                <children>
                   <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign to">
                      <font>
@@ -101,26 +102,26 @@
                         <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                  <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
                      <children>
                         <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Team">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="comboBoxTeam" prefWidth="150.0" />
+                        <SearchableComboBox fx:id="comboBoxTeam" maxHeight="25.0" prefWidth="150.0" />
                         <Button fx:id="btnAssignTeam" mnemonicParsing="false" text="Assign" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                  <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="User">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="User  ">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="comboBoxUser" prefWidth="150.0" />
-                        <Button fx:id="btnAssignUser" mnemonicParsing="false" text="Assign" />
+                        <SearchableComboBox fx:id="comboBoxUser" maxHeight="25.0" prefWidth="150.0" />
+                        <Button fx:id="btnAssignUser" mnemonicParsing="false" onAction="#AssignUser" text="Assign" />
                      </children>
                   </HBox>
                   <VBox prefHeight="352.0" prefWidth="305.0" spacing="20.0">
@@ -133,14 +134,14 @@
                               <Insets left="20.0" top="15.0" />
                            </VBox.margin>
                         </Text>
-                        <ListView fx:id="listViewAssignedTo" prefHeight="315.0" prefWidth="305.0">
+                        <ListView fx:id="listViewAssignedTo" prefHeight="125.0" prefWidth="305.0">
                            <VBox.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" />
                            </VBox.margin>
                         </ListView>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnRemoveAssigned" mnemonicParsing="false" text="Remove" />
+                              <Button fx:id="btnRemoveAssigned" mnemonicParsing="false" onAction="#removeAssigned" text="Remove" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" />

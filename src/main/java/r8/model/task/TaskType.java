@@ -6,8 +6,19 @@ package r8.model.task;
  *
  */
 public enum TaskType {
-	BUG,
-	UI,
-	MEETING,
-	USER_DEFINED
+	BUG ("Bug"),
+	UI ("UI"),
+	MEETING ("Meeting"),
+	USER_DEFINED ("User defined");
+
+	private final String name;
+
+	private TaskType (String name){
+		this.name = name;
+	}
+
+	@Override
+	public String toString(){
+		return name;
+	}
 }
