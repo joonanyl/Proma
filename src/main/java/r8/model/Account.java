@@ -43,7 +43,10 @@ public class Account {
 
 	@Column(name = "password")
 	private String password;
-
+	/*
+	@Column(name = "admin")
+	private Boolean admin;
+	*/
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE

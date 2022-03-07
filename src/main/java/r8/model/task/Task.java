@@ -33,11 +33,9 @@ public class Task {
 	@Column(name = "state")
 	private String taskStateString;
 
-	@Transient
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "task_type_id")
 	private TaskType taskType;
-
-	@Column(name = "task_type_id")
-	private int taskTypeId;
 
 	@Column(name = "description")
 	private String description;
@@ -87,11 +85,14 @@ public class Task {
 	 * Constructor
 	 * @param n Task's name
 	 */
-	public Task(String n, TaskState ts, TaskType tt) {
+	public Task(String n, TaskState ts, TaskType tt, float hours, String desc) {
 		this.name = n;
 		this.taskState = ts;
 		this.taskStateString = taskState.toString();
 		this.taskType = tt;
+		this.hours = hours;
+		this.description = desc;
+		this.startDate = LocalDate.now();
 	}
 
 	public Task() {}
@@ -144,14 +145,6 @@ public class Task {
 
 	public void setTaskType(TaskType taskType) {
 		this.taskType = taskType;
-	}
-
-	public int getTaskTypeId() {
-		return taskTypeId;
-	}
-
-	public void setTaskTypeId(int taskTypeId) {
-		this.taskTypeId = taskTypeId;
 	}
 
 	public String getDescription() {

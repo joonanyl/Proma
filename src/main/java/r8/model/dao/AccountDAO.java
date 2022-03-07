@@ -1,6 +1,6 @@
 package r8.model.dao;
 
-import org.hibernate.Session;
+
 import r8.model.Account;
 
 import javax.persistence.EntityManager;
@@ -45,6 +45,7 @@ public class AccountDAO {
     }
 
     public List<Account> getAll() {
+        // Hae vaan nimet, email
         return entityManager.createQuery("SELECT a FROM Account a", Account.class).getResultList();
     }
 

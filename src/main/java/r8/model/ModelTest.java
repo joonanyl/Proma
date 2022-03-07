@@ -1,14 +1,12 @@
 package r8.model;
 
 
-import r8.model.dao.AccountDAO;
-import r8.model.dao.DAO;
-import r8.model.dao.ProjectDAO;
-import r8.model.dao.TeamDAO;
+import r8.model.dao.*;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ModelTest {
@@ -37,13 +35,26 @@ public class ModelTest {
 
         Scanner scanner = new Scanner(System.in);
         AccountDAO accountDAO = new AccountDAO();
+        EventDAO eventDAO = new EventDAO();
+        ProjectDAO projectDAO = new ProjectDAO();
+        TaskTypeDAO taskTypeDAO = new TaskTypeDAO();
+        /*
+        Account account = new Account("Login", "Testi", "044400112", "testi@sposti.com",
+            "joona", AuthService.hashPassword("salasana"));
+        accountDAO.persist(account);
+        */
 
-        // Account account = new Account("Login", "Testi", "044400112", "testi@sposti.com",
-        //     "joona", AuthService.hashPassword("salasana"));
-        // accountDAO.addAccount(account);
-
+    /*
         String verifier = accountDAO.getLoginInfo("joona");
         boolean login = AuthService.authenticatePassword("joona", "xd", verifier);
-        System.out.println(login);
+
+     */
+        TaskDAO taskDAO = new TaskDAO();
+        TaskType taskType = taskTypeDAO.get(1);
+        Task task = new Task("Test task", TaskState.NOT_STARTED, taskType, 1f, "Testing tasks.");
+        task.setProject(projectDAO.getProject(2));
+        taskDAO.persist(task);
+        Event event = new Event("Progress on bug task.", LocalDate.now(), 1.5f, task, accountDAO.get(1));
+        eventDAO.addEvent(event);
     }
 }
