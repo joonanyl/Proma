@@ -1,0 +1,28 @@
+#button-create-account
+{
+    -fx-background-color: linear-gradient(from 15% 15% to 60% 60%, #40515D, #15191C);
+    -fx-background-radius: 50px;
+
+    -fx-border-radius: 50px;
+    -fx-border-width: 5px;
+}
+
+#button-create-account:hover
+{
+    -fx-background-color: #40515D;
+}
+
+#button-create-account:pressed
+{
+    -fx-background-color: #15191C;
+}
+
+#button-back-to-login
+{
+    -fx-background-color: transparent;
+}
+
+#button-back-to-login-text
+{
+    -fx-background-color: transparent;
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="990.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+            <HBox id="button-tracker" alignment="CENTER_LEFT" layoutY="-6.0" prefHeight="80.0" prefWidth="700.0" AnchorPane.topAnchor="-6.0">
+                <children>
+                    <Label fx:id="labelUserName">
+                        <font>
+                            <Font name="Arial Bold" size="20.0" />
+                        </font>
+                        <HBox.margin>
+                            <Insets left="32.0" />
+                        </HBox.margin>
+                    </Label>
+                    <Label fx:id="labelWelcome" text=", Profile">
+                        <font>
+                            <Font name="Arial" size="20.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="544.0" prefHeight="80.0" prefWidth="300.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
+                <children>
+                    <VBox alignment="TOP_RIGHT" prefHeight="80.0">
+                        <opaqueInsets>
+                            <Insets />
+                        </opaqueInsets>
+                    </VBox>
+                </children>
+            </HBox>
+            <Pane id="container-dashboard" fx:id="profileResPane" layoutX="30.0" layoutY="125.0" prefHeight="635.0" prefWidth="933.0" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
+                <children>
+                    <Label layoutX="15.0" layoutY="8.0" text="Profile information" textFill="#757171">
+                        <font>
+                            <Font name="System Bold" size="17.0" />
+                        </font>
+                    </Label>
+                    <HBox layoutY="34.0" prefHeight="614.0" prefWidth="940.0" />
+                </children>
+            </Pane>
+            <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Region layoutX="-133.0" layoutY="28.0" minWidth="0.0" prefHeight="1.0" prefWidth="0.1" rotate="180.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="232.0" AnchorPane.topAnchor="28.0" />
+    </children>
+</AnchorPane>

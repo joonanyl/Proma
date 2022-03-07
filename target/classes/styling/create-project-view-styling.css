@@ -1,0 +1,35 @@
+.button
+{
+    -fx-background-color: linear-gradient(from 1% 1% to 25% 40%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+}
+
+.button:hover
+{
+    -fx-background-color: linear-gradient(from 15% 15% to 100% 100%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+}
+
+.button:pressed
+{
+    -fx-background-color: linear-gradient(from 80% 80% to 100% 100%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+}
+
+#container-project-info
+{
+    -fx-background-color: #EAEAEA;
+    -fx-background-radius: 5;
+}
+
+#container-project-teams
+{
+    -fx-background-color: #EAEAEA;
+    -fx-background-radius: 5;
+}
