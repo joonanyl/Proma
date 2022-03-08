@@ -1,8 +1,12 @@
 package r8.model.dao;
 
+import r8.model.Project;
 import r8.model.Team;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeamDAO {
     private EntityManager entityManager;
@@ -38,6 +42,20 @@ public class TeamDAO {
             e.printStackTrace();
         }
         return team;
+    }
+
+    public List<Team> getByProject(Project project) {
+        List<Team> results = null;
+        try {
+            results = entityManager.createQuery(
+                    "SELECT t FROM Team t WHERE t.project = :project", Team.class)
+                    .setParameter("project", project)
+                    .getResultList();
+            System.out.println(results.size());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return results;
     }
 
     public void removeTeam(Team team) {
