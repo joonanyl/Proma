@@ -9,16 +9,34 @@ public class TeamDAO {
 
     public TeamDAO() { this.entityManager = DAO.getEntityManager(); }
 
-    public void addTeam(Team team) {
+    public void persist(Team team) {
         entityManager.getTransaction().begin();
-
         entityManager.persist(team);
         entityManager.getTransaction().commit();
     }
 
-    public Team getTeam(int teamId) {
+    public void update(Team team) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(team);
+        entityManager.getTransaction().commit();
+    }
+
+    public Team get(int teamId) {
         Team team = entityManager.find(Team.class, teamId);
         entityManager.detach(team);
+        return team;
+    }
+
+    public Team getByName(String name) {
+        Team team = null;
+        try {
+            team = (Team) entityManager.createQuery(
+                    "SELECT t FROM Team t WHERE t.teamName LIKE :name")
+                    .setParameter("name", name)
+                    .getSingleResult();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return team;
     }
 

@@ -22,7 +22,6 @@ import java.util.Set;
 public class Account {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "account_id")
 	private int accountId;
 
@@ -32,18 +31,15 @@ public class Account {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "phone_number")
-	private String phoneNumber;
-
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "login")
-	private String login;
-
 	@Column(name = "password")
 	private String password;
-
+	/*
+	@Column(name = "admin")
+	private Boolean admin;
+	*/
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
@@ -57,18 +53,17 @@ public class Account {
 	@ManyToMany(mappedBy = "accounts")
 	private Set<Team> teams;
 
-	@ManyToMany(mappedBy = "teams")
+	@ManyToMany(mappedBy = "accounts")
 	private Set<Task> tasks;
 
-	public Account(String fName, String lName, String pNumber, String email, String login, String pw) {
+	public Account(String fName, String lName, String email, String pw) {
 		this.firstName = fName;
 		this.lastName = lName;
-		this.phoneNumber = pNumber;
 		this.email = email;
 		this.projects = new HashSet<>();
 		this.teams = new HashSet<>();
-		this.login = login;
-		this.password = pw;
+
+		this.password = AuthService.hashPassword(pw);
 	}
 
 	public Account() {}
@@ -130,20 +125,28 @@ public class Account {
 		this.tasks = tasks;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String toString() {
