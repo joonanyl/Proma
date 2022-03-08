@@ -73,8 +73,7 @@ public class ModelTest {
             System.out.println(t);
         }
         */
-        Account account = accountDAO.get(3);
-        account.setAdmin(true);
-        accountDAO.update(account);
+        System.out.println(accountDAO.checkIfEmailExists("testi@mail.com"));
+        System.out.println(accountDAO.checkIfEmailExists("askdöka"));
     }
 }

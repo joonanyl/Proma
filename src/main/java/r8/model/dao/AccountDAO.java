@@ -32,7 +32,6 @@ public class AccountDAO {
 
     public Account get(int accountId) {
         Account account = null;
-
         try {
             account = entityManager.find(Account.class, accountId);
             entityManager.detach(account);
@@ -99,6 +98,21 @@ public class AccountDAO {
             System.out.println("Account not found");
             e.printStackTrace();
         }
+    }
 
+    public boolean checkIfEmailExists(String email) {
+        try {
+            List<String> results = entityManager.createQuery(
+                    "SELECT a.email FROM Account a")
+                    .getResultList();
+            // Email is in database
+            if (results.contains(email))
+                return true;
+        } catch (NullPointerException e) {
+            System.out.println("Spostia ei löytynyt!");
+            e.printStackTrace();
+        }
+        // Email is not in database
+        return false;
     }
 }
