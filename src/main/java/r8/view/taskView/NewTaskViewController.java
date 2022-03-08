@@ -53,11 +53,11 @@ public class NewTaskViewController {
 
 
     public void initialize(){
-        taskType.getItems().setAll(TaskType.values());
+        //taskType.getItems().setAll(TaskType.values());
 
-        Account acc1 = new Account("Teemu", "Tallskog", "000", "email", "login", "password");
-        Account acc2 = new Account("Teemua", "Tallskoga", "0001", "email", "login", "password");
-        Account acc3 = new Account("Teemub", "Tallskogb", "0002", "email", "login", "password");
+        Account acc1 = new Account("Teemu", "Tallskog", "email", "password");
+        Account acc2 = new Account("Teemua", "Tallskoga", "email", "password");
+        Account acc3 = new Account("Teemub", "Tallskogb", "email", "password");
 
         comboBoxUser.getItems().add(acc1);
         comboBoxUser.getItems().add(acc2);
@@ -80,7 +80,7 @@ public class NewTaskViewController {
             return;
         }
         showAlert("Success", "Successfully saved this task!", Alert.AlertType.INFORMATION);
-        Task newTask = new Task(taskName.getText(), TaskState.NOT_STARTED, taskType.getValue());
+        Task newTask = new Task(taskName.getText(), TaskState.NOT_STARTED, taskType.getValue(), 0, descField.getText());
         newTask.setDescription(descField.getText());
         ArrayList<Account> accountArrayList = new ArrayList<Account>();
         if(listViewAssignedTo.getItems() != null){

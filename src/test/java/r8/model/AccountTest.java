@@ -18,6 +18,7 @@ class AccountTest {
 
     @BeforeAll
     static void setUpBeforeTesting() throws Exception{
+        /*
         account1 = new Account("etunimi", "sukunimi", "123", "email", "login", "pwd");
         project1 = new Project("project1 name", "desc1", "budjetti1");
         project2 = new Project("project2 name", "desc2", "budjetti2");
@@ -30,6 +31,8 @@ class AccountTest {
         task1 = new Task();
         task2 = new Task();
         task3 = new Task();
+        
+         */
     }
 
     @Test

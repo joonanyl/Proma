@@ -1,6 +1,7 @@
 r8\view\taskView\TaskViewController.class
 r8\model\dao\ProjectDAO.class
 r8\view\createAccountView\CreateAccountViewController.class
+r8\controller\Controller.class
 r8\view\profileView\ProfileViewController.class
 r8\model\Comment.class
 r8\view\mainView\MainViewController.class
@@ -13,6 +14,7 @@ r8\model\task\TaskType.class
 r8\view\loginView\LoginViewController.class
 r8\view\navigation\GlobalControllerReference.class
 r8\view\archiveView\ArchiveViewController.class
+r8\model\dao\TaskTypeDAO.class
 r8\model\Project.class
 r8\model\TextFieldValidator$1.class
 r8\view\forgotPasswordView\ForgotPasswordViewController.class
@@ -40,6 +42,7 @@ r8\view\managementView\ManagementViewController.class
 r8\view\sprintView\SprintViewController.class
 r8\view\teamView\CreateTeamViewController.class
 r8\view\navigation\BreadcrumbObject.class
+r8\controller\ControllerTest.class
 r8\model\Account.class
 r8\model\Sprint.class
 r8\model\dao\SprintDAO.class
