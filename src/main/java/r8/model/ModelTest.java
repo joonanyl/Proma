@@ -35,6 +35,7 @@ public class ModelTest {
         EventDAO eventDAO = new EventDAO();
         ProjectDAO projectDAO = new ProjectDAO();
         TaskTypeDAO taskTypeDAO = new TaskTypeDAO();
+        TeamDAO teamDAO = new TeamDAO();
 
         /*
         TaskDAO taskDAO = new TaskDAO();
@@ -51,6 +52,7 @@ public class ModelTest {
         accountDAO.persist(account);
          */
 
+        /*
         boolean login = AuthService.authenticatePassword("joona@testi.fi", "salis");
         System.out.println(login);
         List<Account> results = accountDAO.getAll();
@@ -60,5 +62,15 @@ public class ModelTest {
         }
 
         System.out.println(accountDAO.getByEmail("joona@testi.fi"));
+        */
+
+
+        //Team team = new Team("Testitiimi", projectDAO.get(1));
+        //teamDAO.persist(team);
+
+        List<Team> teamsPId1 = teamDAO.getByProject(projectDAO.get(1));
+        for (Team t: teamsPId1) {
+            System.out.println(t);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package r8.controller;
 
 import r8.model.*;
+import r8.model.appState.AppState;
 import r8.model.dao.*;
 
 public class Controller {
@@ -23,23 +24,20 @@ public class Controller {
         this.taskDAO = new TaskDAO();
         this.taskTypeDAO = new TaskTypeDAO();
         this.teamDAO = new TeamDAO();
-        this.appState = AppState.getInstance();
+        //this.appState = AppState.getInstance();
     }
 
     public boolean authenticateLogin(String email, String password) {
         boolean authentication = AuthService.authenticatePassword(email, password);
         if (authentication) {
-            appState.setLoggedAccount(accountDAO.getByEmail(email));
-            System.out.println("LOGGED IN: " + appState.getLoggedAccount());
+            //appState.setLoggedAccount(accountDAO.getByEmail(email));
             return true;
         }
-
         return false;
     }
 
     public void logout() {
         appState.setLoggedAccount(null);
-        System.out.println("LOGGED OUT: " + appState.getLoggedAccount());
     }
 
     public void createAccount(String firstName, String lastName, String email, String password) {
@@ -71,8 +69,8 @@ public class Controller {
         accountDAO.removeAccount(account);
     }
 
-    public void createProject(String name, String description, String budget) {
-        Project project = new Project(name, description, budget);
+    public void createProject(String name, String description) {
+        Project project = new Project(name, description);
         projectDAO.persist(project);
     }
 
@@ -86,11 +84,10 @@ public class Controller {
         return project;
     }
 
-    public void updateProject(int projectId, String name, String description, String budget) {
+    public void updateProject(int projectId, String name, String description) {
         Project project = projectDAO.get(projectId);
         project.setName(name);
         project.setDescription(description);
-        project.setBudget(budget);
 
         projectDAO.update(project);
     }

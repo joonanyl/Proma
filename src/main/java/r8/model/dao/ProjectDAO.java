@@ -1,8 +1,6 @@
 package r8.model.dao;
 
 
-
-
 import r8.model.Project;
 
 import javax.persistence.EntityManager;
