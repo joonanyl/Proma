@@ -45,7 +45,7 @@
                       <Font name="Arial" size="14.0" />
                   </font>
               </Label>
-              <TextField id="textEmail" fx:id="textFieldEmail" prefHeight="30.0" prefWidth="300.0">
+              <TextField id="textFieldEmail" fx:id="textFieldEmail" prefHeight="30.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -55,7 +55,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldFirstName" prefHeight="30.0" prefWidth="300.0">
+            <TextField id="textFieldFirstName" fx:id="textFieldFirstName" prefHeight="30.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -65,7 +65,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldLastName" prefHeight="30.0" prefWidth="300.0">
+            <TextField id="textFieldLastName" fx:id="textFieldLastName" prefHeight="30.0" prefWidth="300.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -75,7 +75,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordField">
+            <PasswordField id="passwordField" fx:id="passwordField">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -85,7 +85,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="confirmPasswordField" />
+            <PasswordField id="confirmPasswordField" fx:id="confirmPasswordField" />
          </children>
       </VBox>
       <Label layoutX="117.0" layoutY="413.0" text="Password must contain atleast 8 characters, " textFill="#000000b2" />

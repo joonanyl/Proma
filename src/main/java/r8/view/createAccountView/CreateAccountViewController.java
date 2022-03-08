@@ -41,6 +41,8 @@ public class CreateAccountViewController {
     private String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
     private String nameRegEx = "([A-Za-z0-9]{1,30})";
 
+
+
     public void initialize(){
         TextFieldValidator textFieldValidator = new TextFieldValidator();
 
@@ -49,9 +51,6 @@ public class CreateAccountViewController {
         textFieldValidator.setValidation(textFieldLastName, nameRegEx);
         comparePassword();
     }
-
-
-
 
     private void comparePassword(){
         passwordField.textProperty().addListener(new ChangeListener<String>() {
