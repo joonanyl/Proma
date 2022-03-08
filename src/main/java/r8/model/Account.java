@@ -37,6 +37,7 @@ public class Account {
 	@Column(name = "password")
 	private String password;
 	/*
+	https://stackoverflow.com/questions/1710198/what-does-hibernate-map-a-boolean-datatype-to-when-using-an-oracle-database-by-d
 	@Column(name = "admin")
 	private Boolean admin;
 	*/
