@@ -128,7 +128,7 @@ public class CreateAccountViewController {
             showAlert("Name is invalid", "The name you put in contains Illegal characters, or is invalid!");
             return;
         }
-        Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(),"000", textFieldEmail.getText(), "Login", passwordField.getText());
+        Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
         System.out.println(account.getFirstName());
         showAlert("Success", "Successfully created account!");
         navigate(event);

@@ -44,7 +44,7 @@ public class CreateProjectViewController {
         if(tn.matches("[a-zA-Z0-9]{2,20}")){
             return false;
         }
-        project.addTeam(new Team(tn, project));
+        //project.addTeam(new Team(tn, project));
         return true;
     }
 
