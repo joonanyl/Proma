@@ -67,10 +67,14 @@ public class ModelTest {
 
         //Team team = new Team("Testitiimi", projectDAO.get(1));
         //teamDAO.persist(team);
-
+        /*
         List<Team> teamsPId1 = teamDAO.getByProject(projectDAO.get(1));
         for (Team t: teamsPId1) {
             System.out.println(t);
         }
+        */
+        Account account = accountDAO.get(3);
+        account.setAdmin(true);
+        accountDAO.update(account);
     }
 }
