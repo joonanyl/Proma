@@ -21,7 +21,7 @@ public class TimeManagementViewController {
     @FXML
     private BorderPane trackerViewPane;
 
-    @FXML
+    /*@FXML
     private Button btnAddEntry;
 
     @FXML
@@ -46,7 +46,7 @@ public class TimeManagementViewController {
     private TextField textHoursWorked;
 
     @FXML
-    private TextField textNewEventName;
+    private TextField textNewEventName;*/
 
     private String currentSubview;
 
@@ -54,7 +54,7 @@ public class TimeManagementViewController {
 
     @FXML
     private void initialize() {
-        mockData();
+
     }
 
     public void setMainApp(App app) {
@@ -75,7 +75,7 @@ public class TimeManagementViewController {
     }
 
     //include data for task dropdown
-    private void mockData() {
+    /*private void mockData() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         labelUserName.setText("testuser6000");
@@ -88,5 +88,5 @@ public class TimeManagementViewController {
                 setDisable(empty || date.compareTo(LocalDate.now()) > 0 );
             }
         });
-    }
+    }*/
 }
