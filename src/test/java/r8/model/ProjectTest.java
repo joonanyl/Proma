@@ -17,11 +17,11 @@ class ProjectTest {
 
     @BeforeAll
     static void setUpBeforeTesting() {
-        project1 = new Project("projektin nimi1", "desc1", "123");
+        project1 = new Project("projektin nimi1", "desc1");
 
-        account1 = new Account("etunimi", "sukunimi", "123", "email", "login", "pwd");
-        account2 = new Account("etunimi2", "sukunimi2", "123", "email", "login", "pwd");
-        account3 = new Account("etunimi3", "sukunimi3", "123", "email", "login", "pwd");
+        account1 = new Account("etunimi", "sukunimi", "email", "pwd");
+        account2 = new Account("etunimi2", "sukunimi2", "email", "pwd");
+        account3 = new Account("etunimi3", "sukunimi3",  "email",  "pwd");
     }
 
     @Test
@@ -66,21 +66,6 @@ class ProjectTest {
     }
 
     @Test
-    @Order(5)
-    void getBudget() {
-        String budget = "123";
-        assertEquals(budget, project1.getBudget(), "Palautettu budjetti virheellinen");
-    }
-
-    @Test
-    @Order(6)
-    void setBudget() {
-        String newBudget = "456";
-        project1.setBudget(newBudget);
-        assertEquals(newBudget, project1.getBudget(), "Uuden budjetin asettamisessa virhe");
-    }
-
-    @Test
     @Order(7)
     void getDescription() {
         String desc = "desc1";
@@ -110,25 +95,6 @@ class ProjectTest {
         project1.setTasks(tasks);
 
         assertEquals(tasks, project1.getTasks(), "projektille monen tehtävän lisääminen kerrallaan epäonnistui");
-    }
-
-    @Test
-    @Order(10)
-    void setTeams() {
-        Set<Team> teams = new HashSet<>();
-        Team team1 = new Team("team1", project1);
-        Team team2 = new Team("team2", project1);
-        Team team3 = new Team("team3", project1);
-
-        teams.add(team1);
-        teams.add(team2);
-        teams.add(team3);
-
-        project1.setTeams(teams);
-
-        assertEquals(3, project1.getTeams().size(), "Tiimien lisääminen projektille epäonnistui");
-
-        assertEquals(teams, project1.getTeams(), "Projektin tiimilistat eivät täsmää");
     }
 
 }

@@ -94,7 +94,7 @@
                                     <Insets top="9.0" />
                                  </HBox.margin>
                               </Text>
-                              <TextField id="taskName" fx:id="textTaskName" minHeight="30.0" prefHeight="30.0" prefWidth="263.0">
+                              <TextField id="taskName" fx:id="textTeamName" minHeight="30.0" prefHeight="30.0" prefWidth="263.0">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
@@ -170,7 +170,7 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                           </Text>
-                  <TextField id="taskName" fx:id="taskName1" minHeight="30.0" prefHeight="30.0">
+                  <TextField id="taskName" fx:id="textSprintName" minHeight="30.0" prefHeight="30.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

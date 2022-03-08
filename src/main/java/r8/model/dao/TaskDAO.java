@@ -11,7 +11,7 @@ public class TaskDAO {
         this.entityManager = DAO.getEntityManager();
     }
 
-    public void addTask(Task task) {
+    public void persist(Task task) {
         entityManager.getTransaction().begin();
         entityManager.persist(task);
         entityManager.getTransaction().commit();
