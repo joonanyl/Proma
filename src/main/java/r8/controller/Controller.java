@@ -33,7 +33,6 @@ public class Controller {
             System.out.println("LOGGED IN: " + appState.getLoggedAccount());
             return true;
         }
-
         return false;
     }
 

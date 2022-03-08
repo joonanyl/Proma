@@ -40,7 +40,7 @@ public class CreateAccountViewController {
     @FXML
     private Label numberCheck;
 
-    Controller daoController;
+    Controller daoController = new Controller();
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
