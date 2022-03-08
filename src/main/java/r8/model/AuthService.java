@@ -15,10 +15,10 @@ public class AuthService {
         return hashedPw;
     }
 
-    public static boolean authenticatePassword(String login, String userInput, String hashedpw) {
+    public static boolean authenticatePassword(String email, String userInput) {
         //Käytä loginia db queryyn
         AccountDAO accountDAO = new AccountDAO();
-        accountDAO.getLoginInfo(login);
+        String hashedpw = accountDAO.getHashedPw(email);
         boolean pwCheck = BCrypt.checkpw(userInput, hashedpw);
         return pwCheck;
     }

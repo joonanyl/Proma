@@ -33,9 +33,6 @@ public class Project {
 	@ManyToMany(mappedBy = "projects")
 	private Set<Account> accounts;
 
-	@Transient
-	private Set<Team> teams;
-
 	@Column(name = "budget")
 	private String budget;
 
@@ -47,27 +44,16 @@ public class Project {
 
 	/**
 	 * Contructor
-	 * @param pn Project's name
+	 * @param name Project's name
 	 */
-	public Project(String pn, String description, String budget) {
-		this.name = pn;
+	public Project(String name, String description, String budget) {
+		this.name = name;
 		this.budget = budget;
 		this.description = description;
 		this.accounts = new HashSet<>();
-		this.teams = new HashSet<>();
 	}
 
 	public Project() {}
-
-
-	public void addTeam(Team t) {
-		this.teams.add(t);
-		t.setProject(this);
-	}
-	
-	public Set<Team> getTeamsList(){
-		return this.teams;
-	}
 
 	public int getProjectId() {
 		return projectId;
@@ -117,11 +103,4 @@ public class Project {
 		this.tasks = tasks;
 	}
 
-	public Set<Team> getTeams() {
-		return teams;
-	}
-
-	public void setTeams(Set<Team> teams) {
-		this.teams = teams;
-	}
 }

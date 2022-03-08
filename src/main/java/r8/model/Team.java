@@ -27,9 +27,6 @@ public class Team {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "team_id")
 	private int teamId;
-	/**
-	 * tiimin nimi
-	 */
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id")
@@ -131,8 +128,8 @@ public class Team {
 		return project;
 	}
 
-	public void setProject(Project projects) {
-		this.project = projects;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public void setAccounts(Set<Account> accounts) {
@@ -147,6 +144,6 @@ public class Team {
 		this.tasks = tasks;
 	}
 
-	public String toString() { return this.teamName; }
+	public String toString() { return this.teamId + " " + this.teamName; }
 	
 }
