@@ -16,10 +16,10 @@ public class LoginCredentialsViewController {
     private Controller daoController = new Controller();
 
     @FXML
-    TextField textFieldEmail;
+    private TextField textFieldEmail;
 
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
 
     @FXML
     private void login() {
