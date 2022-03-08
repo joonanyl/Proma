@@ -119,7 +119,14 @@ public class Account {
 		return tasks;
 	}
 
+	public void setTask(Task t){
+		if(!this.tasks.contains(t)) {
+			this.tasks.add(t);
+		}
+	}
+
 	public void setTasks(Set<Task> tasks) {
+		// tähän pitää laittaa looppeja ettei tulis duplikaatteja
 		this.tasks = tasks;
 	}
 

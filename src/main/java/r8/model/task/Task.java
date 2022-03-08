@@ -217,4 +217,8 @@ public class Task {
 	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
 	}
+
+	public String toString(){
+		return "TASK: " + this.name + ", " + this.description;
+	}
 }
