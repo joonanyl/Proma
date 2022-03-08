@@ -33,9 +33,6 @@ public class Project {
 	@ManyToMany(mappedBy = "projects")
 	private Set<Account> accounts;
 
-	@Column(name = "budget")
-	private String budget;
-
 	@Column(name = "description")
 	private String description;
 
@@ -46,9 +43,8 @@ public class Project {
 	 * Contructor
 	 * @param name Project's name
 	 */
-	public Project(String name, String description, String budget) {
+	public Project(String name, String description) {
 		this.name = name;
-		this.budget = budget;
 		this.description = description;
 		this.accounts = new HashSet<>();
 	}
@@ -77,14 +73,6 @@ public class Project {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getBudget() {
-		return budget;
-	}
-
-	public void setBudget(String budget) {
-		this.budget = budget;
 	}
 
 	public String getDescription() {

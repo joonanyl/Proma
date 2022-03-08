@@ -17,7 +17,7 @@ class ProjectTest {
 
     @BeforeAll
     static void setUpBeforeTesting() {
-        project1 = new Project("projektin nimi1", "desc1", "123");
+        project1 = new Project("projektin nimi1", "desc1");
 
         account1 = new Account("etunimi", "sukunimi", "email", "pwd");
         account2 = new Account("etunimi2", "sukunimi2", "email", "pwd");
@@ -63,21 +63,6 @@ class ProjectTest {
         project1.setName(newName);
 
         assertEquals(newName, project1.getName(), "Projektin nimen muutos epäonnistui");
-    }
-
-    @Test
-    @Order(5)
-    void getBudget() {
-        String budget = "123";
-        assertEquals(budget, project1.getBudget(), "Palautettu budjetti virheellinen");
-    }
-
-    @Test
-    @Order(6)
-    void setBudget() {
-        String newBudget = "456";
-        project1.setBudget(newBudget);
-        assertEquals(newBudget, project1.getBudget(), "Uuden budjetin asettamisessa virhe");
     }
 
     @Test

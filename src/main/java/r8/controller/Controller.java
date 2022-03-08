@@ -70,8 +70,8 @@ public class Controller {
         accountDAO.removeAccount(account);
     }
 
-    public void createProject(String name, String description, String budget) {
-        Project project = new Project(name, description, budget);
+    public void createProject(String name, String description) {
+        Project project = new Project(name, description);
         projectDAO.persist(project);
     }
 
@@ -85,11 +85,10 @@ public class Controller {
         return project;
     }
 
-    public void updateProject(int projectId, String name, String description, String budget) {
+    public void updateProject(int projectId, String name, String description) {
         Project project = projectDAO.get(projectId);
         project.setName(name);
         project.setDescription(description);
-        project.setBudget(budget);
 
         projectDAO.update(project);
     }
