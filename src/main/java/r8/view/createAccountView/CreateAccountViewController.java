@@ -10,6 +10,8 @@ import org.w3c.dom.Text;
 import r8.controller.Controller;
 import r8.model.Account;
 import r8.model.TextFieldValidator;
+import r8.model.appState.AppState;
+import r8.model.appState.IAppStateLogin;
 import r8.view.navigation.GlobalControllerReference;
 
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class CreateAccountViewController {
     @FXML
     private Label numberCheck;
 
-    Controller daoController = new Controller();
+    private IAppStateLogin appStateLogin = AppState.getInstance();
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
@@ -131,7 +133,7 @@ public class CreateAccountViewController {
         Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
         System.out.println(account.getFirstName());
         showAlert("Success", "Successfully created account!");
-        daoController.createAccount(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
+        appStateLogin.createAccount(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
         //navigate(event);
     }
 

@@ -1,22 +1,16 @@
 package r8.view.projectView;
 
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.w3c.dom.Text;
-import r8.model.AppState;
 import r8.model.Project;
-import r8.model.Team;
 import r8.view.navigation.GlobalControllerReference;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CreateProjectViewController {
 
