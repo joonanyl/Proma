@@ -4,10 +4,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import org.w3c.dom.Text;
 import r8.model.Account;
 import r8.model.TextFieldValidator;
@@ -33,11 +31,20 @@ public class CreateAccountViewController {
     private TextField textFieldLastName;
 
     @FXML
+    private Label characterCheck;
+
+    @FXML
+    private Label uppercaseCheck;
+
+    @FXML
+    private Label numberCheck;
+
+    @FXML
     private void navigate(ActionEvent event) throws IOException {
         GlobalControllerReference.getInstance().getLoginViewController().handleNavigation(event);
     }
 
-    private String emailRegEx = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    private String emailRegEx = "(?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
     private String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
     private String nameRegEx = "([A-Za-z0-9]{1,30})";
 
@@ -78,6 +85,24 @@ public class CreateAccountViewController {
             confirmPasswordField.setStyle("-fx-border-color: red;");
         }else{
             confirmPasswordField.setStyle("-fx-border-color: null;");
+        }
+        //checks if password contains 8-30 characters
+        if(!passwordField.getText().matches(".{8,30}")){
+            characterCheck.setTextFill(Color.web("#ff0000"));
+        }else{
+            characterCheck.setTextFill(Color.web("#21a300"));
+        }
+        //checks if password contains an uppercase letter
+        if(!passwordField.getText().matches("^(?=.*[a-z])(?=.*[A-Z]).*$")){
+            uppercaseCheck.setTextFill(Color.web("#ff0000"));
+        }else{
+            uppercaseCheck.setTextFill(Color.web("#21a300"));
+        }
+        //checks if the password contains a number
+        if(!passwordField.getText().matches(".*[0-9].*")){
+            numberCheck.setTextFill(Color.web("#ff0000"));
+        }else{
+            numberCheck.setTextFill(Color.web("#21a300"));
         }
     }
 
