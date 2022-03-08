@@ -21,6 +21,7 @@ public class AppState {
  * Singletonin instanssi
  */
 	private static AppState INSTANCE = null;
+	private Account loggedAccount = null;
 	
 /**
  * Private constructor
@@ -38,5 +39,13 @@ public class AppState {
 			INSTANCE = new AppState();
 		
 		return INSTANCE;
+	}
+
+	public Account getLoggedAccount() {
+		return loggedAccount;
+	}
+
+	public void setLoggedAccount(Account loggedAccount) {
+		this.loggedAccount = loggedAccount;
 	}
 }
