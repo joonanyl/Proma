@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import org.w3c.dom.Text;
+import r8.controller.Controller;
 import r8.model.Account;
 import r8.model.TextFieldValidator;
 import r8.view.navigation.GlobalControllerReference;
@@ -39,6 +40,8 @@ public class CreateAccountViewController {
     @FXML
     private Label numberCheck;
 
+    Controller daoController;
+
     @FXML
     private void navigate(ActionEvent event) throws IOException {
         GlobalControllerReference.getInstance().getLoginViewController().handleNavigation(event);
@@ -56,9 +59,6 @@ public class CreateAccountViewController {
         textFieldValidator.setValidation(textFieldLastName, nameRegEx);
         comparePassword();
     }
-
-
-
 
     private void comparePassword(){
         passwordField.textProperty().addListener(new ChangeListener<String>() {
@@ -131,7 +131,8 @@ public class CreateAccountViewController {
         Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
         System.out.println(account.getFirstName());
         showAlert("Success", "Successfully created account!");
-        navigate(event);
+        daoController.createAccount(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
+        //navigate(event);
     }
 
     private void showAlert(String title, String text) {
