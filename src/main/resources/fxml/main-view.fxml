@@ -87,7 +87,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Project" userData="create-project-view" />
                 <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Team" userData="create-team-view" />
                 <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Task" userData="create-task-view" />
-                <MenuItem mnemonicParsing="false" text="+ New Time Entry" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Time Entry" userData="time-management-view" />
               </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />
