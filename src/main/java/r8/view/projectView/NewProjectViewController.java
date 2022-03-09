@@ -19,7 +19,7 @@ import r8.view.navigation.GetView;
 
 import java.io.IOException;
 
-public class ProjectViewController {
+public class NewProjectViewController {
 
     @FXML
     private Button btnNewProject;
@@ -27,14 +27,9 @@ public class ProjectViewController {
     @FXML
     private Label btnStatus;
 
-    @FXML
-    private Label btnStatus1;
 
     @FXML
     private ComboBox<?> comboBoxProjectStatus;
-
-    @FXML
-    private ImageView imageTaskType;
 
     @FXML
     private Label labelCreatedBy;
@@ -52,9 +47,6 @@ public class ProjectViewController {
     private Label labelQuickDescription;
 
     @FXML
-    private Label labelRandomness;
-
-    @FXML
     private ProgressBar progressBar;
 
     @FXML
@@ -67,18 +59,6 @@ public class ProjectViewController {
     private VBox vboxProjectTasks;
 
     @FXML
-    ListView listViewTask;
-
-    @FXML
-    ListView listViewSprint;
-
-    @FXML
-    TextArea textAreaTask;
-
-    @FXML
-    TextArea textAreaSprint;
-
-    @FXML
     private BorderPane projectSubViewPane;
 
     final IAppStateMain appStateMain = AppState.getInstance();
@@ -86,14 +66,11 @@ public class ProjectViewController {
     private String currentSubview;
 
     public void initialize() throws IOException {
-        Task task = new Task("name", TaskState.NOT_STARTED, new TaskType("type"), 0, "desc");
-        listViewTask.getItems().add(task);
-        textAreaTask.setEditable(false);
-        textAreaSprint.setEditable(false);
-        setListeners();
-        admin = appStateMain.getIsAdmin();
-        adminVisibility(admin);
+        if (appStateMain.getAccount() != null)
+            admin = appStateMain.getIsAdmin();
+
         handleNavigation("sprint-subview");
+        //adminVisibility(admin);
     }
 
     @FXML
@@ -116,40 +93,18 @@ public class ProjectViewController {
         currentSubview = viewName;
     }
 
-        private void adminVisibility(boolean isAdmin) {
-            if (!admin) {
-                vboxProjectSprints.setVisible(false);
-                vboxProjectSprints.setManaged(false);
-            }
+    /*private void adminVisibility(boolean isAdmin) {
+        if (!admin) {
+            vboxProjectSprints.setVisible(false);
+            vboxProjectSprints.setManaged(false);
         }
+    }*/
 
-        private void setListeners() {
-            listViewTask.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
-                @Override
-                public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
-                    selectTask(newValue);
-                }
-            });
-            listViewSprint.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Sprint>() {
-                @Override
-                public void changed(ObservableValue<? extends Sprint> observable, Sprint oldValue, Sprint newValue) {
-                    selectSprint(newValue);
-                }
-            });
-        }
-
-        private void selectTask(Task task){
-            textAreaTask.setText(task.getDescription());
-        }
-
-        private void selectSprint(Sprint sprint){
-            //sprintTextField.setText();
-        }
-
-        @FXML
-        private void navigate (ActionEvent event) throws IOException {
-            appStateMain.getMainViewController().handleNavigation(event);
-        }
-
+    @FXML
+    private void navigate (ActionEvent event) throws IOException {
+        appStateMain.getMainViewController().handleNavigation(event);
     }
+
+}
+
 

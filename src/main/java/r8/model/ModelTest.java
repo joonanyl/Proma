@@ -105,7 +105,8 @@ public class ModelTest {
          */
 
         Project project = new Project("projektitesti", "dasökdsal");
-        Team team = new Team("test team", project);
+        Team team = new Team("test", project);
         project.addTeam(team);
+        teamDAO.persist(team);
     }
 }
