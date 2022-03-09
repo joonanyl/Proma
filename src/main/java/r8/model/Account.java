@@ -43,7 +43,7 @@ public class Account {
 	@Column(name="admin")
 	private Boolean admin;
 
-	@ManyToMany(mappedBy = "accounts")
+	@ManyToMany(mappedBy = "accounts", cascade = CascadeType.ALL)
 	private Set<Project> projects;
 
 	@ManyToMany(mappedBy = "accounts")
@@ -60,6 +60,11 @@ public class Account {
 		this.teams = new HashSet<>();
 		this.admin = false;
 		this.password = AuthService.hashPassword(pw);
+	}
+
+	public void removeFromProject(Project project) {
+		projects.remove(project);
+		project.getAccounts().remove(this);
 	}
 
 	public Account() {}
