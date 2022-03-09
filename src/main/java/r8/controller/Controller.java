@@ -152,7 +152,18 @@ public class Controller {
         return teamDAO.getByProject(project);
     }
 
-    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description) {
+    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams) {
+        Task task = new Task(name, ts, tt, hours, description);
+        if(accounts != null){
+            accounts.forEach((account) ->{
+                task.assignAccount(account);
+            });
+        }
+        if(teams != null){
+            teams.forEach((team)->{
+                task.assignToTeam(team);
+            });
+        }
         taskDAO.persist(new Task(name, ts, tt, hours, description));
     }
 
@@ -182,5 +193,13 @@ public class Controller {
 
     public void removeTask(Task task) {
         taskDAO.remove(task);
+    }
+
+    public void createTaskType(String name){
+        taskTypeDAO.persist(new TaskType(name));
+    }
+
+    public List<TaskType> getAllTaskTypes(){
+        return taskTypeDAO.getAll();
     }
 }

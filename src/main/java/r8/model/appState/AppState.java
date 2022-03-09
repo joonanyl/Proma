@@ -5,6 +5,9 @@ import r8.controller.Controller;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.Team;
+import r8.model.task.Task;
+import r8.model.task.TaskState;
+import r8.model.task.TaskType;
 import r8.view.loginView.LoginViewController;
 import r8.view.mainView.MainViewController;
 
@@ -32,6 +35,12 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 			}
 		}
 		return INSTANCE;
+	}
+
+	@Override
+	public List<Project> getProjects(){
+		this.loadProjects();
+		return this.projects;
 	}
 
 	public void loadProjects() {
@@ -112,11 +121,23 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		loggedAccount.setAdmin(!isAdmin);
 	}
 
-	public List<Project> getProjects() {
-		return projects;
-	}
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+
+	@Override
+	public void createTask(String name, TaskState taskState, TaskType taskType, float hours, String desc, ObservableList<Account> accounts, ObservableList<Team> teams){
+		daoController.createTask(name,taskState,taskType,hours,desc,accounts,teams);
+	}
+
+	@Override
+	public void createTaskType(String name){
+		daoController.createTaskType(name);
+	}
+
+	@Override
+	public List<TaskType> getAllTaskTypes(){
+		return daoController.getAllTaskTypes();
 	}
 }
