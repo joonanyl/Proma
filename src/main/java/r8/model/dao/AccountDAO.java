@@ -1,7 +1,6 @@
 package r8.model.dao;
 
 
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import r8.model.Account;
 
 import javax.persistence.EntityManager;
@@ -102,6 +101,9 @@ public class AccountDAO {
         }
     }
 
+    /*
+    MOVED TO CONTROLLER
+
     public boolean checkIfEmailExists(String email) {
         try {
             List<String> results = entityManager.createQuery(
@@ -117,4 +119,6 @@ public class AccountDAO {
         // Email is not in database
         return false;
     }
+
+     */
 }

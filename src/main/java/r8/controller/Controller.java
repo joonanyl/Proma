@@ -58,6 +58,10 @@ public class Controller {
         return accountDAO.getAll();
     }
 
+    public boolean checkIfEmailExists(String email) {
+        return accountDAO.getByEmail(email) != null;
+    }
+
     public void updateAccount(String firstName, String lastName, String email, String password) {
         Account account = accountDAO.getByEmail(AppState.getInstance().getLoggedAccount().getEmail());
         account.setFirstName(firstName);
@@ -96,6 +100,10 @@ public class Controller {
         return projectDAO.getByName(name);
     }
 
+    public List<Project> getAllProjects() {
+        return projectDAO.getAll();
+    }
+
     //TEAMS tähän myös, päivitä samalla AppState?
     public void updateProject(Project project, String name, String description) {;
         project.setName(name);
@@ -126,6 +134,10 @@ public class Controller {
         return teamDAO.getByName(name);
     }
 
+    public List<Team> getAllteams() {
+        return teamDAO.getAll();
+    }
+
     public void updateTeam(int teamId, String name, int projectId) {
         Team team = teamDAO.get(teamId);
         team.setTeamName(name);
@@ -154,6 +166,18 @@ public class Controller {
 
     public Task getTaskById(int taskId) {
         return taskDAO.get(taskId);
+    }
+
+    public List<Task> getTaskByProject(Project project) {
+        return taskDAO.getByProject(project);
+    }
+
+    public List<Task> getTaskByTeam(Team team) {
+        return taskDAO.getByTeam(team);
+    }
+
+    public List<Task> getAllTasks() {
+        return taskDAO.getAll();
     }
 
     public void removeTask(Task task) {
