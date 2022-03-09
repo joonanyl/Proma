@@ -66,11 +66,12 @@ public class Controller {
         accountDAO.removeAccount(account);
     }
 
-    public void createProject(String name, String description) {
+    public Project createProject(String name, String description) {
         Project project = new Project(name, description);
-        project.addAccount(AppState.getInstance().getLoggedAccount());
+        project.addAccount(accountDAO.get(AppState.getInstance().getLoggedAccount().getAccountId()));
         // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
         projectDAO.persist(project);
+        return project;
     }
 
     public Project getProjectById(int projectId) {

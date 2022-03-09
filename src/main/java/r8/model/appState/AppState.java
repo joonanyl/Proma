@@ -53,10 +53,12 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		daoController.createAccount(firstName, lastName, email, password);
 	}
 
-	public void createProject(String name, String description) {
-		daoController.createProject(name, description);
+	@Override
+	public Project createProject(String name, String description) {
+		return daoController.createProject(name, description);
 	}
 
+	@Override
 	public void createTeam(String name, Project project) {
 		daoController.createTeam(name, project);
 	}

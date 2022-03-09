@@ -123,21 +123,27 @@ public class CreateProjectViewController {
         Project newProject = new Project();
         newProject.setDescription(projectDesc);
         newProject.setName(projectName);
+        Project project = appStateMain.createProject(projectName, projectDesc);
+        System.out.println(project);
 
         ObservableList<String> teamsStringList = listViewTeamsToBeCreated.getItems();
         List<Team> teamsList = new ArrayList<>();
 
         teamsStringList.forEach((item) -> {
-            teamsList.add(new Team(item.toString(), newProject));
+            appStateMain.createTeam(item.toString(), project);
         });
 
-        newProject.setTeams(teamsList);
+        //newProject.setTeams(teamsList);
 
-        projectDAO.persist(newProject);
+        //projectDAO.persist(newProject);
 
-        for(Team t : teamsList){
+        /*for(Team t : teamsList){
             teamDAO.persist(t);
         }
+
+         */
+
+
 
         System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
 
