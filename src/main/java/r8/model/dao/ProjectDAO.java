@@ -1,9 +1,11 @@
 package r8.model.dao;
 
 
+import r8.model.Account;
 import r8.model.Project;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ProjectDAO {
     private EntityManager entityManager;
@@ -63,5 +65,17 @@ public class ProjectDAO {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Project> getAll() {
+        List<Project> results = null;
+        try {
+            results = entityManager.createQuery("SELECT a FROM Project a", Project.class)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            System.out.println("No projects found.");
+            e.printStackTrace();
+        }
+        return results;
     }
 }

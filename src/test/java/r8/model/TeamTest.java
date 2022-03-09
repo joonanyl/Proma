@@ -48,11 +48,11 @@ class TeamTest {
     @Test
     @Order(3)
     void setAndSetAccounts() {
-        /*
-        account1 = new Account("etunimi", "sukunimi", "123", "email", "login", "pwd");
-        account2 = new Account("etunimi2", "sukunimi2", "123", "email", "login", "pwd");
-        account3 = new Account("etunimi3", "sukunimi3", "123", "email", "login", "pwd");
-    */
+
+        account1 = new Account("etunimi", "sukunimi","email",  "pwd");
+        account2 = new Account("etunimi2", "sukunimi2",  "email",  "pwd");
+        account3 = new Account("etunimi3", "sukunimi3",  "email",  "pwd");
+
         Set<Account> accounts = new HashSet<Account>();
         accounts.add(account1);
         accounts.add(account2);
@@ -75,10 +75,9 @@ class TeamTest {
     @Test
     @Order(5)
     void addAccount() {
-        /*
-        account4 = new Account("etunimi4", "sukunimi4", "123", "email", "login", "pwd");
 
-         */
+        account4 = new Account("etunimi4", "sukunimi4", "email",  "pwd");
+
         team1.addAccount(account4);
 
         assertTrue(team1.getAccounts().contains(account4), "Yksittäisen työntekijän lisääminen tiimiin epäonnistui");
