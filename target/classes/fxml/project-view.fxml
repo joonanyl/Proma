@@ -4,7 +4,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,7 +22,7 @@
             <children>
                 <VBox prefHeight="80.0" prefWidth="300.0">
                     <children>
-                        <Label id="label-project-name" fx:id="labelTaskName" text="Project name">
+                        <Label id="label-project-name" fx:id="labelProjectName" text="Project name">
                             <font>
                                 <Font name="Arial" size="20.0" />
                             </font>
@@ -93,7 +95,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                            <ComboBox prefHeight="30.0" prefWidth="220.0">
+                            <ComboBox fx:id="comboBoxStatus" prefHeight="30.0" prefWidth="220.0">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -123,6 +125,11 @@
                               <Insets left="15.0" top="8.0" />
                            </VBox.margin>
                               </Label>
+                        <TextArea prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </VBox.margin>
+                        </TextArea>
                      </children>
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" />
@@ -138,6 +145,11 @@
                               <Insets left="15.0" top="8.0" />
                            </VBox.margin>
                         </Label>
+                        <TextArea prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </VBox.margin>
+                        </TextArea>
                      </children>
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" top="25.0" />
@@ -153,6 +165,11 @@
                               <Insets left="15.0" top="8.0" />
                            </VBox.margin>
                         </Label>
+                        <TextArea prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </VBox.margin>
+                        </TextArea>
                      </children>
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" top="25.0" />
@@ -171,6 +188,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </Label>
+                              <ListView fx:id="listViewSprint" layoutX="15.0" layoutY="50.0" prefHeight="330.0" prefWidth="230.0" />
                            </children>
                         </Pane>
                         <Pane id="container-sprints" prefHeight="321.0" prefWidth="250.0" stylesheets="@../styling/project-view-styling.css">
@@ -180,6 +198,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </Label>
+                              <TextArea fx:id="textAreaSprint" layoutX="30.0" layoutY="61.0" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                            <VBox.margin>
                               <Insets top="25.0" />
@@ -199,6 +218,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </Label>
+                              <ListView fx:id="listViewTask" layoutX="15.0" layoutY="50.0" prefHeight="330.0" prefWidth="230.0" />
                            </children>
                         </Pane>
                         <Pane id="container-sprints" prefHeight="321.0" prefWidth="250.0" stylesheets="@../styling/project-view-styling.css">
@@ -208,6 +228,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </Label>
+                              <TextArea fx:id="textAreaTask" layoutX="30.0" layoutY="61.0" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                            <VBox.margin>
                               <Insets top="25.0" />
@@ -227,6 +248,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </Label>
+                              <ListView fx:id="listViewAccount" layoutX="15.0" layoutY="50.0" prefHeight="330.0" prefWidth="230.0" />
                            </children>
                         </Pane>
                         <Pane id="container-sprints" prefHeight="321.0" prefWidth="250.0" stylesheets="@../styling/project-view-styling.css">
@@ -236,6 +258,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </Label>
+                              <ListView fx:id="listViewTeams" layoutX="30.0" layoutY="61.0" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                            <VBox.margin>
                               <Insets top="25.0" />

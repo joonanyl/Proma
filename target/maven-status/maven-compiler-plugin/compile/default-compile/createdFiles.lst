@@ -11,6 +11,7 @@ r8\view\timeManagementView\trackerView\TrackerViewProjectController$1.class
 r8\view\archiveView\ArchiveViewController.class
 r8\model\TextFieldValidator$1.class
 r8\view\timeManagementView\trackerView\TrackerViewDayController$1.class
+r8\view\projectView\ProjectViewController$1.class
 r8\view\projectView\CreateProjectViewController.class
 r8\model\ModelTest.class
 r8\model\appState\IAppStateMain.class
@@ -35,6 +36,7 @@ r8\view\timeManagementView\trackerView\TrackerViewWeekController$1.class
 r8\view\timeManagementView\trackerView\TrackerViewSprintController$1.class
 r8\view\profileView\ProfileViewController.class
 r8\model\Comment.class
+r8\view\projectView\ProjectViewController$2.class
 r8\view\timeManagementView\TimeManagementViewController.class
 r8\view\createAccountView\CreateAccountViewController$2.class
 r8\model\task\TaskType.class

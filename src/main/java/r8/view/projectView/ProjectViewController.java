@@ -1,82 +1,102 @@
 package r8.view.projectView;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import r8.model.Account;
+import r8.model.Sprint;
+import r8.model.Team;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
+import r8.model.task.Task;
+import r8.model.task.TaskState;
+import r8.model.task.TaskType;
 
 import java.io.IOException;
 
 public class ProjectViewController {
 
-    @FXML
-    private Button btnNewProject;
+    final IAppStateMain appStateMain = AppState.getInstance();
 
     @FXML
-    private Label btnStatus;
+    private ListView<Sprint> listViewSprint;
 
     @FXML
-    private Label btnStatus1;
+    private ListView<Task> listViewTask;
 
     @FXML
-    private ComboBox<?> comboBoxProjectStatus;
+    private ListView<Account> listViewAccount;
 
     @FXML
-    private ImageView imageTaskType;
+    private ListView<Team> listViewTeam;
 
     @FXML
-    private Label labelCreatedBy;
+    private TextArea textAreaSprint;
 
     @FXML
-    private Label labelDescription;
-
-    @FXML
-    private Label labelImplementationInfo;
+    private TextArea textAreaTask;
 
     @FXML
     private Label labelProjectName;
 
     @FXML
-    private Label labelQuickDescription;
+    private VBox vBoxProjectSprints;
 
-    @FXML
-    private Label labelRandomness;
-
-    @FXML
-    private ProgressBar progressBar;
-
-    @FXML
-    private VBox vboxProjectPersonnel;
-
-    @FXML
-    private VBox vboxProjectSprints;
-
-    @FXML
-    private VBox vboxProjectTasks;
-
-    final IAppStateMain appStateMain = AppState.getInstance();
-    private boolean admin;
-
-    public void initialize() {
+    public void initialize(){
+        Task task = new Task("name", TaskState.NOT_STARTED, new TaskType("type"), 0, "desc");
+        listViewTask.getItems().add(task);
+        textAreaTask.setEditable(false);
+        textAreaSprint.setEditable(false);
+        setListeners();
         admin = appStateMain.getIsAdmin();
         adminVisibility(admin);
     }
 
-    @FXML
-    private void navigate(ActionEvent event) throws IOException {
-        appStateMain.getMainViewController().handleNavigation(event);
-    }
+
+    private boolean admin;
+
+
+
 
     private void adminVisibility(boolean isAdmin) {
         if (!admin) {
-            vboxProjectSprints.setVisible(false);
-            vboxProjectSprints.setManaged(false);
+            vBoxProjectSprints.setVisible(false);
+            vBoxProjectSprints.setManaged(false);
         }
+    }
+
+    private void setListeners(){
+        listViewTask.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
+            @Override
+            public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
+                selectTask(newValue);
+            }
+        });
+        listViewSprint.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Sprint>() {
+            @Override
+            public void changed(ObservableValue<? extends Sprint> observable, Sprint oldValue, Sprint newValue) {
+                selectSprint(newValue);
+            }
+        });
+    }
+
+    private void selectTask(Task task){
+        textAreaTask.setText(task.getDescription());
+    }
+
+    private void selectSprint(Sprint sprint){
+        //sprintTextField.setText();
+    }
+
+
+    @FXML
+    private void navigate(ActionEvent event) throws IOException {
+        appStateMain.getMainViewController().handleNavigation(event);
     }
 }
