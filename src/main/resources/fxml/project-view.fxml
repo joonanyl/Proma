@@ -20,7 +20,7 @@
             <children>
                 <VBox prefHeight="80.0" prefWidth="300.0">
                     <children>
-                        <Label id="label-project-name" fx:id="labelTaskName" text="Project name">
+                        <Label id="label-project-name" fx:id="labelProjectName" text="Project name">
                             <font>
                                 <Font name="Arial" size="20.0" />
                             </font>
@@ -45,7 +45,7 @@
                                 <Insets top="24.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label id="label-quick-description" fx:id="labelTaskType" text="Quick desc (what is it?)">
+                        <Label id="label-quick-description" fx:id="labelQuickDescription" text="Quick desc (what is it?)">
                             <font>
                                 <Font name="Arial" size="16.0" />
                             </font>
@@ -59,7 +59,7 @@
         </HBox>
         <HBox alignment="CENTER_RIGHT" layoutX="602.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
             <children>
-                <Button id="button-new-project" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="New Project" textFill="#f8f6f6" userData="create-project-view">
+                <Button id="button-new-project" fx:id="btnNewProject" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="New Project" textFill="#f8f6f6" userData="create-project-view">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -93,7 +93,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                            <ComboBox prefHeight="30.0" prefWidth="220.0">
+                            <ComboBox fx:id="comboBoxProjectStatus" prefHeight="30.0" prefWidth="220.0">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -106,7 +106,7 @@
                               <Insets left="50.0" />
                            </HBox.margin>
                             </Label>
-                        <ProgressBar id="progress-bar-completed" prefHeight="30.0" prefWidth="285.0" progress="0.0">
+                        <ProgressBar id="progress-bar-completed" fx:id="progressBar" prefHeight="30.0" prefWidth="285.0" progress="0.0">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -123,11 +123,24 @@
                               <Insets left="15.0" top="8.0" />
                            </VBox.margin>
                               </Label>
+                        <Label fx:id="labelDescription" alignment="TOP_LEFT" prefHeight="148.0" prefWidth="740.0" text="Label">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" />
                      </VBox.margin>
                   </VBox>
+                  <Region prefHeight="1.0" prefWidth="200.0" style="-fx-background-color: #000000;">
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                  </Region>
                   <VBox id="content-vbox" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="Implementation Info" textFill="#757171">
@@ -138,11 +151,24 @@
                               <Insets left="15.0" top="8.0" />
                            </VBox.margin>
                         </Label>
+                        <Label fx:id="labelImplementationInfo" alignment="TOP_LEFT" prefHeight="158.0" prefWidth="740.0" text="Label">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" top="25.0" />
                      </VBox.margin>
                   </VBox>
+                  <Region prefHeight="1.0" prefWidth="200.0" style="-fx-background-color: #000000;">
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                  </Region>
                   <VBox id="content-vbox" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="Randomness" textFill="#757171">
@@ -151,6 +177,14 @@
                            </font>
                            <VBox.margin>
                               <Insets left="15.0" top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="labelRandomness" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="740.0" text="Label">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </VBox.margin>
                         </Label>
                      </children>
@@ -162,7 +196,7 @@
             </VBox>
             <HBox prefHeight="825.0" prefWidth="870.0">
                <children>
-                  <VBox prefHeight="775.0" prefWidth="260.0">
+                  <VBox fx:id="vboxProjectSprints" prefHeight="775.0" prefWidth="260.0">
                      <children>
                         <Pane id="container-sprints" prefHeight="430.0" prefWidth="260.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
@@ -187,10 +221,10 @@
                         </Pane>
                      </children>
                      <HBox.margin>
-                        <Insets left="25.0" top="25.0" />
+                        <Insets bottom="25.0" left="25.0" top="25.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="800.0" prefWidth="260.0">
+                  <VBox fx:id="vboxProjectTasks" prefHeight="800.0" prefWidth="260.0">
                      <children>
                         <Pane id="container-sprints" prefHeight="430.0" prefWidth="260.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
@@ -215,10 +249,10 @@
                         </Pane>
                      </children>
                      <HBox.margin>
-                        <Insets left="25.0" top="25.0" />
+                        <Insets bottom="25.0" left="25.0" top="25.0" />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefHeight="800.0" prefWidth="260.0">
+                  <VBox fx:id="vboxProjectPersonnel" prefHeight="800.0" prefWidth="260.0">
                      <children>
                         <Pane id="container-sprints" prefHeight="430.0" prefWidth="260.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
@@ -243,7 +277,7 @@
                         </Pane>
                      </children>
                      <HBox.margin>
-                        <Insets left="25.0" top="25.0" />
+                        <Insets bottom="25.0" left="25.0" top="25.0" />
                      </HBox.margin>
                   </VBox>
                </children>
