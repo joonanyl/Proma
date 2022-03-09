@@ -1,5 +1,6 @@
 package r8.model;
 
+import org.hibernate.annotations.Type;
 import r8.model.task.Task;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.util.Set;
 
 /**
  * 
- * @author sanku
+ * @author sanku, Joona Nylander
  *
  */
 
@@ -22,6 +23,7 @@ import java.util.Set;
 public class Account {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "account_id")
 	private int accountId;
 
@@ -36,10 +38,11 @@ public class Account {
 
 	@Column(name = "password")
 	private String password;
-	/*
-	@Column(name = "admin")
+
+	@Type(type = "boolean")
+	@Column(name="admin")
 	private Boolean admin;
-	*/
+
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
@@ -62,7 +65,7 @@ public class Account {
 		this.email = email;
 		this.projects = new HashSet<>();
 		this.teams = new HashSet<>();
-
+		this.admin = false;
 		this.password = AuthService.hashPassword(pw);
 	}
 
@@ -147,6 +150,14 @@ public class Account {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 
 	public String toString() {

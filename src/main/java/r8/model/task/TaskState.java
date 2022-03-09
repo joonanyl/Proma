@@ -2,7 +2,7 @@ package r8.model.task;
 
 /**
  * 
- * @author sanku
+ * @author sanku, Joona Nylander
  *
  */
 public enum TaskState {
