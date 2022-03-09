@@ -34,7 +34,7 @@ class AccountTest {
         
 
     }
-
+    /*
     @Test
     void assignToProject() {
         account1.assignToProject(project1);
@@ -65,7 +65,7 @@ class AccountTest {
         assertTrue(account1.getProjects().contains(project2), "Käyttäjätililtä ei löydy project2");
         assertTrue(account1.getProjects().contains(project3), "Käyttäjätililtä ei löydy project3");
     }
-
+    */
     @Test
     void setProjects() {
         Set<Project> projects = new HashSet<Project>();
