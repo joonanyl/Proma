@@ -43,7 +43,7 @@ public class Account {
 	@Column(name="admin")
 	private Boolean admin;
 
-	@ManyToMany(mappedBy = "accounts", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "accounts")
 	private Set<Project> projects = new HashSet<>();
 
 	@ManyToMany(mappedBy = "accounts")

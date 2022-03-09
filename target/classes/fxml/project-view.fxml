@@ -179,7 +179,7 @@
             </VBox>
             <HBox prefHeight="825.0" prefWidth="870.0">
                <children>
-                  <VBox prefHeight="775.0" prefWidth="260.0">
+                  <VBox fx:id="vBoxProjectSprints" prefHeight="775.0" prefWidth="260.0">
                      <children>
                         <Pane id="container-sprints" prefHeight="430.0" prefWidth="260.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
