@@ -43,14 +43,7 @@ public class Account {
 	@Column(name="admin")
 	private Boolean admin;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
-	@JoinTable(
-			name = "project_account",
-			joinColumns = @JoinColumn(name = "account_id"),
-			inverseJoinColumns = @JoinColumn(name = "project_id"))
+	@ManyToMany(mappedBy = "accounts")
 	private Set<Project> projects;
 
 	@ManyToMany(mappedBy = "accounts")
@@ -70,16 +63,6 @@ public class Account {
 	}
 
 	public Account() {}
-
-	public void assignToProject(Project project) {
-		projects.add(project);
-		project.getAccounts().add(this);
-	}
-
-	public void removeFromProject(Project project) {
-		projects.remove(project);
-		project.getAccounts().remove(this);
-	}
 
 	public int getAccountId() {
 		return accountId;
