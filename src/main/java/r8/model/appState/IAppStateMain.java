@@ -1,6 +1,7 @@
 package r8.model.appState;
 
 
+import r8.model.Account;
 import r8.model.Project;
 import r8.view.mainView.MainViewController;
 
@@ -13,6 +14,8 @@ public interface IAppStateMain {
     boolean getIsAdmin();
 
     void setIsAdmin(boolean isAdmin);
+
+    Account getAccount();
 
     void createTeam(String name, Project project);
 
