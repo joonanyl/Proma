@@ -5,6 +5,7 @@ import r8.model.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -90,6 +91,8 @@ public class Task {
 		this.hours = hours;
 		this.description = desc;
 		this.startDate = LocalDate.now();
+		this.teams = new HashSet<Team>();	//sanna lisäs
+		this.accounts = new HashSet<Account>();	//sanna lisäs
 	}
 
 	public Task() {}
