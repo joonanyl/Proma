@@ -18,11 +18,11 @@ class AccountTest {
 
     @BeforeAll
     static void setUpBeforeTesting() throws Exception{
-        /*
-        account1 = new Account("etunimi", "sukunimi", "123", "email", "login", "pwd");
-        project1 = new Project("project1 name", "desc1", "budjetti1");
-        project2 = new Project("project2 name", "desc2", "budjetti2");
-        project3 = new Project("project3 name", "desc3", "budjetti3");
+
+        account1 = new Account("etunimi", "sukunimi", "email", "pwd");
+        project1 = new Project("project1 name", "desc1");
+        project2 = new Project("project2 name", "desc2");
+        project3 = new Project("project3 name", "desc3");
 
         team1 = new Team("tiimi1", project1);
         team2 = new Team("tiimi2", project2);
@@ -32,7 +32,7 @@ class AccountTest {
         task2 = new Task();
         task3 = new Task();
         
-         */
+
     }
 
     @Test
