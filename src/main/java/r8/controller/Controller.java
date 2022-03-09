@@ -1,5 +1,6 @@
 package r8.controller;
 
+import javafx.collections.ObservableList;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.dao.*;
@@ -53,6 +54,10 @@ public class Controller {
         return accountDAO.getByEmail(email);
     }
 
+    public List<Account> getAllAccounts(){
+        return accountDAO.getAll();
+    }
+
     public void updateAccount(String firstName, String lastName, String email, String password) {
         Account account = accountDAO.getByEmail(AppState.getInstance().getLoggedAccount().getEmail());
         account.setFirstName(firstName);
@@ -66,12 +71,21 @@ public class Controller {
         accountDAO.removeAccount(account);
     }
 
-    public Project createProject(String name, String description) {
+    public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
         Project project = new Project(name, description);
+        if(accountList != null){
+            accountList.forEach((item)->{
+                project.addAccount(item);
+            });
+        }
         project.addAccount(accountDAO.get(AppState.getInstance().getLoggedAccount().getAccountId()));
         // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
         projectDAO.persist(project);
-        return project;
+        if(teamList != null){
+            teamList.forEach((item)->{
+                createTeam(item, project);
+            });
+        }
     }
 
     public Project getProjectById(int projectId) {

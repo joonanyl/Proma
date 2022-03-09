@@ -1,8 +1,10 @@
 package r8.model.appState;
 
+import javafx.collections.ObservableList;
 import r8.controller.Controller;
 import r8.model.Account;
 import r8.model.Project;
+import r8.model.Team;
 import r8.view.loginView.LoginViewController;
 import r8.view.mainView.MainViewController;
 
@@ -54,8 +56,8 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	}
 
 	@Override
-	public Project createProject(String name, String description) {
-		return daoController.createProject(name, description);
+	public void createProject(String name, String description, ObservableList<Account> accounts, ObservableList<String> teams) {
+		daoController.createProject(name, description,accounts, teams);
 	}
 
 	@Override
@@ -98,6 +100,11 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 			return loggedAccount.getAdmin();
 		}
 		return false;
+	}
+
+	@Override
+	public List<Account> getAllAccounts(){
+		return daoController.getAllAccounts();
 	}
 
 	@Override

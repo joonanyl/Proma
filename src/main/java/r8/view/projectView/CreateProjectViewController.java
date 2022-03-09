@@ -60,8 +60,16 @@ public class CreateProjectViewController {
     final IAppStateMain appStateMain = AppState.getInstance();
 
     public void initialize(){
+
         Account acc = new Account("a", "b", "email", "pw");
         accountSearchableComboBox.getItems().add(acc);
+        List<Account> accountList = appStateMain.getAllAccounts();
+        if(accountList.contains(appStateMain.getAccount())){
+            accountList.remove(appStateMain.getAccount());
+        }
+        accountList.forEach((account)->{
+            accountSearchableComboBox.getItems().add(account);
+        });
         projectDAO = new ProjectDAO();
         teamDAO = new TeamDAO();
 
@@ -123,27 +131,8 @@ public class CreateProjectViewController {
         Project newProject = new Project();
         newProject.setDescription(projectDesc);
         newProject.setName(projectName);
-        Project project = appStateMain.createProject(projectName, projectDesc);
-        System.out.println(project);
 
-        ObservableList<String> teamsStringList = listViewTeamsToBeCreated.getItems();
-        List<Team> teamsList = new ArrayList<>();
-
-        teamsStringList.forEach((item) -> {
-            appStateMain.createTeam(item.toString(), project);
-        });
-
-        //newProject.setTeams(teamsList);
-
-        //projectDAO.persist(newProject);
-
-        /*for(Team t : teamsList){
-            teamDAO.persist(t);
-        }
-
-         */
-
-
+        appStateMain.createProject(projectName, projectDesc, listViewAssignedAccounts.getItems(), listViewTeamsToBeCreated.getItems());
 
         System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
 
