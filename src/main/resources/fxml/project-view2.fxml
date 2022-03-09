@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.projectView.ProjectViewController">
+    <children>
+        <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
+        <HBox id="button-tracker" alignment="CENTER_LEFT" layoutY="-6.0" prefHeight="80.0" prefWidth="600.0" AnchorPane.topAnchor="-6.0">
+            <children>
+                <VBox prefHeight="80.0" prefWidth="300.0">
+                    <children>
+                        <Label id="label-project-name" fx:id="labelProjectName" text="Project name">
+                            <font>
+                                <Font name="Arial" size="20.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="30.0" top="30.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label id="label-created-by" fx:id="labelCreatedBy" text="Created by:">
+                            <font>
+                                <Font name="Arial" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="30.0" top="5.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="300.0">
+                    <children>
+                        <ImageView fx:id="imageTaskType" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="24.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label id="label-quick-description" fx:id="labelQuickDescription" text="Quick desc (what is it?)">
+                            <font>
+                                <Font name="Arial" size="16.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets top="24.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" layoutX="602.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
+            <children>
+                <Button id="button-new-project" fx:id="btnNewProject" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="New Project" textFill="#f8f6f6" userData="create-project-view">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets right="50.0" top="20.0" />
+                    </HBox.margin>
+                </Button>
+                <VBox alignment="TOP_RIGHT" prefHeight="80.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </VBox>
+            </children>
+        </HBox>
+        <HBox layoutY="100.0" prefHeight="825.0" prefWidth="1670.0" stylesheets="@../styling/project-view-styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <children>
+                <VBox prefHeight="825.0" prefWidth="800.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Label fx:id="btnStatus" text="Status:">
+                                    <font>
+                                        <Font name="Arial" size="16.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                </ImageView>
+                                <ComboBox fx:id="comboBoxProjectStatus" prefHeight="30.0" prefWidth="220.0">
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                </ComboBox>
+                                <Label fx:id="btnStatus1" text="Progress">
+                                    <font>
+                                        <Font name="Arial" size="16.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets left="50.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <ProgressBar id="progress-bar-completed" fx:id="progressBar" prefHeight="30.0" prefWidth="285.0" progress="0.0">
+                                    <HBox.margin>
+                                        <Insets left="20.0" />
+                                    </HBox.margin>
+                                </ProgressBar>
+                            </children>
+                        </HBox>
+                        <VBox id="content-vbox" prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Label text="Description" textFill="#757171">
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="15.0" top="8.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label fx:id="labelDescription" alignment="TOP_LEFT" prefHeight="148.0" prefWidth="740.0" text="Label">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                    </VBox.margin>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="25.0" right="25.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <Region prefHeight="1.0" prefWidth="200.0" style="-fx-background-color: #000000;">
+                            <VBox.margin>
+                                <Insets left="40.0" right="40.0" />
+                            </VBox.margin>
+                        </Region>
+                        <VBox id="content-vbox" prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Label text="Implementation Info" textFill="#757171">
+                                    <font>
+                                        <Font name="System Bold" size="17.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="15.0" top="8.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <Label fx:id="labelImplementationInfo" alignment="TOP_LEFT" prefHeight="158.0" prefWidth="740.0" text="Label">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                    </VBox.margin>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="25.0" right="25.0" top="25.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <Region prefHeight="1.0" prefWidth="200.0" style="-fx-background-color: #000000;">
+                            <VBox.margin>
+                                <Insets left="40.0" right="40.0" />
+                            </VBox.margin>
+                        </Region>
+                        <HBox prefHeight="245.0" prefWidth="750.0">
+                            <children>
+                                <VBox prefHeight="245.0" prefWidth="375.0">
+                                    <children>
+                                        <Label text="Sprint Teams" textFill="#757171">
+                                            <font>
+                                                <Font name="System Bold" size="17.0" />
+                                            </font>
+                                        </Label>
+                                        <ListView prefHeight="215.0" prefWidth="359.0">
+                                            <VBox.margin>
+                                                <Insets left="8.0" right="8.0" top="10.0" />
+                                            </VBox.margin>
+                                        </ListView>
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="245.0" prefWidth="375.0">
+                                    <children>
+                                        <Label text="Sprint Personnel" textFill="#757171">
+                                            <font>
+                                                <Font name="System Bold" size="17.0" />
+                                            </font>
+                                        </Label>
+                                        <ListView prefHeight="215.0" prefWidth="359.0">
+                                            <VBox.margin>
+                                                <Insets left="8.0" right="8.0" top="10.0" />
+                                            </VBox.margin>
+                                        </ListView>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                </VBox>
+                <HBox prefHeight="825.0" prefWidth="870.0">
+               <children>
+                  <HBox prefHeight="64.0" prefWidth="1280.0">
+                     <children>
+                        <VBox prefHeight="825.0" prefWidth="875.0">
+                           <children>
+                              <HBox fx:id="projectNavBar" alignment="TOP_CENTER" prefHeight="64.0" prefWidth="1280.0">
+                                 <children>
+                                    <Button id="button-day-view" fx:id="buttonOverview" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Overview" userData="overview-subview">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button id="button-week-view" fx:id="buttonSprint" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Sprint" userData="sprint-subview">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button id="button-sprint-view" fx:id="buttonTeam" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Team" userData="team-subview">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button id="button-project-view" fx:id="buttonPersonnel" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Personnel" userData="personnel-subview">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="15.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <BorderPane fx:id="projectSubViewPane" prefHeight="780.0" prefWidth="870.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+                </HBox>
+            </children>
+        </HBox>
+        <Region layoutX="800.0" layoutY="140.0" maxWidth="1.0" prefHeight="600.0" prefWidth="1.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="50.0" AnchorPane.topAnchor="130.0" />
+    </children>
+</AnchorPane>
