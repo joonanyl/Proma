@@ -92,33 +92,42 @@ public class TrackerViewSprintController {
 
     @FXML
     void nextSprint(ActionEvent event) {
-        if (sprintIndex <= mockSprints.length)
-            sprintIndex++;
+        sprintIndex++;
 
-        textFieldSprintDisplay.setText(mockSprints[sprintIndex]);
+        if (sprintIndex > mockSprints.length)
+            sprintIndex = 1;
+
+        textFieldSprintDisplay.setText(mockSprints[sprintIndex-1]);
     }
 
     @FXML
     void previousSprint(ActionEvent event) {
-        if (sprintIndex > 1)
-            sprintIndex--;
+        sprintIndex--;
+        if (sprintIndex < 1)
+            sprintIndex = mockSprints.length;
 
-        textFieldSprintDisplay.setText(mockSprints[sprintIndex]);
+        textFieldSprintDisplay.setText(mockSprints[sprintIndex-1]);
     }
 
     @FXML
     void nextProject(ActionEvent event) {
-        if (projectIndex <= mockProjects.length)
-            projectIndex++;
-        textFieldProjectDisplay.setText(mockProjects[projectIndex]);
+        projectIndex++;
+
+        if (projectIndex > mockProjects.length)
+            projectIndex = 1;
+
+        textFieldProjectDisplay.setText(mockProjects[projectIndex-1]);
     }
 
     @FXML
     void previousProject(ActionEvent event) {
-        if (projectIndex >= 1)
-            projectIndex--;
+        projectIndex--;
 
-        textFieldProjectDisplay.setText(mockProjects[projectIndex]);
+        if (projectIndex < 1)
+            projectIndex = mockProjects.length;
+
+
+        textFieldProjectDisplay.setText(mockProjects[projectIndex-1]);
     }
 
     private void initDatePicker() {

@@ -80,17 +80,23 @@ public class TrackerViewProjectController {
 
     @FXML
     void nextProject(ActionEvent event) {
-        if (projectIndex <= mockProjects.length)
         projectIndex++;
-        textFieldProjectDisplay.setText(mockProjects[projectIndex]);
+
+        if (projectIndex > mockProjects.length)
+            projectIndex = 1;
+
+        textFieldProjectDisplay.setText(mockProjects[projectIndex-1]);
     }
 
     @FXML
     void previousProject(ActionEvent event) {
-        if (projectIndex >= 1)
-            projectIndex--;
+        projectIndex--;
 
-        textFieldProjectDisplay.setText(mockProjects[projectIndex]);
+        if (projectIndex < 1)
+            projectIndex = mockProjects.length;
+
+
+        textFieldProjectDisplay.setText(mockProjects[projectIndex-1]);
     }
 
     private void initDatePicker() {

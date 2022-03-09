@@ -69,6 +69,7 @@ public class TrackerViewWeekController {
     private TextField textFieldHoursWorked;
 
     private int displayedWeek = 1;
+    final int weeks = 52;
 
     @FXML
     private TextField textFieldWeekDisplay;
@@ -80,12 +81,20 @@ public class TrackerViewWeekController {
 
     @FXML
     public void addWeek() {
-        displayedWeek += 1;
+        displayedWeek++;
+
+        if (displayedWeek > weeks)
+            displayedWeek = 1;
+
         textFieldWeekDisplay.setText(String.valueOf(displayedWeek));
     }
 
     public void subWeek() {
-        displayedWeek -= 1;
+        displayedWeek--;
+
+        if (displayedWeek < 1)
+            displayedWeek = weeks;
+
         textFieldWeekDisplay.setText(String.valueOf(displayedWeek));
     }
 
