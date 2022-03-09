@@ -15,7 +15,7 @@ public class Controller {
     private TeamDAO teamDAO;
     private AppState appState;
 
-    public Controller() {
+    public Controller(AppState appstate) {
         this.accountDAO = new AccountDAO();
         this.commentDAO = new CommentDAO();
         this.eventDAO = new EventDAO();
@@ -24,13 +24,12 @@ public class Controller {
         this.taskDAO = new TaskDAO();
         this.taskTypeDAO = new TaskTypeDAO();
         this.teamDAO = new TeamDAO();
-        //this.appState = AppState.getInstance();
+        this.appState = appstate;
     }
 
     public boolean authenticateLogin(String email, String password) {
         boolean authentication = AuthService.authenticatePassword(email, password);
         if (authentication) {
-            //appState.setLoggedAccount(accountDAO.getByEmail(email));
             return true;
         }
         return false;
@@ -61,7 +60,6 @@ public class Controller {
         account.setLastName(lastName);
         account.setEmail(email);
         account.setPassword(AuthService.hashPassword(password));
-
         accountDAO.update(account);
     }
 

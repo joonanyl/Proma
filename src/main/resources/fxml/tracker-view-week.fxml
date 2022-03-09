@@ -49,6 +49,14 @@
                 </ScrollPane>
                 <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1240.0" spacing="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <children>
+                  <Label minWidth="134.0" prefHeight="26.0" prefWidth="134.0" text="Add Work Entry" textFill="#757171">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
                         <VBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="199.0">
                             <children>
                                 <Label alignment="CENTER" contentDisplay="BOTTOM" text="Date">
@@ -157,7 +165,7 @@
                   </Label>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnSubWeek" mnemonicParsing="false" onAction="#subWeek" prefHeight="30.0" text="Button">
+                        <Button id="button-calendar-left" fx:id="btnSubWeek" mnemonicParsing="false" onAction="#subWeek" prefHeight="30.0" text="Button">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
@@ -167,7 +175,7 @@
                               <Font size="15.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="btnAddWeek" mnemonicParsing="false" onAction="#addWeek" prefHeight="30.0" text="Button">
+                        <Button id="button-calendar-right" fx:id="btnAddWeek" mnemonicParsing="false" onAction="#addWeek" prefHeight="30.0" text="Button">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>

@@ -132,6 +132,7 @@ public class CreateAccountViewController {
         Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
         System.out.println(account.getFirstName());
         showAlert("Success", "Successfully created account!");
+
         appStateLogin.createAccount(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
         //navigate(event);
     }

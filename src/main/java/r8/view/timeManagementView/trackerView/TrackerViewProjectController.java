@@ -1,18 +1,19 @@
 package r8.view.timeManagementView.trackerView;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
 
-public class TrackerViewWeekController {
+public class TrackerViewProjectController {
 
     @FXML
     private Button btnAdd;
 
     @FXML
-    private Button btnAddWeek;
+    private Button btnAddProject;
 
     @FXML
     private Button btnDelete;
@@ -21,7 +22,7 @@ public class TrackerViewWeekController {
     private Button btnEdit;
 
     @FXML
-    private Button btnSubWeek;
+    private Button btnSubProject;
 
     @FXML
     private ComboBox<?> comboBoxEventName;
@@ -54,9 +55,6 @@ public class TrackerViewWeekController {
     private TableColumn<?, ?> tableColHoursWorked;
 
     @FXML
-    private TableColumn<?, ?> tableColProject;
-
-    @FXML
     private TableColumn<?, ?> tableColRemaining;
 
     @FXML
@@ -68,25 +66,31 @@ public class TrackerViewWeekController {
     @FXML
     private TextField textFieldHoursWorked;
 
-    private int displayedWeek = 1;
-
     @FXML
-    private TextField textFieldWeekDisplay;
+    private TextField textFieldProjectDisplay;
+
+    private String[] mockProjects;
+    private int projectIndex = 1;
 
     public void initialize() {
+        mockData();
         initDatePicker();
-        textFieldWeekDisplay.setText(String.valueOf(displayedWeek));
+        textFieldProjectDisplay.setText(mockProjects[projectIndex-1]);
     }
 
     @FXML
-    public void addWeek() {
-        displayedWeek += 1;
-        textFieldWeekDisplay.setText(String.valueOf(displayedWeek));
+    void nextProject(ActionEvent event) {
+        if (projectIndex <= mockProjects.length)
+        projectIndex++;
+        textFieldProjectDisplay.setText(mockProjects[projectIndex]);
     }
 
-    public void subWeek() {
-        displayedWeek -= 1;
-        textFieldWeekDisplay.setText(String.valueOf(displayedWeek));
+    @FXML
+    void previousProject(ActionEvent event) {
+        if (projectIndex >= 1)
+            projectIndex--;
+
+        textFieldProjectDisplay.setText(mockProjects[projectIndex]);
     }
 
     private void initDatePicker() {
@@ -97,5 +101,9 @@ public class TrackerViewWeekController {
                 setDisable(empty || date.compareTo(LocalDate.now()) > 0 );
             }
         });
+    }
+
+    private void mockData() {
+        mockProjects = new String[]{"Project 1", "Project 2", "Project 3"};
     }
 }

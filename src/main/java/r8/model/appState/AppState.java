@@ -12,7 +12,7 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 
 	private LoginViewController loginViewController;
 	private MainViewController mainViewController;
-	private Controller daoController = new Controller();
+	private Controller daoController = new Controller(this);
 
 	private AppState() {}
 
@@ -64,6 +64,4 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	public void setMainViewController(MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
 	}
-
-
 }
