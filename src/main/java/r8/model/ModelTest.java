@@ -73,23 +73,40 @@ public class ModelTest {
             System.out.println(t);
         }
         */
+        /*
         System.out.println(accountDAO.checkIfEmailExists("testi@sposti.com"));
         System.out.println(accountDAO.checkIfEmailExists("askdöka"));
-
-        /*
-        TODO: TÄLLÄINEN TILANNE TARVITSEE CHEKIN DUPLIKAATTIEN VARALTA
-        Project project5 = projectDAO.get(5);
-        Project project6 = projectDAO.get(6);
-        Account account = accountDAO.get(1);
-        project5.addAccount(account);
-        project6.addAccount(account);
-        projectDAO.update(project5);
-        projectDAO.update(project6);
          */
 
-        List<Project> projects = projectDAO.getByAccount(accountDAO.get(1));
+
+        // TODO: TÄLLÄINEN TILANNE TARVITSEE CHECKIN DUPLIKAATTIEN VARALTA
+        //Project project3 = projectDAO.get(3);
+        // Project project4 = projectDAO.get(4);
+        //Account account = accountDAO.get(3);
+
+        /*
+        project3.addAccount(account);
+        project4.addAccount(account);
+        projectDAO.update(project3);
+        projectDAO.update(project4);
+         */
+
+        // TODO: TÄSSÄ JOKU VITTUMAINEN ONGELMA
+        /*
+        project3.removeAccount(account);
+        projectDAO.update(project3);
+        */
+
+        /*
+        List<Project> projects = projectDAO.getByAccount(accountDAO.get(3));
         for (Project p: projects) {
             System.out.println(p);
         }
+         */
+
+        Team team = teamDAO.get(1);
+        System.out.println(team.getProject());
+        Project project = team.getProject();
+        System.out.println(project.getTeams().get(0));
     }
 }

@@ -88,8 +88,8 @@ public class Controller {
         projectDAO.removeProject(project);
     }
 
-    public Project loadProject(int projectId) {
-        return projectDAO.get(projectId);
+    public List<Project> loadProjects(Account account) {
+        return projectDAO.getByAccount(account);
     }
 
     // Tai sitten ui-controllerissa kutsuisi jo parametrissä
@@ -115,5 +115,9 @@ public class Controller {
 
     public void removeTeam(Team team) {
         teamDAO.removeTeam(team);
+    }
+
+    public List<Team> loadTeamsByProject(Project project) {
+        return teamDAO.getByProject(project);
     }
 }

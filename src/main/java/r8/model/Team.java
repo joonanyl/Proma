@@ -130,6 +130,7 @@ public class Team {
 
 	public void setProject(Project project) {
 		this.project = project;
+		project.getTeams().add(this);
 	}
 
 	public void setAccounts(Set<Account> accounts) {

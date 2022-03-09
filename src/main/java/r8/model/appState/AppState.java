@@ -2,8 +2,11 @@ package r8.model.appState;
 
 import r8.controller.Controller;
 import r8.model.Account;
+import r8.model.Project;
 import r8.view.loginView.LoginViewController;
 import r8.view.mainView.MainViewController;
+
+import java.util.List;
 
 public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 
@@ -13,6 +16,8 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	private LoginViewController loginViewController;
 	private MainViewController mainViewController;
 	private Controller daoController = new Controller(this);
+
+	private List<Project> projects;
 
 	private AppState() {}
 
@@ -63,5 +68,13 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 
 	public void setMainViewController(MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
+	}
+
+	public void loadProjects() {
+		this.projects = daoController.loadProjects(loggedAccount);
+
+		for (Project p: projects) {
+			p.setTeams(daoController.loadTeamsByProject(p));
+		}
 	}
 }
