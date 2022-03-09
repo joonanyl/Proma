@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F6F6F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.MainViewController">
    <children>
-      <BorderPane id="main-view-pane" fx:id="mainViewPane" prefHeight="990.0" prefWidth="1670.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
+      <BorderPane id="main-view-pane" fx:id="mainViewPane" prefHeight="925.0" prefWidth="1670.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
       <!-- Left Navbar Elements -->
       <VBox prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #15191C;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -37,7 +37,7 @@
                   <Font name="Myanmar Text" size="18.0" />
                </font>
             </Button>
-            <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Management" textFill="#ddd8d8" userData="time-management-view">
+            <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Management" textFill="#ddd8d8" userData="time-management-view2">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -87,7 +87,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Project" userData="create-project-view" />
                 <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Team" userData="create-team-view" />
                 <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Task" userData="create-task-view" />
-                <MenuItem mnemonicParsing="false" text="+ New Time Entry" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Time Entry" userData="time-management-view" />
               </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />

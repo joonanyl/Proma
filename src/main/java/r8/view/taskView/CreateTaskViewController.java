@@ -88,13 +88,10 @@ public class CreateTaskViewController {
     private void AssignUser(){
         Account account = comboBoxUser.getSelectionModel().getSelectedItem();
         if(account != null){
-            System.out.println(account.getFirstName());
-            listViewAssignedTo.getItems().add(account);
-            System.out.println("Added to list");
-            Platform.runLater(() -> {
-                comboBoxUser.getSelectionModel().clearSelection();
-                comboBoxUser.getItems().remove(account);
-            });
+            if(!listViewAssignedTo.getItems().contains(account)){
+                listViewAssignedTo.getItems().add(account);
+            }
+            comboBoxUser.getSelectionModel().clearSelection();
         }
     }
 
@@ -103,7 +100,6 @@ public class CreateTaskViewController {
         Account acc = listViewAssignedTo.getSelectionModel().getSelectedItem();
         if(acc != null){
             listViewAssignedTo.getItems().remove(acc);
-            comboBoxUser.getItems().add(acc);
         }
     }
 

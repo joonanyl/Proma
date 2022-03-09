@@ -22,6 +22,24 @@
     -fx-border-width: 5px;
 }
 
+#button-calendar-left
+{
+    -fx-background-color: #E3E3E3;
+    -fx-border-color: gray gray gray gray;
+    -fx-background-radius: 10 0 0 10;
+    -fx-border-radius: 4 2 2 4;
+    -fx-border-width: 1px;
+}
+
+#button-calendar-right
+{
+    -fx-background-color: #E3E3E3;
+    -fx-border-color: gray gray gray gray;
+    -fx-background-radius: 10 0 0 10;
+    -fx-border-radius: 2 4 4 2;
+    -fx-border-width: 1px;
+}
+
 #button-day-view
 {
     -fx-background-color: #E3E3E3;

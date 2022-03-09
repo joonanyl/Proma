@@ -7,13 +7,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
-<AnchorPane prefHeight="990.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.projectView.CreateProjectViewController">
+<AnchorPane prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/create-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.projectView.CreateProjectViewController">
     <children>
         <Text fontSmoothingType="LCD" layoutX="35.0" layoutY="48.10546875" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Project" wrappingWidth="230.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="30.0">
             <font>
@@ -21,23 +21,23 @@
             </font>
         </Text>
         <Region layoutX="80.0" layoutY="85.0" prefHeight="1.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="85.0" />
-        <Pane id="container-project-info" layoutX="14.0" layoutY="110.0" stylesheets="@../styling/create-project-view-styling.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="115.0">
-            <children>
-                <VBox layoutY="6.0" spacing="25.0">
+      <VBox id="container-project-teams" layoutY="115.0" prefHeight="942.0" prefWidth="771.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="115.0">
+         <children>
+                <VBox spacing="25.0">
                     <children>
-                  <Text fx:id="labelCreateTeams1" fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Project">
+                  <Text fx:id="labelCreateTeams1" fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Details">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="15.0" top="8.0" />
+                        <Insets bottom="5.0" left="15.0" right="20.0" top="20.0" />
                      </VBox.margin>
                   </Text>
                         <HBox alignment="CENTER_LEFT">
                             <children>
                                 <Text fx:id="labelProjectName" fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Project name">
                                     <font>
-                                        <Font name="Arial" size="16.0" />
+                                        <Font size="15.0" />
                                     </font>
                                     <HBox.margin>
                                         <Insets left="25.0" />
@@ -57,170 +57,231 @@
                             <children>
                                 <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
                                     <font>
-                                        <Font name="Arial" size="16.0" />
+                                        <Font size="15.0" />
                                     </font>
                                     <VBox.margin>
-                                        <Insets left="25.0" right="25.0" top="10.0" />
+                                        <Insets left="25.0" right="25.0" />
                                     </VBox.margin>
                                 </Text>
-                                <TextArea fx:id="textDescription" prefHeight="130.0" prefWidth="535.0" wrapText="true">
+                                <TextArea fx:id="textDescription" prefHeight="101.0" prefWidth="716.0" wrapText="true">
                                     <VBox.margin>
-                                        <Insets bottom="25.0" left="25.0" right="30.0" top="5.0" />
+                                        <Insets bottom="20.0" left="25.0" right="30.0" top="5.0" />
                                     </VBox.margin>
                                 </TextArea>
                             </children>
                         </VBox>
                     </children>
                 </VBox>
-            <HBox layoutY="274.0">
+            <VBox prefHeight="320.0">
                <children>
-                  <VBox prefHeight="320.0">
+                  <Text fx:id="labelCreateTeams" fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Teams to Project">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" right="20.0" />
+                     </VBox.margin>
+                  </Text>
+                  <HBox>
                      <children>
-                        <Text fx:id="labelCreateTeams" fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Teams">
+                        <Text fx:id="labelTeamName" fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Team name">
                            <font>
-                              <Font name="Arial Bold" size="16.0" />
+                              <Font size="15.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets bottom="20.0" right="20.0" top="20.0" />
-                           </VBox.margin>
+                           <HBox.margin>
+                              <Insets left="25.0" top="9.0" />
+                           </HBox.margin>
                         </Text>
-                        <HBox>
+                        <TextField id="taskName" fx:id="textTeamName" minHeight="30.0" prefHeight="30.0" prefWidth="430.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets left="30.0" top="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button fx:id="btnAssignTeam1" mnemonicParsing="false" onAction="#createTeam" text=" Add To Project" textFill="#f8f6f6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="206.0" prefWidth="401.0">
+                     <children>
+                        <VBox>
                            <children>
-                              <Text fx:id="labelTeamName" fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Team name">
+                              <Text fx:id="labelTeamsToBeCreated" fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Teams to be created">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
-                                 <HBox.margin>
-                                    <Insets top="9.0" />
-                                 </HBox.margin>
+                                 <VBox.margin>
+                                    <Insets left="25.0" top="20.0" />
+                                 </VBox.margin>
                               </Text>
-                              <TextField id="taskName" fx:id="textTeamName" minHeight="30.0" prefHeight="30.0" prefWidth="263.0">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <HBox.margin>
-                                    <Insets left="30.0" top="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <Button fx:id="btnAssignTeam1" mnemonicParsing="false" text=" Add To Project" textFill="#f8f6f6">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </Button>
+                              <ListView fx:id="listViewTeamsToBeCreated" prefHeight="140.0" prefWidth="537.0">
+                                 <VBox.margin>
+                                    <Insets left="25.0" top="5.0" />
+                                 </VBox.margin>
+                              </ListView>
                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="206.0" prefWidth="401.0">
-                           <children>
-                              <VBox>
-                                 <children>
-                                    <Text fx:id="labelTeamsToBeCreated" fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Teams to be created">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="30.0" />
-                                       </VBox.margin>
-                                    </Text>
-                                    <ListView fx:id="listViewTeamsToBeCreated" prefHeight="151.0" prefWidth="371.0">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                    </ListView>
-                                 </children>
-                              </VBox>
-                              <Button fx:id="btnRemoveAssigned1" mnemonicParsing="false" prefWidth="132.0" text="Remove team" textFill="#f8f6f6">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="30.0" top="40.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
+                        </VBox>
+                        <Button fx:id="btnRemoveAssigned1" mnemonicParsing="false" onAction="#removeTeam" prefWidth="132.0" text="Remove team" textFill="#f8f6f6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="34.0" top="140.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </VBox>
+                  </HBox>
                </children>
-            </HBox>
-            </children>
-        </Pane>
-        <Pane id="container-project-teams" layoutX="671.0" prefHeight="670.0" prefWidth="299.0" stylesheets="@../styling/create-project-view-styling.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="671.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="115.0">
-            <children>
-            <VBox>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="297.0" prefWidth="771.0">
                <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Sprints">
-                            <font>
-                                <Font name="Arial Bold" size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
-                            </VBox.margin>
-                        </Text>
-                          <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprint name">
-                              <font>
-                                  <Font size="15.0" />
-                              </font>
-                     <VBox.margin>
-                        <Insets left="30.0" />
-                     </VBox.margin>
-                          </Text>
-                  <TextField id="taskName" fx:id="textSprintName" minHeight="30.0" prefHeight="30.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets left="30.0" right="30.0" top="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                          <Button fx:id="btnAddToProject" mnemonicParsing="false" text=" Add To Project" textFill="#f8f6f6">
-                     <VBox.margin>
-                        <Insets left="95.0" top="30.0" />
-                     </VBox.margin>
+                  <HBox />
+                  <HBox alignment="CENTER_LEFT" prefHeight="190.0" prefWidth="771.0">
+                     <children>
+                        <VBox />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnNewTask1" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Create Project" textFill="#f8f6f6" userData="create-task-view">
                      <font>
                         <Font size="16.0" />
                      </font>
-                  </Button>
-                  <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprints to be created">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="30.0" top="50.0" />
-                     </VBox.margin>
-                  </Text>
-                          <ListView fx:id="listViewAssignedTo" prefHeight="197.0">
-                              <VBox.margin>
-                                  <Insets left="30.0" right="30.0" />
-                              </VBox.margin>
-                          </ListView>
-                            <Button fx:id="btnRemoveTeam" mnemonicParsing="false" prefWidth="132.0" text="Remove sprint" textFill="#f8f6f6">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="85.0" top="30.0" />
-                     </VBox.margin>
                   </Button>
                </children>
             </VBox>
-            <Button fx:id="btnNewTask1" layoutX="80.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Create Project" textFill="#f8f6f6" userData="create-task-view">
+         </children>
+      </VBox>
+        <Region layoutX="166.0" layoutY="130.0" maxWidth="1.0" prefHeight="600.0" prefWidth="525.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="825.0" AnchorPane.topAnchor="130.0" />
+      <HBox alignment="CENTER" layoutX="1480.0" layoutY="-8.0" prefHeight="95.0" prefWidth="233.0">
+         <children>
+            <Button fx:id="btnNewTask" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/create-project-view-styling.css" text="Create Project" textFill="#f8f6f6" userData="create-task-view">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            </children>
-        </Pane>
-        <Region layoutX="645.0" layoutY="130.0" maxWidth="1.0" prefHeight="600.0" prefWidth="1.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="645.0" AnchorPane.topAnchor="130.0" />
-      <Button fx:id="btnNewTask" layoutX="801.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/create-project-view-styling.css" text="Create Project" textFill="#f8f6f6" userData="create-task-view">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
+         </children>
+      </HBox>
+      <VBox id="container-vbox" layoutX="1160.0" layoutY="115.0" prefHeight="780.0" prefWidth="310.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="850.0" AnchorPane.topAnchor="110.0">
+         <children>
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Sprints to Project">
+                      <font>
+                          <Font name="Arial Bold" size="16.0" />
+                      </font>
+                      <VBox.margin>
+                          <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                      </VBox.margin>
+                  </Text>
+                    <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprint name">
+                        <font>
+                            <Font size="15.0" />
+                        </font>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+                    </Text>
+            <TextField id="taskName" fx:id="taskName1" minHeight="30.0" prefHeight="30.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+                    <Button fx:id="btnAddToProject" mnemonicParsing="false" prefWidth="130.0" text=" Add" textFill="#f8f6f6">
+               <VBox.margin>
+                  <Insets left="90.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprints to be created">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="30.0" top="50.0" />
+               </VBox.margin>
+            </Text>
+                    <ListView fx:id="listViewSprints" prefHeight="197.0">
+                        <VBox.margin>
+                            <Insets left="30.0" right="30.0" />
+                        </VBox.margin>
+                    </ListView>
+                      <Button fx:id="btnRemoveTeam" mnemonicParsing="false" prefWidth="130.0" text="Remove" textFill="#f8f6f6">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="85.0" top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox id="container-vbox" layoutX="1170.0" layoutY="115.0" prefHeight="791.0" prefWidth="304.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="1185.0" AnchorPane.topAnchor="110.0">
+         <children>
+            <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Employees to Project">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee name">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Text>
+            <VBox maxWidth="274.0" prefHeight="35.0" prefWidth="275.0">
+               <children>
+                  <SearchableComboBox fx:id="accountSearchableComboBox" prefHeight="30.0" prefWidth="343.0">
+                     <VBox.margin>
+                        <Insets left="30.0" top="5.0" />
+                     </VBox.margin>
+                  </SearchableComboBox>
+               </children>
+            </VBox>
+            <Button fx:id="btnAddToProject1" mnemonicParsing="false" onAction="#AssignUser" prefWidth="130.0" text="Add" textFill="#f8f6f6">
+               <VBox.margin>
+                  <Insets left="90.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Employees to be added">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="30.0" top="50.0" />
+               </VBox.margin>
+            </Text>
+            <ListView fx:id="listViewAssignedAccounts" prefHeight="197.0">
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </ListView>
+            <Button fx:id="btnRemoveTeam1" mnemonicParsing="false" onAction="#removeAssigned" prefWidth="132.0" text="Remove" textFill="#f8f6f6">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="85.0" top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
