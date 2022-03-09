@@ -8,4 +8,8 @@ public interface IAppStateMain {
     MainViewController getMainViewController();
 
     void setMainViewController(MainViewController mainViewController);
+
+    boolean getIsAdmin();
+
+    void setIsAdmin(boolean isAdmin);
 }

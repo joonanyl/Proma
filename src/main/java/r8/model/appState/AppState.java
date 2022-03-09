@@ -70,6 +70,15 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		this.mainViewController = mainViewController;
 	}
 
+	public boolean getIsAdmin() {
+		return loggedAccount.getAdmin();
+	}
+
+	@Override
+	public void setIsAdmin(boolean isAdmin) {
+		loggedAccount.setAdmin(!isAdmin);
+	}
+
 	public void loadProjects() {
 		this.projects = daoController.loadProjects(loggedAccount);
 

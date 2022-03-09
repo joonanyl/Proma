@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.profileView.ProfileViewController">
     <children>
       <VBox id="container-profile" fx:id="containerProfile" layoutX="6.0" layoutY="117.0" prefHeight="800.0" prefWidth="1660.0" stylesheets="@../styling/profile-view-styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -33,7 +33,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="userFirstNameDisplay">
+                  <Label fx:id="labelUserFirstNameDisplay" text="userFirstNameDisplay">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -61,7 +61,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="userLastNameDisplay">
+                  <Label fx:id="labelUserLastNameDisplay" text="userLastNameDisplay">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -87,7 +87,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="userEmailDisplay">
+                  <Label fx:id="labelUserEmailDisplay" text="userEmailDisplay">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -113,7 +113,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="userPhoneDisplay">
+                  <Label fx:id="labelUserPhoneDisplay" text="userPhoneDisplay">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -152,7 +152,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ComboBox prefWidth="220.0" />
+                        <ComboBox fx:id="comboBoxUILanguage" prefWidth="220.0" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets left="30.0" />
@@ -173,7 +173,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <CheckBox mnemonicParsing="false" />
+                        <CheckBox fx:id="checkBoxEnableTooltips" mnemonicParsing="false" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets left="30.0" />
@@ -191,7 +191,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ComboBox prefWidth="220.0" />
+                        <ComboBox fx:id="comboBoxUiTheme" prefWidth="220.0" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <HBox.margin>
                               <Insets left="30.0" />
@@ -219,6 +219,28 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
+                     <children>
+                        <Label text="isAdmin">
+                           <HBox.margin>
+                              <Insets left="55.0" right="80.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="checkBoxIsAdmin" mnemonicParsing="false" onAction="#setAdminChecked">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </CheckBox>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
                   </HBox>
                </children>
                <VBox.margin>
