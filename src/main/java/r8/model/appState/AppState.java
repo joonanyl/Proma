@@ -32,6 +32,14 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		return INSTANCE;
 	}
 
+	public void loadProjects() {
+		this.projects = daoController.loadProjects(loggedAccount);
+
+		for (Project p: projects) {
+			p.setTeams(daoController.loadTeamsByProject(p));
+		}
+	}
+
 	public Account getLoggedAccount() {
 		return loggedAccount;
 	}
@@ -43,6 +51,14 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	@Override
 	public void createAccount(String firstName, String lastName, String email, String password) {
 		daoController.createAccount(firstName, lastName, email, password);
+	}
+
+	public void createProject(String name, String description) {
+		daoController.createProject(name, description);
+	}
+
+	public void createTeam(String name, Project project) {
+		daoController.createTeam(name, project);
 	}
 
 	@Override
@@ -79,11 +95,11 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		loggedAccount.setAdmin(!isAdmin);
 	}
 
-	public void loadProjects() {
-		this.projects = daoController.loadProjects(loggedAccount);
+	public List<Project> getProjects() {
+		return projects;
+	}
 
-		for (Project p: projects) {
-			p.setTeams(daoController.loadTeamsByProject(p));
-		}
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 }

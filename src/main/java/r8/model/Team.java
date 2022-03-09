@@ -82,7 +82,7 @@ public class Team {
 	
 	/**
 	 * Lisää jäsen
-	 * @param account LinkedList uusista jäsenistä
+	 * @param account
 	 */
 	public void addAccount(Account account) {
 		// tästä testi että ei olisi duplikaattijäseniä
@@ -99,8 +99,8 @@ public class Team {
 	}
 	
 	/**
-	 * Palauttaa listan tiiminjäsenistä
-	 * @return lista tilejä, jotka kuuluvat kyseiseen tiimiin
+	 *
+	 * @return account
 	 */
 	public Set<Account> getAccounts(){
 		return this.accounts;
@@ -117,7 +117,7 @@ public class Team {
 
 	public Account getAccountByName(String fName, String lName) {
 		for (Account a: accounts) {
-			if (a.getFirstName() == fName && a.getLastName() == lName)
+			if (a.getFirstName().equals(fName) && a.getLastName().equals(lName))
 				return a;
 		}
 		return null;
@@ -130,7 +130,6 @@ public class Team {
 
 	public void setProject(Project project) {
 		this.project = project;
-		project.getTeams().add(this);
 	}
 
 	public void setAccounts(Set<Account> accounts) {

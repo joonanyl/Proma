@@ -3,6 +3,9 @@ package r8.controller;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.dao.*;
+import r8.model.task.Task;
+import r8.model.task.TaskState;
+import r8.model.task.TaskType;
 
 import java.util.List;
 
@@ -65,6 +68,8 @@ public class Controller {
 
     public void createProject(String name, String description) {
         Project project = new Project(name, description);
+        project.addAccount(AppState.getInstance().getLoggedAccount());
+        // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
         projectDAO.persist(project);
     }
 
@@ -77,8 +82,7 @@ public class Controller {
     }
 
     //TEAMS tähän myös, päivitä samalla AppState?
-    public void updateProject(int projectId, String name, String description) {
-        Project project = projectDAO.get(projectId);
+    public void updateProject(Project project, String name, String description) {;
         project.setName(name);
         project.setDescription(description);
         projectDAO.update(project);
@@ -94,8 +98,8 @@ public class Controller {
 
     // Tai sitten ui-controllerissa kutsuisi jo parametrissä
     // controller.getProjectById()
-    public void createTeam(String teamName, int projectId) {
-        Team team = new Team(teamName, projectDAO.get(projectId));
+    public void createTeam(String teamName, Project project) {
+        Team team = new Team(teamName, project);
         teamDAO.persist(team);
     }
 
@@ -119,5 +123,25 @@ public class Controller {
 
     public List<Team> loadTeamsByProject(Project project) {
         return teamDAO.getByProject(project);
+    }
+
+    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description) {
+        taskDAO.persist(new Task(name, ts, tt, hours, description));
+    }
+
+    public void updateTask(Task task, String name, TaskState ts, TaskType tt, float hours, String description) {
+        task.setName(name);
+        task.setTaskState(ts);
+        task.setTaskType(tt);
+        task.setHours(hours);
+        task.setDescription(description);
+    }
+
+    public Task getTaskById(int taskId) {
+        return taskDAO.get(taskId);
+    }
+
+    public void removeTask(Task task) {
+        taskDAO.remove(task);
     }
 }

@@ -33,7 +33,7 @@ public class AccountDAO {
     public Account get(int accountId) {
         Account account = null;
         try {
-            account = entityManager.find(Account.class, accountId);
+            account = entityManager.getReference(Account.class, accountId);
             // entityManager.detach(account);
         } catch (NullPointerException e) {
             System.out.println("Account wasn't found");
@@ -94,7 +94,7 @@ public class AccountDAO {
     public void removeAccountById(int accountId) {
         Account account = null;
         try {
-            account = entityManager.find(Account.class, accountId);
+            account = entityManager.getReference(Account.class, accountId);
             entityManager.remove(entityManager.contains(account) ? account : entityManager.merge(account));
         } catch (NullPointerException e) {
             System.out.println("Account not found");

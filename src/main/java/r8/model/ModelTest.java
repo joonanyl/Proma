@@ -104,9 +104,9 @@ public class ModelTest {
         }
          */
 
-        Team team = teamDAO.get(1);
-        System.out.println(team.getProject());
-        Project project = team.getProject();
-        System.out.println(project.getTeams().get(0));
+        Project project = new Project("projektitesti", "dasökdsal");
+        Team team = new Team("test team");
+        project.addTeam(team);
+        teamDAO.persist(team);
     }
 }

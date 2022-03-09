@@ -30,7 +30,7 @@ public class ProjectDAO {
         Project project = null;
 
         try {
-            project = entityManager.find(Project.class, projectId);
+            project = entityManager.getReference(Project.class, projectId);
             // entityManager.detach(project);
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -55,8 +55,7 @@ public class ProjectDAO {
         List<Project> results = null;
         try {
             results = entityManager.createQuery(
-                    "SELECT p FROM Project p join p.accounts a " +
-                            "WHERE a.accountId = :accountId", Project.class)
+                    "SELECT p FROM Project p join p.accounts a WHERE a.accountId = :accountId", Project.class)
                     .setParameter("accountId", account.getAccountId())
                     .getResultList();
         } catch (NullPointerException e) {

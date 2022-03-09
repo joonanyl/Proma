@@ -104,6 +104,16 @@ public class Task {
 		team.getTasks().remove(this);
 	}
 
+	public void assignAccount(Account account) {
+		accounts.add(account);
+		account.getTasks().add(this);
+	}
+
+	public void removeAccount(Account account) {
+		accounts.remove(account);
+		account.getTasks().remove(this);
+	}
+
 	public int getTaskId() {
 		return taskId;
 	}
