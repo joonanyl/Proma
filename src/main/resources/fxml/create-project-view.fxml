@@ -149,7 +149,7 @@
                         <VBox />
                      </children>
                   </HBox>
-                  <Button fx:id="btnNewTask1" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Create Project" textFill="#f8f6f6" userData="create-task-view">
+                  <Button fx:id="btnCreateProject1" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Create Project" textFill="#f8f6f6" userData="create-task-view">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -161,7 +161,7 @@
         <Region layoutX="166.0" layoutY="130.0" maxWidth="1.0" prefHeight="600.0" prefWidth="525.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="825.0" AnchorPane.topAnchor="130.0" />
       <HBox alignment="CENTER" layoutX="1480.0" layoutY="-8.0" prefHeight="95.0" prefWidth="233.0">
          <children>
-            <Button fx:id="btnNewTask" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/create-project-view-styling.css" text="Create Project" textFill="#f8f6f6" userData="create-task-view">
+            <Button fx:id="btnCreateProject" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/create-project-view-styling.css" text="Create Project" textFill="#f8f6f6" userData="create-task-view">
                <font>
                   <Font size="16.0" />
                </font>

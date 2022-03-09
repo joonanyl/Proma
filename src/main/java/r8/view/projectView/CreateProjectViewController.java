@@ -4,7 +4,9 @@ package r8.view.projectView;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -14,6 +16,8 @@ import r8.model.Project;
 import r8.model.Team;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
+import r8.model.dao.ProjectDAO;
+import r8.model.dao.TeamDAO;
 
 import java.io.IOException;
 import java.util.*;
@@ -44,16 +48,31 @@ public class CreateProjectViewController {
     @FXML
     private ListView<Account> listViewAssignedAccounts;
 
+    @FXML
+    private Button btnCreateProject1;
+    @FXML
+    private Button btnCreateProject;
+
+    private ProjectDAO projectDAO;
+
+    private TeamDAO teamDAO;
 
     final IAppStateMain appStateMain = AppState.getInstance();
 
     public void initialize(){
         Account acc = new Account("a", "b", "email", "pw");
         accountSearchableComboBox.getItems().add(acc);
+        projectDAO = new ProjectDAO();
+        teamDAO = new TeamDAO();
+
+        // kummallekin create project -napille eventhandlerit
+        btnCreateProject1.setOnAction(event -> createProject());
+        btnCreateProject.setOnAction(event -> createProject());
     }
 
     @FXML
     private void createTeam(){
+        System.out.println("create team");
         String tn = textTeamName.getText();
         if(!tn.matches("[a-zA-Z0-9]{2,20}")){
             return;
@@ -91,6 +110,8 @@ public class CreateProjectViewController {
 
     @FXML
     private void createProject(){
+        System.out.println("CREATEPROJECT");
+
         String projectName = textProjectName.getText();
         String projectDesc = textDescription.getText();
         if(!projectName.matches("[a-zA-Z0-9]{3,20}")){
@@ -112,10 +133,15 @@ public class CreateProjectViewController {
 
         newProject.setTeams(teamsList);
 
-        newProject.setAccounts((Set<Account>)listViewAssignedAccounts.getItems());
+        projectDAO.persist(newProject);
+
+        for(Team t : teamsList){
+            teamDAO.persist(t);
+        }
+
+        System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
 
     }
-
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
