@@ -24,9 +24,6 @@ class ProjectDAOTest {
 
     }
 
-    // testaa ettei menis kaks samanlaista projektia sinne
-    // testaa että tulee tietokantaan
-
     @Test
     @Order(1)
      void persist() {
