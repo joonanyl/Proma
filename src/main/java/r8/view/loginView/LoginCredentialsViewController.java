@@ -5,15 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import r8.App;
-import r8.controller.Controller;
-import r8.view.navigation.GlobalControllerReference;
+import r8.model.appState.AppState;
+import r8.model.appState.IAppStateLogin;
 import java.io.IOException;
 
 
 public class LoginCredentialsViewController {
 
     private App app;
-    private Controller daoController = new Controller();
+    final IAppStateLogin appStateLogin = AppState.getInstance();
 
     @FXML
     private TextField textFieldEmail;
@@ -24,19 +24,19 @@ public class LoginCredentialsViewController {
     @FXML
     private void login() {
 
-        if(daoController.authenticateLogin(textFieldEmail.getText(), passwordField.getText())){
+        if(appStateLogin.authenticateLogin(textFieldEmail.getText(), passwordField.getText())){
             toWorkScene();
         }
     }
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        GlobalControllerReference.getInstance().getLoginViewController().handleNavigation(event);
+        appStateLogin.getLoginViewController().handleNavigation(event);
     }
 
     @FXML
     public void toWorkScene() {
-        app = GlobalControllerReference.getInstance().getLoginViewController().getApp();
+        app = appStateLogin.getLoginViewController().getApp();
         app.switchToWorkScene();
     }
 

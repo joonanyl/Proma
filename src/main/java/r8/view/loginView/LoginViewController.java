@@ -7,8 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import r8.App;
+import r8.model.appState.AppState;
+import r8.model.appState.IAppStateLogin;
 import r8.view.navigation.GetView;
-import r8.view.navigation.GlobalControllerReference;
 import r8.view.navigation.NavigationHandler;
 import java.io.IOException;
 import java.net.URL;
@@ -17,13 +18,14 @@ import java.util.Objects;
 public class LoginViewController {
 
     private App app;
+    final IAppStateLogin appStateLogin = AppState.getInstance();
 
     @FXML
     private BorderPane mainViewPane;
 
     public void initialize() {
-
        System.out.println("App when LoginViewController init: " + app);
+        appStateLogin.setLoginViewController(this);
        initialTest();
     }
 
@@ -50,7 +52,7 @@ public class LoginViewController {
 
     private void setInitialView() {
 
-        GlobalControllerReference.getInstance().setLoginViewController(this);
+        appStateLogin.setLoginViewController(this);
         GetView viewLoader = new GetView();
         Pane view = viewLoader.getView("login-credentials-view");
         mainViewPane.setCenter(view);

@@ -5,9 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import r8.model.appState.AppState;
 import r8.view.loginView.LoginViewController;
 import r8.view.mainView.MainViewController;
-import r8.view.navigation.GlobalControllerReference;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -33,7 +33,7 @@ public class App extends Application
             stage.setResizable(false);
             LoginViewController controller = loader.getController();
             controller.setApp(this);
-            GlobalControllerReference.getInstance().setLoginViewController(controller);
+            AppState.getInstance().setLoginViewController(controller);
             System.out.println("controller App: " + controller.getApp());
             stage.show();
         } catch (IOException | IllegalArgumentException e) {
@@ -52,7 +52,7 @@ public class App extends Application
             stage.setMaximized(true);
             MainViewController controller = loader.getController();
             controller.setApp(this);
-            GlobalControllerReference.getInstance().setMainViewController(controller);
+            AppState.getInstance().setMainViewController(controller);
             stage.show();
         } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();

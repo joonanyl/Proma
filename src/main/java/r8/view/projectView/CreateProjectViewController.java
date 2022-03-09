@@ -8,7 +8,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import r8.model.Project;
-import r8.view.navigation.GlobalControllerReference;
+import r8.model.appState.AppState;
+import r8.model.appState.IAppStateMain;
 
 import java.io.IOException;
 
@@ -31,6 +32,8 @@ public class CreateProjectViewController {
 
     @FXML
     private TextField textSprintName;
+
+    final IAppStateMain appStateMain = AppState.getInstance();
 
     @FXML
     private boolean createTeam(Project project){
@@ -63,9 +66,8 @@ public class CreateProjectViewController {
         } );
     }
 
-
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        GlobalControllerReference.getInstance().getMainViewController().handleNavigation(event);
+        appStateMain.getMainViewController().handleNavigation(event);
     }
 }

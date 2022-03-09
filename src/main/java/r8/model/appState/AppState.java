@@ -2,20 +2,28 @@ package r8.model.appState;
 
 import r8.controller.Controller;
 import r8.model.Account;
+import r8.view.loginView.LoginViewController;
+import r8.view.mainView.MainViewController;
 
 public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 
-	private static AppState INSTANCE = null;
+	private static volatile AppState INSTANCE = null;
 	private Account loggedAccount = null;
 
+	private LoginViewController loginViewController;
+	private MainViewController mainViewController;
 	private Controller daoController = new Controller();
 
 	private AppState() {}
 
 	public static AppState getInstance() {
-		if(INSTANCE == null)
-			INSTANCE = new AppState();
-
+		if(INSTANCE == null) {
+			synchronized (AppState.class) {
+				if (INSTANCE == null) {
+					INSTANCE = new AppState();
+				}
+			}
+		}
 		return INSTANCE;
 	}
 
@@ -40,5 +48,22 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		}
 		return false;
 	}
+
+	public LoginViewController getLoginViewController() {
+		return loginViewController;
+	}
+
+	public MainViewController getMainViewController() {
+		return mainViewController;
+	}
+
+	public void setLoginViewController(LoginViewController loginViewController) {
+		this.loginViewController = loginViewController;
+	}
+
+	public void setMainViewController(MainViewController mainViewController) {
+		this.mainViewController = mainViewController;
+	}
+
 
 }

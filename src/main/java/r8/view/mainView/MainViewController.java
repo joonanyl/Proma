@@ -1,5 +1,6 @@
 package r8.view.mainView;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -137,6 +138,15 @@ public class MainViewController {
             System.out.println("hbox buttons in list after adding: " + breadcrumbButtons);
         }
         hBoxBreadcrumb.getChildren().addAll(breadcrumbButtons);
+    }
+
+    // Update UI while running
+    public void updateUI() {
+        Platform.runLater(new Runnable() {
+            public void run() {
+                // mitä runataan?
+            }
+        });
     }
 
     public App getApp() {

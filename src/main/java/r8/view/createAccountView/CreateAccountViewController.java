@@ -6,13 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-import org.w3c.dom.Text;
-import r8.controller.Controller;
 import r8.model.Account;
 import r8.model.TextFieldValidator;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateLogin;
-import r8.view.navigation.GlobalControllerReference;
 
 import java.io.IOException;
 
@@ -46,7 +43,7 @@ public class CreateAccountViewController {
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        GlobalControllerReference.getInstance().getLoginViewController().handleNavigation(event);
+        appStateLogin.getLoginViewController().handleNavigation(event);
     }
 
     private String emailRegEx = "(?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
