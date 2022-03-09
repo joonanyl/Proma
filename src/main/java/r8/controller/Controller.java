@@ -4,6 +4,8 @@ import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.dao.*;
 
+import java.util.List;
+
 public class Controller {
     private AccountDAO accountDAO;
     private CommentDAO commentDAO;
@@ -88,12 +90,15 @@ public class Controller {
         Project project = projectDAO.get(projectId);
         project.setName(name);
         project.setDescription(description);
-
         projectDAO.update(project);
     }
 
     public void removeProject(Project project) {
         projectDAO.removeProject(project);
+    }
+
+    public Project loadProject() {
+        return null;
     }
 
     // Tai sitten ui-controllerissa kutsuisi jo parametrissä

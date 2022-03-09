@@ -56,10 +56,12 @@ public class ProjectDAO {
     }
 
     public void removeProjectById(int projectId) {
+        entityManager.getTransaction().begin();
         Project project = null;
         try {
-            project = entityManager.find(Project.class, projectId);
+            project = entityManager.getReference(Project.class, projectId);
             entityManager.remove(entityManager.contains(project) ? project : entityManager.merge(project));
+            entityManager.getTransaction().commit();
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@ import r8.model.task.Task;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,11 +14,6 @@ import java.util.Set;
  *
  */
 
-/* direct association w/ */
-/* TEAM, SPRINT, TASK */
-
-
-/* association w/ ACCOUNT */
 @Entity
 @Table(name = "project")
 public class Project {
@@ -30,7 +26,14 @@ public class Project {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(mappedBy = "projects")
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(
+			name = "project_account",
+			joinColumns = @JoinColumn(name = "project_id"),
+			inverseJoinColumns = @JoinColumn(name = "account_id"))
 	private Set<Account> accounts;
 
 	@Column(name = "description")
@@ -38,6 +41,9 @@ public class Project {
 
 	@Transient
 	private ArrayList<Task> tasks;
+
+	@OneToMany(mappedBy = "project")
+	private List<Team> teams;
 
 	/**
 	 * Contructor
@@ -47,6 +53,16 @@ public class Project {
 		this.name = name;
 		this.description = description;
 		this.accounts = new HashSet<>();
+	}
+
+	public void addAccount(Account account) {
+		accounts.add(account);
+		account.getProjects().add(this);
+	}
+
+	public void removeAccount(Account account) {
+		accounts.remove(account);
+		account.getProjects().remove(this);
 	}
 
 	public Project() {}
@@ -85,6 +101,14 @@ public class Project {
 
 	public ArrayList<Task> getTasks() {
 		return tasks;
+	}
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
 	}
 
 	public void setTasks(ArrayList<Task> tasks) {
