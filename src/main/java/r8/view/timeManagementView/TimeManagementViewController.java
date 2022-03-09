@@ -53,8 +53,8 @@ public class TimeManagementViewController {
     private App app;
 
     @FXML
-    private void initialize() {
-
+    private void initialize() throws IOException {
+        handleNavigation("tracker-view-week");
     }
 
     public void setMainApp(App app) {
@@ -72,6 +72,13 @@ public class TimeManagementViewController {
             trackerViewPane.setCenter(viewLoader.getView(userData));
             currentSubview = userData;
         }
+    }
+
+    @FXML
+    public void handleNavigation(String viewName) throws IOException {
+        GetView viewLoader = new GetView();
+        trackerViewPane.setCenter(viewLoader.getView(viewName));
+        currentSubview = viewName;
     }
 
     //include data for task dropdown
