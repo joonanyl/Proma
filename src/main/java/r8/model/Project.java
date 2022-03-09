@@ -26,10 +26,7 @@ public class Project {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
+	@ManyToMany
 	@JoinTable(
 			name = "project_account",
 			joinColumns = @JoinColumn(name = "project_id"),
@@ -115,4 +112,8 @@ public class Project {
 		this.tasks = tasks;
 	}
 
+	@Override
+	public String toString() {
+		return this.projectId + " " + this.name;
+	}
 }

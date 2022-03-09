@@ -34,7 +34,7 @@ public class AccountDAO {
         Account account = null;
         try {
             account = entityManager.find(Account.class, accountId);
-            entityManager.detach(account);
+            // entityManager.detach(account);
         } catch (NullPointerException e) {
             System.out.println("Account wasn't found");
             e.printStackTrace();
@@ -80,11 +80,13 @@ public class AccountDAO {
             e.printStackTrace();
         }
 
+        assert account != null;
         return account.getPassword();
     }
 
     public void removeAccount(Account account) {
         entityManager.getTransaction().begin();
+        // Check if removed-to-be account is detached or not
         entityManager.remove(entityManager.contains(account) ? account : entityManager.merge(account));
         entityManager.getTransaction().commit();
     }
@@ -103,7 +105,7 @@ public class AccountDAO {
     public boolean checkIfEmailExists(String email) {
         try {
             List<String> results = entityManager.createQuery(
-                    "SELECT a.email FROM Account a")
+                    "SELECT a.email FROM Account a", String.class)
                     .getResultList();
             // Email is in database
             if (results.contains(email))

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ModelTest {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /*
         AccountDAO accountDAO = new AccountDAO();
         TeamDAO teamDAO = new TeamDAO();
@@ -73,7 +73,23 @@ public class ModelTest {
             System.out.println(t);
         }
         */
-        System.out.println(accountDAO.checkIfEmailExists("testi@mail.com"));
+        System.out.println(accountDAO.checkIfEmailExists("testi@sposti.com"));
         System.out.println(accountDAO.checkIfEmailExists("askdöka"));
+
+        /*
+        TODO: TÄLLÄINEN TILANNE TARVITSEE CHEKIN DUPLIKAATTIEN VARALTA
+        Project project5 = projectDAO.get(5);
+        Project project6 = projectDAO.get(6);
+        Account account = accountDAO.get(1);
+        project5.addAccount(account);
+        project6.addAccount(account);
+        projectDAO.update(project5);
+        projectDAO.update(project6);
+         */
+
+        List<Project> projects = projectDAO.getByAccount(accountDAO.get(1));
+        for (Project p: projects) {
+            System.out.println(p);
+        }
     }
 }

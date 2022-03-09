@@ -30,11 +30,7 @@ public class Controller {
     }
 
     public boolean authenticateLogin(String email, String password) {
-        boolean authentication = AuthService.authenticatePassword(email, password);
-        if (authentication) {
-            return true;
-        }
-        return false;
+        return AuthService.authenticatePassword(email, password);
     }
 
     public void logout() {
@@ -47,13 +43,11 @@ public class Controller {
     }
 
     public Account getAccount(Integer accountId) {
-        Account account = accountDAO.get(accountId);
-        return account;
+        return accountDAO.get(accountId);
     }
 
     public Account getAccountByEmail(String email) {
-        Account account = accountDAO.getByEmail(email);
-        return account;
+        return accountDAO.getByEmail(email);
     }
 
     public void updateAccount(String firstName, String lastName, String email, String password) {
@@ -75,15 +69,14 @@ public class Controller {
     }
 
     public Project getProjectById(int projectId) {
-        Project project = projectDAO.get(projectId);
-        return project;
+        return projectDAO.get(projectId);
     }
 
     public Project getProjectByName(String name) {
-        Project project = projectDAO.getByName(name);
-        return project;
+        return projectDAO.getByName(name);
     }
 
+    //TEAMS tähän myös, päivitä samalla AppState?
     public void updateProject(int projectId, String name, String description) {
         Project project = projectDAO.get(projectId);
         project.setName(name);
@@ -95,8 +88,8 @@ public class Controller {
         projectDAO.removeProject(project);
     }
 
-    public Project loadProject() {
-        return null;
+    public Project loadProject(int projectId) {
+        return projectDAO.get(projectId);
     }
 
     // Tai sitten ui-controllerissa kutsuisi jo parametrissä
@@ -107,13 +100,11 @@ public class Controller {
     }
 
     public Team getTeamById(int teamId) {
-        Team team = teamDAO.get(teamId);
-        return team;
+        return teamDAO.get(teamId);
     }
 
     public Team getTeamByName(String name) {
-        Team team = teamDAO.getByName(name);
-        return team;
+        return teamDAO.getByName(name);
     }
 
     public void updateTeam(int teamId, String name, int projectId) {

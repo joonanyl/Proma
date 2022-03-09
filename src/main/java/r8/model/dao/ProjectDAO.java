@@ -30,8 +30,8 @@ public class ProjectDAO {
         Project project = null;
 
         try {
-            project = entityManager.getReference(Project.class, projectId);
-            entityManager.detach(project);
+            project = entityManager.find(Project.class, projectId);
+            // entityManager.detach(project);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -51,6 +51,32 @@ public class ProjectDAO {
         return project;
     }
 
+    public List<Project> getByAccount(Account account) {
+        List<Project> results = null;
+        try {
+            results = entityManager.createQuery(
+                    "SELECT p FROM Project p join p.accounts a " +
+                            "WHERE a.accountId = :accountId", Project.class)
+                    .setParameter("accountId", account.getAccountId())
+                    .getResultList();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public List<Project> getAll() {
+        List<Project> results = null;
+        try {
+            results = entityManager.createQuery("SELECT a FROM Project a", Project.class)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            System.out.println("No projects found.");
+            e.printStackTrace();
+        }
+        return results;
+    }
+
     public void removeProject(Project project) {
         entityManager.getTransaction().begin();
         entityManager.remove(entityManager.contains(project) ? project : entityManager.merge(project));
@@ -67,17 +93,5 @@ public class ProjectDAO {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-    }
-
-    public List<Project> getAll() {
-        List<Project> results = null;
-        try {
-            results = entityManager.createQuery("SELECT a FROM Project a", Project.class)
-                    .getResultList();
-        } catch (NullPointerException e) {
-            System.out.println("No projects found.");
-            e.printStackTrace();
-        }
-        return results;
     }
 }
