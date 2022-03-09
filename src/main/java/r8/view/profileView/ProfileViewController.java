@@ -40,11 +40,18 @@ public class ProfileViewController {
     private Label labelUserPhoneDisplay;
 
     public void initialize() {
-        checkBoxIsAdmin.setSelected(appStateMain.getIsAdmin());
+        if (appStateMain.getAccount() != null){
+            checkBoxIsAdmin.setSelected(appStateMain.getIsAdmin());
+            labelUserFirstNameDisplay.setText(appStateMain.getAccount().getFirstName());
+            labelUserLastNameDisplay.setText(appStateMain.getAccount().getLastName());
+            labelUserEmailDisplay.setText(appStateMain.getAccount().getEmail());
+        }
+        labelUserPhoneDisplay.setText("not set");
     }
 
     @FXML
     private void setAdminChecked() {
+        if (appStateMain.getAccount() != null)
         appStateMain.setIsAdmin(appStateMain.getIsAdmin());
     }
 }

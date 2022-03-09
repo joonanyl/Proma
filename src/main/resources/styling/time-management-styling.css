@@ -121,3 +121,9 @@
     -fx-background-color: EAEAEA;
     -fx-background-radius: 5;
 }
+
+#container-vbox
+{
+    -fx-background-color: EAEAEA;
+    -fx-background-radius: 5;
+}

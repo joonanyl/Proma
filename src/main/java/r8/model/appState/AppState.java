@@ -86,8 +86,16 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		this.mainViewController = mainViewController;
 	}
 
+	@Override
+	public Account getAccount() {
+		return this.loggedAccount;
+	}
+
 	public boolean getIsAdmin() {
-		return loggedAccount.getAdmin();
+		if (loggedAccount.getAdmin() != null) {
+			return loggedAccount.getAdmin();
+		}
+		return false;
 	}
 
 	@Override
