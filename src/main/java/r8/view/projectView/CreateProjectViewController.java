@@ -119,7 +119,7 @@ public class CreateProjectViewController {
 
         String projectName = textProjectName.getText();
         String projectDesc = textDescription.getText();
-        if(!projectName.matches("[a-zA-Z0-9]{3,20}")){
+        if(!projectName.matches("[a-zA-Z0-9\\s]{3,20}")){
             return;
         }
         if(projectDesc.length() > 255){
