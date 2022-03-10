@@ -103,7 +103,7 @@
                   </Text>
                   <ListView fx:id="listViewExistingSprints" prefHeight="300.0" prefWidth="350.0">
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                   </ListView>
                   <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprint Info">

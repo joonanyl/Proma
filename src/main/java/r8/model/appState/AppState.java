@@ -23,7 +23,7 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	private MainViewController mainViewController;
 	private Controller daoController = new Controller(this);
 
-	private Task selectedTask = daoController.getAllTasks().get(0);
+	private Task selectedTask = null;
 
 	private List<Project> projects;
 
