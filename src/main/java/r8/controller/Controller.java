@@ -164,7 +164,7 @@ public class Controller {
                 task.assignToTeam(team);
             });
         }
-        taskDAO.persist(new Task(name, ts, tt, hours, description));
+        taskDAO.persist(task);
     }
 
     public void updateTask(Task task, String name, TaskState ts, TaskType tt, float hours, String description) {

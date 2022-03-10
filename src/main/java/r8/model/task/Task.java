@@ -51,10 +51,7 @@ public class Task {
 	private LocalDate endDate;
 
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
+	@ManyToMany
 	@JoinTable(
 			name = "account_task",
 			joinColumns = @JoinColumn(name = "task_id"),
