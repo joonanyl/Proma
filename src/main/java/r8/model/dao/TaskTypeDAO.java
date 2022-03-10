@@ -1,8 +1,10 @@
 package r8.model.dao;
 
+import r8.model.Account;
 import r8.model.task.TaskType;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class TaskTypeDAO {
     private EntityManager entityManager;
@@ -33,5 +35,17 @@ public class TaskTypeDAO {
         entityManager.getTransaction().begin();
         entityManager.remove(taskType);
         entityManager.getTransaction().commit();
+    }
+
+    public List<TaskType> getAll() {
+        List<TaskType> results = null;
+        try {
+            results = entityManager.createQuery("SELECT t FROM TaskType t", TaskType.class)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            System.out.println("No TaskTypes found");
+            e.printStackTrace();
+        }
+        return results;
     }
 }

@@ -1,8 +1,10 @@
+C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\NewProjectViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\controller\ControllerTest.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\dao\TaskDAO.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\archiveView\ArchiveViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\task\Task.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\teamView\TeamsViewController.java
+C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\subview\TeamSubviewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\timeManagementView\trackerView\TrackerViewProjectController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\dashboardView\DashboardViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\navigation\BreadcrumbObject.java
@@ -10,6 +12,7 @@ C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\taskView\TaskViewCon
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\task\TaskType.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\Account.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\ProjectViewController.java
+C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\CombinedList.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\dao\SprintDAO.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\timeManagementView\trackerView\TrackerViewWeekController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\dao\ProjectDAO.java
@@ -20,12 +23,14 @@ C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\navigation\Navigatio
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\mainView\MainViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\timeManagementView\trackerView\TrackerViewDayController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\CreateProjectViewController.java
+C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\subview\OverviewSubviewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\navigation\GetView.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\Team.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\appState\IAppStateMain.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\task\TaskState.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\dao\TaskTypeDAO.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\forgotPasswordView\ForgotPasswordViewController.java
+C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\subview\SprintSubviewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\timeManagementView\trackerView\TrackerViewSprintController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\ProjectsViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\Event.java
@@ -34,6 +39,7 @@ C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\dao\DAO.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\controller\Controller.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\appState\AppState.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\AuthService.java
+C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\subview\PersonnelSubviewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\Sprint.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\App.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\teamView\CreateTeamViewController.java
@@ -44,6 +50,7 @@ C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\dao\CommentDAO.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\profileView\ProfileViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\teamView\TeamViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\taskView\TasksViewController.java
+C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\projectView\subview\TaskSubviewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\loginView\LoginViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\view\loginView\LoginCredentialsViewController.java
 C:\Users\teemu\Documents\GitHub\proma\src\main\java\r8\model\dao\TeamDAO.java

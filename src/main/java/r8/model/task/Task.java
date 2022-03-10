@@ -5,6 +5,8 @@ import r8.model.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -49,11 +51,7 @@ public class Task {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 
-
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
+	@ManyToMany
 	@JoinTable(
 			name = "account_task",
 			joinColumns = @JoinColumn(name = "task_id"),
@@ -68,16 +66,13 @@ public class Task {
 	@JoinColumn(name = "project_id")
 	private Project project;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
+	@ManyToMany
 	@JoinTable(
 			name = "task_team",
 			joinColumns = @JoinColumn(name = "task_id"),
 			inverseJoinColumns = @JoinColumn(name = "team_id"))
 	private Set<Team> teams;
-	
+
 	/**
 	 * Constructor
 	 * @param n Task's name
@@ -90,6 +85,8 @@ public class Task {
 		this.hours = hours;
 		this.description = desc;
 		this.startDate = LocalDate.now();
+		this.teams = new HashSet<Team>();	//sanna lisäs
+		this.accounts = new HashSet<Account>();	//sanna lisäs
 	}
 
 	public Task() {}
@@ -131,19 +128,28 @@ public class Task {
 	}
 
 	public TaskState getTaskState() {
-		return taskState;
+		return this.taskState;
 	}
 
-	public void setTaskState(TaskState taskState) {
-		this.taskState = taskState;
+	public void setTaskState(TaskState newTaskState) {
+		this.taskState = newTaskState;
+		setTaskStateString(newTaskState.toString());
 	}
 
 	public String getTaskStateString() {
 		return taskStateString;
 	}
 
-	public void setTaskStateString(String taskStateString) {
-		this.taskStateString = taskStateString;
+	public void setTaskStateString(String newTaskStateString) {
+		for(TaskState t : TaskState.values()){
+			if(newTaskStateString == t.toString()){
+				this.taskStateString = newTaskStateString;
+				this.taskState = t;
+				break;
+			}
+		}
+		System.out.println("TaskState changed to " + this.taskState);
+
 	}
 
 	public TaskType getTaskType() {

@@ -4,8 +4,6 @@ import r8.model.Project;
 import r8.model.Team;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TeamDAO {
@@ -51,7 +49,18 @@ public class TeamDAO {
                     "SELECT t FROM Team t WHERE t.project = :project", Team.class)
                     .setParameter("project", project)
                     .getResultList();
-            System.out.println(results.size());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public List<Team> getAll() {
+        List<Team> results = null;
+        try {
+            results = entityManager.createQuery(
+                            "SELECT t FROM Team t", Team.class)
+                    .getResultList();
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

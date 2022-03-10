@@ -23,10 +23,40 @@
          </font>
       </Text>
       <Region prefHeight="1.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-      <Pane layoutY="101.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="110.0" stylesheets="@../styling/create-task-view-styling.css">
+      <Pane layoutY="101.0" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../styling/create-task-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="110.0">
          <children>
             <VBox layoutY="-1.0" prefHeight="700.0" prefWidth="640.0" spacing="25.0">
                <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Project">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" right="15.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="projectComboBox" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task type">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="25.0" left="25.0" right="15.0" top="25.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="taskType" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="25.0" right="25.0" top="25.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="960.0">
                      <children>
                         <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task name">
@@ -42,22 +72,23 @@
                               <Insets />
                            </opaqueInsets>
                            <HBox.margin>
-                              <Insets bottom="25.0" left="15.0" right="25.0" top="25.0" />
+                              <Insets bottom="25.0" right="25.0" top="25.0" />
                            </HBox.margin>
                         </TextField>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task type">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Task Type">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="25.0" left="100.0" right="15.0" top="25.0" />
+                              <Insets right="15.0" />
                            </HBox.margin>
                         </Text>
-                        <ComboBox fx:id="taskType" prefWidth="150.0">
-                           <HBox.margin>
-                              <Insets bottom="25.0" left="15.0" right="25.0" top="25.0" />
-                           </HBox.margin>
-                        </ComboBox>
+                        <TextField id="taskName" fx:id="createTaskTypeField" prefWidth="100.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#createTaskType" text="Add" />
                      </children>
                   </HBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="379.0" prefWidth="850.0">
@@ -110,7 +141,7 @@
                            </font>
                         </Text>
                         <SearchableComboBox fx:id="comboBoxTeam" maxHeight="25.0" prefWidth="150.0" />
-                        <Button fx:id="btnAssignTeam" mnemonicParsing="false" text="Assign" />
+                        <Button fx:id="btnAssignTeam" mnemonicParsing="false" onAction="#AssignTeam" text="Assign" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">

@@ -1,5 +1,6 @@
 package r8.controller;
 
+import javafx.collections.ObservableList;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.dao.*;
@@ -53,6 +54,14 @@ public class Controller {
         return accountDAO.getByEmail(email);
     }
 
+    public List<Account> getAllAccounts(){
+        return accountDAO.getAll();
+    }
+
+    public boolean checkIfEmailExists(String email) {
+        return accountDAO.getByEmail(email) != null;
+    }
+
     public void updateAccount(String firstName, String lastName, String email, String password) {
         Account account = accountDAO.getByEmail(AppState.getInstance().getLoggedAccount().getEmail());
         account.setFirstName(firstName);
@@ -66,12 +75,21 @@ public class Controller {
         accountDAO.removeAccount(account);
     }
 
-    public Project createProject(String name, String description) {
+    public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
         Project project = new Project(name, description);
+        if(accountList != null){
+            accountList.forEach((item)->{
+                project.addAccount(item);
+            });
+        }
         project.addAccount(accountDAO.get(AppState.getInstance().getLoggedAccount().getAccountId()));
         // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
         projectDAO.persist(project);
-        return project;
+        if(teamList != null){
+            teamList.forEach((item)->{
+                createTeam(item, project);
+            });
+        }
     }
 
     public Project getProjectById(int projectId) {
@@ -80,6 +98,10 @@ public class Controller {
 
     public Project getProjectByName(String name) {
         return projectDAO.getByName(name);
+    }
+
+    public List<Project> getAllProjects() {
+        return projectDAO.getAll();
     }
 
     //TEAMS tähän myös, päivitä samalla AppState?
@@ -112,6 +134,10 @@ public class Controller {
         return teamDAO.getByName(name);
     }
 
+    public List<Team> getAllteams() {
+        return teamDAO.getAll();
+    }
+
     public void updateTeam(int teamId, String name, int projectId) {
         Team team = teamDAO.get(teamId);
         team.setTeamName(name);
@@ -126,8 +152,19 @@ public class Controller {
         return teamDAO.getByProject(project);
     }
 
-    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description) {
-        taskDAO.persist(new Task(name, ts, tt, hours, description));
+    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams) {
+        Task task = new Task(name, ts, tt, hours, description);
+        if(accounts != null){
+            accounts.forEach((account) ->{
+                task.assignAccount(account);
+            });
+        }
+        if(teams != null){
+            teams.forEach((team)->{
+                task.assignToTeam(team);
+            });
+        }
+        taskDAO.persist(task);
     }
 
     public void updateTask(Task task, String name, TaskState ts, TaskType tt, float hours, String description) {
@@ -142,7 +179,27 @@ public class Controller {
         return taskDAO.get(taskId);
     }
 
+    public List<Task> getTaskByProject(Project project) {
+        return taskDAO.getByProject(project);
+    }
+
+    public List<Task> getTaskByTeam(Team team) {
+        return taskDAO.getByTeam(team);
+    }
+
+    public List<Task> getAllTasks() {
+        return taskDAO.getAll();
+    }
+
     public void removeTask(Task task) {
         taskDAO.remove(task);
+    }
+
+    public void createTaskType(String name){
+        taskTypeDAO.persist(new TaskType(name));
+    }
+
+    public List<TaskType> getAllTaskTypes(){
+        return taskTypeDAO.getAll();
     }
 }
