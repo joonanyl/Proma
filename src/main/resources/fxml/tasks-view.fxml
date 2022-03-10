@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -29,30 +30,30 @@
                                 </Label>
                                 <HBox fx:id="projectNavBar" alignment="TOP_CENTER" prefHeight="60.0" prefWidth="928.0">
                                     <children>
-                                        <Button id="button-day-view" fx:id="buttonOverview" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="All" userData="overview-subview">
-                                            <font>
-                                                <Font size="13.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets top="15.0" />
-                                            </HBox.margin>
-                                        </Button>
-                                        <Button id="button-sprint-view" fx:id="buttonTeam1" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Active" userData="task-subview">
-                                            <font>
-                                                <Font size="13.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets top="15.0" />
-                                            </HBox.margin>
-                                        </Button>
-                                        <Button id="button-project-view" fx:id="buttonPersonnel" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Completed" userData="personnel-subview">
-                                            <font>
-                                                <Font size="13.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets top="15.0" />
-                                            </HBox.margin>
-                                        </Button>
+                                <ToggleButton id="button-day-view" fx:id="btnOverview" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css">
+                                 <graphic>
+                                    <Label text="Overview" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="25.0" />
+                                 </HBox.margin>
+                                </ToggleButton>
+                                <ToggleButton id="button-sprint-view" fx:id="btnPersonal" prefHeight="35.0" prefWidth="100.0" selected="true" stylesheets="@../styling/time-management-styling.css">
+                                 <graphic>
+                                    <Label text="Personal" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="25.0" />
+                                 </HBox.margin>
+                                </ToggleButton>
+                                <ToggleButton id="button-project-view" fx:id="btnTeam" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css">
+                                 <graphic>
+                                    <Label text="Team" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="25.0" />
+                                 </HBox.margin>
+                                </ToggleButton>
                                     </children>
                                     <HBox.margin>
                                         <Insets left="210.0" />
@@ -102,54 +103,108 @@
                                                         <Insets left="15.0" top="15.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label text="Project">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets left="25.0" top="15.0" />
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label text="Sprint">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets left="25.0" top="35.0" />
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label text="Created by">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets left="25.0" top="35.0" />
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label text="Priority">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets left="25.0" top="35.0" />
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label text="Task type">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets left="25.0" top="35.0" />
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label text="Task State">
-                                                    <font>
-                                                        <Font size="15.0" />
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets left="25.0" top="35.0" />
-                                                    </VBox.margin>
-                                                </Label>
+                                    <HBox spacing="25.0">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="15.0" />
+                                       </VBox.margin>
+                                       <children>
+                                                      <Label text="Project      ">
+                                                          <font>
+                                                              <Font name="System Bold" size="15.0" />
+                                                          </font>
+                                                      </Label>
+                                          <Label fx:id="labelProjectInfo" text="-">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="21.0" prefWidth="431.0" spacing="25.0">
+                                       <children>
+                                          <Label text="Sprint        ">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="labelSprintInfo" text="-">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="21.0" prefWidth="431.0" spacing="25.0">
+                                       <children>
+                                          <Label text="Created by">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="labelCreatedBy" text="-">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="21.0" prefWidth="431.0" spacing="25.0">
+                                       <children>
+                                          <Label text="Priority      ">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="labelPriority" text="-">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="21.0" prefWidth="431.0" spacing="25.0">
+                                       <children>
+                                          <Label text="Task Type  ">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="labelTaskType" text="-">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="21.0" prefWidth="431.0" spacing="25.0">
+                                       <children>
+                                          <Label text="Task State  ">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="labelTaskState" text="-">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="25.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                                                     <children>
                                                         <Line endX="124.5" startX="-233.5" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="0.1">
@@ -157,7 +212,7 @@
                                                                 <Insets top="25.0" />
                                                             </VBox.margin>
                                                         </Line>
-                                                        <Button id="button-go-to-task-view" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="Go To Project View" textFill="#f8f6f6" userData="task-view">
+                                                        <Button id="button-go-to-task-view" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="View task" textFill="#f8f6f6" userData="task-view">
                                                             <font>
                                                                 <Font size="16.0" />
                                                             </font>
@@ -165,6 +220,14 @@
                                                                 <Insets top="35.0" />
                                                             </VBox.margin>
                                                         </Button>
+                                          <Button id="button-go-to-create-task-view" mnemonicParsing="false" onAction="#navigateNewTask" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="Create new task" textFill="#f8f6f6" userData="create-task-view">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets top="50.0" />
+                                             </VBox.margin>
+                                          </Button>
                                                     </children>
                                                 </VBox>
                                             </children>

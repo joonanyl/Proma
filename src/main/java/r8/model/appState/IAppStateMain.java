@@ -46,4 +46,5 @@ public interface IAppStateMain {
 
     void setSelectedProject(Project project);
     Project getSelectedProject();
+    Project getProjectById(int id);
 }

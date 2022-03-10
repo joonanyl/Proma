@@ -65,9 +65,6 @@ public class CreateTaskViewController {
         projectComboBox.getItems().addAll(appStateMain.getProjects());
 
         List<Account> accountList = appStateMain.getAllAccounts();
-        if(accountList.contains(appStateMain.getAccount())){
-            accountList.remove(appStateMain.getAccount());
-        }
         comboBoxUser.getItems().addAll(accountList);
 
         updateTaskTypes();
