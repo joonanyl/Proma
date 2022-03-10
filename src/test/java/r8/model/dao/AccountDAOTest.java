@@ -68,13 +68,10 @@ class AccountDAOTest {
     @Test
     @Order(5)
     void getAll(){
-        List<Account> accountList = new ArrayList<Account>();
-        accountList.add(account1);
-        accountList.add(account2);
-        accountList.add(account3);
-        accountList.add(account4);
-
-        assertEquals(accountList, accountDAO.getAll(), "Käyttäjälistat eivät täsmää");
+        assertTrue(accountDAO.getAll().contains(account1), "Käyttäjälistat eivät täsmää");
+        assertTrue(accountDAO.getAll().contains(account2), "Käyttäjälistat eivät täsmää2");
+        assertTrue(accountDAO.getAll().contains(account3), "Käyttäjälistat eivät täsmää3");
+        assertTrue(accountDAO.getAll().contains(account4), "Käyttäjälistat eivät täsmää4");
     }
 
 
