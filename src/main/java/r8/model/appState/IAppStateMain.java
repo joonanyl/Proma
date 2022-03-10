@@ -32,7 +32,7 @@ public interface IAppStateMain {
 
     List<Project> getProjects();
 
-    void createTask(String name, TaskState taskState, TaskType taskType, float hours, String desc, ObservableList<Account> accounts, ObservableList<Team> teams);
+    void createTask(String name, TaskState taskState, TaskType taskType, float hours, String desc, ObservableList<Account> accounts, ObservableList<Team> teams, Project project);
 
     void createTaskType(String name);
 

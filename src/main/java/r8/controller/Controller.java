@@ -156,8 +156,9 @@ public class Controller {
         return teamDAO.getByProject(project);
     }
 
-    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams) {
+    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams, Project project) {
         Task task = new Task(name, ts, tt, hours, description);
+        task.setProject(project);
         if(accounts != null){
             accounts.forEach((account) ->{
                 task.assignAccount(account);

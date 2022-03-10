@@ -130,8 +130,8 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	}
 
 	@Override
-	public void createTask(String name, TaskState taskState, TaskType taskType, float hours, String desc, ObservableList<Account> accounts, ObservableList<Team> teams){
-		daoController.createTask(name,taskState,taskType,hours,desc,accounts,teams);
+	public void createTask(String name, TaskState taskState, TaskType taskType, float hours, String desc, ObservableList<Account> accounts, ObservableList<Team> teams, Project project){
+		daoController.createTask(name,taskState,taskType,hours,desc,accounts,teams, project);
 	}
 
 	@Override

@@ -100,6 +100,7 @@ public class CreateTaskViewController {
         TaskType tt = taskType.getSelectionModel().getSelectedItem();
         String name = taskName.getText();
         String desc = descField.getText();
+        Project project = projectComboBox.getSelectionModel().getSelectedItem();
         if(!name.matches("([A-Za-z0-9 ]{1,20})")){
             System.out.println("didn't match");
             showAlert("Invalid input", "Invalid task name!", Alert.AlertType.INFORMATION);
@@ -116,7 +117,10 @@ public class CreateTaskViewController {
         if(!showAlert("Confirmation", "Are you sure you want to save this task?", Alert.AlertType.CONFIRMATION)){
             return;
         }
-        appStateMain.createTask(name, TaskState.NOT_STARTED, tt, 0,desc, getAccounts(), getTeams());
+        if(project == null){
+            return;
+        }
+        appStateMain.createTask(name, TaskState.NOT_STARTED, tt, 0,desc, getAccounts(), getTeams(), project);
         showAlert("Success", "Successfully saved this task!", Alert.AlertType.INFORMATION);
     }
 
