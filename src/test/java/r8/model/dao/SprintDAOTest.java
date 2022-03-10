@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SprintDAOTest {
-
+/* KOMMENTOITU TESTIKSI POIS
     private static Project project;
     private static Sprint sprint;
     private static SprintDAO sprintDAO;
@@ -72,4 +72,6 @@ class SprintDAOTest {
         System.out.println("DB cleared");
 
     }
+    */
+
 }
