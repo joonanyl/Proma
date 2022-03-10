@@ -31,7 +31,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Dashboard" textFill="#ddd8d8" userData="dashboard-view">
+            <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Dashboard" textFill="#ddd8d8" userData="dashboard-view">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -46,7 +46,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Management" textFill="#ddd8d8" userData="time-management-view2">
+            <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Management" textFill="#ddd8d8" userData="time-management-view2">
                <padding>
                   <Insets left="17.0" />
                </padding>
@@ -63,7 +63,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Projects" textFill="#ddd8d8" userData="projects-view">
+            <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Projects" textFill="#ddd8d8" userData="projects-view">
                <padding>
                   <Insets left="23.0" />
                </padding>
@@ -78,7 +78,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text=" Teams" textFill="#ddd8d8" userData="teams-view">
+            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text=" Teams" textFill="#ddd8d8" userData="teams-view">
                <padding>
                   <Insets left="23.0" />
                </padding>
@@ -93,7 +93,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnTasks" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="  Tasks" textFill="#ddd8d8" userData="tasks-view">
+            <Button id="button-leftnav" fx:id="btnTasks" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="  Tasks" textFill="#ddd8d8" userData="tasks-view">
                <padding>
                   <Insets left="23.0" />
                </padding>
@@ -108,7 +108,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnArchive" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Archive" textFill="#ddd8d8" userData="archive-view">
+            <Button id="button-leftnav" fx:id="btnArchive" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Archive" textFill="#ddd8d8" userData="archive-view">
                <font>
                   <Font name="Myanmar Text" size="18.0" />
                </font>
