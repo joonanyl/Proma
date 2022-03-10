@@ -50,7 +50,7 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		this.projects = daoController.loadProjects(loggedAccount);
 
 		for (Project p: projects) {
-			p.setTeams(daoController.loadTeamsByProject(p));
+			p.setTeams(daoController.getTeamsByProject(p));
 		}
 	}
 
@@ -146,7 +146,7 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 
 	@Override
 	public List<Team> getAllTeams(){
-		return daoController.getAllteams();
+		return daoController.getAllTeams();
 	}
 
 	@Override
@@ -169,5 +169,9 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	@Override
 	public void updateTask(Task task){
 		daoController.updateTask(task);
+	}
+
+	public void getEvents() {
+		daoController.getEventsByAccount(loggedAccount);
 	}
 }

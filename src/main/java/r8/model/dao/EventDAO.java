@@ -2,6 +2,7 @@ package r8.model.dao;
 
 import r8.model.Account;
 import r8.model.Event;
+import r8.model.task.Task;
 
 
 import javax.persistence.EntityManager;
@@ -30,6 +31,19 @@ public class EventDAO {
             results = entityManager.createQuery(
                     "SELECT e FROM Event e WHERE e.account = :account", Event.class)
                     .setParameter("account", account)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public List<Event> getByTask(Task task) {
+        List<Event> results = null;
+        try {
+            results = entityManager.createQuery(
+                    "SELECT e FROM Event e WHERE e.task = :task", Event.class)
+                    .setParameter("task", task)
                     .getResultList();
         } catch (NullPointerException e) {
             e.printStackTrace();
