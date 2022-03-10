@@ -1,5 +1,6 @@
 package r8.model.dao;
 
+import r8.model.Account;
 import r8.model.Event;
 
 
@@ -21,6 +22,19 @@ public class EventDAO {
         Event event = entityManager.getReference(Event.class, eventId);
         entityManager.detach(event);
         return event;
+    }
+
+    public List<Event> getByAccount(Account account) {
+        List<Event> results = null;
+        try {
+            results = entityManager.createQuery(
+                    "SELECT e FROM Event e WHERE e.account = :account", Event.class)
+                    .setParameter("account", account)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return results;
     }
 
     public List<Event> getAll() {
