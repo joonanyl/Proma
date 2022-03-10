@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.Team;
+import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 import r8.view.mainView.MainViewController;
@@ -38,4 +39,11 @@ public interface IAppStateMain {
     List<TaskType> getAllTaskTypes();
 
     List<Team> getAllTeams();
+
+    void setSelectedTask(Task task);
+    Task getSelectedTask();
+    void updateTask(Task task);
+
+    void setSelectedProject(Project project);
+    Project getSelectedProject();
 }

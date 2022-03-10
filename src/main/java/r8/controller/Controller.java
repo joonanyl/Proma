@@ -268,4 +268,6 @@ public class Controller {
         sprintDAO.remove(sprint);
     }
 
+
+    public void updateTask(Task task){ taskDAO.update(task); }
 }

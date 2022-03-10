@@ -46,6 +46,7 @@ public class TeamDAO {
         return team;
     }
 
+    // HAE TIIMIT APPSTATEN SELECTEDPROJECTIN AVULLA
     public List<Team> getByProject(Project project) {
         List<Team> results = null;
         try {

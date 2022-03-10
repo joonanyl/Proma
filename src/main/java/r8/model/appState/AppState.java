@@ -17,10 +17,13 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 
 	private static volatile AppState INSTANCE = null;
 	private Account loggedAccount = null;
+	private Project selectedProject = null;
 
 	private LoginViewController loginViewController;
 	private MainViewController mainViewController;
 	private Controller daoController = new Controller(this);
+
+	private Task selectedTask = daoController.getAllTasks().get(0);
 
 	private List<Project> projects;
 
@@ -144,5 +147,27 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	@Override
 	public List<Team> getAllTeams(){
 		return daoController.getAllteams();
+	}
+
+	@Override
+	public void setSelectedTask(Task task){
+		this.selectedTask = task;
+	}
+	@Override
+	public Task getSelectedTask(){
+		return this.selectedTask;
+	}
+	@Override
+	public void setSelectedProject(Project project){
+		this.selectedProject = project;
+	}
+	@Override
+	public Project getSelectedProject(){
+		return this.selectedProject;
+	}
+
+	@Override
+	public void updateTask(Task task){
+		daoController.updateTask(task);
 	}
 }

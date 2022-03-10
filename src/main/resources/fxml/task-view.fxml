@@ -2,8 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,6 +14,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.taskView.TaskViewController">
     <children>
@@ -80,13 +84,14 @@
                </font>
             </Label>
             <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="83.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
-            <ComboBox layoutX="119.0" layoutY="17.0" prefHeight="26.0" prefWidth="180.0" />
-            <Label fx:id="btnStatus1" layoutX="342.0" layoutY="18.0" text="Assigned to:">
+            <ComboBox fx:id="comboBoxTaskStatus" layoutX="66.0" layoutY="17.0" prefHeight="26.0" prefWidth="180.0" />
+            <Label fx:id="btnStatus1" layoutX="342.0" layoutY="18.0" text="Assign to:">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
-            <ComboBox layoutX="442.0" layoutY="16.0" prefHeight="26.0" prefWidth="180.0" />
+            <SearchableComboBox fx:id="assignNewComboBox" layoutX="416.0" layoutY="16.0" prefWidth="150.0" />
+            <Button layoutX="564.0" layoutY="16.0" mnemonicParsing="false" onAction="#assignNew" text="Assign" textFill="WHITE" />
             <Pane id="container-dashboard" layoutX="8.0" layoutY="66.0" prefHeight="200.0" prefWidth="615.0" stylesheets="@../styling/dashboard-view-styling.css">
                <children>
                   <Label layoutX="15.0" layoutY="8.0" text="Description" textFill="#757171">
@@ -94,6 +99,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
+                  <TextArea fx:id="textAreaDescription" layoutX="28.0" layoutY="39.0" prefHeight="115.0" prefWidth="550.0" />
                </children>
             </Pane>
             <Pane id="container-dashboard" layoutX="8.0" layoutY="284.0" prefHeight="200.0" prefWidth="615.0" stylesheets="@../styling/dashboard-view-styling.css">
@@ -103,11 +109,29 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
+                  <TextArea layoutX="32.0" layoutY="43.0" prefHeight="115.0" prefWidth="550.0" />
+               </children>
+            </Pane>
+            <ButtonBar layoutX="705.0" layoutY="545.0" prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button mnemonicParsing="false" text="Cancel" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#saveTask" text="Save" textFill="WHITE" />
+              </buttons>
+            </ButtonBar>
+            <Pane id="container-dashboard" layoutX="655.0" layoutY="66.0" prefHeight="420.0" prefWidth="250.0" stylesheets="@../styling/dashboard-view-styling.css">
+               <children>
+                  <Label layoutX="15.0" layoutY="8.0" text="Assigned to" textFill="#757171">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="assignedToList" layoutX="25.0" layoutY="51.0" prefHeight="325.0" prefWidth="200.0" />
+                  <Button layoutX="166.0" layoutY="381.0" mnemonicParsing="false" onAction="#removeAssigned" text="Remove" textFill="WHITE" />
                </children>
             </Pane>
             </children>
         </Pane>
         <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-        <Pane id="pane-comments" fx:id="paneComments" layoutX="665.0" layoutY="125.0" maxWidth="600.0" prefHeight="655.0" prefWidth="315.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="665.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0" />
+        <Pane id="pane-comments" fx:id="paneComments" layoutX="1056.0" layoutY="125.0" maxWidth="600.0" prefHeight="780.0" prefWidth="594.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="1056.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0" />
     </children>
 </AnchorPane>

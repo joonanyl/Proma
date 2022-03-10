@@ -3,6 +3,7 @@ package r8.model;
 
 import r8.model.dao.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -104,9 +105,11 @@ public class ModelTest {
         }
          */
 
-        Project project = new Project("projektitesti", "dasökdsal");
-        Team team = new Team("test", project);
-        project.addTeam(team);
-        teamDAO.persist(team);
+        Account account = accountDAO.get(1);
+        Event event = new Event("Worked on bugs", LocalDate.now(), 3f, account);
+        Event event1 = new Event("Meeting", LocalDate.now(), 1f, account);
+        eventDAO.persist(event);
+        eventDAO.persist(event1);
+        System.out.println(eventDAO.getByAccount(account));
     }
 }
