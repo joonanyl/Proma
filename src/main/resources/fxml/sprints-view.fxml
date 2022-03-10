@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -27,37 +28,37 @@
                                         <Insets left="20.0" top="20.0" />
                                     </HBox.margin>
                                 </Label>
-                                <HBox fx:id="projectNavBar" alignment="TOP_CENTER" prefHeight="60.0" prefWidth="928.0">
-                                    <children>
-                                        <Button id="button-day-view" fx:id="buttonAllProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="All" userData="overview-subview">
-                                            <font>
-                                                <Font size="13.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets top="15.0" />
-                                            </HBox.margin>
-                                        </Button>
-                                        <Button id="button-sprint-view" fx:id="btnActiveProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Active" userData="task-subview">
-                                            <font>
-                                                <Font size="13.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets top="15.0" />
-                                            </HBox.margin>
-                                        </Button>
-                                        <Button id="button-project-view" fx:id="btnCompletedProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Completed" userData="personnel-subview">
-                                            <font>
-                                                <Font size="13.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets top="15.0" />
-                                            </HBox.margin>
-                                        </Button>
-                                    </children>
-                                    <HBox.margin>
-                                        <Insets left="210.0" />
-                                    </HBox.margin>
-                                </HBox>
+                        <HBox fx:id="projectNavBar1" alignment="TOP_CENTER" prefHeight="60.0" prefWidth="928.0">
+                           <children>
+                              <ToggleButton id="button-all-view" fx:id="btnOverview" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css">
+                                 <graphic>
+                                    <Label text="All" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="25.0" />
+                                 </HBox.margin>
+                              </ToggleButton>
+                              <ToggleButton id="button-sprint-view" fx:id="btnPersonal" prefHeight="35.0" prefWidth="100.0" selected="true" stylesheets="@../styling/time-management-styling.css">
+                                 <graphic>
+                                    <Label text="Active" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="25.0" />
+                                 </HBox.margin>
+                              </ToggleButton>
+                              <ToggleButton id="button-project-view" fx:id="btnTeam" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css">
+                                 <graphic>
+                                    <Label text="Completed" />
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets top="25.0" />
+                                 </HBox.margin>
+                              </ToggleButton>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="170.0" />
+                           </HBox.margin>
+                        </HBox>
                             </children>
                         </HBox>
                         <HBox prefHeight="866.0" prefWidth="1670.0">
