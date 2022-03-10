@@ -134,7 +134,7 @@ public class CreateAccountViewController {
         showAlert("Success", "Successfully created account!");
 
         appStateLogin.createAccount(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
-        //navigate(event);
+        navigate(event);
     }
 
     private void showAlert(String title, String text) {

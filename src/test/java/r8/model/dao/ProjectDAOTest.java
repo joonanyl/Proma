@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProjectDAOTest {
 
-    /* KOMMENTOITU TESTIKSI POIS
 
     private static ProjectDAO projectDAO;
     private static Project project1, project2, project3, project4;
@@ -72,5 +71,5 @@ class ProjectDAOTest {
         System.out.println("db cleared");
     }
 
-     */
+
 }
