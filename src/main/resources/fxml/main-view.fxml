@@ -33,7 +33,7 @@
             </Pane>
             <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Dashboard" textFill="#ddd8d8" userData="dashboard-view">
                <padding>
-                  <Insets left="17.0" />
+                  <Insets left="20.0" />
                </padding>
                <font>
                   <Font name="Myanmar Text" size="18.0" />
@@ -48,7 +48,7 @@
             </Button>
             <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Management" textFill="#ddd8d8" userData="time-management-view2">
                <padding>
-                  <Insets left="14.0" />
+                  <Insets left="17.0" />
                </padding>
                <font>
                   <Font name="Myanmar Text" size="18.0" />
@@ -65,7 +65,7 @@
             </Button>
             <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Projects" textFill="#ddd8d8" userData="projects-view">
                <padding>
-                  <Insets left="20.0" />
+                  <Insets left="23.0" />
                </padding>
                <font>
                   <Font name="Myanmar Text" size="18.0" />
@@ -80,7 +80,7 @@
             </Button>
             <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text=" Teams" textFill="#ddd8d8" userData="teams-view">
                <padding>
-                  <Insets left="20.0" />
+                  <Insets left="23.0" />
                </padding>
                <font>
                   <Font name="Myanmar Text" size="18.0" />
@@ -95,7 +95,7 @@
             </Button>
             <Button id="button-leftnav" fx:id="btnTasks" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="  Tasks" textFill="#ddd8d8" userData="tasks-view">
                <padding>
-                  <Insets left="20.0" />
+                  <Insets left="23.0" />
                </padding>
                <font>
                   <Font name="Myanmar Text" size="18.0" />
@@ -120,7 +120,7 @@
                   </ImageView>
                </graphic>
                <padding>
-                  <Insets left="20.0" />
+                  <Insets left="23.0" />
                </padding>
             </Button>
          </children>
