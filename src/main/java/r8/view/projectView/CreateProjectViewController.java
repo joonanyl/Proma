@@ -60,9 +60,6 @@ public class CreateProjectViewController {
     final IAppStateMain appStateMain = AppState.getInstance();
 
     public void initialize(){
-
-        Account acc = new Account("a", "b", "email", "pw");
-        accountSearchableComboBox.getItems().add(acc);
         List<Account> accountList = appStateMain.getAllAccounts();
         if(accountList.contains(appStateMain.getAccount())){
             accountList.remove(appStateMain.getAccount());

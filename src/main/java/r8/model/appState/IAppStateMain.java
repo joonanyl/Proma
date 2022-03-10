@@ -36,4 +36,6 @@ public interface IAppStateMain {
     void createTaskType(String name);
 
     List<TaskType> getAllTaskTypes();
+
+    List<Team> getAllTeams();
 }

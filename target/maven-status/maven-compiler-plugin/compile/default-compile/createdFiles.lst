@@ -36,6 +36,7 @@ r8\model\dao\SprintDAO.class
 r8\view\mainView\MainViewController$1.class
 r8\view\projectView\ProjectsViewController.class
 r8\view\createAccountView\CreateAccountViewController$1.class
+r8\model\CombinedList.class
 r8\view\createAccountView\CreateAccountViewController.class
 r8\view\timeManagementView\trackerView\TrackerViewSprintController.class
 r8\view\timeManagementView\trackerView\TrackerViewWeekController$1.class

@@ -140,4 +140,9 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 	public List<TaskType> getAllTaskTypes(){
 		return daoController.getAllTaskTypes();
 	}
+
+	@Override
+	public List<Team> getAllTeams(){
+		return daoController.getAllteams();
+	}
 }

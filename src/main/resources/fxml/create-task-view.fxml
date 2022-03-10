@@ -141,7 +141,7 @@
                            </font>
                         </Text>
                         <SearchableComboBox fx:id="comboBoxTeam" maxHeight="25.0" prefWidth="150.0" />
-                        <Button fx:id="btnAssignTeam" mnemonicParsing="false" text="Assign" />
+                        <Button fx:id="btnAssignTeam" mnemonicParsing="false" onAction="#AssignTeam" text="Assign" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">

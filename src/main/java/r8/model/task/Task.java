@@ -66,10 +66,7 @@ public class Task {
 	@JoinColumn(name = "project_id")
 	private Project project;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
+	@ManyToMany
 	@JoinTable(
 			name = "task_team",
 			joinColumns = @JoinColumn(name = "task_id"),
