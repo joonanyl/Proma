@@ -79,7 +79,7 @@ public class CreateProjectViewController {
     private void createTeam(){
         System.out.println("create team");
         String tn = textTeamName.getText();
-        if(!tn.matches("[a-zA-Z0-9]{2,20}")){
+        if(!tn.matches("[a-zA-Z0-9 ]{2,20}")){
             return;
         }
         Platform.runLater(()->{

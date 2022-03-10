@@ -18,7 +18,7 @@ class EventTest {
     static void setUpBeforeTesting() {
         task = new Task();
         account = new Account("etunimi", "sukunimi","email",  "pwd");
-        event = new Event("desc", LocalDate.now(), 2, task, account);
+        event = new Event("desc", LocalDate.now(), 2, account);
 
     }
 
@@ -67,6 +67,7 @@ class EventTest {
     @Test
     @Order(5)
     void setAndGetTask() {
+        event.setTask(task);
         assertEquals(task, event.getTask(), "Tehtävän hakeminen epäonnistui");
         Task t2 = new Task();
         t2.setName("Task2");

@@ -28,9 +28,6 @@ class ProjectDAOTest {
     @Order(1)
      void persist() {
         projectDAO.persist(project1);
-
-       // assertEquals(project1, projectDAO.getByName(project1.getName()), "Projektia ei löytynyt tietokannasta (1)");
-
         assertEquals(project1, projectDAO.get(project1.getProjectId()), "Projektia ei löytynyt tietokannasta (2)");
     }
 
