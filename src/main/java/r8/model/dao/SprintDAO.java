@@ -10,7 +10,7 @@ public class SprintDAO {
 
     public SprintDAO() { this.entityManager = DAO.getEntityManager(); }
 
-    public void addSprint(Sprint sprint) {
+    public void persist(Sprint sprint) {
         entityManager.getTransaction().begin();
         entityManager.persist(sprint);
         entityManager.getTransaction().commit();
@@ -41,7 +41,7 @@ public class SprintDAO {
 
     public void remove(Sprint sprint) {
         entityManager.getTransaction().begin();
-        entityManager.remove(sprint);
+        entityManager.remove(entityManager.contains(sprint) ? sprint : entityManager.merge(sprint));
         entityManager.getTransaction().commit();
     }
 

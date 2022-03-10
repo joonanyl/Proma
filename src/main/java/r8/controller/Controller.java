@@ -203,6 +203,19 @@ public class Controller {
         taskTypeDAO.persist(new TaskType(name));
     }
 
+    public void updateTaskType(TaskType taskType, String name) {
+        taskType.setName(name);
+        taskTypeDAO.update(taskType);
+    }
+
+    public TaskType getTaskTypeByName(String name) {
+        return taskTypeDAO.getByName(name);
+    }
+
+    public void removeTaskType(TaskType taskType) {
+        taskTypeDAO.remove(taskType);
+    }
+
     public List<TaskType> getAllTaskTypes(){
         return taskTypeDAO.getAll();
     }
@@ -232,6 +245,27 @@ public class Controller {
         eventDAO.remove(event);
     }
 
+    public void createSprint(String name, LocalDate startDate, LocalDate endDate, Project project) {
+        Sprint sprint = new Sprint(name, startDate, endDate, project);
+        sprintDAO.persist(sprint);
+    }
 
+    public void updateSprint(Sprint sprint, String name, LocalDate startDate, LocalDate endDate) {
+        sprint.setName(name);
+        sprint.setStartDate(startDate);
+        sprint.setEndDate(endDate);
+    }
+
+    public Sprint getSprintById(int sprintId) {
+        return sprintDAO.get(sprintId);
+    }
+
+    public List<Sprint> getAllSprints() {
+        return sprintDAO.getAll();
+    }
+
+    public void removeSprint(Sprint sprint) {
+        sprintDAO.remove(sprint);
+    }
 
 }

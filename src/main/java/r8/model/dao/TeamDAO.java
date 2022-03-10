@@ -24,8 +24,12 @@ public class TeamDAO {
     }
 
     public Team get(int teamId) {
-        Team team = entityManager.find(Team.class, teamId);
-        entityManager.detach(team);
+        Team team = null;
+        try {
+            team = entityManager.find(Team.class, teamId);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return team;
     }
 
@@ -69,7 +73,7 @@ public class TeamDAO {
 
     public void removeTeam(Team team) {
         entityManager.getTransaction().begin();
-        entityManager.remove(team);
+        entityManager.remove(entityManager.contains(team) ? team : entityManager.merge(team));
         entityManager.getTransaction().commit();
     }
 
