@@ -3,6 +3,7 @@ package r8.model.dao;
 import r8.model.Sprint;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class SprintDAO {
     private EntityManager entityManager;
@@ -19,6 +20,17 @@ public class SprintDAO {
         Sprint sprint = entityManager.getReference(Sprint.class, sprintId);
         entityManager.detach(sprint);
         return sprint;
+    }
+
+    public List<Sprint> getAll() {
+        List<Sprint> results = null;
+        try {
+            results = entityManager.createQuery("SELECT s FROM Sprint s", Sprint.class)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return results;
     }
 
     public void update(Sprint sprint) {
