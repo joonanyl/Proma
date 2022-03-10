@@ -40,12 +40,21 @@
     -fx-border-width: 1px;
 }
 
-#button-day-view
+#button-all-view
 {
     -fx-background-color: #E3E3E3;
     -fx-border-color: gray gray gray gray;
     -fx-background-radius: 10 0 0 10;
     -fx-border-radius: 10 0 0 10;
+    -fx-border-width: 1.2px;
+}
+
+#button-day-view
+{
+    -fx-background-color: #E3E3E3;
+    -fx-border-color: gray gray gray gray;
+    -fx-background-radius: 0 0 0 0;
+    -fx-border-radius: 0 0 0 0;
     -fx-border-width: 1.2px;
 }
 

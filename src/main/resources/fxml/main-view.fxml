@@ -7,6 +7,8 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -39,11 +41,20 @@
             </Button>
             <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Management" textFill="#ddd8d8" userData="time-management-view2">
                <padding>
-                  <Insets left="30.0" />
+                  <Insets left="24.0" />
                </padding>
                <font>
                   <Font name="Myanmar Text" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/managementNav.png" />
+                     </image></ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Button>
             <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Projects" textFill="#ddd8d8" userData="projects-view">
                <padding>
@@ -52,22 +63,43 @@
                <font>
                   <Font name="Myanmar Text" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/project-work.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Teams" textFill="#ddd8d8" userData="teams-view">
+            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text=" Teams" textFill="#ddd8d8" userData="teams-view">
                <padding>
                   <Insets left="30.0" />
                </padding>
                <font>
                   <Font name="Myanmar Text" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/teams.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnTasks" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Tasks" textFill="#ddd8d8" userData="tasks-view">
+            <Button id="button-leftnav" fx:id="btnTasks" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="  Tasks" textFill="#ddd8d8" userData="tasks-view">
                <padding>
                   <Insets left="30.0" />
                </padding>
                <font>
                   <Font name="Myanmar Text" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/task-icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Button id="button-leftnav" fx:id="btnArchive" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="70.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Archive" textFill="#ddd8d8" userData="archive-view">
                <padding>
@@ -76,6 +108,13 @@
                <font>
                   <Font name="Myanmar Text" size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/archiveS.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </VBox>
@@ -130,7 +169,7 @@
       <!-- Top Navbar Right Elements -->
       <HBox id="hbox-topnav" alignment="CENTER_RIGHT" layoutX="790.0" prefHeight="50.0" prefWidth="490.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="790.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <MenuButton id="button-topnav-right" fx:id="menuBtnNotification" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="ntfIcon" textFill="#15191c">
+            <MenuButton id="button-topnav-right" fx:id="menuBtnNotification" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" textFill="#15191c">
                <items>
                   <MenuItem mnemonicParsing="false" text="Action 1" />
                   <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -138,8 +177,15 @@
                <font>
                   <Font name="Myanmar Text" size="16.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../icon/notifBellS.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </MenuButton>
-            <MenuButton id="button-topnav-right" fx:id="menuBtnAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="acIcon" textFill="#15191c">
+            <MenuButton id="button-topnav-right" fx:id="menuBtnAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" textFill="#15191c">
                <items>
                   <RadioMenuItem fx:id="menuItemDarkMode" mnemonicParsing="false" text="Dark Mode" />
                   <MenuItem fx:id="menuItemProfile" mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="Profile" userData="profile-view" />
@@ -148,6 +194,13 @@
                <font>
                   <Font name="Myanmar Text" size="16.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../icon/usericonS.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </MenuButton>
          </children>
          <rotationAxis>

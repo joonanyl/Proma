@@ -54,7 +54,7 @@ public class TimeManagementViewController {
 
     @FXML
     private void initialize() throws IOException {
-        handleNavigation("tracker-view-week");
+        handleNavigation("tracker-view-all");
     }
 
     public void setMainApp(App app) {

@@ -8,7 +8,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import r8.App;
+import r8.model.Account;
+import r8.model.appState.AppState;
+import r8.model.appState.IAppStateMain;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -23,6 +27,7 @@ public class DashboardViewController {
         @FXML
         private Button btnCustomizeView;
 
+        IAppStateMain appStateMain = AppState.getInstance();
         private App app;
 
         private final StringProperty value = new SimpleStringProperty();
@@ -30,6 +35,11 @@ public class DashboardViewController {
         @FXML
         private void initialize() {
             mockData();
+        }
+
+        @FXML
+        private void navigate(ActionEvent event) throws IOException {
+            appStateMain.getMainViewController().handleNavigation(event);
         }
 
         @FXML
@@ -49,9 +59,10 @@ public class DashboardViewController {
         }
 
         private void mockData() {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            Account account = appStateMain.getAccount();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDateTime now = LocalDateTime.now();
-            labelUserName.setText("testuser6000");
+            labelUserName.setText(account.getFirstName() +" "+ account.getLastName());
             labelSystemTimeDisplay.setText("Today is " + dtf.format(now));
         }
 }
