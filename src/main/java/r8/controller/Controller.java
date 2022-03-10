@@ -138,7 +138,11 @@ public class Controller {
         return teamDAO.getByName(name);
     }
 
-    public List<Team> getAllteams() {
+    public List<Team> getTeamsByProject(Project project) {
+        return teamDAO.getByProject(project);
+    }
+
+    public List<Team> getAllTeams() {
         return teamDAO.getAll();
     }
 
@@ -192,6 +196,14 @@ public class Controller {
         return taskDAO.getByTeam(team);
     }
 
+    public List<Task> getTaskByTaskType(TaskType taskType) {
+        return taskDAO.getByTaskType(taskType);
+    }
+
+    public List<Task> getTaskByAccount(Account account) {
+        return taskDAO.getByAccount(account);
+    }
+
     public List<Task> getAllTasks() {
         return taskDAO.getAll();
     }
@@ -236,6 +248,10 @@ public class Controller {
 
     public Event getEventById(int eventId) {
         return eventDAO.get(eventId);
+    }
+
+    public List<Event> getEventsByAccount(Account account) {
+        return eventDAO.getByAccount(account);
     }
 
     public List<Event> getAllEvents() {

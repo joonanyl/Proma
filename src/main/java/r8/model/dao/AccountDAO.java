@@ -101,24 +101,4 @@ public class AccountDAO {
         }
     }
 
-    /*
-    MOVED TO CONTROLLER
-
-    public boolean checkIfEmailExists(String email) {
-        try {
-            List<String> results = entityManager.createQuery(
-                    "SELECT a.email FROM Account a", String.class)
-                    .getResultList();
-            // Email is in database
-            if (results.contains(email))
-                return true;
-        } catch (NullPointerException e) {
-            System.out.println("Spostia ei löytynyt!");
-            e.printStackTrace();
-        }
-        // Email is not in database
-        return false;
-    }
-
-     */
 }
