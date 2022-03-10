@@ -48,7 +48,15 @@
                   <HBox minWidth="40.0" prefHeight="64.0" prefWidth="820.0" />
                   <HBox alignment="TOP_RIGHT" prefHeight="64.0" prefWidth="600.0">
                      <children>
-                        <Button id="button-day-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Day" userData="tracker-view-day">
+                        <Button id="button-all-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="All" userData="tracker-view-day">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="15.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="button-day-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Day" userData="tracker-view-week">
                            <font>
                               <Font size="13.0" />
                            </font>

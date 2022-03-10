@@ -1,11 +1,17 @@
 package r8.view.timeManagementView.trackerView;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import r8.model.Project;
+import r8.model.Sprint;
+import r8.model.appState.AppState;
+import r8.model.appState.IAppStateMain;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class TrackerViewSprintController {
 
@@ -78,17 +84,27 @@ public class TrackerViewSprintController {
     @FXML
     private TextField textFieldSprintDisplay;
 
+    private IAppStateMain appStateMain = AppState.getInstance();
+    private List<Project> projectsList;
+    private List<Sprint> sprintsList;
+    private List<r8.model.Event> eventList;
+
     private String[] mockProjects;
     private String[] mockSprints;
     private int projectIndex = 1;
     private int sprintIndex = 1;
 
     public void initialize() {
+        projectsList = appStateMain.getProjects();
+        eventList = appStateMain.getEvents();
+        sprintsList = appStateMain.getSprints();
+        System.out.println(eventList);
         mockData();
         initDatePicker();
-        textFieldProjectDisplay.setText(mockProjects[projectIndex-1]);
+        textFieldProjectDisplay.setText(projectsList.get(projectIndex - 1).getName());
         textFieldSprintDisplay.setText(mockSprints[sprintIndex-1]);
     }
+
 
     @FXML
     void nextSprint(ActionEvent event) {
@@ -116,7 +132,7 @@ public class TrackerViewSprintController {
         if (projectIndex > mockProjects.length)
             projectIndex = 1;
 
-        textFieldProjectDisplay.setText(mockProjects[projectIndex-1]);
+        textFieldProjectDisplay.setText(projectsList.get(projectIndex - 1).getName());
     }
 
     @FXML
@@ -126,8 +142,7 @@ public class TrackerViewSprintController {
         if (projectIndex < 1)
             projectIndex = mockProjects.length;
 
-
-        textFieldProjectDisplay.setText(mockProjects[projectIndex-1]);
+        textFieldProjectDisplay.setText(projectsList.get(projectIndex - 1).getName());
     }
 
     private void initDatePicker() {

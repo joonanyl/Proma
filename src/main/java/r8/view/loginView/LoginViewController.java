@@ -24,8 +24,7 @@ public class LoginViewController {
     private BorderPane mainViewPane;
 
     public void initialize() {
-       System.out.println("App when LoginViewController init: " + app);
-        appStateLogin.setLoginViewController(this);
+       appStateLogin.setLoginViewController(this);
        initialTest();
     }
 

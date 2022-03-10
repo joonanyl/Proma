@@ -2,9 +2,7 @@ package r8.model.appState;
 
 
 import javafx.collections.ObservableList;
-import r8.model.Account;
-import r8.model.Project;
-import r8.model.Team;
+import r8.model.*;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
@@ -46,4 +44,8 @@ public interface IAppStateMain {
 
     void setSelectedProject(Project project);
     Project getSelectedProject();
+
+    List<r8.model.Event> getEvents();
+
+    List<Sprint> getSprints();
 }

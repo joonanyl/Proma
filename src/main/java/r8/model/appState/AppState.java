@@ -2,9 +2,7 @@ package r8.model.appState;
 
 import javafx.collections.ObservableList;
 import r8.controller.Controller;
-import r8.model.Account;
-import r8.model.Project;
-import r8.model.Team;
+import r8.model.*;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
@@ -171,7 +169,11 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		daoController.updateTask(task);
 	}
 
-	public void getEvents() {
-		daoController.getEventsByAccount(loggedAccount);
+	public List<Event> getEvents() {
+		return daoController.getEventsByAccount(loggedAccount);
+	}
+
+	public List<Sprint> getSprints() {
+		return daoController.getAllSprints();
 	}
 }
