@@ -44,5 +44,4 @@ public class SprintDAO {
         entityManager.remove(entityManager.contains(sprint) ? sprint : entityManager.merge(sprint));
         entityManager.getTransaction().commit();
     }
-
 }

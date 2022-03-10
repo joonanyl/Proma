@@ -70,14 +70,14 @@ public class CreateTaskViewController {
         updateTaskTypes();
 
         TextFieldValidator textFieldValidator = new TextFieldValidator();
-        textFieldValidator.setValidation(taskName, "([A-Za-z0-9 ]{1,20})");
+        textFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
 
     }
 
     @FXML
     private void createTaskType(){
         String tt = createTaskTypeField.getText();
-        if(tt.matches("[a-zA-Z0-9 ]{1,10}")){
+        if(tt.matches("[a-zA-Z0-9\\s ]{1,10}")){
             appStateMain.createTaskType(tt);
         }
         updateTaskTypes();
@@ -98,7 +98,7 @@ public class CreateTaskViewController {
         String name = taskName.getText();
         String desc = descField.getText();
         Project project = projectComboBox.getSelectionModel().getSelectedItem();
-        if(!name.matches("([A-Za-z0-9 ]{1,20})")){
+        if(!name.matches("([A-Za-z0-9\\s ]{1,20})")){
             System.out.println("didn't match");
             showAlert("Invalid input", "Invalid task name!", Alert.AlertType.INFORMATION);
             return;

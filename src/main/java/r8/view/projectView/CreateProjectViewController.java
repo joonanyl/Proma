@@ -79,7 +79,7 @@ public class CreateProjectViewController {
     private void createTeam(){
         System.out.println("create team");
         String tn = textTeamName.getText();
-        if(!tn.matches("[a-zA-Z0-9]{2,20}")){
+        if(!tn.matches("[a-zA-Z0-9 ]{2,20}")){
             return;
         }
         Platform.runLater(()->{
@@ -119,7 +119,7 @@ public class CreateProjectViewController {
 
         String projectName = textProjectName.getText();
         String projectDesc = textDescription.getText();
-        if(!projectName.matches("[a-zA-Z0-9\\s]{3,20}")){
+        if(!projectName.matches("[a-zA-Z0-9\\s ]{3,20}")){
             return;
         }
         if(projectDesc.length() > 255){
@@ -132,7 +132,6 @@ public class CreateProjectViewController {
         appStateMain.createProject(projectName, projectDesc, listViewAssignedAccounts.getItems(), listViewTeamsToBeCreated.getItems());
 
         System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
-
     }
 
     @FXML
