@@ -31,7 +31,6 @@ public class ProjectDAO {
 
         try {
             project = entityManager.getReference(Project.class, projectId);
-            // entityManager.detach(project);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

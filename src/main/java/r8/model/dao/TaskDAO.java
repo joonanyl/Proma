@@ -21,8 +21,12 @@ public class TaskDAO {
     }
 
     public Task get(int taskId) {
-        Task task = entityManager.getReference(Task.class, taskId);
-        entityManager.detach(task);
+        Task task = null;
+        try {
+            task = entityManager.getReference(Task.class, taskId);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return task;
     }
 
@@ -62,19 +66,6 @@ public class TaskDAO {
         return results;
     }
 
-    public List<Task> getByProjectAndTeam(Project project, Team team) {
-        List<Task> results = null;
-        try {
-            results = entityManager.createQuery(
-                            "SELECT t FROM Task t WHERE t.project = :project AND ", Task.class)
-                    .setParameter("project", project)
-                    .getResultList();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return results;
-    }
-
     public void update(Task task) {
         entityManager.getTransaction().begin();
         entityManager.merge(task);
@@ -83,7 +74,7 @@ public class TaskDAO {
 
     public void remove(Task task) {
         entityManager.getTransaction().begin();
-        entityManager.remove(task);
+        entityManager.remove(entityManager.contains(task) ? task : entityManager.merge(task));
         entityManager.getTransaction().commit();
     }
 

@@ -8,6 +8,7 @@ import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Controller {
@@ -100,14 +101,19 @@ public class Controller {
         return projectDAO.getByName(name);
     }
 
+    public List<Project> getProjectByAccount(Account account) {
+        return projectDAO.getByAccount(account);
+    }
+
     public List<Project> getAllProjects() {
         return projectDAO.getAll();
     }
 
     //TEAMS tähän myös, päivitä samalla AppState?
-    public void updateProject(Project project, String name, String description) {;
+    public void updateProject(Project project, String name, String description, List<Team> teams) {
         project.setName(name);
         project.setDescription(description);
+        project.setTeams(teams);
         projectDAO.update(project);
     }
 
@@ -119,8 +125,6 @@ public class Controller {
         return projectDAO.getByAccount(account);
     }
 
-    // Tai sitten ui-controllerissa kutsuisi jo parametrissä
-    // controller.getProjectById()
     public void createTeam(String teamName, Project project) {
         Team team = new Team(teamName, project);
         teamDAO.persist(team);
@@ -199,9 +203,71 @@ public class Controller {
         taskTypeDAO.persist(new TaskType(name));
     }
 
+    public void updateTaskType(TaskType taskType, String name) {
+        taskType.setName(name);
+        taskTypeDAO.update(taskType);
+    }
+
+    public TaskType getTaskTypeByName(String name) {
+        return taskTypeDAO.getByName(name);
+    }
+
+    public void removeTaskType(TaskType taskType) {
+        taskTypeDAO.remove(taskType);
+    }
+
     public List<TaskType> getAllTaskTypes(){
         return taskTypeDAO.getAll();
     }
+
+    public void createEvent(String description, LocalDate date, float hours, Account account) {
+        Event event = new Event(description, date, hours, account);
+        eventDAO.persist(event);
+    }
+
+    public void updateEvent(Event event, String description, LocalDate date, float hours, Account account) {
+        event.setDescription(description);
+        event.setDate(date);
+        event.setHours(hours);
+        event.setAccount(account);
+        eventDAO.update(event);
+    }
+
+    public Event getEventById(int eventId) {
+        return eventDAO.get(eventId);
+    }
+
+    public List<Event> getAllEvents() {
+        return eventDAO.getAll();
+    }
+
+    public void removeEvent(Event event) {
+        eventDAO.remove(event);
+    }
+
+    public void createSprint(String name, LocalDate startDate, LocalDate endDate, Project project) {
+        Sprint sprint = new Sprint(name, startDate, endDate, project);
+        sprintDAO.persist(sprint);
+    }
+
+    public void updateSprint(Sprint sprint, String name, LocalDate startDate, LocalDate endDate) {
+        sprint.setName(name);
+        sprint.setStartDate(startDate);
+        sprint.setEndDate(endDate);
+    }
+
+    public Sprint getSprintById(int sprintId) {
+        return sprintDAO.get(sprintId);
+    }
+
+    public List<Sprint> getAllSprints() {
+        return sprintDAO.getAll();
+    }
+
+    public void removeSprint(Sprint sprint) {
+        sprintDAO.remove(sprint);
+    }
+
 
     public void updateTask(Task task){ taskDAO.update(task); }
 }

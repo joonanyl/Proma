@@ -20,21 +20,13 @@ public class TaskTypeDAO {
     }
 
     public TaskType get(int taskTypeId) {
-        TaskType taskType = entityManager.getReference(TaskType.class, taskTypeId);
-        entityManager.detach(taskType);
+        TaskType taskType = null;
+        try {
+            taskType = entityManager.getReference(TaskType.class, taskTypeId);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return taskType;
-    }
-
-    public void update(TaskType taskType) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(taskType);
-        entityManager.getTransaction().commit();
-    }
-
-    public void remove(TaskType taskType) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(taskType);
-        entityManager.getTransaction().commit();
     }
 
     public List<TaskType> getAll() {
@@ -48,4 +40,30 @@ public class TaskTypeDAO {
         }
         return results;
     }
+
+    public TaskType getByName(String name) {
+        TaskType taskType = null;
+            try {
+                taskType = entityManager.createQuery(
+                        "SELECT tt FROM TaskType tt WHERE tt.name LIKE :name", TaskType.class)
+                        .getSingleResult();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        return taskType;
+    }
+
+
+    public void update(TaskType taskType) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(taskType);
+        entityManager.getTransaction().commit();
+    }
+
+    public void remove(TaskType taskType) {
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.contains(taskType) ? taskType : entityManager.merge(taskType));
+        entityManager.getTransaction().commit();
+    }
+
 }

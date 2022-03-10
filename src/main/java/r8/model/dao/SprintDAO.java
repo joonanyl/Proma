@@ -3,13 +3,14 @@ package r8.model.dao;
 import r8.model.Sprint;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class SprintDAO {
     private EntityManager entityManager;
 
     public SprintDAO() { this.entityManager = DAO.getEntityManager(); }
 
-    public void addSprint(Sprint sprint) {
+    public void persist(Sprint sprint) {
         entityManager.getTransaction().begin();
         entityManager.persist(sprint);
         entityManager.getTransaction().commit();
@@ -21,6 +22,17 @@ public class SprintDAO {
         return sprint;
     }
 
+    public List<Sprint> getAll() {
+        List<Sprint> results = null;
+        try {
+            results = entityManager.createQuery("SELECT s FROM Sprint s", Sprint.class)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
     public void update(Sprint sprint) {
         entityManager.getTransaction().begin();
         entityManager.merge(sprint);
@@ -29,7 +41,7 @@ public class SprintDAO {
 
     public void remove(Sprint sprint) {
         entityManager.getTransaction().begin();
-        entityManager.remove(sprint);
+        entityManager.remove(entityManager.contains(sprint) ? sprint : entityManager.merge(sprint));
         entityManager.getTransaction().commit();
     }
 
