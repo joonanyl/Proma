@@ -202,4 +202,6 @@ public class Controller {
     public List<TaskType> getAllTaskTypes(){
         return taskTypeDAO.getAll();
     }
+
+    public void updateTask(Task task){ taskDAO.update(task); }
 }
