@@ -27,8 +27,9 @@ public class Comment {
 	@Column(name = "task_id")
 	private int taskID;
 
+	@ManyToOne(fetch = FetchType.LAZY)
 	@Column(name = "parent_comment_id")
-	private int parentCommentID;
+	private Comment parentComment;
 
 	/**
 	 * Kommentti merkkijonona
@@ -101,12 +102,12 @@ public class Comment {
 		this.taskID = taskID;
 	}
 
-	public int getParentCommentID() {
-		return parentCommentID;
+	public Comment getParentComment() {
+		return parentComment;
 	}
 
-	public void setParentCommentID(int parentCommentID) {
-		this.parentCommentID = parentCommentID;
+	public void setParentComment(Comment parentComment) {
+		this.parentComment = parentComment;
 	}
 
 	public String getContent() {
