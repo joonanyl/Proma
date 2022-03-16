@@ -31,41 +31,31 @@ class AccountTest {
         task1 = new Task();
         task2 = new Task();
         task3 = new Task();
-        
 
-    }
-    /*
-    @Test
-    void assignToProject() {
-        account1.assignToProject(project1);
-        Set<Account> testResult = project1.getAccounts();
-
-        assertTrue(testResult.contains(account1), "Projektin työskenelijälistasta ei löytynyt lisättyä käyttäjätiliä");
     }
 
     @Test
     void removeFromProject() {
-        account1.assignToProject(project1);
-        account1.assignToProject(project2);
-        account1.assignToProject(project3);
+        project1.addAccount(account1);
 
         account1.removeFromProject(project1);
 
-        assertEquals(2, account1.getProjects().size(), "Käyttäjätilillä väärä määrä projekteja");
+        assertFalse(project1.getAccounts().contains(account1), "Käyttäjätili ei poistunut projektin työntekijälistasta");
     }
 
     @Test
     void getProjects() {
-        account1.assignToProject(project1);
-        account1.assignToProject(project2);
-        account1.assignToProject(project3);
+        project1.addAccount(account1);
+        project2.addAccount(account1);
+        project3.addAccount(account1);
 
-        assertEquals(3, account1.getProjects().size(), "Käyttäjätilillä väärä määrä projekteja");
-        assertTrue(account1.getProjects().contains(project1), "Käyttäjätililtä ei löydy project1");
-        assertTrue(account1.getProjects().contains(project2), "Käyttäjätililtä ei löydy project2");
-        assertTrue(account1.getProjects().contains(project3), "Käyttäjätililtä ei löydy project3");
+        assertTrue(account1.getProjects().contains(project1), "Käyttäjätilin projektilistalta puuttuu projekti 1");
+        assertTrue(account1.getProjects().contains(project2), "Käyttäjätilin projektilistalta puuttuu projekti 2");
+        assertTrue(account1.getProjects().contains(project3), "Käyttäjätilin projektilistalta puuttuu projekti 3");
+
+        assertEquals(3, account1.getProjects().size(), "Projektilista väärän kokoinen");
     }
-    */
+
     @Test
     void setProjects() {
         Set<Project> projects = new HashSet<Project>();
