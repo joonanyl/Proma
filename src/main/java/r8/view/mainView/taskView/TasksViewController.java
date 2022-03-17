@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import org.controlsfx.control.SearchableComboBox;
+import r8.controller.Controller;
+import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.appState.AppState;
@@ -22,8 +24,6 @@ import java.util.List;
 import java.util.Set;
 
 public class TasksViewController {
-
-    private IAppStateMain appStateMain;
 
     @FXML
     private Button btnActiveTasks;
@@ -70,6 +70,9 @@ public class TasksViewController {
     @FXML
     private Label labelTaskState;
 
+    private final IAppStateMain appStateMain = AppState.getInstance();
+    private final IControllerMain controller = new Controller();
+
     @FXML
     private void navigate(ActionEvent event) throws IOException {
         Task selectedTask = listViewMyTasks.getSelectionModel().getSelectedItem();
@@ -77,12 +80,12 @@ public class TasksViewController {
             return;
         }
         appStateMain.setSelectedTask(selectedTask);
-        appStateMain.getMainViewController().handleNavigation(event);
+        controller.getActiveViewController().handleNavigation(event);
     }
 
     @FXML
     private void navigateNewTask(ActionEvent event) throws IOException {
-        appStateMain.getMainViewController().handleNavigation(event);
+        controller.getActiveViewController().handleNavigation(event);
     }
 
     @FXML
@@ -101,7 +104,6 @@ public class TasksViewController {
     public void initialize(){
         personalTasks = new ArrayList<>();
         teamTasks = new ArrayList<>();
-        appStateMain = AppState.getInstance();
         buttonGroup = new ToggleGroup();
         btnOverview.setToggleGroup(buttonGroup);
         btnPersonal.setToggleGroup(buttonGroup);
