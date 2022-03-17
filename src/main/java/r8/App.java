@@ -43,19 +43,23 @@ public class App extends Application
                 stage.setTitle("Proma - Login");
                 stage.setScene(scene);
                 stage.setResizable(false);
+                stage.setMaximized(false);
+                stage.sizeToScene();
+                stage.centerOnScreen();
             }
+
             if (!displayLogin) {
                 stage.setTitle("Proma - Project Manager v0.1");
                 stage.setScene(scene);
                 stage.setResizable(true);
                 stage.setMaximized(true);
             }
-
             IViewController viewController = loader.getController();
             viewController.setApp(this);
 
             AppState.getInstance().setViewController(viewController);
             displayLogin = !displayLogin;
+
             stage.show();
         } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
@@ -65,40 +69,4 @@ public class App extends Application
     public static void main(String[] args) {
         launch(args);
     }
-
-    // delete after testing switchScene()
-    /*public void switchToLoginScene() {
-        try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/login-view.fxml")));
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setTitle("Proma - Login");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            LoginViewController controller = loader.getController();
-            controller.setApp(this);
-            AppState.getInstance().setLoginViewController(controller);
-            stage.show();
-        } catch (IOException | IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void switchToWorkScene() {
-        try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/main-view.fxml")));
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setTitle("Proma - Project Manager v0.1");
-            stage.setScene(scene);
-            stage.setResizable(true);
-            stage.setMaximized(true);
-            MainViewController controller = loader.getController();
-            controller.setApp(this);
-            AppState.getInstance().setMainViewController(controller);
-            stage.show();
-        } catch (IOException | IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-    }*/
 }
