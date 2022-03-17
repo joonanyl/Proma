@@ -11,6 +11,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.SearchableComboBox;
+import r8.controller.Controller;
+import r8.controller.IControllerAccount;
+import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.Team;
@@ -18,6 +21,7 @@ import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.dao.ProjectDAO;
 import r8.model.dao.TeamDAO;
+import r8.view.IViewController;
 
 import java.io.IOException;
 import java.util.*;
@@ -58,11 +62,13 @@ public class CreateProjectViewController {
     private TeamDAO teamDAO;
 
     final IAppStateMain appStateMain = AppState.getInstance();
+    final IControllerAccount controllerAccount = new Controller();
+    final IControllerMain controller = new Controller();
 
     public void initialize(){
-        List<Account> accountList = appStateMain.getAllAccounts();
-        if(accountList.contains(appStateMain.getAccount())){
-            accountList.remove(appStateMain.getAccount());
+        List<Account> accountList = controller.getAllAccounts();
+        if(accountList.contains(controllerAccount.getAccount())){
+            accountList.remove(controllerAccount.getAccount());
         }
         accountList.forEach((account)->{
             accountSearchableComboBox.getItems().add(account);
@@ -129,13 +135,18 @@ public class CreateProjectViewController {
         newProject.setDescription(projectDesc);
         newProject.setName(projectName);
 
-        appStateMain.createProject(projectName, projectDesc, listViewAssignedAccounts.getItems(), listViewTeamsToBeCreated.getItems());
-
+        controller.createProject(projectName, projectDesc, listViewAssignedAccounts.getItems(), listViewTeamsToBeCreated.getItems());
+        listViewAssignedAccounts.getItems().clear();
+        listViewTeamsToBeCreated.getItems().clear();
+        textProjectName.clear();
+        textTeamName.clear();
+        textDescription.clear();
         System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
     }
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        appStateMain.getMainViewController().handleNavigation(event);
+        IViewController viewController = controller.getActiveViewController();
+        viewController.handleNavigation(event);
     }
 }
