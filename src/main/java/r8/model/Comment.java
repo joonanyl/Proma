@@ -55,19 +55,12 @@ public class Comment {
 
 	public Comment() {}
 	
-	/**
-	 * Muokkaa kommenttia
-	 * @param newText uusi teksti
-	 */
-	public void editText(String newText) {
-		this.content = newText;
-	}
-	
 	public void addReply(Comment reply) {
 		if(childComments == null)
 			this.childComments = new HashSet<Comment>();
 		
 		childComments.add(reply);
+		reply.setParentCommentID(this.commentId); //ehkä pois
 	}
 	
 	public String printChildComments() {
