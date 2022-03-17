@@ -33,7 +33,8 @@ public class LoginCredentialsViewController {
 
     @FXML
     private void login() {
-        if(controller.authenticateLogin(textFieldEmail.getText(), passwordField.getText())){
+        if (!textFieldEmail.getText().isEmpty() && !passwordField.getText().isEmpty()) {
+            controller.authenticateLogin(textFieldEmail.getText(), passwordField.getText());
             toWorkScene();
         }
     }

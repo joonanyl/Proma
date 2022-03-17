@@ -13,6 +13,7 @@ import r8.model.appState.AppState;
 import r8.view.IViewController;
 import r8.view.loginView.LoginViewController;
 import r8.view.mainView.MainViewController;
+import r8.view.navigation.GetView;
 
 import java.io.IOException;
 import java.util.Objects;
