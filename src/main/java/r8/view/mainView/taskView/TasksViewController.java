@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
+import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
@@ -71,7 +72,8 @@ public class TasksViewController {
     @FXML
     private Label labelTaskState;
 
-    private final IAppStateMain appStateMain = AppState.getInstance();
+
+    private final IControllerAccount controllerAccount = new Controller();
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
 
@@ -81,7 +83,7 @@ public class TasksViewController {
         if(selectedTask == null){
             return;
         }
-        appStateMain.setSelectedTask(selectedTask);
+        AppState.getInstance().setSelectedTask(selectedTask);
         viewController.handleNavigation(event);
     }
 
@@ -89,9 +91,6 @@ public class TasksViewController {
     private void navigateNewTask(ActionEvent event) throws IOException {
         viewController.handleNavigation(event);
     }
-
-    @FXML
-    private List<Project> projects;
 
     @FXML
     private Project selectedProject;
@@ -110,9 +109,8 @@ public class TasksViewController {
         btnOverview.setToggleGroup(buttonGroup);
         btnPersonal.setToggleGroup(buttonGroup);
         btnTeam.setToggleGroup(buttonGroup);
-        this.projects = appStateMain.getProjects();
         buttonGroup.selectToggle(btnOverview);
-        List<Project> projectsList = appStateMain.getProjects();
+        List<Project> projectsList = controller.getProjects();
         if(projectsList != null){
             comboBoxProjects.getItems().setAll(projectsList);
         }
@@ -125,17 +123,17 @@ public class TasksViewController {
             @Override
             public void changed(ObservableValue<? extends Project> observable, Project oldValue, Project newValue) {
                 if(newValue != null) {
-                    selectedProject = appStateMain.getProjectById(newValue.getProjectId());
+                    selectedProject = controller.getProjectById(newValue.getProjectId());
                     personalTasks.clear();
                     teamTasks.clear();
 
                     if (selectedProject.getTasks() != null) {
                         allTasks = selectedProject.getTasks();
-                        System.out.println(appStateMain.getAccount().toString());
+                        System.out.println(controllerAccount.getAccount().toString());
                         Platform.runLater(() -> {
                             allTasks.forEach((item) -> {
                                 item.getAccounts().forEach((account) ->{
-                                    if(account.getAccountId() == appStateMain.getAccount().getAccountId()){
+                                    if(account.getAccountId() == controllerAccount.getAccount().getAccountId()){
                                         personalTasks.add(item);
                                     }
                                 });

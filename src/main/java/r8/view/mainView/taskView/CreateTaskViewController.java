@@ -57,12 +57,10 @@ public class CreateTaskViewController {
     @FXML
     private TextField createTaskTypeField;
 
-    private final IAppStateMain appStateMain = AppState.getInstance();
-
     private final IControllerMain controller = new Controller();
 
     public void initialize(){
-        comboBoxTeam.getItems().addAll(appStateMain.getAllTeams());
+        comboBoxTeam.getItems().addAll(controller.getAllTeams());
 
         // TODO refactor getting account
         projectComboBox.getItems().addAll(controller.loadProjects(AppState.getInstance().getLoggedAccount()));

@@ -4,15 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
+import r8.view.IViewController;
 
 import java.io.IOException;
 
 public class SprintsViewController {
 
-    final IAppStateMain appStateMain = AppState.getInstance();
+    private final IViewController viewController = AppState.getInstance().getViewController();
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        appStateMain.getMainViewController().handleNavigation(event);
+        viewController.handleNavigation(event);
     }
 }

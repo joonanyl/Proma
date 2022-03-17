@@ -2,9 +2,7 @@ package r8.controller;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import r8.model.Account;
-import r8.model.Project;
-import r8.model.Team;
+import r8.model.*;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
@@ -34,4 +32,9 @@ public interface IControllerMain {
 
     void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList);
 
+    Project getProjectById(int projectId);
+
+    List<Project> getProjects();
+
+    List<Sprint> getAllSprints();
 }

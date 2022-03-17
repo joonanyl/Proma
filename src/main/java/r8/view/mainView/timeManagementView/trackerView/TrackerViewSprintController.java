@@ -5,6 +5,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import r8.controller.Controller;
+import r8.controller.IControllerMain;
 import r8.model.Project;
 import r8.model.Sprint;
 import r8.model.appState.AppState;
@@ -84,7 +86,7 @@ public class TrackerViewSprintController {
     @FXML
     private TextField textFieldSprintDisplay;
 
-    private IAppStateMain appStateMain = AppState.getInstance();
+    private final IControllerMain controller = new Controller();
     private List<Project> projectsList;
     private List<Sprint> sprintsList;
     private List<r8.model.Event> eventList;
@@ -95,16 +97,15 @@ public class TrackerViewSprintController {
     private int sprintIndex = 1;
 
     public void initialize() {
-        projectsList = appStateMain.getProjects();
-        eventList = appStateMain.getEvents();
-        sprintsList = appStateMain.getSprints();
+        projectsList = controller.getProjects();
         System.out.println(eventList);
         mockData();
         initDatePicker();
-        textFieldProjectDisplay.setText(projectsList.get(projectIndex - 1).getName());
+        if(projectsList != null)
+            textFieldProjectDisplay.setText(projectsList.get(projectIndex - 1).getName());
+
         textFieldSprintDisplay.setText(mockSprints[sprintIndex-1]);
     }
-
 
     @FXML
     void nextSprint(ActionEvent event) {

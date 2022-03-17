@@ -103,6 +103,11 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         return projectDAO.get(projectId);
     }
 
+    @Override
+    public List<Project> getProjects() {
+        return null;
+    }
+
     public Project getProjectByName(String name) {
         return projectDAO.getByName(name);
     }

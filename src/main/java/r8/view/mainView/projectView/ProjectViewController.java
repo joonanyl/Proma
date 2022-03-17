@@ -9,12 +9,16 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import r8.controller.Controller;
+import r8.controller.IControllerAccount;
+import r8.controller.IControllerMain;
 import r8.model.Sprint;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
+import r8.view.IViewController;
 import r8.view.navigation.GetView;
 
 import java.io.IOException;
@@ -81,8 +85,9 @@ public class ProjectViewController {
     @FXML
     private BorderPane projectSubViewPane;
 
-    final IAppStateMain appStateMain = AppState.getInstance();
-    private boolean admin;
+    private final IControllerMain controller = new Controller();
+    private final IViewController viewController = controller.getActiveViewController();
+
     private String currentSubview;
 
     public void initialize() throws IOException {
@@ -91,8 +96,6 @@ public class ProjectViewController {
         textAreaTask.setEditable(false);
         textAreaSprint.setEditable(false);
         setListeners();
-        admin = appStateMain.getIsAdmin();
-        adminVisibility(admin);
         handleNavigation("sprint-subview");
     }
 
@@ -115,13 +118,6 @@ public class ProjectViewController {
         projectSubViewPane.setCenter(viewLoader.getView(viewName));
         currentSubview = viewName;
     }
-
-        private void adminVisibility(boolean isAdmin) {
-            if (!admin) {
-                vboxProjectSprints.setVisible(false);
-                vboxProjectSprints.setManaged(false);
-            }
-        }
 
         private void setListeners() {
             listViewTask.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
@@ -148,7 +144,7 @@ public class ProjectViewController {
 
         @FXML
         private void navigate (ActionEvent event) throws IOException {
-            appStateMain.getMainViewController().handleNavigation(event);
+            viewController.handleNavigation(event);
         }
 
     }

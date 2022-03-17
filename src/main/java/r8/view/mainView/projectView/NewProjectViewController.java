@@ -9,12 +9,16 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import r8.controller.Controller;
+import r8.controller.IControllerAccount;
+import r8.controller.IControllerMain;
 import r8.model.Sprint;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
+import r8.view.IViewController;
 import r8.view.navigation.GetView;
 
 import java.io.IOException;
@@ -26,7 +30,6 @@ public class NewProjectViewController {
 
     @FXML
     private Label btnStatus;
-
 
     @FXML
     private ComboBox<?> comboBoxProjectStatus;
@@ -61,12 +64,17 @@ public class NewProjectViewController {
     @FXML
     private BorderPane projectSubViewPane;
 
-    final IAppStateMain appStateMain = AppState.getInstance();
+    private final IAppStateMain appStateMain = AppState.getInstance();
+    private final IControllerMain controller = new Controller();
+    private final IControllerAccount controllerAccount = new Controller();
+    private final IViewController viewController = controller.getActiveViewController();
+
     private boolean admin;
     private String currentSubview;
 
     public void initialize() throws IOException {
-        if (appStateMain.getAccount() != null)
+        System.out.println("Using NewProjectViewController!");
+        if (controllerAccount.getAccount() != null)
             admin = appStateMain.getIsAdmin();
 
         handleNavigation("sprint-subview");
@@ -102,7 +110,7 @@ public class NewProjectViewController {
 
     @FXML
     private void navigate (ActionEvent event) throws IOException {
-        appStateMain.getMainViewController().handleNavigation(event);
+        viewController.handleNavigation(event);
     }
 
 }
