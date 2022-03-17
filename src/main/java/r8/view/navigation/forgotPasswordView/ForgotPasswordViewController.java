@@ -1,4 +1,4 @@
-package r8.view.forgotPasswordView;
+package r8.view.navigation.forgotPasswordView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -85,10 +85,16 @@ public class TasksViewController {
         appStateMain.getMainViewController().handleNavigation(event);
     }
 
+    @FXML
     private List<Project> projects;
+
+    @FXML
     private Project selectedProject;
+    @FXML
     private List<Task> allTasks;
+    @FXML
     private List<Task> personalTasks;
+    @FXML
     private List<Task> teamTasks;
 
     @FXML

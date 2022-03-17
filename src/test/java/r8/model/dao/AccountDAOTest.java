@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AccountDAOTest {
-/* KOMMENTOITU TESTIKSI POIS
 
     private static AccountDAO accountDAO;
     private static Account account1, account2, account3, account4;
@@ -69,13 +68,10 @@ class AccountDAOTest {
     @Test
     @Order(5)
     void getAll(){
-        List<Account> accountList = new ArrayList<Account>();
-        accountList.add(account1);
-        accountList.add(account2);
-        accountList.add(account3);
-        accountList.add(account4);
-
-        assertEquals(accountList, accountDAO.getAll(), "Käyttäjälistat eivät täsmää");
+        assertTrue(accountDAO.getAll().contains(account1), "Käyttäjälistat eivät täsmää");
+        assertTrue(accountDAO.getAll().contains(account2), "Käyttäjälistat eivät täsmää2");
+        assertTrue(accountDAO.getAll().contains(account3), "Käyttäjälistat eivät täsmää3");
+        assertTrue(accountDAO.getAll().contains(account4), "Käyttäjälistat eivät täsmää4");
     }
 
 
@@ -88,5 +84,4 @@ class AccountDAOTest {
         System.out.println("db cleared");
     }
 
- */
 }
