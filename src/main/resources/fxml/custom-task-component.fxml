@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="880.0" spacing="100.0">
+         <children>
+            <Label fx:id="labelName" text="Label">
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="comboBoxState" prefWidth="150.0" />
+            <VBox fx:id="vboxAssigned" prefHeight="200.0" prefWidth="100.0" />
+            <Label fx:id="labelType" text="Label" />
+         </children>
+      </HBox>
+   </children>
+</fx:root>
