@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import org.controlsfx.control.SearchableComboBox;
+import r8.controller.Controller;
+import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.CombinedList;
 import r8.model.Team;
@@ -15,6 +17,7 @@ import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
+import r8.view.IViewController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,8 +26,6 @@ import java.util.List;
 import java.util.Set;
 
 public class TaskViewController {
-
-    final IAppStateMain appStateMain = AppState.getInstance();
 
     @FXML
     private Label labelTaskName;
@@ -47,24 +48,29 @@ public class TaskViewController {
     @FXML
     private SearchableComboBox<CombinedList> assignNewComboBox;
 
+    // TODO selected task needs this reference, maybe refactor
+    private final IAppStateMain appStateMain = AppState.getInstance();
+    private final IControllerMain controller = new Controller();
+    private final IViewController viewController = controller.getActiveViewController();
+
+    private Task selectedTask = null;
+
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-       appStateMain.getMainViewController().handleNavigation(event);
+       viewController.handleNavigation(event);
     }
-    private Task selectedTask = null;
 
     public void initialize(){
         this.selectedTask = appStateMain.getSelectedTask();
         comboBoxTaskStatus.getItems().addAll(TaskState.values());
-        List<Account> accounts = appStateMain.getAllAccounts();
-        List<Team> teams = appStateMain.getAllTeams();
+        List<Account> accounts = controller.getAllAccounts();
+        List<Team> teams = controller.getAllTeams();
         if(teams != null){
             assignNewComboBox.getItems().addAll(transformObjects(null, new HashSet<>(teams)));
         }
         if(accounts != null){
             assignNewComboBox.getItems().addAll(transformObjects(new HashSet<>(accounts), null));
         }
-
 
         if(this.selectedTask != null){
             assignedToList.getItems().addAll(transformObjects(null, selectedTask.getTeams()));
@@ -151,7 +157,6 @@ public class TaskViewController {
         }
         this.selectedTask.setAccounts(getAssignedAccounts());
         this.selectedTask.setTeams(getAssignedTeams());
-        appStateMain.updateTask(this.selectedTask);
+        controller.updateTask(this.selectedTask);
     }
-
 }

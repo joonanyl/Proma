@@ -15,6 +15,7 @@ import r8.model.Project;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
+import r8.view.IViewController;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -72,6 +73,7 @@ public class TasksViewController {
 
     private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
+    private final IViewController viewController = controller.getActiveViewController();
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
@@ -80,12 +82,12 @@ public class TasksViewController {
             return;
         }
         appStateMain.setSelectedTask(selectedTask);
-        controller.getActiveViewController().handleNavigation(event);
+        viewController.handleNavigation(event);
     }
 
     @FXML
     private void navigateNewTask(ActionEvent event) throws IOException {
-        controller.getActiveViewController().handleNavigation(event);
+        viewController.handleNavigation(event);
     }
 
     @FXML
