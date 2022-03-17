@@ -7,37 +7,29 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import r8.App;
+import r8.controller.Controller;
+import r8.controller.IControllerLogin;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateLogin;
+import r8.view.IViewController;
 import r8.view.navigation.GetView;
 import r8.view.navigation.NavigationHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
-public class LoginViewController {
+public class LoginViewController implements IViewController {
 
     private App app;
-    final IAppStateLogin appStateLogin = AppState.getInstance();
+    final String initialView = "login-credentials-view";
 
     @FXML
     private BorderPane mainViewPane;
 
     public void initialize() {
-       appStateLogin.setLoginViewController(this);
-       initialTest();
-    }
-
-    public void navigationTest(ActionEvent event) throws IOException{
-        final Node eventSource = (Node) event.getSource();
-        String userData = (String) eventSource.getUserData();
-        System.out.println("Clicked " + userData);
-        GetView viewLoader = new GetView();
-        Pane view = viewLoader.getView(userData);
-        URL viewUrl = getClass().getResource("/fxml/" + userData + ".fxml");
-        FXMLLoader loader = new FXMLLoader(viewUrl);
-
-        mainViewPane.setCenter(view);
+       IControllerLogin controller = new Controller();
+       controller.setActiveViewController(this);
+       setInitialView();
     }
 
     public void handleNavigation(ActionEvent event) throws IOException {
@@ -45,32 +37,14 @@ public class LoginViewController {
         mainViewPane.setCenter(nav.handleNavigation(event));
     }
 
-    public App getApp() {
-        return this.app;
-    }
-
     private void setInitialView() {
-
-        appStateLogin.setLoginViewController(this);
         GetView viewLoader = new GetView();
-        Pane view = viewLoader.getView("login-credentials-view");
+        Pane view = viewLoader.getView(initialView);
         mainViewPane.setCenter(view);
     }
 
-    private void initialTest() {
-        System.out.print("App: " + app);
-        try{
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/login-credentials-view.fxml")));
-            Pane view = loader.load();
-
-            LoginCredentialsViewController controller = loader.getController();
-            controller.setApp(app);
-
-            mainViewPane.setCenter(view);
-
-        } catch (IOException | IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+    public App getApp() {
+        return this.app;
     }
 
     public void setApp(App app) {

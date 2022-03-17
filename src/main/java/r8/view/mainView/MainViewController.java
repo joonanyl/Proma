@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import r8.App;
+import r8.view.IViewController;
 import r8.view.navigation.BreadcrumbObject;
 import r8.view.navigation.GetView;
 import r8.view.navigation.NavigationHandler;
@@ -21,7 +22,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainViewController {
+// TODO refactor methods
+public class MainViewController implements IViewController {
 
     private App app;
 
@@ -46,11 +48,10 @@ public class MainViewController {
     private ObservableList<Button> breadcrumbButtons;
 
     // used to prevent loading current view repeatedly
+    // TODO must change when top bar nav is used
     private String currentView;
 
     public void initialize() {
-        //hBoxBreadcrumb = new HBox();
-        System.out.println("initialize() called");
         GetView viewLoader = new GetView();
         view = viewLoader.getView(initialView.getButtonInfo()[0]);
         System.out.println(view);
@@ -60,15 +61,8 @@ public class MainViewController {
         createBreadcrumbs();
     }
 
-    //overloaded method can receive String or ActionEvent as parameter
-    @FXML
-    private void handleNavigation(String viewName) throws IOException {
-        GetView viewLoader = new GetView();
-        Pane view = viewLoader.getView(viewName);
-        mainViewPane.setCenter(view);
-    }
-
-    //TODO: refactor, WIP
+    // called by subviews
+    // changes current view
     @FXML
     public void handleNavigation(ActionEvent event) throws IOException {
         NavigationHandler nav = new NavigationHandler();
@@ -110,22 +104,23 @@ public class MainViewController {
         }
     }
 
+    // Dropdown menuItem navigation
     @FXML
     private void handleMenuItemNavigation(ActionEvent event) throws IOException {
         MenuItem eventsource = (MenuItem) event.getSource();
         String userData = (String) eventsource.getUserData();
-        handleNavigation(userData);
+        GetView viewLoader = new GetView();
+        Pane view = viewLoader.getView(userData);
+        mainViewPane.setCenter(view);
+        this.currentView = userData;
     }
 
     @FXML
     private void backToLoginScene(){
-        app.switchToLoginScene();
+        app.switchScene();
     }
 
-    public void initButtonIcons() {
-        //TODO import icons
-    }
-
+    // TODO refactor to own class
     public void createBreadcrumbs() {
         breadcrumbButtons = FXCollections.observableArrayList();
 
@@ -144,7 +139,7 @@ public class MainViewController {
     public void updateUI() {
         Platform.runLater(new Runnable() {
             public void run() {
-                // mitä runataan?
+                // tarvitaanko ainoastaan kellonajan näyttämiseen?
             }
         });
     }
