@@ -9,20 +9,11 @@ import java.io.IOException;
 
 public class NavigationHandler {
 
-
-/*
-    public void initialize() {
-        GetView viewLoader = new GetView();
-        Pane view = viewLoader.getView("dashboard-view");
-        System.out.println(view);
-        mainViewPane.setCenter(view);
-    }*/
-
     @FXML
     public Pane handleNavigation(ActionEvent event) throws IOException {
         final Node eventSource = (Node) event.getSource();
         String userData = (String) eventSource.getUserData();
-        System.out.println("Clicked " + userData);
+        System.out.println("Clicked " + userData + " (printed from NavigationHandler)");
         GetView viewLoader = new GetView();
         return viewLoader.getView(userData);
     }

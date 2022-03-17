@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="440.0" style="-fx-background-color: F9F9F9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.createAccountView.CreateAccountViewController">
+<AnchorPane prefHeight="600.0" prefWidth="440.0" style="-fx-background-color: F9F9F9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.loginView.createAccountView.CreateAccountViewController">
     <children>
         <Label layoutX="91.0" layoutY="29.0" text="Create new account">
             <font>

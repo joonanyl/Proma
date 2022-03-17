@@ -7,11 +7,14 @@ import r8.model.dao.*;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
+import r8.view.IViewController;
+import r8.view.loginView.LoginViewController;
+import r8.view.mainView.MainViewController;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class Controller {
+public class Controller implements IControllerLogin, IControllerMain {
     private AccountDAO accountDAO;
     private CommentDAO commentDAO;
     private EventDAO eventDAO;
@@ -20,9 +23,9 @@ public class Controller {
     private TaskDAO taskDAO;
     private TaskTypeDAO taskTypeDAO;
     private TeamDAO teamDAO;
-    private AppState appState;
 
-    public Controller(AppState appstate) {
+    //Does not receive AppState as a parameter anymore
+    public Controller() {
         this.accountDAO = new AccountDAO();
         this.commentDAO = new CommentDAO();
         this.eventDAO = new EventDAO();
@@ -31,15 +34,18 @@ public class Controller {
         this.taskDAO = new TaskDAO();
         this.taskTypeDAO = new TaskTypeDAO();
         this.teamDAO = new TeamDAO();
-        this.appState = appstate;
     }
 
     public boolean authenticateLogin(String email, String password) {
-        return AuthService.authenticatePassword(email, password);
+        if (AuthService.authenticatePassword(email, password)) {
+            AppState.getInstance().setLoggedAccount(getAccountByEmail(email));
+            return true;
+        }
+        return false;
     }
 
     public void logout() {
-        appState.setLoggedAccount(null);
+        AppState.getInstance().setLoggedAccount(null);
     }
 
     public void createAccount(String firstName, String lastName, String email, String password) {
@@ -55,7 +61,7 @@ public class Controller {
         return accountDAO.getByEmail(email);
     }
 
-    public List<Account> getAllAccounts(){
+    public List<Account> getAllAccounts() {
         return accountDAO.getAll();
     }
 
@@ -78,16 +84,14 @@ public class Controller {
 
     public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
         Project project = new Project(name, description);
-        if(accountList != null){
-            accountList.forEach((item)->{
-                project.addAccount(item);
-            });
+        if (accountList != null) {
+            accountList.forEach(project::addAccount);
         }
         project.addAccount(accountDAO.get(AppState.getInstance().getLoggedAccount().getAccountId()));
         // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
         projectDAO.persist(project);
-        if(teamList != null){
-            teamList.forEach((item)->{
+        if (teamList != null) {
+            teamList.forEach((item) -> {
                 createTeam(item, project);
             });
         }
@@ -163,15 +167,11 @@ public class Controller {
     public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams, Project project) {
         Task task = new Task(name, ts, tt, hours, description);
         task.setProject(project);
-        if(accounts != null){
-            accounts.forEach((account) ->{
-                task.assignAccount(account);
-            });
+        if (accounts != null) {
+            accounts.forEach(task::assignAccount);
         }
-        if(teams != null){
-            teams.forEach((team)->{
-                task.assignToTeam(team);
-            });
+        if (teams != null) {
+            teams.forEach(task::assignToTeam);
         }
         taskDAO.persist(task);
     }
@@ -212,7 +212,7 @@ public class Controller {
         taskDAO.remove(task);
     }
 
-    public void createTaskType(String name){
+    public void createTaskType(String name) {
         taskTypeDAO.persist(new TaskType(name));
     }
 
@@ -229,7 +229,7 @@ public class Controller {
         taskTypeDAO.remove(taskType);
     }
 
-    public List<TaskType> getAllTaskTypes(){
+    public List<TaskType> getAllTaskTypes() {
         return taskTypeDAO.getAll();
     }
 
@@ -285,6 +285,18 @@ public class Controller {
         sprintDAO.remove(sprint);
     }
 
+    public void updateTask(Task task) {
+        taskDAO.update(task);
+    }
 
-    public void updateTask(Task task){ taskDAO.update(task); }
+    //TODO controller implementation needs to be further refactored
+    @Override
+    public IViewController getActiveViewController() {
+        return AppState.getInstance().getViewController();
+    }
+
+    @Override
+    public void setActiveViewController(IViewController viewController) {
+        AppState.getInstance().setViewController(viewController);
+    }
 }

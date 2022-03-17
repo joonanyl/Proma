@@ -6,6 +6,7 @@ import r8.model.*;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
+import r8.view.IViewController;
 import r8.view.loginView.LoginViewController;
 import r8.view.mainView.MainViewController;
 
@@ -19,7 +20,8 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 
 	private LoginViewController loginViewController;
 	private MainViewController mainViewController;
-	private Controller daoController = new Controller(this);
+	private IViewController viewController;
+	private Controller daoController = new Controller();
 
 	private Task selectedTask = null;
 
@@ -89,6 +91,7 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 		return false;
 	}
 
+	// TODO if IViewController works as intended, remove the following two methods
 	public LoginViewController getLoginViewController() {
 		return loginViewController;
 	}
@@ -103,6 +106,12 @@ public class AppState extends Thread implements IAppStateLogin, IAppStateMain {
 
 	public void setMainViewController(MainViewController mainViewController) {
 		this.mainViewController = mainViewController;
+	}
+
+	public IViewController getViewController() { return viewController; }
+
+	public void setViewController(IViewController viewController) {
+		this.viewController = viewController;
 	}
 
 	@Override
