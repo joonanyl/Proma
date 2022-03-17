@@ -63,7 +63,7 @@
                         </HBox>
                         <HBox prefHeight="866.0" prefWidth="1670.0">
                             <children>
-                                <ListView fx:id="listViewMyTasks" prefHeight="866.0" prefWidth="880.0">
+                                <ListView fx:id="listViewMyTasks" prefHeight="826.0" prefWidth="324.0">
                                     <HBox.margin>
                                         <Insets bottom="25.0" left="25.0" top="15.0" />
                                     </HBox.margin>
@@ -237,6 +237,11 @@
                                         <Insets left="25.0" />
                                     </HBox.margin>
                                 </VBox>
+                        <ListView fx:id="taskListView" prefHeight="200.0" prefWidth="900.0">
+                           <HBox.margin>
+                              <Insets bottom="25.0" right="25.0" top="25.0" />
+                           </HBox.margin>
+                        </ListView>
                             </children>
                         </HBox>
                     </children>

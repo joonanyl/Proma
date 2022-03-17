@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
 import r8.model.Account;
 import r8.model.Project;
@@ -69,6 +70,8 @@ public class TasksViewController {
     private Label labelTaskType;
     @FXML
     private Label labelTaskState;
+    @FXML
+    private ListView taskListView;
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
@@ -101,6 +104,7 @@ public class TasksViewController {
     public void initialize(){
         personalTasks = new ArrayList<>();
         teamTasks = new ArrayList<>();
+        allTasks = new ArrayList<>();
         appStateMain = AppState.getInstance();
         buttonGroup = new ToggleGroup();
         btnOverview.setToggleGroup(buttonGroup);
@@ -124,6 +128,7 @@ public class TasksViewController {
                     selectedProject = appStateMain.getProjectById(newValue.getProjectId());
                     personalTasks.clear();
                     teamTasks.clear();
+                    allTasks.clear();
 
                     if (selectedProject.getTasks() != null) {
                         allTasks = selectedProject.getTasks();
@@ -192,6 +197,9 @@ public class TasksViewController {
                 if(tb == btnOverview){
                     listViewMyTasks.getItems().clear();
                     if(allTasks != null){
+                        allTasks.forEach(task -> {
+                            taskListView.getItems().add(new CustomTaskComponentController(task));
+                        });
                         listViewMyTasks.getItems().setAll(allTasks);
                     }
                 }

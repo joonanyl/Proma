@@ -1,0 +1,18 @@
+.list-cell {
+    -fx-background-color: transparent;
+}
+.list-view {
+    -fx-background-color: transparent;
+}
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-opacity: 0.7;
+}
+.arrow{
+    -fx-background-color: transparent;
+}
+
+.menu-button:hover{
+    -fx-cursor: hand;
+    -fx-opacity: 0.9;
+}
