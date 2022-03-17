@@ -8,8 +8,6 @@ import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 import r8.view.IViewController;
-import r8.view.loginView.LoginViewController;
-import r8.view.mainView.MainViewController;
 
 import java.time.LocalDate;
 import java.util.List;

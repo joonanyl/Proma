@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.controlsfx.control.SearchableComboBox;
+import r8.controller.Controller;
+import r8.controller.IControllerMain;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
@@ -46,7 +48,6 @@ public class CreateTaskViewController {
     @FXML
     private ListView<CombinedList> listViewAssignedTo;
 
-
     @FXML
     private Button btnRemoveAssigned;
 
@@ -56,15 +57,17 @@ public class CreateTaskViewController {
     @FXML
     private TextField createTaskTypeField;
 
-
     private final IAppStateMain appStateMain = AppState.getInstance();
+
+    private final IControllerMain controller = new Controller();
 
     public void initialize(){
         comboBoxTeam.getItems().addAll(appStateMain.getAllTeams());
 
-        projectComboBox.getItems().addAll(appStateMain.getProjects());
+        // TODO refactor getting account
+        projectComboBox.getItems().addAll(controller.loadProjects(AppState.getInstance().getLoggedAccount()));
 
-        List<Account> accountList = appStateMain.getAllAccounts();
+        List<Account> accountList = controller.getAllAccounts();
         comboBoxUser.getItems().addAll(accountList);
 
         updateTaskTypes();
@@ -74,23 +77,23 @@ public class CreateTaskViewController {
 
     }
 
+    // TODO does not accept all names, needs testing
     @FXML
     private void createTaskType(){
         String tt = createTaskTypeField.getText();
         if(tt.matches("[a-zA-Z0-9\\s ]{1,10}")){
-            appStateMain.createTaskType(tt);
+            controller.createTaskType(tt);
         }
         updateTaskTypes();
     }
 
     private void updateTaskTypes(){
-        List<TaskType> ttList = appStateMain.getAllTaskTypes();
+        List<TaskType> ttList = controller.getAllTaskTypes();
         if(ttList != null){
             taskType.getItems().clear();
             taskType.getItems().addAll(ttList);
         }
     }
-
 
     @FXML
     private void saveTask(){
@@ -117,7 +120,7 @@ public class CreateTaskViewController {
         if(project == null){
             return;
         }
-        appStateMain.createTask(name, TaskState.NOT_STARTED, tt, 0,desc, getAccounts(), getTeams(), project);
+        controller.createTask(name, TaskState.NOT_STARTED, tt, 0,desc, getAccounts(), getTeams(), project);
         showAlert("Success", "Successfully saved this task!", Alert.AlertType.INFORMATION);
     }
 
