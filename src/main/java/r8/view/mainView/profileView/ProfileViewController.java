@@ -5,12 +5,16 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import r8.controller.Controller;
+import r8.controller.IControllerAccount;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 
 public class ProfileViewController {
 
-    IAppStateMain appStateMain = AppState.getInstance();
+    // TODO needs further refactoring
+    IAppStateMain adminAccount = AppState.getInstance();
+    IControllerAccount controllerAccount = new Controller();
 
     @FXML
     private CheckBox checkBoxEnableTooltips;
@@ -39,19 +43,20 @@ public class ProfileViewController {
     @FXML
     private Label labelUserPhoneDisplay;
 
+    // Retrieves loggedAccount data from AppState
     public void initialize() {
-        if (appStateMain.getAccount() != null){
-            checkBoxIsAdmin.setSelected(appStateMain.getIsAdmin());
-            labelUserFirstNameDisplay.setText(appStateMain.getAccount().getFirstName());
-            labelUserLastNameDisplay.setText(appStateMain.getAccount().getLastName());
-            labelUserEmailDisplay.setText(appStateMain.getAccount().getEmail());
+        if (controllerAccount.getAccount() != null){
+            checkBoxIsAdmin.setSelected(adminAccount.getIsAdmin());
+            labelUserFirstNameDisplay.setText(controllerAccount.getAccount().getFirstName());
+            labelUserLastNameDisplay.setText(controllerAccount.getAccount().getLastName());
+            labelUserEmailDisplay.setText(controllerAccount.getAccount().getEmail());
         }
         labelUserPhoneDisplay.setText("not set");
     }
 
     @FXML
     private void setAdminChecked() {
-        if (appStateMain.getAccount() != null)
-        appStateMain.setIsAdmin(appStateMain.getIsAdmin());
+        if (controllerAccount.getAccount() != null)
+        adminAccount.setIsAdmin(adminAccount.getIsAdmin());
     }
 }

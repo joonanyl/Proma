@@ -18,8 +18,7 @@ public class LoginCredentialsViewController {
 
     private App app;
     private IControllerLogin controller;
-    //private IViewController viewController;
-    IViewController viewController;
+    private IViewController viewController;
 
     @FXML
     private TextField textFieldEmail;
@@ -48,7 +47,6 @@ public class LoginCredentialsViewController {
     // Reference initially stored in parent controller.
     @FXML
     public void toWorkScene() {
-        //viewController.getApp().switchToWorkScene();
         viewController.getApp().switchScene();
     }
 

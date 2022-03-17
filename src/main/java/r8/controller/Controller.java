@@ -14,7 +14,7 @@ import r8.view.mainView.MainViewController;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Controller implements IControllerLogin, IControllerMain {
+public class Controller implements IControllerLogin, IControllerMain, IControllerAccount {
     private AccountDAO accountDAO;
     private CommentDAO commentDAO;
     private EventDAO eventDAO;
@@ -51,6 +51,10 @@ public class Controller implements IControllerLogin, IControllerMain {
     public void createAccount(String firstName, String lastName, String email, String password) {
         Account account = new Account(firstName, lastName, email, password);
         accountDAO.persist(account);
+    }
+
+    public Account getAccount() {
+        return AppState.getInstance().getAccount();
     }
 
     public Account getAccount(Integer accountId) {

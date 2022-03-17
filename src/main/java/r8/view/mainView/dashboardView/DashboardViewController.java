@@ -38,6 +38,7 @@ public class DashboardViewController {
 
         @FXML
         private void initialize() {
+            System.out.println("Logged account is admin: " +appStateMain.getIsAdmin());
             mockData();
         }
 
