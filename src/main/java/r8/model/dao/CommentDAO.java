@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 public class CommentDAO {
     private EntityManager entityManager;
 
-    public CommentDAO() { this.entityManager = DAO.getEntityManager(); }
+    public CommentDAO() { this.entityManager = DAOUtil.getEntityManager(); }
 
     public void addComment(Comment comment) {
         entityManager.getTransaction().begin();

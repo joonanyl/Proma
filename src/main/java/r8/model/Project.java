@@ -26,7 +26,9 @@ public class Project {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE })
 	@JoinTable(
 			name = "project_account",
 			joinColumns = @JoinColumn(name = "project_id"),

@@ -1,6 +1,7 @@
 package r8.model;
 
 
+import org.hibernate.Hibernate;
 import r8.model.dao.*;
 
 import java.util.List;
@@ -78,24 +79,12 @@ public class ModelTest {
         System.out.println(accountDAO.checkIfEmailExists("askdöka"));
          */
 
-
-        // TODO: TÄLLÄINEN TILANNE TARVITSEE CHECKIN DUPLIKAATTIEN VARALTA
-        //Project project3 = projectDAO.get(3);
-        // Project project4 = projectDAO.get(4);
-        //Account account = accountDAO.get(3);
-
         /*
         project3.addAccount(account);
         project4.addAccount(account);
         projectDAO.update(project3);
         projectDAO.update(project4);
          */
-
-        // TODO: TÄSSÄ JOKU VITTUMAINEN ONGELMA
-        /*
-        project3.removeAccount(account);
-        projectDAO.update(project3);
-        */
 
         /*
         List<Project> projects = projectDAO.getByAccount(accountDAO.get(3));
@@ -104,9 +93,21 @@ public class ModelTest {
         }
          */
 
-        Team team = teamDAO.get(1);
-        System.out.println(team.getProject());
-        Project project = team.getProject();
-        System.out.println(project.getTeams().get(0));
+        /*
+        Team team = teamDAO.get(3);
+        Account account = new Account("Lisko", "Mies", "posti@sahko.fi", "passu");
+        teamDAO.addAccount(account, team);
+         */
+        //teamDAO.addAccount(new Account("Tiimi", "Lisäys", "testi@gmail.com", "salis"),
+        //        new Team("Team 4", projectDAO.get(2)));
+        // teamDAO.removeAccountAssociation(team, accountDAO.get(13));
+
+        /*
+        Project project = projectDAO.get(2);
+        project.setName("Full Stack Open");
+        project.setDescription("Full stack web development course.");
+        projectDAO.update(project);
+         */
+        projectDAO.removeAccountAssociation(accountDAO.get(14), projectDAO.get(2));
     }
 }

@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 public class EventDAO {
     private EntityManager entityManager;
 
-    public EventDAO() { this.entityManager = DAO.getEntityManager(); }
+    public EventDAO() { this.entityManager = DAOUtil.getEntityManager(); }
 
     public void addEvent(Event event) {
         entityManager.getTransaction().begin();

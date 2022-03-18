@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 public class SprintDAO {
     private EntityManager entityManager;
 
-    public SprintDAO() { this.entityManager = DAO.getEntityManager(); }
+    public SprintDAO() { this.entityManager = DAOUtil.getEntityManager(); }
 
     public void addSprint(Sprint sprint) {
         entityManager.getTransaction().begin();

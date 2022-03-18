@@ -1,7 +1,6 @@
 package r8.model.dao;
 
 
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import r8.model.Account;
 
 import javax.persistence.EntityManager;
@@ -12,10 +11,6 @@ import java.util.List;
 public class AccountDAO {
 
     private EntityManager entityManager;
-
-    public AccountDAO() {
-        this.entityManager = DAO.getEntityManager();
-    }
 
     public void persist(Account account) {
         entityManager.getTransaction().begin();
@@ -30,16 +25,13 @@ public class AccountDAO {
 
     }
 
-    public Account get(int accountId) {
-        Account account = null;
+    public Account get(int accountId) throws NullPointerException {
+        entityManager = DAOUtil.getEntityManager();
         try {
-            account = entityManager.find(Account.class, accountId);
-            // entityManager.detach(account);
-        } catch (NullPointerException e) {
-            System.out.println("Account wasn't found");
-            e.printStackTrace();
+            return entityManager.find(Account.class, accountId);
+        } finally {
+            entityManager.close();
         }
-        return account;
     }
 
     public Account getByEmail(String email) {

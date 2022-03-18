@@ -8,7 +8,7 @@ public class TaskTypeDAO {
     private EntityManager entityManager;
 
     public TaskTypeDAO() {
-        this.entityManager = DAO.getEntityManager();
+        this.entityManager = DAOUtil.getEntityManager();
     }
 
     public void persist(TaskType taskType) {
