@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import org.controlsfx.control.SearchableComboBox;
+
+import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Account;
@@ -51,13 +53,13 @@ public class TaskViewController {
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
-    private final IViewController viewController = controller.getActiveViewController();
+    //private final IViewController viewController = controller.getActiveViewController();
 
     private Task selectedTask = null;
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-       viewController.handleNavigation(event);
+       App.handleNavigation(event);
     }
 
     public void initialize(){

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
+import r8.App;
 
 public class ProjectsViewController {
 
@@ -27,8 +28,8 @@ public class ProjectsViewController {
     private HBox projectNavBar;
 
     @FXML
-    void navigate(ActionEvent event) {
-
+    private void navigate(ActionEvent event) {
+        App.handleNavigation(event);
     }
 
 }

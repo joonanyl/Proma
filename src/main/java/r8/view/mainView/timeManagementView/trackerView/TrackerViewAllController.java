@@ -1,15 +1,10 @@
 package r8.view.mainView.timeManagementView.trackerView;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.Calendar;
-
-import static java.lang.Integer.parseInt;
 
 public class TrackerViewAllController {
 
@@ -83,11 +78,7 @@ public class TrackerViewAllController {
     private TextField textFieldMonthDisplay;
 
     public void initialize() {
-        initDatePicker();
-    }
-
-
-    private void initDatePicker() {
+        //siirsin initDatePickerin tänne -sebastian
         datePickerEvent.setDayCellFactory(param -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -96,6 +87,11 @@ public class TrackerViewAllController {
             }
         });
     }
+
+
+    /* private void initDatePicker() {
+        
+    } */
 
 
 }

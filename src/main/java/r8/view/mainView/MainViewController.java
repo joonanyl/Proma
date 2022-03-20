@@ -15,8 +15,6 @@ import javafx.scene.layout.Pane;
 import r8.App;
 import r8.view.IViewController;
 import r8.view.navigation.BreadcrumbObject;
-import r8.view.navigation.GetView;
-import r8.view.navigation.NavigationHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,8 +50,8 @@ public class MainViewController implements IViewController {
     private String currentView;
 
     public void initialize() {
-        GetView viewLoader = new GetView();
-        view = viewLoader.getView(initialView.getButtonInfo()[0]);
+        //GetView viewLoader = new GetView();
+        view = App.getView(initialView.getButtonInfo()[0]);
         System.out.println(view);
         mainViewPane.setCenter(view);
         breadcrumbs = new ArrayList<>();
@@ -65,7 +63,7 @@ public class MainViewController implements IViewController {
     // changes current view
     @FXML
     public void handleNavigation(ActionEvent event) throws IOException {
-        NavigationHandler nav = new NavigationHandler();
+        //NavigationHandler nav = new NavigationHandler();
         final Node eventSource = (Node) event.getSource();
         String userData = (String) eventSource.getUserData();
         Button target = (Button) event.getTarget();
@@ -73,7 +71,7 @@ public class MainViewController implements IViewController {
         if (!userData.equals(currentView)) {
             System.out.println("Clicked " + userData);
             // No need to use NavigationHandler
-            mainViewPane.setCenter(nav.handleNavigation(event));
+            mainViewPane.setCenter(App.getView(userData));
             currentView = userData;
             breadcrumbs.add(new BreadcrumbObject(userData, viewType));
             System.out.println("Breadcrumbs should display: " + breadcrumbs);
@@ -84,7 +82,7 @@ public class MainViewController implements IViewController {
 
     @FXML
     public void handleLeftBarNavigation(ActionEvent event) throws IOException {
-        NavigationHandler nav = new NavigationHandler();
+        //NavigationHandler nav = new NavigationHandler();
         System.out.println(event);
         final Node eventSource = (Node) event.getSource();
         String userData = (String) eventSource.getUserData();
@@ -95,7 +93,7 @@ public class MainViewController implements IViewController {
             breadcrumbs.clear();
             breadcrumbButtons.clear();
             System.out.println("Clicked " + userData);
-            mainViewPane.setCenter(nav.handleNavigation(event));
+            mainViewPane.setCenter(App.getView(userData));
             currentView = userData;
             BreadcrumbObject test = new BreadcrumbObject(userData, viewType);
             breadcrumbs.add(test);
@@ -109,15 +107,15 @@ public class MainViewController implements IViewController {
     private void handleMenuItemNavigation(ActionEvent event) throws IOException {
         MenuItem eventsource = (MenuItem) event.getSource();
         String userData = (String) eventsource.getUserData();
-        GetView viewLoader = new GetView();
-        Pane view = viewLoader.getView(userData);
+        //GetView viewLoader = new GetView();
+        Pane view = App.getView(userData);
         mainViewPane.setCenter(view);
         this.currentView = userData;
     }
 
     @FXML
     private void backToLoginScene(){
-        app.switchScene();
+        App.switchToScene("login-view", "Proma - login", false, false);
     }
 
     // TODO refactor to own class

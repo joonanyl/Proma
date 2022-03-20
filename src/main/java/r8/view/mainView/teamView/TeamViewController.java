@@ -2,18 +2,16 @@ package r8.view.mainView.teamView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
-import r8.view.IViewController;
+import r8.App;
 
 import java.io.IOException;
 
 public class TeamViewController {
 
-    private final IViewController viewController = AppState.getInstance().getViewController();
+    //private final IViewController viewController = AppState.getInstance().getViewController();
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        viewController.handleNavigation(event);
+        App.handleNavigation(event);
     }
 }

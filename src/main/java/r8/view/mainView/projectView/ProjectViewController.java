@@ -9,17 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import r8.controller.Controller;
-import r8.controller.IControllerAccount;
-import r8.controller.IControllerMain;
+import r8.App;
 import r8.model.Sprint;
-import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
-import r8.view.IViewController;
-import r8.view.navigation.GetView;
 
 import java.io.IOException;
 
@@ -85,8 +79,8 @@ public class ProjectViewController {
     @FXML
     private BorderPane projectSubViewPane;
 
-    private final IControllerMain controller = new Controller();
-    private final IViewController viewController = controller.getActiveViewController();
+    //private final IControllerMain controller = new Controller();
+    //private final IViewController viewController = controller.getActiveViewController();
 
     private String currentSubview;
 
@@ -100,52 +94,52 @@ public class ProjectViewController {
     }
 
     @FXML
-    public void handleNavigation(ActionEvent event) throws IOException {
-        GetView viewLoader = new GetView();
+    private void handleNavigation(ActionEvent event) throws IOException {
+        //GetView viewLoader = new GetView();
         final Node eventSource = (Node) event.getSource();
         String userData = (String) eventSource.getUserData();
 
         if (!userData.equals(currentSubview)) {
             System.out.println("Clicked " + userData);
-            projectSubViewPane.setCenter(viewLoader.getView(userData));
+            projectSubViewPane.setCenter(App.getView(userData));
             currentSubview = userData;
         }
     }
 
     @FXML
-    public void handleNavigation(String viewName) throws IOException {
-        GetView viewLoader = new GetView();
-        projectSubViewPane.setCenter(viewLoader.getView(viewName));
+    private void handleNavigation(String viewName) throws IOException {
+        //GetView viewLoader = new GetView();
+        projectSubViewPane.setCenter(App.getView(viewName));
         currentSubview = viewName;
     }
 
-        private void setListeners() {
-            listViewTask.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
-                @Override
-                public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
-                    selectTask(newValue);
-                }
-            });
-            listViewSprint.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Sprint>() {
-                @Override
-                public void changed(ObservableValue<? extends Sprint> observable, Sprint oldValue, Sprint newValue) {
-                    selectSprint(newValue);
-                }
-            });
-        }
-
-        private void selectTask(Task task){
-            textAreaTask.setText(task.getDescription());
-        }
-
-        private void selectSprint(Sprint sprint){
-            //sprintTextField.setText();
-        }
-
-        @FXML
-        private void navigate (ActionEvent event) throws IOException {
-            viewController.handleNavigation(event);
-        }
-
+    private void setListeners() {
+        listViewTask.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
+            @Override
+            public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
+                selectTask(newValue);
+            }
+        });
+        listViewSprint.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Sprint>() {
+            @Override
+            public void changed(ObservableValue<? extends Sprint> observable, Sprint oldValue, Sprint newValue) {
+                selectSprint(newValue);
+            }
+        });
     }
+
+    private void selectTask(Task task){
+        textAreaTask.setText(task.getDescription());
+    }
+
+    private void selectSprint(Sprint sprint){
+        //sprintTextField.setText();
+    }
+
+    @FXML
+    private void navigate (ActionEvent event) throws IOException {
+        App.handleNavigation(event);
+    }
+
+}
 

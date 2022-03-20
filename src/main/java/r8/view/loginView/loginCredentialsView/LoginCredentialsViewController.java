@@ -5,20 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import r8.App;
-import r8.controller.Controller;
 import r8.controller.IControllerLogin;
-import r8.model.appState.AppState;
-import r8.model.appState.IAppStateLogin;
-import r8.view.IViewController;
-import r8.view.loginView.LoginViewController;
-
-import java.io.IOException;
 
 public class LoginCredentialsViewController {
 
-    private App app;
     private IControllerLogin controller;
-    private IViewController viewController;
 
     @FXML
     private TextField textFieldEmail;
@@ -27,8 +18,6 @@ public class LoginCredentialsViewController {
     private PasswordField passwordField;
 
     public void initialize() {
-        controller = new Controller();
-        viewController = controller.getActiveViewController();
     }
 
     @FXML
@@ -40,19 +29,12 @@ public class LoginCredentialsViewController {
     }
 
     @FXML
-    private void navigate(ActionEvent event) throws IOException {
-        viewController.handleNavigation(event);
+    private void navigate(ActionEvent event) {
+        App.handleNavigation(event);
     }
 
-    // Scene switching is handled by App. Need to get its reference here.
-    // Reference initially stored in parent controller.
     @FXML
-    public void toWorkScene() {
-        viewController.getApp().switchScene();
-    }
-
-    //TODO remove if unnecessary
-    public void setApp(App app) {
-        this.app = app;
+    private void toWorkScene() {
+        App.switchToScene("main-view", "Proma - Project Manager v0.1", true, true);
     }
 }

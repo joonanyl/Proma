@@ -8,22 +8,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import org.controlsfx.control.SearchableComboBox;
+
+import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
-import r8.model.Account;
 import r8.model.Project;
 import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
-import r8.view.IViewController;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class TasksViewController {
 
@@ -75,7 +71,7 @@ public class TasksViewController {
 
     private final IControllerAccount controllerAccount = new Controller();
     private final IControllerMain controller = new Controller();
-    private final IViewController viewController = controller.getActiveViewController();
+    //private final IViewController viewController = controller.getActiveViewController();
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
@@ -84,12 +80,12 @@ public class TasksViewController {
             return;
         }
         AppState.getInstance().setSelectedTask(selectedTask);
-        viewController.handleNavigation(event);
+        App.handleNavigation(event);
     }
 
     @FXML
     private void navigateNewTask(ActionEvent event) throws IOException {
-        viewController.handleNavigation(event);
+        App.handleNavigation(event);
     }
 
     @FXML

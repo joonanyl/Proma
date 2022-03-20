@@ -6,12 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerLogin;
 import r8.model.Account;
 import r8.model.TextFieldValidator;
-import r8.model.appState.AppState;
-import r8.model.appState.IAppStateLogin;
 
 import java.io.IOException;
 
@@ -59,8 +58,8 @@ public class CreateAccountViewController {
     }
 
     @FXML
-    private void navigate(ActionEvent event) throws IOException {
-        controller.getActiveViewController().handleNavigation(event);
+    private void navigate(ActionEvent event) {
+        App.handleNavigation(event);
     }
 
     private void comparePassword(){

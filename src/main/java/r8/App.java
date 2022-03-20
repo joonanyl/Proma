@@ -4,35 +4,75 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import r8.controller.Controller;
-import r8.controller.IControllerLogin;
-import r8.model.appState.AppState;
-import r8.view.IViewController;
-import r8.view.loginView.LoginViewController;
-import r8.view.mainView.MainViewController;
-import r8.view.navigation.GetView;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 public class App extends Application
 {
-	private Stage stage;
+	private static Stage stage;
 
-    private String viewToLoad;
-    private boolean displayLogin;
+    //private String viewToLoad;
+    //private boolean displayLogin;
 
     @Override
     public void start(Stage stage) {
-        this.stage = stage;
-        displayLogin = true;
-        switchScene();
+        App.stage = stage;
+        //displayLogin = true;
+        switchToScene("login-view", "Proma - login", false, false);
     }
 
-    public void switchScene() {
+    public static void handleNavigation(ActionEvent event) {
+        Node eventSource = (Node) event.getSource();
+        String userData = (String) eventSource.getUserData();
+        System.out.println("Clicked " + userData + " (printed from App.java)");
+        switchToScene(userData);
+    }
+
+    public static void switchToScene(String sceneName, String title, boolean resizable, boolean maximized) {
+        load(sceneName);
+        stage.setTitle(title);
+        stage.setResizable(resizable);
+        stage.setMaximized(maximized);
+        stage.show();
+    }
+
+    public static void switchToScene(String sceneName) {
+        switchToScene(sceneName, "", false, false);
+        stage.sizeToScene();
+        stage.centerOnScreen();
+    }
+
+    private static void load(String sceneName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(App.class.getResource("/fxml/" + sceneName + ".fxml")));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Pane getView(String viewName) {
+        Pane view = null;
+        try {
+            URL viewUrl = App.class.getResource("/fxml/" + viewName + ".fxml");
+            if (viewUrl == null) {
+                throw new java.io.FileNotFoundException(viewName + ".fxml not found");
+            }
+            FXMLLoader loader = new FXMLLoader(viewUrl);
+            view = loader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return view;
+    }
+
+    /* public void switchScene() {
         try {
             if (displayLogin) { viewToLoad = "login-view"; }
             if (!displayLogin) { viewToLoad = "main-view"; }
@@ -65,7 +105,7 @@ public class App extends Application
         } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
         }
-    }
+    } */
 
     public static void main(String[] args) {
         launch(args);
