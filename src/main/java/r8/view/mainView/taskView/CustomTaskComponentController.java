@@ -1,4 +1,4 @@
-package r8.view.taskView;
+package r8.view.mainView.taskView;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -56,9 +56,14 @@ public class CustomTaskComponentController extends GridPane {
                 CombinedList a = new CombinedList(account, null);
                 arrayList.add(a);
             });
-            arrayList.forEach(o ->{
-                listViewAssigned.getItems().add(0, new Text(o.toString()));
-            });
+            if(arrayList.size() == 0){
+                listViewAssigned.setFocusTraversable(false);
+                listViewAssigned.setMouseTransparent(true);
+            }else{
+                arrayList.forEach(o ->{
+                    listViewAssigned.getItems().add(0, new Text(o.toString()));
+                });
+            }
         }
     }
 
@@ -72,5 +77,6 @@ public class CustomTaskComponentController extends GridPane {
                 //todo updateTaskState
             }
         });
+
     }
 }

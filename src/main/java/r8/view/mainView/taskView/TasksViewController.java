@@ -114,7 +114,8 @@ public class TasksViewController {
         btnPersonal.setToggleGroup(buttonGroup);
         btnTeam.setToggleGroup(buttonGroup);
         buttonGroup.selectToggle(btnOverview);
-        List<Project> projectsList = controller.getProjects();
+        List<Project> projectsList = controller.loadProjects(AppState.getInstance().getAccount());
+        System.out.println(projectsList);
         if(projectsList != null){
             comboBoxProjects.getItems().setAll(projectsList);
         }
@@ -127,26 +128,8 @@ public class TasksViewController {
             @Override
             public void changed(ObservableValue<? extends Project> observable, Project oldValue, Project newValue) {
                 if(newValue != null) {
-                    selectedProject = controller.getProjectById(newValue.getProjectId());
-                    personalTasks.clear();
-                    teamTasks.clear();
-                    allTasks.clear();
-
-                    if (selectedProject.getTasks() != null) {
-                        allTasks = selectedProject.getTasks();
-                        System.out.println(controllerAccount.getAccount().toString());
-                        Platform.runLater(() -> {
-                            allTasks.forEach((item) -> {
-                                item.getAccounts().forEach((account) ->{
-                                    if(account.getAccountId() == controllerAccount.getAccount().getAccountId()){
-                                        personalTasks.add(item);
-                                    }
-                                });
-                                //TODO add teams
-                            });
-                            updateView();
-                        });
-                    }
+                    selectedProject = newValue;
+                    retrieveTasks();
                 }
             }
         });
@@ -192,12 +175,34 @@ public class TasksViewController {
         });
     }
 
+    public void retrieveTasks(){
+        selectedProject = controller.getProjectById(selectedProject.getProjectId());
+        allTasks = selectedProject.getTasks();
+        personalTasks.clear();
+        teamTasks.clear();
+        Account loggedAccount = AppState.getInstance().getLoggedAccount();
+        if(allTasks != null){
+            allTasks.forEach(task -> {
+                if(task.getAccounts().contains(loggedAccount)){
+                    personalTasks.add(task);
+                }
+                task.getTeams().forEach(team -> {
+                    if(team.getAccounts().contains(loggedAccount)){
+                        teamTasks.add(task);
+                    }
+                });
+            });
+        }
+        updateView();
+    }
+
     private void updateView(){
         Platform.runLater(()->{
             Toggle tb = buttonGroup.getSelectedToggle();
             if(tb != null){
                 if(tb == btnOverview){
                     listViewMyTasks.getItems().clear();
+                    taskListView.getItems().clear();
                     if(allTasks != null){
                         allTasks.forEach(task -> {
                             taskListView.getItems().add(new CustomTaskComponentController(task));
