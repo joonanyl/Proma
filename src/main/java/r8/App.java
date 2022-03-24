@@ -21,8 +21,6 @@ import java.util.Objects;
 public class App extends Application
 {
 	private Stage stage;
-
-    private String viewToLoad;
     private boolean displayLogin;
 
     @Override
@@ -34,8 +32,7 @@ public class App extends Application
 
     public void switchScene() {
         try {
-            if (displayLogin) { viewToLoad = "login-view"; }
-            if (!displayLogin) { viewToLoad = "main-view"; }
+            String viewToLoad = displayLogin ? "login-view" : "main-view";
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
             Parent root = loader.load();
             Scene scene = new Scene(root);
