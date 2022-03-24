@@ -39,22 +39,10 @@ public class App extends Application
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            stage.setScene(scene);
+            setStageSize();
 
-            if (displayLogin) {
-                stage.setTitle("Proma - Login");
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.setMaximized(false);
-                stage.sizeToScene();
-                stage.centerOnScreen();
-            }
-
-            if (!displayLogin) {
-                stage.setTitle("Proma - Project Manager v0.1");
-                stage.setScene(scene);
-                stage.setResizable(true);
-                stage.setMaximized(true);
-            }
+            // pass App reference to controller to switchScene()
             IViewController viewController = loader.getController();
             viewController.setApp(this);
 
@@ -64,6 +52,18 @@ public class App extends Application
             stage.show();
         } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setStageSize() {
+        stage.setTitle("Proma - Project Manager v0.1");
+        stage.setResizable(!displayLogin);
+        stage.setMaximized(!displayLogin);
+
+        if (displayLogin) {
+            stage.setTitle("Proma - Login");
+            stage.sizeToScene();
+            stage.centerOnScreen();
         }
     }
 
