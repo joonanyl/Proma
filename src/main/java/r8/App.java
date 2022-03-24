@@ -42,7 +42,7 @@ public class App extends Application
             stage.setScene(scene);
             setStageSize();
 
-            // pass App reference to controller to switchScene()
+            // pass App reference to controller to enable sceneSwitching
             IViewController viewController = loader.getController();
             viewController.setApp(this);
 
