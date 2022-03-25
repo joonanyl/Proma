@@ -114,7 +114,7 @@ public class Controller {
     }
 
     public void removeTeam(Team team) {
-        teamDAO.removeTeam(team);
+        teamDAO.remove(team);
     }
 
     public List<Team> loadTeamsByProject(Project project) {

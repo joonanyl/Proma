@@ -49,7 +49,6 @@ public class Task {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 
-
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
@@ -60,9 +59,8 @@ public class Task {
 			inverseJoinColumns = @JoinColumn(name = "account_id"))
 	private Set<Account> accounts;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "sprint_id")
-	private Sprint sprint;
+	@ManyToMany(mappedBy = "tasks")
+	private Set<Sprint> sprints;
 
 	@ManyToOne
 	@JoinColumn(name = "project_id")
@@ -184,12 +182,12 @@ public class Task {
 		this.accounts = accounts;
 	}
 
-	public Sprint getSprint() {
-		return sprint;
+	public Set<Sprint> getSprints() {
+		return sprints;
 	}
 
-	public void setSprint(Sprint sprint) {
-		this.sprint = sprint;
+	public void setSprints(Set<Sprint> sprints) {
+		this.sprints = sprints;
 	}
 
 	public Project getProject() {

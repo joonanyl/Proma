@@ -34,14 +34,18 @@ public class TeamDAO {
         } catch (HibernateException e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
         }
-        entityManager.close();
     }
 
-    public Team get(int teamId) throws NullPointerException {
+    public Team get(int teamId) {
         entityManager = DAOUtil.getEntityManager();
         try {
             return entityManager.find(Team.class, teamId);
+        } catch (NullPointerException e) {
+          e.printStackTrace();
+          return null;
         } finally {
             entityManager.close();
         }
@@ -51,8 +55,8 @@ public class TeamDAO {
         entityManager = DAOUtil.getEntityManager();
         Team team = null;
         try {
-            team = (Team) entityManager.createQuery(
-                    "SELECT t FROM Team t WHERE t.teamName LIKE :name")
+            return entityManager.createQuery(
+                    "SELECT t FROM Team t WHERE t.teamName LIKE :name", Team.class)
                     .setParameter("name", name)
                     .getSingleResult();
         } catch (NullPointerException e) {
@@ -96,7 +100,7 @@ public class TeamDAO {
         return results;
     }
 
-    public void removeTeam(Team team) {
+    public void remove(Team team) {
         entityManager = DAOUtil.getEntityManager();
         try {
             entityManager.getTransaction().begin();
