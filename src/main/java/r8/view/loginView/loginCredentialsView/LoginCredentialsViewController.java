@@ -7,10 +7,7 @@ import javafx.scene.control.TextField;
 import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerLogin;
-import r8.model.appState.AppState;
-import r8.model.appState.IAppStateLogin;
 import r8.view.IViewController;
-import r8.view.loginView.LoginViewController;
 
 import java.io.IOException;
 

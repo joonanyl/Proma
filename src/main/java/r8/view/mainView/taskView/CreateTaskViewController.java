@@ -1,6 +1,5 @@
 package r8.view.mainView.taskView;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,12 +9,9 @@ import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.*;
 import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
-import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

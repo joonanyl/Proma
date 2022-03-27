@@ -23,6 +23,7 @@ public class GetView {
         return view;
     }
 
+    // TODO remove if redundant
     public Pane getView(String viewName, App app) {
         try {
             URL viewUrl = getClass().getResource("/fxml/" + viewName + ".fxml");

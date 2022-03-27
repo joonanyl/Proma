@@ -11,19 +11,14 @@ import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
-import r8.model.Account;
 import r8.model.Project;
 import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.view.IViewController;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class TasksViewController {
 

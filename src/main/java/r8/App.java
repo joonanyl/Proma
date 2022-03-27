@@ -1,19 +1,12 @@
 package r8;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import r8.controller.Controller;
-import r8.controller.IControllerLogin;
 import r8.model.appState.AppState;
 import r8.view.IViewController;
-import r8.view.loginView.LoginViewController;
-import r8.view.mainView.MainViewController;
-import r8.view.navigation.GetView;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -48,7 +41,7 @@ public class App extends Application
 
             stage.show();
         } catch (IOException | IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println("Failed to load view.");
         }
     }
 

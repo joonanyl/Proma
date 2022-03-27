@@ -3,7 +3,6 @@ package r8.view.mainView.teamView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
 import r8.view.IViewController;
 
 import java.io.IOException;

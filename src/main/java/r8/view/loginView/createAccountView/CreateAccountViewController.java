@@ -10,8 +10,6 @@ import r8.controller.Controller;
 import r8.controller.IControllerLogin;
 import r8.model.Account;
 import r8.model.TextFieldValidator;
-import r8.model.appState.AppState;
-import r8.model.appState.IAppStateLogin;
 
 import java.io.IOException;
 

@@ -1,23 +1,16 @@
 package r8.view.mainView.projectView;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
-import r8.model.Sprint;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
-import r8.model.task.Task;
-import r8.model.task.TaskState;
-import r8.model.task.TaskType;
 import r8.view.IViewController;
 import r8.view.navigation.GetView;
 

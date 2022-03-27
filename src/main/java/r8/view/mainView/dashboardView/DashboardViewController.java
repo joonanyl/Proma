@@ -1,10 +1,7 @@
 package r8.view.mainView.dashboardView;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import r8.App;
@@ -34,8 +31,6 @@ public class DashboardViewController {
         IControllerMain controllerMain = new Controller();
         private App app;
 
-        private final StringProperty value = new SimpleStringProperty();
-
         @FXML
         private void initialize() {
             System.out.println("Logged account is admin: " +appStateMain.getIsAdmin());
@@ -46,13 +41,6 @@ public class DashboardViewController {
         private void navigate(ActionEvent event) throws IOException {
             IViewController viewController = controllerMain.getActiveViewController();
             viewController.handleNavigation(event);
-        }
-
-        @FXML
-        private void setValue (ActionEvent event) {
-            final Node eventSource = (Node) event.getSource();
-            this.value.set((String) eventSource.getUserData());
-            System.out.println("userDate from button" + value);
         }
 
         private void mockData() {
