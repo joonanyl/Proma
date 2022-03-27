@@ -1,6 +1,7 @@
 package r8.model.dao;
 
 
+import org.hibernate.HibernateException;
 import r8.model.Account;
 
 import javax.persistence.EntityManager;
@@ -12,66 +13,83 @@ public class AccountDAO {
 
     private EntityManager entityManager;
 
-    public AccountDAO() {
-        this.entityManager = DAO.getEntityManager();
-    }
-
     public void persist(Account account) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(account);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(account);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public void update(Account account) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(account);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(account);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
 
     }
 
     public Account get(int accountId) {
-        Account account = null;
+        entityManager = DAOUtil.getEntityManager();
         try {
-            account = entityManager.getReference(Account.class, accountId);
-            // entityManager.detach(account);
+            return entityManager.find(Account.class, accountId);
         } catch (NullPointerException e) {
-            System.out.println("Account wasn't found");
-            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
         }
-        return account;
     }
 
     public Account getByEmail(String email) {
-        Account account = null;
+        entityManager = DAOUtil.getEntityManager();
         try {
-            account = (Account) entityManager.createQuery(
-                            "SELECT a FROM Account a WHERE a.email LIKE :email")
+            return entityManager.createQuery(
+                            "SELECT a FROM Account a WHERE a.email LIKE :email", Account.class)
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (NullPointerException e) {
-            System.out.println("Account wasn't found");
             e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
         }
-        return account;
     }
 
     public List<Account> getAll() {
-        List<Account> results = null;
+        entityManager = DAOUtil.getEntityManager();
         try {
-            results = entityManager.createQuery("SELECT a FROM Account a", Account.class)
+            return entityManager.createQuery(
+                            "SELECT a FROM Account a", Account.class)
                     .getResultList();
         } catch (NullPointerException e) {
-            System.out.println("No accounts found.");
             e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
         }
-        return results;
     }
 
     public String getHashedPw(String email) {
+        entityManager = DAOUtil.getEntityManager();
         Account account = null;
+
         try {
             account = (Account) entityManager.createQuery(
-                    "SELECT a FROM Account a WHERE a.email LIKE :email")
+                            "SELECT a FROM Account a WHERE a.email LIKE :email")
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (NullPointerException e) {
@@ -84,21 +102,33 @@ public class AccountDAO {
     }
 
     public void removeAccount(Account account) {
-        entityManager.getTransaction().begin();
-        // Check if removed-to-be account is detached or not
-        entityManager.remove(entityManager.contains(account) ? account : entityManager.merge(account));
-        entityManager.getTransaction().commit();
-    }
-
-    public void removeAccountById(int accountId) {
-        Account account = null;
+        entityManager = DAOUtil.getEntityManager();
         try {
-            account = entityManager.getReference(Account.class, accountId);
+            entityManager.getTransaction().begin();
             entityManager.remove(entityManager.contains(account) ? account : entityManager.merge(account));
-        } catch (NullPointerException e) {
-            System.out.println("Account not found");
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
             e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
         }
     }
 
+    public boolean checkIfEmailExists(String email) {
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            List<String> results = entityManager.createQuery(
+                            "SELECT a.email FROM Account a", String.class)
+                    .getResultList();
+            // Email is in database
+            if (results.contains(email))
+                return true;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return false;
+    }
 }
