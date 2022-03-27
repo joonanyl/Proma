@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
- * 
+ *
  * @author sanku
  *
  */
@@ -35,11 +35,12 @@ public class Event {
     @JoinColumn(name = "task_id")
     private Task task;
 
-    public Event(String desc, LocalDate date, float hours, Account account) {
+    public Event(String desc, LocalDate date, float hours, Task task, Account account) {
         this.description = desc;
         this.date = date;
         this.hours = hours;
         this.account = account;
+        this.task = task;
     }
 
     public Event() {}
