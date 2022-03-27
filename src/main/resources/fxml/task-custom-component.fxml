@@ -29,8 +29,8 @@
    </ListView>
    <MenuButton fx:id="menuButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="33.0" stylesheets="@../styling/task-component-styling.css" GridPane.columnIndex="4">
      <items>
-       <MenuItem mnemonicParsing="false" text="Edit task" />
-       <MenuItem mnemonicParsing="false" text="Delete task" />
+       <MenuItem fx:id="editTask" mnemonicParsing="false" onAction="#editTask" text="Edit task" userData="task-view" />
+       <MenuItem fx:id="deleteTask" mnemonicParsing="false" onAction="#deleteTask" text="Delete task" />
      </items>
       <graphic>
          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">

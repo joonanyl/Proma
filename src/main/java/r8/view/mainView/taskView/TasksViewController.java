@@ -91,7 +91,7 @@ public class TasksViewController {
     }
 
     @FXML
-    private void navigateNewTask(ActionEvent event) throws IOException {
+    void navigateNewTask(ActionEvent event) throws IOException {
         viewController.handleNavigation(event);
     }
 
@@ -196,6 +196,12 @@ public class TasksViewController {
         updateView();
     }
 
+    public void deleteTask(Task task){
+        allTasks.remove(task);
+        //controller.deleteTask(task);
+        updateView();
+    }
+
     private void updateView(){
         Platform.runLater(()->{
             Toggle tb = buttonGroup.getSelectedToggle();
@@ -205,7 +211,7 @@ public class TasksViewController {
                     taskListView.getItems().clear();
                     if(allTasks != null){
                         allTasks.forEach(task -> {
-                            taskListView.getItems().add(new CustomTaskComponentController(task));
+                            taskListView.getItems().add(new CustomTaskComponentController(task, this));
                         });
                         listViewMyTasks.getItems().setAll(allTasks);
                     }

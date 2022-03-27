@@ -2,8 +2,10 @@ package r8.view.mainView.taskView;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,9 +14,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import r8.controller.Controller;
 import r8.model.CombinedList;
+import r8.model.appState.AppState;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
+import r8.model.task.TaskType;
+import r8.view.IViewController;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -29,10 +36,14 @@ public class CustomTaskComponentController extends GridPane {
     private Label labelType;
     @FXML
     private MenuButton menuButton;
+    @FXML
+    private MenuItem deleteTask;
 
     private Task task;
+    private TasksViewController controller;
 
-    public CustomTaskComponentController(Task task){
+    public CustomTaskComponentController(Task task, TasksViewController controller){
+        this.controller = controller;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "/fxml/task-custom-component.fxml"));
         fxmlLoader.setRoot(this);
@@ -46,7 +57,7 @@ public class CustomTaskComponentController extends GridPane {
             this.task = task;
             labelName.setText(task.getName());
             comboBoxState.getItems().setAll(TaskState.values());
-            comboBoxState.getSelectionModel().select(task.getTaskState());
+            comboBoxState.setValue(TaskState.valueOf(task.getTaskStateString()));
             ArrayList<CombinedList> arrayList = new ArrayList<>();
             task.getTeams().forEach(team -> {
                 CombinedList t = new CombinedList(null, team);
@@ -78,5 +89,16 @@ public class CustomTaskComponentController extends GridPane {
             }
         });
 
+    }
+
+    @FXML
+    private void editTask(ActionEvent event) throws IOException{
+        AppState.getInstance().setSelectedTask(task);
+        controller.navigateNewTask(event);
+    }
+
+    @FXML
+    private void deleteTask(){
+        controller.deleteTask(this.task);
     }
 }
