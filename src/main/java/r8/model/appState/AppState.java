@@ -14,6 +14,7 @@ public enum AppState implements IAppStateMain {
 	private List<Project> projectsList;
 
 	// reference to active viewController
+	// currently needed when navigating from subviews
 	private IViewController viewController;
 
 	private Task selectedTask = null;

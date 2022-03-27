@@ -22,7 +22,7 @@ public class NavigationHandler {
         return viewLoader.getView(userData);
     }
 
-    public Pane handleMenuItemNavigation(ActionEvent event) {
+    public Pane handleMenuItemNavigation(ActionEvent event) throws IOException{
         MenuItem eventsource = (MenuItem) event.getSource();
         String userData = (String) eventsource.getUserData();
         GetView viewLoader = new GetView();

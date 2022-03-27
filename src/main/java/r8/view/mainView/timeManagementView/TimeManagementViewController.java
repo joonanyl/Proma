@@ -50,32 +50,20 @@ public class TimeManagementViewController {
 
     private String currentSubview;
 
-    private App app;
-
     @FXML
     private void initialize() throws IOException {
-        handleNavigation("tracker-view-all");
-    }
-
-    public void setMainApp(App app) {
-        this.app = app;
+        initSubview("tracker-view-all");
     }
 
     @FXML
     public void handleNavigation(ActionEvent event) throws IOException {
-        GetView viewLoader = new GetView();
-        final Node eventSource = (Node) event.getSource();
-        String userData = (String) eventSource.getUserData();
-
-        if (!userData.equals(currentSubview)) {
-            System.out.println("Clicked " + userData);
-            trackerViewPane.setCenter(viewLoader.getView(userData));
-            currentSubview = userData;
-        }
+        NavigationHandler nav = new NavigationHandler();
+        trackerViewPane.setCenter(nav.handleNavigation(event));
+        currentSubview = nav.getCurrentView();
     }
 
     @FXML
-    public void handleNavigation(String viewName) throws IOException {
+    public void initSubview(String viewName) throws IOException {
         GetView viewLoader = new GetView();
         trackerViewPane.setCenter(viewLoader.getView(viewName));
         currentSubview = viewName;

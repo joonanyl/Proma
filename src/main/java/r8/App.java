@@ -30,6 +30,7 @@ public class App extends Application
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle(displayLogin ? "Proma - Login" : "Proma - Project Manager v0.2");
             setStageSize();
 
             // pass App reference to controller to enable sceneSwitching
@@ -46,12 +47,10 @@ public class App extends Application
     }
 
     private void setStageSize() {
-        stage.setTitle("Proma - Project Manager v0.1");
         stage.setResizable(!displayLogin);
         stage.setMaximized(!displayLogin);
 
         if (displayLogin) {
-            stage.setTitle("Proma - Login");
             stage.sizeToScene();
             stage.centerOnScreen();
         }
