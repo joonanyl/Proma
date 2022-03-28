@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TaskTest {
-/*
+
     private static Task task;
     private static TaskType taskType;
     private static Project project;
@@ -200,5 +200,5 @@ class TaskTest {
         task.setTeams(teams);
         assertEquals(teams, task.getTeams(), "Tiimien (monikko) lisääminen taskille epäonnistui");
     }
-*/
+
 }

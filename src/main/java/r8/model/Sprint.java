@@ -1,14 +1,10 @@
 package r8.model;
 
-import r8.model.task.Task;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- *
+ * 
  * @author sanku
  *
  */
@@ -30,39 +26,20 @@ public class Sprint {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id")
 	private Project project;
-
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
-	@JoinTable(
-			name = "sprint_task",
-			joinColumns = @JoinColumn(name = "sprint_id"),
-			inverseJoinColumns = @JoinColumn(name = "task_id")
-	)
-	private Set<Task> tasks = new HashSet<>();
-
+	//OneToMany to Task?
+	
 	/**
 	 * Constructor
 	 * @param n Sprint's name
 	 */
-	public Sprint(String n, LocalDate sD, LocalDate eD, int projectId) {
+	public Sprint(String n, LocalDate sD, LocalDate eD, Project project) {
 		this.name = n;
 		this.startDate = sD;
 		this.endDate = eD;
+		this.project = project;
 	}
 
 	public Sprint() {}
-
-	public void addTask(Task task) {
-		tasks.add(task);
-		task.getSprints().add(this);
-	}
-
-	public void removeTask(Task task) {
-		tasks.remove(task);
-		task.getSprints().remove(this);
-	}
 
 	public int getSprintId() {
 		return sprintId;
@@ -102,14 +79,6 @@ public class Sprint {
 
 	public void setProject(Project project) {
 		this.project = project;
-	}
-
-	public Set<Task> getTasks() {
-		return tasks;
-	}
-
-	public void setTasks(Set<Task> tasks) {
-		this.tasks = tasks;
 	}
 
 	@Override

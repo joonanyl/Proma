@@ -1,7 +1,6 @@
 package r8.model.dao;
 
 
-import org.hibernate.HibernateException;
 import r8.model.Account;
 import r8.model.Project;
 
@@ -11,142 +10,86 @@ import java.util.List;
 public class ProjectDAO {
     private EntityManager entityManager;
 
-    public void persist(Project project) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(project);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+    public ProjectDAO() {
+        this.entityManager = DAO.getEntityManager();
     }
 
-    // Tekstikentistä valuet parametreihin
-    public void update(Project project) {
-        entityManager = DAOUtil.getEntityManager();
+    public void persist(Project project) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(project);
+        entityManager.getTransaction().commit();
+    }
 
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(project);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+    public void update(Project project) {
+        entityManager.getTransaction().begin();
+        entityManager.merge(project);
+        entityManager.getTransaction().commit();
     }
 
     public Project get(int projectId) {
-        entityManager = DAOUtil.getEntityManager();
+        Project project = null;
 
         try {
-            return entityManager.find(Project.class, projectId);
+            project = entityManager.getReference(Project.class, projectId);
         } catch (NullPointerException e) {
-            System.out.println("Nothing was found :(");
-            return null;
-        } finally {
-            entityManager.close();
+            e.printStackTrace();
         }
+        return project;
     }
 
     public Project getByName(String name) {
-        entityManager = DAOUtil.getEntityManager();
-
+       Project project = null;
         try {
-            return entityManager.createQuery("SELECT p FROM Project p WHERE p.name LIKE :name", Project.class)
+            project = (Project) entityManager.createQuery
+                            ("SELECT p FROM Project p WHERE p.name LIKE :name")
                     .setParameter("name", name)
                     .getSingleResult();
-        } catch (NullPointerException e) {
-            System.out.println("Nothing was found");
-            return null;
-        } finally {
-            entityManager.close();
+       } catch (NullPointerException e) {
+            e.printStackTrace();
         }
+        return project;
     }
 
     public List<Project> getByAccount(Account account) {
-        entityManager = DAOUtil.getEntityManager();
-
+        List<Project> results = null;
         try {
-            return entityManager.createQuery(
-                            "SELECT p FROM Project p join p.accounts a " +
-                                    "WHERE a.accountId = :accountId", Project.class)
+            results = entityManager.createQuery(
+                    "SELECT p FROM Project p join p.accounts a WHERE a.accountId = :accountId", Project.class)
                     .setParameter("accountId", account.getAccountId())
                     .getResultList();
         } catch (NullPointerException e) {
             e.printStackTrace();
-            return null;
-        } finally {
-            entityManager.close();
         }
+        return results;
     }
 
     public List<Project> getAll() {
-        entityManager = DAOUtil.getEntityManager();
-
+        List<Project> results = null;
         try {
-            return entityManager.createQuery("SELECT a FROM Project a", Project.class).getResultList();
+            results = entityManager.createQuery("SELECT a FROM Project a", Project.class)
+                    .getResultList();
         } catch (NullPointerException e) {
             System.out.println("No projects found.");
-            return null;
-        } finally {
-            entityManager.close();
+            e.printStackTrace();
         }
+        return results;
     }
 
     public void removeProject(Project project) {
-        entityManager = DAOUtil.getEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.contains(project) ? project : entityManager.merge(project));
+        entityManager.getTransaction().commit();
+    }
+
+    public void removeProjectById(int projectId) {
+        entityManager.getTransaction().begin();
+        Project project = null;
         try {
-            entityManager.getTransaction().begin();
+            project = entityManager.getReference(Project.class, projectId);
             entityManager.remove(entityManager.contains(project) ? project : entityManager.merge(project));
             entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public void addAccount(Account account, Project project) {
-        entityManager = DAOUtil.getEntityManager();
-        project = entityManager.contains(project) ? project : entityManager.merge(project);
-        account = entityManager.contains(account) ? account : entityManager.merge(account);
-
-        try {
-            entityManager.getTransaction().begin();
-            project.addAccount(account);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    // Removes an association between an account and project. Must be called before removing an entity.
-    public void removeAccountAssociation(Account account, Project project) {
-        entityManager = DAOUtil.getEntityManager();
-        // Checks if the entities from parameters are currently managed
-        // If not, eM will merge them so that they're managed, and will listen to changes
-        account = entityManager.contains(account) ? account : entityManager.merge(account);
-        project = entityManager.contains(project) ? project : entityManager.merge(project);
-
-        try {
-            entityManager.getTransaction().begin();
-            project.removeAccount(account);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
         }
     }
 }

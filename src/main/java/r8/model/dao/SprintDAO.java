@@ -1,9 +1,6 @@
 package r8.model.dao;
 
-import org.hibernate.HibernateException;
-import r8.model.Project;
 import r8.model.Sprint;
-import r8.model.task.Task;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -11,105 +8,40 @@ import java.util.List;
 public class SprintDAO {
     private EntityManager entityManager;
 
+    public SprintDAO() { this.entityManager = DAO.getEntityManager(); }
+
     public void persist(Sprint sprint) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(sprint);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+        entityManager.getTransaction().begin();
+        entityManager.persist(sprint);
+        entityManager.getTransaction().commit();
     }
 
     public Sprint get(int sprintId) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            return entityManager.find(Sprint.class, sprintId);
-        } catch (NullPointerException e) {
-            return null;
-        } finally {
-            entityManager.close();
-        }
+        Sprint sprint = entityManager.getReference(Sprint.class, sprintId);
+        entityManager.detach(sprint);
+        return sprint;
     }
 
-    public List<Sprint> getByProject(Project project) {
-        entityManager = DAOUtil.getEntityManager();
+    public List<Sprint> getAll() {
+        List<Sprint> results = null;
         try {
-            return entityManager.createQuery(
-                            "SELECT s FROM Sprint s WHERE s.project = :project", Sprint.class)
-                    .setParameter("project", project)
+            results = entityManager.createQuery("SELECT s FROM Sprint s", Sprint.class)
                     .getResultList();
         } catch (NullPointerException e) {
-            return null;
-        } finally {
-            entityManager.close();
+            e.printStackTrace();
         }
+        return results;
     }
 
     public void update(Sprint sprint) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(sprint);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+        entityManager.getTransaction().begin();
+        entityManager.merge(sprint);
+        entityManager.getTransaction().commit();
     }
 
     public void remove(Sprint sprint) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.remove(entityManager.contains(sprint) ? sprint : entityManager.merge(sprint));
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.contains(sprint) ? sprint : entityManager.merge(sprint));
+        entityManager.getTransaction().commit();
     }
-
-    public void addTask(Task task, Sprint sprint) {
-        entityManager = DAOUtil.getEntityManager();
-        task = entityManager.contains(task) ? task : entityManager.merge(task);
-        sprint = entityManager.contains(sprint) ? sprint : entityManager.merge(sprint);
-
-        try {
-            entityManager.getTransaction().begin();
-            sprint.addTask(task);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public void removeTaskAssociation(Task task, Sprint sprint) {
-        entityManager = DAOUtil.getEntityManager();
-        task = entityManager.contains(task) ? task : entityManager.merge(task);
-        sprint = entityManager.contains(sprint) ? sprint : entityManager.merge(sprint);
-
-        try {
-            entityManager.getTransaction().begin();
-            sprint.removeTask(task);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
-    }
-
 }

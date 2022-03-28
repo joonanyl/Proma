@@ -1,7 +1,6 @@
 package r8.model.dao;
 
 
-import org.hibernate.HibernateException;
 import r8.model.Account;
 
 import javax.persistence.EntityManager;
@@ -13,83 +12,66 @@ public class AccountDAO {
 
     private EntityManager entityManager;
 
-    public void persist(Account account) {
-        entityManager = DAOUtil.getEntityManager();
+    public AccountDAO() {
+        this.entityManager = DAO.getEntityManager();
+    }
 
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(account);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+    public void persist(Account account) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(account);
+        entityManager.getTransaction().commit();
     }
 
     public void update(Account account) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(account);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+        entityManager.getTransaction().begin();
+        entityManager.merge(account);
+        entityManager.getTransaction().commit();
 
     }
 
     public Account get(int accountId) {
-        entityManager = DAOUtil.getEntityManager();
+        Account account = null;
         try {
-            return entityManager.find(Account.class, accountId);
+            account = entityManager.getReference(Account.class, accountId);
+            // entityManager.detach(account);
         } catch (NullPointerException e) {
-            return null;
-        } finally {
-            entityManager.close();
+            System.out.println("Account wasn't found");
+            e.printStackTrace();
         }
+        return account;
     }
 
     public Account getByEmail(String email) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            return entityManager.createQuery(
-                            "SELECT a FROM Account a WHERE a.email LIKE :email", Account.class)
-                    .setParameter("email", email)
-                    .getSingleResult();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public List<Account> getAll() {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            return entityManager.createQuery(
-                            "SELECT a FROM Account a", Account.class)
-                    .getResultList();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public String getHashedPw(String email) {
-        entityManager = DAOUtil.getEntityManager();
         Account account = null;
-
         try {
             account = (Account) entityManager.createQuery(
                             "SELECT a FROM Account a WHERE a.email LIKE :email")
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NullPointerException e) {
+            System.out.println("Account wasn't found");
+            e.printStackTrace();
+        }
+        return account;
+    }
+
+    public List<Account> getAll() {
+        List<Account> results = null;
+        try {
+            results = entityManager.createQuery("SELECT a FROM Account a", Account.class)
+                    .getResultList();
+        } catch (NullPointerException e) {
+            System.out.println("No accounts found.");
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public String getHashedPw(String email) {
+        Account account = null;
+        try {
+            account = (Account) entityManager.createQuery(
+                    "SELECT a FROM Account a WHERE a.email LIKE :email")
                     .setParameter("email", email)
                     .getSingleResult();
         } catch (NullPointerException e) {
@@ -102,33 +84,21 @@ public class AccountDAO {
     }
 
     public void removeAccount(Account account) {
-        entityManager = DAOUtil.getEntityManager();
+        entityManager.getTransaction().begin();
+        // Check if removed-to-be account is detached or not
+        entityManager.remove(entityManager.contains(account) ? account : entityManager.merge(account));
+        entityManager.getTransaction().commit();
+    }
+
+    public void removeAccountById(int accountId) {
+        Account account = null;
         try {
-            entityManager.getTransaction().begin();
+            account = entityManager.getReference(Account.class, accountId);
             entityManager.remove(entityManager.contains(account) ? account : entityManager.merge(account));
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
+        } catch (NullPointerException e) {
+            System.out.println("Account not found");
             e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
         }
     }
 
-    public boolean checkIfEmailExists(String email) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            List<String> results = entityManager.createQuery(
-                            "SELECT a.email FROM Account a", String.class)
-                    .getResultList();
-            // Email is in database
-            if (results.contains(email))
-                return true;
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
-        }
-        return false;
-    }
 }
