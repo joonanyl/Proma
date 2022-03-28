@@ -5,14 +5,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
+ * 
  * @author sanku
  *
  */
 
 /*
  * kelasin et hashmap<comment, linkedlist<comment>> -mapillä pystyis ehkä tulostamaan koko puun.
- *
+ *  
  */
 @Entity
 @Table(name = "comment")
@@ -28,8 +28,7 @@ public class Comment {
 	private int taskID;
 
 	@Column(name = "parent_comment_id")
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Comment parentComment;
+	private int parentCommentID;
 
 	/**
 	 * Kommentti merkkijonona
@@ -42,8 +41,8 @@ public class Comment {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "account_id")
 	private Account account;
-
-
+	
+	
 	/**
 	 * Constructor
 	 * @param a Author
@@ -55,22 +54,15 @@ public class Comment {
 	}
 
 	public Comment() {}
-
-	/**
-	 * Muokkaa kommenttia
-	 * @param newText uusi teksti
-	 */
-	public void editText(String newText) {
-		this.content = newText;
-	}
-
+	
 	public void addReply(Comment reply) {
 		if(childComments == null)
 			this.childComments = new HashSet<Comment>();
-
+		
 		childComments.add(reply);
+		reply.setParentCommentID(this.commentId); //ehkä pois
 	}
-
+	
 	public String printChildComments() {
 		String ret;
 		if(childComments != null) {
@@ -102,12 +94,12 @@ public class Comment {
 		this.taskID = taskID;
 	}
 
-	public Comment getParentComment() {
-		return parentComment;
+	public int getParentCommentID() {
+		return parentCommentID;
 	}
 
-	public void setParentComment(Comment parentComment) {
-		this.parentComment = parentComment;
+	public void setParentCommentID(int parentCommentID) {
+		this.parentCommentID = parentCommentID;
 	}
 
 	public String getContent() {

@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
+ * 
  * @author sanku, Joona Nylander
  *
  */
@@ -44,22 +44,20 @@ public class Account {
 	private Boolean admin;
 
 	@ManyToMany(mappedBy = "accounts")
-	private Set<Project> projects;
+	private Set<Project> projects = new HashSet<>();
 
 	@ManyToMany(mappedBy = "accounts")
-	private Set<Team> teams;
+	private Set<Team> teams = new HashSet<>();
 
 	@ManyToMany(mappedBy = "accounts")
-	private Set<Task> tasks;
+	private Set<Task> tasks = new HashSet<>();
 
-	public Account(String fName, String lName, String email, String pw) {
+	public Account(String fName, String lName, String email, String password) {
 		this.firstName = fName;
 		this.lastName = lName;
 		this.email = email;
-		this.projects = new HashSet<>();
-		this.teams = new HashSet<>();
 		this.admin = false;
-		this.password = AuthService.hashPassword(pw);
+		this.password = AuthService.hashPassword(password);
 	}
 
 	public void removeFromProject(Project project) {
@@ -149,6 +147,7 @@ public class Account {
 	}
 
 	public String toString() {
-		return accountId + " " + firstName + " " + lastName;
+		return accountId + " " + firstName + " " + lastName + " " + email;
 	}
+
 }

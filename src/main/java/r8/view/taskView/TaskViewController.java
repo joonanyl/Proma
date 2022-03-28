@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import org.controlsfx.control.SearchableComboBox;
 import r8.model.Account;
+import r8.model.CombinedList;
 import r8.model.Team;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;

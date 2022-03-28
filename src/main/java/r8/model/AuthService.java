@@ -11,12 +11,15 @@ import java.security.SecureRandom;
 public class AuthService {
 
     public static String hashPassword(String originalPw) {
-        return BCrypt.hashpw(originalPw, BCrypt.gensalt(12));
+        String hashedPw = BCrypt.hashpw(originalPw, BCrypt.gensalt(12));
+        return hashedPw;
     }
 
     public static boolean authenticatePassword(String email, String userInput) {
+        //Käytä loginia db queryyn
         AccountDAO accountDAO = new AccountDAO();
         String hashedpw = accountDAO.getHashedPw(email);
-        return BCrypt.checkpw(userInput, hashedpw);
+        boolean pwCheck = BCrypt.checkpw(userInput, hashedpw);
+        return pwCheck;
     }
 }

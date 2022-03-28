@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
+ * 
  * @author sanku, Joona Nylander
  *
  */
@@ -26,23 +26,21 @@ public class Project {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE })
+	@ManyToMany
 	@JoinTable(
 			name = "project_account",
 			joinColumns = @JoinColumn(name = "project_id"),
 			inverseJoinColumns = @JoinColumn(name = "account_id"))
-	private Set<Account> accounts;
+	private Set<Account> accounts = new HashSet<>();
 
 	@Column(name = "description")
 	private String description;
 
-	@Transient
-	private ArrayList<Task> tasks;
+	@OneToMany(mappedBy = "project")
+	private List<Task> tasks = new ArrayList<>();
 
 	@OneToMany(mappedBy = "project")
-	private List<Team> teams;
+	private List<Team> teams = new ArrayList<>();
 
 	/**
 	 * Contructor
@@ -51,17 +49,36 @@ public class Project {
 	public Project(String name, String description) {
 		this.name = name;
 		this.description = description;
-		this.accounts = new HashSet<>();
 	}
 
 	public void addAccount(Account account) {
-		accounts.add(account);
+		this.accounts.add(account);
 		account.getProjects().add(this);
 	}
 
 	public void removeAccount(Account account) {
-		accounts.remove(account);
+		this.accounts.remove(account);
 		account.getProjects().remove(this);
+	}
+
+	public void addTask(Task task) {
+		this.tasks.add(task);
+		task.setProject(this);
+	}
+
+	public void removeTask(Task task) {
+		this.tasks.remove(task);
+		task.setProject(null);
+	}
+
+	public void addTeam(Team team) {
+		this.teams.add(team);
+		team.setProject(this);
+	}
+
+	public void removeProject(Team team) {
+		this.teams.remove(team);
+		team.setProject(null);
 	}
 
 	public Project() {}
@@ -98,7 +115,7 @@ public class Project {
 		this.description = description;
 	}
 
-	public ArrayList<Task> getTasks() {
+	public List<Task> getTasks() {
 		return tasks;
 	}
 
