@@ -9,8 +9,6 @@ import java.util.List;
 public class CommentDAO {
     private EntityManager entityManager;
 
-    public CommentDAO() { this.entityManager = DAOUtil.getEntityManager(); }
-
     public void persist(Comment comment) {
         entityManager = DAOUtil.getEntityManager();
         try {

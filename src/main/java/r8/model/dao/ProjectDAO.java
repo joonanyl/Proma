@@ -25,7 +25,7 @@ public class ProjectDAO {
         }
     }
 
-    // Tekstikentistä valuet parametreihin
+
     public void update(Project project) {
         entityManager = DAOUtil.getEntityManager();
 

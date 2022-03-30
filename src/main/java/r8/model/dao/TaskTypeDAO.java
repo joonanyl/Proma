@@ -1,5 +1,6 @@
 package r8.model.dao;
 
+import org.hibernate.HibernateException;
 import r8.model.task.TaskType;
 
 import javax.persistence.EntityManager;
@@ -7,31 +8,58 @@ import javax.persistence.EntityManager;
 public class TaskTypeDAO {
     private EntityManager entityManager;
 
-    public TaskTypeDAO() {
-        this.entityManager = DAOUtil.getEntityManager();
-    }
-
     public void persist(TaskType taskType) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(taskType);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(taskType);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public TaskType get(int taskTypeId) {
-        TaskType taskType = entityManager.getReference(TaskType.class, taskTypeId);
-        entityManager.detach(taskType);
-        return taskType;
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            return entityManager.find(TaskType.class, taskTypeId);
+        } catch (NullPointerException e) {
+            System.out.println("Mitään ei löytynyt.");
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
     }
 
     public void update(TaskType taskType) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(taskType);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(taskType);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public void remove(TaskType taskType) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(taskType);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(taskType);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 }
