@@ -1,5 +1,6 @@
 package r8.model.dao;
 
+import org.hibernate.HibernateException;
 import r8.model.Account;
 import r8.model.task.TaskType;
 
@@ -9,61 +10,87 @@ import java.util.List;
 public class TaskTypeDAO {
     private EntityManager entityManager;
 
-    public TaskTypeDAO() {
-        this.entityManager = DAO.getEntityManager();
-    }
-
     public void persist(TaskType taskType) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(taskType);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(taskType);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public TaskType get(int taskTypeId) {
-        TaskType taskType = null;
+        entityManager = DAOUtil.getEntityManager();
         try {
-            taskType = entityManager.getReference(TaskType.class, taskTypeId);
+            return entityManager.find(TaskType.class, taskTypeId);
         } catch (NullPointerException e) {
+            System.out.println("Mitään ei löytynyt.");
             e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
         }
-        return taskType;
     }
 
     public List<TaskType> getAll() {
-        List<TaskType> results = null;
+        entityManager = DAOUtil.getEntityManager();
         try {
-            results = entityManager.createQuery("SELECT t FROM TaskType t", TaskType.class)
+            return entityManager.createQuery("SELECT t FROM TaskType t", TaskType.class)
                     .getResultList();
         } catch (NullPointerException e) {
             System.out.println("No TaskTypes found");
-            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
         }
-        return results;
     }
 
     public TaskType getByName(String name) {
-        TaskType taskType = null;
-            try {
-                taskType = entityManager.createQuery(
-                        "SELECT tt FROM TaskType tt WHERE tt.name LIKE :name", TaskType.class)
-                        .getSingleResult();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-        return taskType;
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            return entityManager.createQuery(
+                    "SELECT tt FROM TaskType tt WHERE tt.name LIKE :name", TaskType.class)
+                    .getSingleResult();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
     }
 
 
     public void update(TaskType taskType) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(taskType);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(taskType);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public void remove(TaskType taskType) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.contains(taskType) ? taskType : entityManager.merge(taskType));
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(taskType);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 
 }

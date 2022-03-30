@@ -1,5 +1,6 @@
 package r8.model.dao;
 
+import org.hibernate.HibernateException;
 import r8.model.Comment;
 
 import javax.persistence.EntityManager;
@@ -8,52 +9,83 @@ import java.util.List;
 public class CommentDAO {
     private EntityManager entityManager;
 
-    public CommentDAO() { this.entityManager = DAO.getEntityManager(); }
-
-    public void addComment(Comment comment) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(comment);
-        entityManager.getTransaction().commit();
+    public void persist(Comment comment) {
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(comment);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public Comment get(int commentId) {
-        Comment comment = entityManager.getReference(Comment.class, commentId);
-        entityManager.detach(comment);
-        return comment;
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            return entityManager.find(Comment.class, commentId);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
     }
 
     public List<Comment> getAll() {
-        List<Comment> results = null;
+        entityManager = DAOUtil.getEntityManager();
         try {
-            results = entityManager.createQuery("SELECT c FROM Comment c", Comment.class)
+            return entityManager.createQuery("SELECT c FROM Comment c", Comment.class)
                     .getResultList();
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
         }
-        return results;
     }
 
-    public List<Comment> getByParentComment(Comment comment) {
-        List<Comment> results = null;
+    public List<Comment> getAllReplies(Comment parentComment) {
+        entityManager = DAOUtil.getEntityManager();
         try {
-            results = entityManager.createQuery(
-                    "SELECT c FROM Comment c WHERE c.parentComment = :comment", Comment.class)
+            return entityManager.createQuery(
+                            "SELECT c FROM Comment c WHERE c.parentComment = :parentComment", Comment.class)
+                    .setParameter("parentComment", parentComment)
                     .getResultList();
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
         }
-        return results;
     }
 
     public void update(Comment comment) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(comment);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(comment);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
 
     public void remove(Comment comment) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(comment);
-        entityManager.getTransaction().commit();
+        entityManager = DAOUtil.getEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(entityManager.contains(comment) ? comment : entityManager.merge(comment));
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
     }
  }

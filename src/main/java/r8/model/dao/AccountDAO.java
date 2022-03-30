@@ -13,10 +13,6 @@ public class AccountDAO {
 
     private EntityManager entityManager;
 
-    public AccountDAO() {
-        this.entityManager = DAO.getEntityManager();
-    }
-
     public void persist(Account account) {
         entityManager = DAOUtil.getEntityManager();
 

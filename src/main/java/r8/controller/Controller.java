@@ -129,7 +129,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     public void removeProject(Project project) {
-        projectDAO.removeProject(project);
+        projectDAO.remove(project);
     }
 
     public List<Project> loadProjects(Account account) {
