@@ -273,7 +273,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     public void createSprint(String name, LocalDate startDate, LocalDate endDate, Project project) {
-        Sprint sprint = new Sprint(name, startDate, endDate, project.getProjectId()); // tässä oli pelkkä project
+        Sprint sprint = new Sprint(name, startDate, endDate, project); // tässä oli pelkkä project
         sprintDAO.persist(sprint);
     }
 

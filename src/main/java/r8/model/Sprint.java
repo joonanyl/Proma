@@ -46,10 +46,11 @@ public class Sprint {
 	 * Constructor
 	 * @param n Sprint's name
 	 */
-	public Sprint(String n, LocalDate sD, LocalDate eD, int projectId) {
+	public Sprint(String n, LocalDate sD, LocalDate eD, Project project) {
 		this.name = n;
 		this.startDate = sD;
 		this.endDate = eD;
+		this.project = project;
 	}
 
 	public Sprint() {}
