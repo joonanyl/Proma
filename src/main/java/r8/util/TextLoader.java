@@ -1,9 +1,5 @@
 package r8.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -34,7 +30,7 @@ public class TextLoader {
             return;
         }
         try {
-            bundle = ResourceBundle.getBundle("TextResources", locale);
+            bundle = ResourceBundle.getBundle("lang/TextResources", locale);
         } catch (Exception e) {
             e.printStackTrace();
         }
