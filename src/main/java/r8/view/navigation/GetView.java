@@ -30,7 +30,6 @@ public class GetView {
             if (viewUrl == null) {
                 throw new java.io.FileNotFoundException(viewName + ".fxml not found");
             }
-            //FXMLLoader loader = new FXMLLoader(NavigationHandler.class.getResource((String)viewUrl));
             view = FXMLLoader.load(viewUrl);
         } catch (Exception e) {
             e.printStackTrace();

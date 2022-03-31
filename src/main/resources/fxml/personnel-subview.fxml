@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<AnchorPane prefHeight="780.0" prefWidth="870.0" stylesheets="@../styling/time-management-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.projectView.subview.PersonnelSubviewController">
+<AnchorPane prefHeight="780.0" prefWidth="870.0" stylesheets="@../styling/time-management-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.projectView.subview.PersonnelSubviewController">
     <children>
         <HBox prefHeight="780.0" prefWidth="870.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
