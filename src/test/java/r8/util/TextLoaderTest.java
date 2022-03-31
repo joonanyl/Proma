@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class TextLoaderTest {
     @BeforeAll
     static void setLocale() {
-        TextLoader.getInstance().setLocale("fi", "FI");
+        TextLoader.getInstance().setLocale("en", "US");
     }
 
     @Test
