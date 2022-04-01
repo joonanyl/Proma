@@ -90,11 +90,16 @@ public class Task {
 		this.hours = hours;
 		this.description = desc;
 		this.startDate = LocalDate.now();
+		this.teams = new HashSet<Team>();
 	}
 
 	public Task() {}
 
 	public void assignToTeam(Team team) {
+		if(team == null){
+			System.out.println("team is null");
+			return;
+		}
 		teams.add(team);
 		team.getTasks().add(this);
 	}
@@ -126,6 +131,7 @@ public class Task {
 
 	public void setTaskState(TaskState taskState) {
 		this.taskState = taskState;
+		this.taskStateString = taskState.toString();
 	}
 
 	public String getTaskStateString() {
@@ -134,6 +140,7 @@ public class Task {
 
 	public void setTaskStateString(String taskStateString) {
 		this.taskStateString = taskStateString;
+		this.taskState = TaskState.valueOf(taskStateString);
 	}
 
 	public TaskType getTaskType() {
