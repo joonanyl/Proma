@@ -1,6 +1,9 @@
 package r8.util;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
@@ -24,10 +27,18 @@ public class TextLoader {
         return TextLoader.INSTANCE;
     }
 
+    /**
+     * Alustetaan locale ja bundle
+     */
     private void initLoader() {
         if (locale == null) {
-            System.err.println("Locale object not set in TextLoader.java");
-            return;
+            Properties properties = new Properties();
+            try {
+                properties.load(new FileInputStream("src/main/resources/proma.properties"));
+                locale = new Locale(properties.getProperty("language"), properties.getProperty("country"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         try {
             bundle = ResourceBundle.getBundle("lang/TextResources", locale);
@@ -48,12 +59,23 @@ public class TextLoader {
         return bundle.getString(name);
     }
 
-    /**
+
+    /*
      * Sets the current locale object to be used for retrieving the correct resource bundle
      * @param language String for locale object constructor language parameter
      * @param country String for locale object constructor country parameter
-     */
+
     public void setLocale(String language, String country) {
         this.locale = new Locale(language, country);
+    }
+            */
+    /**
+     * palauttaa bundleobjektin, mikäli sellainen on olemassa
+     */
+    public ResourceBundle getBundle(){
+        if(bundle == null){
+            initLoader();
+        }
+        return this.bundle;
     }
 }
