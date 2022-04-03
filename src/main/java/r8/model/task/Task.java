@@ -4,9 +4,6 @@ import r8.model.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -94,14 +91,24 @@ public class Task {
 
 	public Task() {}
 
-	public void assignToTeam(Team team) {
+	public void addTeam(Team team) {
 		teams.add(team);
 		team.getTasks().add(this);
 	}
 
-	public void removeFromTeam(Team team) {
+	public void removeTeam(Team team) {
 		teams.remove(team);
 		team.getTasks().remove(this);
+	}
+
+	public void addAccount(Account account) {
+		accounts.add(account);
+		account.getTasks().add(this);
+	}
+
+	public void removeAccount(Account account) {
+		accounts.remove(account);
+		account.getTasks().remove(this);
 	}
 
 	public int getTaskId() {

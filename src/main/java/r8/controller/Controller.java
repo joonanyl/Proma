@@ -154,6 +154,14 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         return teamDAO.getByProject(project);
     }
 
+    public void addAccountToProject(Account account, Project project) {
+        projectDAO.addAccount(account, project);
+    }
+
+    public void removeAccountFromProject(Account account, Project project) {
+        projectDAO.removeAccountAssociation(account, project);
+    }
+
     public List<Team> getAllTeams() {
         return teamDAO.getAll();
     }
@@ -181,7 +189,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
             task.setAccounts((Set<Account>) accounts); // herjasi kun oli assignAccount -> onhan oikein nyt?
         }
         if (teams != null) {
-            teams.forEach(task::assignToTeam);
+            teams.forEach(task::addTeam);
         }
         taskDAO.persist(task);
     }

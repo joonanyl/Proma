@@ -19,7 +19,6 @@ public class AuthService {
         //Käytä loginia db queryyn
         AccountDAO accountDAO = new AccountDAO();
         String hashedpw = accountDAO.getHashedPw(email);
-        boolean pwCheck = BCrypt.checkpw(userInput, hashedpw);
-        return pwCheck;
+        return BCrypt.checkpw(userInput, hashedpw);
     }
 }

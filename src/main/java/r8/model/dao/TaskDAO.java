@@ -146,7 +146,7 @@ public class TaskDAO {
 
         try {
             entityManager.getTransaction().begin();
-            task.assignToTeam(team);
+            task.addTeam(team);
             entityManager.getTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -163,7 +163,7 @@ public class TaskDAO {
 
         try {
             entityManager.getTransaction().begin();
-            task.removeFromTeam(team);
+            task.removeTeam(team);
             entityManager.getTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();

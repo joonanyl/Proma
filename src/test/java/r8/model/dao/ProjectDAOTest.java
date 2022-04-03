@@ -53,8 +53,8 @@ class ProjectDAOTest {
         projectDAO.persist(project4);
 
 
-        projectDAO.removeProjectById(project3.getProjectId());
-        projectDAO.removeProjectById(project4.getProjectId());
+        projectDAO.remove(project3);
+        projectDAO.remove(project4);
 
         List<Project> list = projectDAO.getAll();
 
