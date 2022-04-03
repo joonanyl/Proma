@@ -3,7 +3,6 @@ package r8.model.dao;
 import org.junit.jupiter.api.*;
 import r8.model.Project;
 
-import java.nio.file.ProviderNotFoundException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -64,10 +63,10 @@ class ProjectDAOTest {
 
     @AfterEach
     void clearDatabase(){
-        projectDAO.removeProject(project1);
-        projectDAO.removeProject(project2);
-        projectDAO.removeProject(project3);
-        projectDAO.removeProject(project4);
+        projectDAO.remove(project1);
+        projectDAO.remove(project2);
+        projectDAO.remove(project3);
+        projectDAO.remove(project4);
         System.out.println("db cleared");
     }
 
