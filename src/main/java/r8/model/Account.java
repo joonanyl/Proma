@@ -83,6 +83,13 @@ public class Account {
 		this.projects = projects;
 	}
 
+	public void addProject(Project project){
+		this.projects.add(project);
+	}
+	public void removeProject(Project project){
+		this.projects.remove(project);
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

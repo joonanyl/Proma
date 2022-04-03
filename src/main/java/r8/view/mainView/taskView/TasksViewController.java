@@ -20,6 +20,7 @@ import r8.model.task.Task;
 import r8.view.IViewController;
 
 import javax.swing.*;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,9 +40,6 @@ public class TasksViewController {
 
     @FXML
     private Button buttonAllTasks;
-
-    @FXML
-    private ListView<Task> listViewMyTasks;
 
     @FXML
     private HBox projectNavBar;
@@ -75,14 +73,15 @@ public class TasksViewController {
     @FXML
     private ListView taskListView;
 
-
+    private TasksViewController tasksViewController = this;
     private final IControllerAccount controllerAccount = new Controller();
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        Task selectedTask = listViewMyTasks.getSelectionModel().getSelectedItem();
+        CustomTaskComponentController selectedObject = (CustomTaskComponentController) taskListView.getSelectionModel().getSelectedItem();
+        Task selectedTask = selectedObject.getTask();
         if(selectedTask == null){
             return;
         }
@@ -136,34 +135,13 @@ public class TasksViewController {
         buttonGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                if(buttonGroup.getSelectedToggle() != null){
-                    //Platform.runLater(()->{
-                        if(buttonGroup.getSelectedToggle() == btnOverview){
-                            listViewMyTasks.getItems().clear();
-                            if(allTasks != null){
-                                listViewMyTasks.getItems().setAll(allTasks);
-                            }
-                        }
-                        if(buttonGroup.getSelectedToggle() == btnPersonal){
-                            listViewMyTasks.getItems().clear();
-                            if(personalTasks != null){
-                                listViewMyTasks.getItems().setAll(personalTasks);
-                            }
-                        }
-                        if(buttonGroup.getSelectedToggle() == btnTeam){
-                            listViewMyTasks.getItems().clear();
-                            if(teamTasks != null){
-                                listViewMyTasks.getItems().setAll(teamTasks);
-                            }
-                        }
-                    //});
-                }
+                updateView();
             }
         });
     }
 
     private void listViewChangeListener(){
-        listViewMyTasks.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
+        taskListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
             @Override
             public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
                 if(newValue != null){
@@ -175,6 +153,7 @@ public class TasksViewController {
         });
     }
 
+    @Transactional
     public void retrieveTasks(){
         selectedProject = controller.getProjectById(selectedProject.getProjectId());
         allTasks = selectedProject.getTasks();
@@ -207,25 +186,27 @@ public class TasksViewController {
             Toggle tb = buttonGroup.getSelectedToggle();
             if(tb != null){
                 if(tb == btnOverview){
-                    listViewMyTasks.getItems().clear();
                     taskListView.getItems().clear();
                     if(allTasks != null){
                         allTasks.forEach(task -> {
                             taskListView.getItems().add(new CustomTaskComponentController(task, this));
                         });
-                        listViewMyTasks.getItems().setAll(allTasks);
                     }
                 }
                 if(tb == btnPersonal){
-                    listViewMyTasks.getItems().clear();
+                    taskListView.getItems().clear();
                     if(personalTasks != null){
-                        listViewMyTasks.getItems().setAll(personalTasks);
+                        personalTasks.forEach(task -> {
+                            taskListView.getItems().add(new CustomTaskComponentController(task, tasksViewController));
+                        });
                     }
                 }
                 if(tb == btnTeam){
-                    listViewMyTasks.getItems().clear();
+                    taskListView.getItems().clear();
                     if(teamTasks != null){
-                        listViewMyTasks.getItems().setAll(teamTasks);
+                        teamTasks.forEach(task -> {
+                            taskListView.getItems().add(new CustomTaskComponentController(task, tasksViewController));
+                        });
                     }
                 }
             }

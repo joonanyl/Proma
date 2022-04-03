@@ -15,9 +15,7 @@ import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class CreateTaskViewController {
 
@@ -144,9 +142,9 @@ public class CreateTaskViewController {
         }
     }
 
-    private ObservableList<Team> getTeams(){
+    private Set<Team> getTeams(){
         ObservableList<CombinedList> combinedLists = listViewAssignedTo.getItems();
-        ObservableList<Team> teams = FXCollections.observableArrayList();;
+        Set<Team> teams = new HashSet<>();
         combinedLists.forEach((item) -> {
             if(!item.checkIfAccount()){
                 teams.add(item.getTeam());
@@ -155,9 +153,9 @@ public class CreateTaskViewController {
         return teams;
     }
 
-    private ObservableList<Account> getAccounts(){
+    private Set<Account> getAccounts(){
         ObservableList<CombinedList> combinedLists = listViewAssignedTo.getItems();
-        ObservableList<Account> accounts = FXCollections.observableArrayList();;
+        Set<Account> accounts = new HashSet<>();
         combinedLists.forEach((item) -> {
             if(item.checkIfAccount()){
                 accounts.add(item.getAccount());

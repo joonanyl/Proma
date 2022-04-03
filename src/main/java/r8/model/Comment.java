@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import static javax.persistence.FetchType.LAZY;
+
 /**
  * 
  * @author sanku
@@ -27,7 +29,7 @@ public class Comment {
 	@Column(name = "task_id")
 	private int taskID;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = LAZY)
 	@JoinColumn(name = "parent_comment_id")
 	private Comment parentComment;
 
@@ -39,7 +41,7 @@ public class Comment {
 	// Kenties tämä hakisi tietokannasta kommentit, jossa parent_comment_id == comment_id
 	@Transient
 	private Set<Comment> childComments = new HashSet<>();
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = LAZY)
 	@JoinColumn(name = "account_id")
 	private Account account;
 

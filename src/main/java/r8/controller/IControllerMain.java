@@ -9,6 +9,7 @@ import r8.model.task.TaskType;
 import r8.view.IViewController;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IControllerMain {
     
@@ -28,7 +29,7 @@ public interface IControllerMain {
 
     void updateTask(Task task);
 
-    void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams, Project project);
+    void createTask(String name, TaskState ts, TaskType tt, float hours, String description, Set<Account> accounts, Set<Team> teams, Project project);
 
     void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList);
 

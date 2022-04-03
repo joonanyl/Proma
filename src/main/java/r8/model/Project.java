@@ -3,6 +3,7 @@ package r8.model;
 import r8.model.task.Task;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,7 +37,7 @@ public class Project {
 	@Column(name = "description")
 	private String description;
 
-	@OneToMany(mappedBy = "project")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
 	private List<Task> tasks = new ArrayList<>();
 
 	@OneToMany(mappedBy = "project")
@@ -53,7 +54,7 @@ public class Project {
 
 	public void addAccount(Account account) {
 		this.accounts.add(account);
-		account.getProjects().add(this);
+		account.getProjects().remove(this);
 	}
 
 	public void removeAccount(Account account) {
