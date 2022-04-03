@@ -27,8 +27,8 @@ public class Comment {
 	@Column(name = "task_id")
 	private int taskID;
 
-	@Column(name = "parent_comment_id")
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_comment_id")
 	private Comment parentComment;
 
 	/**
