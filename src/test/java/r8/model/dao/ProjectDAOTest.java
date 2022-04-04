@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProjectDAOTest {
-/*
 
     private static ProjectDAO projectDAO;
     private static Project project1, project2, project3, project4;
@@ -26,40 +25,11 @@ class ProjectDAOTest {
 
     @Test
     @Order(1)
-     void persist() {
-        projectDAO.persist(project1);
-        assertEquals(project1, projectDAO.get(project1.getProjectId()), "Projektia ei löytynyt tietokannasta (2)");
+    void persist(){
+
     }
 
-    @Test
-    @Order(2)
-    void update() {
-        projectDAO.persist(project2);
 
-        project2.setName(project1.getName());
-
-        projectDAO.update(project2);
-
-        Project result = projectDAO.get(project2.getProjectId());
-
-        assertEquals(project1.getName(), result.getName(), "Projektin nimen muuttaminen tietokannassa asti epäonnistui");
-    }
-
-    @Test
-    @Order(3)
-    void deleteProjects(){
-
-        projectDAO.persist(project3);
-        projectDAO.persist(project4);
-
-
-        projectDAO.removeProjectById(project3.getProjectId());
-        projectDAO.removeProjectById(project4.getProjectId());
-
-        List<Project> list = projectDAO.getAll();
-
-        assertEquals(0, list.size(), "Projektien poistaminen epäonnistui");
-    }
 
     @AfterEach
     void clearDatabase(){
@@ -69,6 +39,5 @@ class ProjectDAOTest {
         projectDAO.remove(project4);
         System.out.println("db cleared");
     }
-*/
 
 }

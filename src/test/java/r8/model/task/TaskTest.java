@@ -63,16 +63,6 @@ class TaskTest {
         assertTrue(task.getAccounts().contains(account), "Käyttäjätilin lisääminen taskin listaan epäonnistui");
     }
 
-
-    @Test
-    @Disabled
-    @Order(4)
-    void removeAccount() {
-       // task.removeAccount(account);
-       // assertFalse(account.getTasks().contains(task), "Taskin poistaminen käyttäjätililtä epäonnistui");
-       // assertFalse(task.getAccounts().contains(account), "Käyttäjätilin poistaminen taskin listalta epäonnistui ");
-    }
-
     @Test
     @Order(5)
     void getName() {
