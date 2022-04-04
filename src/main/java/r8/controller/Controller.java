@@ -172,12 +172,16 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         team.setProject(projectDAO.get(projectId));
     }
 
-    public void remove(Team team) { // herjasi on kuli removeTeam -> onhan oikein nyt ?
+    public void removeTeam(Team team) { // herjasi on kuli removeTeam -> onhan oikein nyt ?
         teamDAO.remove(team);
     }
 
-    public List<Team> loadTeamsByProject(Project project) {
-        return teamDAO.getByProject(project);
+    public void addAccountToTeam(Account account, Team team) {
+        teamDAO.addAccount(account, team);
+    }
+
+    public void removeAccountFromTeam(Account account, Team team) {
+        teamDAO.removeAccountAssociation(account, team);
     }
 
     public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams, Project project) {
@@ -228,6 +232,22 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
 
     public void removeTask(Task task) {
         taskDAO.remove(task);
+    }
+
+    public void assignAccountToTask(Account account, Task task) {
+        taskDAO.assignToAccount(account, task);
+    }
+
+    public void removeAccountFromTask(Account account, Task task) {
+        taskDAO.removeAccountAssociation(account, task);
+    }
+
+    public void assignTeamToTask(Team team, Task task) {
+        taskDAO.assignToTeam(team, task);
+    }
+
+    public void removeTeamFromTask(Team team, Task task) {
+        taskDAO.removeTeamAssociation(team, task);
     }
 
     public void createTaskType(String name) {
@@ -301,6 +321,14 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
 
     public void removeSprint(Sprint sprint) {
         sprintDAO.remove(sprint);
+    }
+
+    public void addTaskToSprint(Task task, Sprint sprint) {
+        sprintDAO.addTask(task, sprint);
+    }
+
+    public void removeTaskFromSprint(Task task, Sprint sprint) {
+        sprintDAO.removeTaskAssociation(task, sprint);
     }
 
     public void updateTask(Task task) {
