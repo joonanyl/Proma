@@ -28,11 +28,17 @@
     -fx-border-width: 5px;
 }
 
-
-#container-dashboard
+#container-background
 {
     -fx-background-color: EAEAEA;
-    -fx-background-radius: 5;
+}
+
+#container-element
+{
+    -fx-background-color: F6F6F6;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-color: #CDCDCD;
 }
 
 #button-quick-access
@@ -43,4 +49,8 @@
 #button-quick-access:hover
 {
     -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.59), 10, 0.5, 0.0, 0.0);
+}
+
+.list-view {
+    -fx-background-color: transparent;
 }

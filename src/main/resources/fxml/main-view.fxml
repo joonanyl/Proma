@@ -31,7 +31,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Dashboard" textFill="#ddd8d8" userData="dashboard-view">
+            <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Dashboard" textFill="#ddd8d8" userData="dashboard-view2">
                <padding>
                   <Insets left="20.0" />
                </padding>
