@@ -40,6 +40,8 @@ public class MainViewController implements IViewController {
     private final BreadcrumbObject initialView = new BreadcrumbObject("dashboard-view", "Dashboard");
     private final BreadcrumbBar breadcrumbBar = new BreadcrumbBar();
 
+    private NavigationHandler nav = new NavigationHandler();
+
     // used to prevent loading current view repeatedly
     // TODO must change when top bar nav is used
     private String currentView;
@@ -49,27 +51,26 @@ public class MainViewController implements IViewController {
     }
 
     // reference to active view controller currently in AppState.
-    // method is called by left nav bar and subviews
+    // method is called by left nav bar buttons
     @FXML
     public void handleNavigation(ActionEvent event) throws IOException {
-        NavigationHandler nav = new NavigationHandler();
         mainViewPane.setCenter(nav.handleNavigation(event));
-        addBreadcrumb(event);
+        createBreadcrumb(event);
+        clearBreadCrumbs();
+        currentView = breadcrumbBar.getCurrentView();
     }
 
     // Topbar dropdown menuItem navigation
     @FXML
     private void handleMenuItemNavigation(ActionEvent event) throws IOException {
-        NavigationHandler nav = new NavigationHandler();
         mainViewPane.setCenter(nav.handleMenuItemNavigation(event));
-        this.currentView = nav.getCurrentView();
         clearBreadCrumbs();
-        addMenuBreadcrumb(event);
+        createMenuBreadcrumb(event);
     }
 
-    @FXML
-    private void backToLoginScene(){
-        app.switchScene();
+    // called by subview controllers navigate()
+    public void handleSubviewNavigation(ActionEvent event) throws IOException {
+        mainViewPane.setCenter(nav.handleNavigation(event));
     }
 
     // Update UI while running
@@ -80,39 +81,42 @@ public class MainViewController implements IViewController {
             }
         });
     }
-
     // loads initial subview based on BreadcrumbObject received as parameter
+
     private void initSubview(BreadcrumbObject bcObj) {
-        addBreadcrumb(initialView);
+        createBreadcrumb(initialView);
         GetView viewLoader = new GetView();
         view = viewLoader.getView(bcObj.getButtonInfo()[0]);
         mainViewPane.setCenter(view);
     }
-
-    private void addBreadcrumb(ActionEvent event) {
+    private void createBreadcrumb(ActionEvent event) {
         final Node eventSource = (Node) event.getSource();
         if (!Objects.equals(eventSource.getUserData(), breadcrumbBar.getCurrentView())){
-            clearBreadCrumbs();
             hBoxBreadcrumb.getChildren().addAll(breadcrumbBar.add(event));
         }
     }
 
-    private void addBreadcrumb(BreadcrumbObject bcObj) {
+    private void createBreadcrumb(BreadcrumbObject bcObj) {
         hBoxBreadcrumb.getChildren().addAll(breadcrumbBar.add(bcObj));
     }
 
-    private void addMenuBreadcrumb (ActionEvent event) {
+    private void createMenuBreadcrumb(ActionEvent event) {
         MenuItem eventSource = (MenuItem) event.getSource();
         if (!Objects.equals(eventSource.getUserData(), breadcrumbBar.getCurrentView())) {
-            clearBreadCrumbs();
             hBoxBreadcrumb.getChildren().addAll(breadcrumbBar.addMenu(event));
         }
     }
 
     // called by left and top navbars
+
     private void clearBreadCrumbs() {
         hBoxBreadcrumb.getChildren().clear();
         breadcrumbBar.clear();
+    }
+
+    @FXML
+    private void backToLoginScene(){
+        app.switchScene();
     }
 
     public App getApp() {

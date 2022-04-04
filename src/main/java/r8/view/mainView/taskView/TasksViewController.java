@@ -79,12 +79,12 @@ public class TasksViewController {
             return;
         }
         AppState.getInstance().setSelectedTask(selectedTask);
-        viewController.handleNavigation(event);
+        viewController.handleSubviewNavigation(event);
     }
 
     @FXML
     private void navigateNewTask(ActionEvent event) throws IOException {
-        viewController.handleNavigation(event);
+        viewController.handleSubviewNavigation(event);
     }
 
     @FXML

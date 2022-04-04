@@ -31,6 +31,9 @@ public class LoginViewController implements IViewController {
         mainViewPane.setCenter(nav.handleNavigation(event));
     }
 
+    @Override
+    public void handleSubviewNavigation(ActionEvent event)  {}
+
     private void setInitialView() {
         GetView viewLoader = new GetView();
         Pane view = viewLoader.getView(initialView);

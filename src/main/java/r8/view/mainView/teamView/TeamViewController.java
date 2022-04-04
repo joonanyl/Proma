@@ -13,6 +13,6 @@ public class TeamViewController {
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        viewController.handleNavigation(event);
+        viewController.handleSubviewNavigation(event);
     }
 }

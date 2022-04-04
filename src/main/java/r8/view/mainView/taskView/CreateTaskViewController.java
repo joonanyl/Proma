@@ -68,7 +68,6 @@ public class CreateTaskViewController {
 
         TextFieldValidator textFieldValidator = new TextFieldValidator();
         textFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
-
     }
 
     // TODO does not accept all names, needs testing

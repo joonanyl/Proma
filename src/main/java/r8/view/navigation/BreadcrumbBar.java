@@ -14,11 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//TODO add history
+//Stores breadcrumb hBox contents info
+// TODO add history
 public class BreadcrumbBar {
 
-    private List<BreadcrumbObject> breadcrumbs = new ArrayList<>();
     private ObservableList<Button> breadcrumbButtons = FXCollections.observableArrayList();
+    private List<BreadcrumbObject> breadcrumbs = new ArrayList<>();
 
     private String currentView;
 
@@ -30,7 +31,9 @@ public class BreadcrumbBar {
             bcButton.setUserData(buttonInfo[0]);
 
             bcButton.setOnAction(event -> {
+                Node eventSource = (Node) event.getSource();
                 try {
+                    if(!Objects.equals(eventSource.getUserData(), currentView))
                     AppState.getInstance().getViewController().handleNavigation(event);
                 } catch (IOException e) {
                     e.printStackTrace();
