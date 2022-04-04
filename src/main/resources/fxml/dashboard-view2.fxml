@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="container-background" prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/dashboard-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.dashboardView.DashboardViewController">
+   <children>
+      <HBox alignment="CENTER_LEFT" layoutY="-6.0" prefHeight="80.0" prefWidth="700.0" AnchorPane.topAnchor="-6.0">
+         <children>
+            <Label fx:id="labelUserName">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="32.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="labelWelcome" text=", Welcome to Proma!">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="544.0" prefHeight="80.0" prefWidth="300.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
+         <children>
+            <VBox alignment="TOP_RIGHT" prefHeight="80.0">
+               <children>
+                  <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="Label">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets right="35.0" top="35.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </HBox>
+      <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="841.0" prefWidth="1670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+         <children>
+            <VBox prefHeight="800.0" prefWidth="500.0">
+               <HBox.margin>
+                  <Insets bottom="25.0" left="55.0" right="25.0" top="25.0" />
+               </HBox.margin>
+               <children>
+                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="510.0" prefWidth="500.0">
+                     <children>
+                        <HBox minWidth="100.0" prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <Label minWidth="50.0" text="Quick Access" textFill="#757171">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="189.0" minHeight="40.0" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
+                           <children>
+                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="Time Management" textFill="#1461c6" underline="true" userData="time-management-view2">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="289.0" minHeight="40.0" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
+                           <children>
+                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="OTP1-project" textFill="#1461c6" underline="true" userData="tasks-view">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="389.0" minHeight="40.0" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
+                           <children>
+                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="Create Project" textFill="#1461c6" underline="true" userData="create-project-view">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="189.0" minHeight="40.0" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
+                           <children>
+                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="Create Task" textFill="#1461c6" underline="true" userData="create-task-view">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="255.0" prefWidth="500.0">
+                     <children>
+                        <HBox prefHeight="40.0" prefWidth="255.0">
+                           <children>
+                              <HBox minHeight="20.0" minWidth="50.0" prefHeight="30.0" prefWidth="310.0">
+                                 <children>
+                                    <Label minWidth="50.0" text="Active Tracking" textFill="#757171">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="8.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_RIGHT" minHeight="20.0" minWidth="50.0" prefHeight="40.0" prefWidth="300.0">
+                                 <children>
+                                    <Label text="detach tracker" textFill="#757171">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="8.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox minHeight="40.0" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="285.0">
+                                 <children>
+                                    <Label text="Select active task">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox id="combo-active-tracking" fx:id="cBoxActiveTrackingTasks" minHeight="20.0" minWidth="50.0" prefHeight="30.0" prefWidth="220.0">
+                                       <VBox.margin>
+                                          <Insets left="25.0" top="5.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="86.0" prefWidth="176.0">
+                                 <children>
+                                    <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="Start Tracking" textFill="#f8f6f6" userData="management-view">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="40.0" prefWidth="100.0">
+                           <children>
+                              <Line endX="124.5" startX="-233.5" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="0.1">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </VBox.margin></Line>
+                              <Label text="or" textFill="#757171">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <HBox minHeight="40.0" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="87.0" prefWidth="285.0">
+                                 <children>
+                                    <Label text="Create new trackee">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField minHeight="20.0" minWidth="50.0" prefHeight="30.0" prefWidth="122.0">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="25.0" top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="87.0" prefWidth="175.0">
+                                 <children>
+                                    <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="Create Trackee" textFill="#f8f6f6">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox id="container-element" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="500.0">
+               <HBox.margin>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </HBox.margin>
+               <children>
+                  <HBox minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="498.0">
+                     <children>
+                        <Label minWidth="50.0" text="Personal Time Management" textFill="#757171">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="8.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="665.0" prefWidth="498.0">
+                     <children>
+                        <ListView minHeight="50.0" minWidth="100.0" prefHeight="560.0" prefWidth="498.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" minHeight="40.0" minWidth="100.0" prefHeight="100.0" prefWidth="500.0">
+                     <children>
+                        <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="213.0" text="Go To Time Management" textFill="#f8f6f6" userData="management-view">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="25.0" top="25.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox layoutX="110.0" layoutY="10.0" minHeight="50.0" minWidth="100.0" prefHeight="800.0" prefWidth="460.0">
+               <HBox.margin>
+                  <Insets bottom="25.0" left="25.0" right="50.0" top="25.0" />
+               </HBox.margin>
+               <children>
+                  <VBox id="container-element" prefHeight="400.0" prefWidth="100.0">
+                     <children>
+                        <HBox minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="498.0">
+                           <children>
+                              <Label text="Notifications" textFill="#757171">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ListView minHeight="50.0" minWidth="100.0" prefHeight="198.0" prefWidth="498.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                  </VBox>
+                  <VBox id="container-element" prefHeight="365.0" prefWidth="460.0">
+                     <children>
+                        <HBox minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="498.0">
+                           <children>
+                              <Label text="New in Proma" textFill="#757171">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="8.0" top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ListView minHeight="50.0" minWidth="100.0" prefHeight="198.0" prefWidth="498.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
