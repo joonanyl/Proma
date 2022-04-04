@@ -71,7 +71,7 @@ public class TasksViewController {
     @FXML
     private Label labelTaskState;
     @FXML
-    private ListView taskListView;
+    private ListView<CustomTaskComponentController> taskListView;
 
     private TasksViewController tasksViewController = this;
     private final IControllerAccount controllerAccount = new Controller();
@@ -141,13 +141,13 @@ public class TasksViewController {
     }
 
     private void listViewChangeListener(){
-        taskListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
+        taskListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<CustomTaskComponentController>() {
             @Override
-            public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
+            public void changed(ObservableValue<? extends CustomTaskComponentController> observable, CustomTaskComponentController oldValue, CustomTaskComponentController newValue) {
                 if(newValue != null){
-                    labelProjectInfo.setText(newValue.getProject().getName());
-                    labelTaskType.setText(newValue.getTaskType().toString());
-                    labelTaskState.setText(newValue.getTaskStateString());
+                    labelProjectInfo.setText(newValue.getTask().getProject().getName());
+                    labelTaskType.setText(newValue.getTask().getTaskType().toString());
+                    labelTaskState.setText(newValue.getTask().getTaskStateString());
                 }
             }
         });

@@ -157,4 +157,24 @@ public class Account {
 		return accountId + " " + firstName + " " + lastName + " " + email;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		Account account;
+		try{
+			account = (Account) o;
+		}catch (ClassCastException e){
+			return false;
+		}
+		if(account == null) return false;
+		if(this.accountId == account.accountId) return true;
+		else{
+			if(account.toString() == this.toString()) return true;
+			else return false;
+		}
+	}
+
+	@Override
+	public int hashCode(){
+		return accountId;
+	}
 }
