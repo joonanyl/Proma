@@ -11,6 +11,7 @@ import r8.view.IViewController;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public class Controller implements IControllerLogin, IControllerMain, IControllerAccount {
     private AccountDAO accountDAO;
@@ -129,7 +130,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     public void removeProject(Project project) {
-        projectDAO.removeProject(project);
+        projectDAO.remove(project);
     }
 
     public List<Project> loadProjects(Account account) {
@@ -153,6 +154,14 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         return teamDAO.getByProject(project);
     }
 
+    public void addAccountToProject(Account account, Project project) {
+        projectDAO.addAccount(account, project);
+    }
+
+    public void removeAccountFromProject(Account account, Project project) {
+        projectDAO.removeAccountAssociation(account, project);
+    }
+
     public List<Team> getAllTeams() {
         return teamDAO.getAll();
     }
@@ -163,22 +172,28 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         team.setProject(projectDAO.get(projectId));
     }
 
-    public void removeTeam(Team team) {
-        teamDAO.removeTeam(team);
+    public void removeTeam(Team team) { // herjasi on kuli removeTeam -> onhan oikein nyt ?
+        teamDAO.remove(team);
     }
 
-    public List<Team> loadTeamsByProject(Project project) {
-        return teamDAO.getByProject(project);
+    public void addAccountToTeam(Account account, Team team) {
+        teamDAO.addAccount(account, team);
+    }
+
+    public void removeAccountFromTeam(Account account, Team team) {
+        teamDAO.removeAccountAssociation(account, team);
     }
 
     public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams, Project project) {
         Task task = new Task(name, ts, tt, hours, description);
         task.setProject(project);
+
         if (accounts != null) {
-            accounts.forEach(task::assignAccount);
+           // accounts.forEach(task::setAccounts);
+            task.setAccounts((Set<Account>) accounts); // herjasi kun oli assignAccount -> onhan oikein nyt?
         }
         if (teams != null) {
-            teams.forEach(task::assignToTeam);
+            teams.forEach(task::addTeam);
         }
         taskDAO.persist(task);
     }
@@ -217,6 +232,22 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
 
     public void removeTask(Task task) {
         taskDAO.remove(task);
+    }
+
+    public void assignAccountToTask(Account account, Task task) {
+        taskDAO.assignToAccount(account, task);
+    }
+
+    public void removeAccountFromTask(Account account, Task task) {
+        taskDAO.removeAccountAssociation(account, task);
+    }
+
+    public void assignTeamToTask(Team team, Task task) {
+        taskDAO.assignToTeam(team, task);
+    }
+
+    public void removeTeamFromTask(Team team, Task task) {
+        taskDAO.removeTeamAssociation(team, task);
     }
 
     public void createTaskType(String name) {
@@ -270,7 +301,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     public void createSprint(String name, LocalDate startDate, LocalDate endDate, Project project) {
-        Sprint sprint = new Sprint(name, startDate, endDate, project);
+        Sprint sprint = new Sprint(name, startDate, endDate, project); // tässä oli pelkkä project
         sprintDAO.persist(sprint);
     }
 
@@ -290,6 +321,14 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
 
     public void removeSprint(Sprint sprint) {
         sprintDAO.remove(sprint);
+    }
+
+    public void addTaskToSprint(Task task, Sprint sprint) {
+        sprintDAO.addTask(task, sprint);
+    }
+
+    public void removeTaskFromSprint(Task task, Sprint sprint) {
+        sprintDAO.removeTaskAssociation(task, sprint);
     }
 
     public void updateTask(Task task) {

@@ -27,7 +27,8 @@ public class Comment {
 	@Column(name = "task_id")
 	private int taskID;
 
-	@Transient
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_comment_id")
 	private Comment parentComment;
 
 	/**
@@ -41,8 +42,8 @@ public class Comment {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "account_id")
 	private Account account;
-	
-	
+
+
 	/**
 	 * Constructor
 	 * @param a Author
@@ -54,7 +55,7 @@ public class Comment {
 	}
 
 	public Comment() {}
-	
+
 	/**
 	 * Muokkaa kommenttia
 	 * @param newText uusi teksti
@@ -62,14 +63,14 @@ public class Comment {
 	public void editText(String newText) {
 		this.content = newText;
 	}
-	
+
 	public void addReply(Comment reply) {
 		if(childComments == null)
 			this.childComments = new HashSet<Comment>();
-		
+
 		childComments.add(reply);
 	}
-	
+
 	public String printChildComments() {
 		String ret;
 		if(childComments != null) {

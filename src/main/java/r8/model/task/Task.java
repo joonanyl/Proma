@@ -4,9 +4,6 @@ import r8.model.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -51,22 +48,27 @@ public class Task {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 
-	@ManyToMany
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
 	@JoinTable(
 			name = "account_task",
 			joinColumns = @JoinColumn(name = "task_id"),
 			inverseJoinColumns = @JoinColumn(name = "account_id"))
 	private Set<Account> accounts;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "sprint_id")
-	private Sprint sprint;
+	@ManyToMany(mappedBy = "tasks")
+	private Set<Sprint> sprints;
 
 	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private Project project;
 
-	@ManyToMany
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
 	@JoinTable(
 			name = "task_team",
 			joinColumns = @JoinColumn(name = "task_id"),
@@ -85,23 +87,21 @@ public class Task {
 		this.hours = hours;
 		this.description = desc;
 		this.startDate = LocalDate.now();
-		this.teams = new HashSet<Team>();	//sanna lisäs
-		this.accounts = new HashSet<Account>();	//sanna lisäs
 	}
 
 	public Task() {}
 
-	public void assignToTeam(Team team) {
+	public void addTeam(Team team) {
 		teams.add(team);
 		team.getTasks().add(this);
 	}
 
-	public void removeFromTeam(Team team) {
+	public void removeTeam(Team team) {
 		teams.remove(team);
 		team.getTasks().remove(this);
 	}
 
-	public void assignAccount(Account account) {
+	public void addAccount(Account account) {
 		accounts.add(account);
 		account.getTasks().add(this);
 	}
@@ -128,28 +128,19 @@ public class Task {
 	}
 
 	public TaskState getTaskState() {
-		return this.taskState;
+		return taskState;
 	}
 
-	public void setTaskState(TaskState newTaskState) {
-		this.taskState = newTaskState;
-		setTaskStateString(newTaskState.toString());
+	public void setTaskState(TaskState taskState) {
+		this.taskState = taskState;
 	}
 
 	public String getTaskStateString() {
 		return taskStateString;
 	}
 
-	public void setTaskStateString(String newTaskStateString) {
-		for(TaskState t : TaskState.values()){
-			if(newTaskStateString == t.toString()){
-				this.taskStateString = newTaskStateString;
-				this.taskState = t;
-				break;
-			}
-		}
-		System.out.println("TaskState changed to " + this.taskState);
-
+	public void setTaskStateString(String taskStateString) {
+		this.taskStateString = taskStateString;
 	}
 
 	public TaskType getTaskType() {
@@ -200,12 +191,12 @@ public class Task {
 		this.accounts = accounts;
 	}
 
-	public Sprint getSprint() {
-		return sprint;
+	public Set<Sprint> getSprints() {
+		return sprints;
 	}
 
-	public void setSprint(Sprint sprint) {
-		this.sprint = sprint;
+	public void setSprints(Set<Sprint> sprints) {
+		this.sprints = sprints;
 	}
 
 	public Project getProject() {
