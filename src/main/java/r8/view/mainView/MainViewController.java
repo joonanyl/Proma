@@ -9,15 +9,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import r8.App;
-import r8.view.IViewController;
 import r8.view.navigation.BreadcrumbBar;
 import r8.view.navigation.BreadcrumbObject;
 import r8.view.navigation.GetView;
 import r8.view.navigation.NavigationHandler;
+import r8.view.IViewController;
+import r8.App;
 import java.io.IOException;
 import java.util.Objects;
-
 
 // TODO refactor methods
 public class MainViewController implements IViewController {
@@ -82,13 +81,13 @@ public class MainViewController implements IViewController {
         });
     }
     // loads initial subview based on BreadcrumbObject received as parameter
-
     private void initSubview(BreadcrumbObject bcObj) {
         createBreadcrumb(initialView);
         GetView viewLoader = new GetView();
         view = viewLoader.getView(bcObj.getButtonInfo()[0]);
         mainViewPane.setCenter(view);
     }
+
     private void createBreadcrumb(ActionEvent event) {
         final Node eventSource = (Node) event.getSource();
         if (!Objects.equals(eventSource.getUserData(), breadcrumbBar.getCurrentView())){
@@ -108,7 +107,6 @@ public class MainViewController implements IViewController {
     }
 
     // called by left and top navbars
-
     private void clearBreadCrumbs() {
         hBoxBreadcrumb.getChildren().clear();
         breadcrumbBar.clear();
