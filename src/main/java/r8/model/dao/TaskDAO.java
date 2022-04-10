@@ -172,4 +172,38 @@ public class TaskDAO {
             entityManager.close();
         }
     }
+
+    public void assignToAccount(Account account, Task task) {
+        entityManager = DAOUtil.getEntityManager();
+        task = entityManager.contains(task) ? task : entityManager.merge(task);
+        task = entityManager.contains(task) ? task : entityManager.merge(task);
+
+        try {
+            entityManager.getTransaction().begin();
+            task.addAccount(account);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public void removeAccountAssociation(Account account, Task task) {
+        entityManager = DAOUtil.getEntityManager();
+        account = entityManager.contains(account) ? account : entityManager.merge(account);
+        task = entityManager.contains(task) ? task : entityManager.merge(task);
+
+        try {
+            entityManager.getTransaction().begin();
+            task.removeAccount(account);
+            entityManager.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().rollback();
+        } finally {
+            entityManager.close();
+        }
+    }
 }
