@@ -7,7 +7,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * A class for retrieving String objects used for localization from text resource files.
+ * Luokka lokalisaatioon liittyviä operaatioita varten.
  */
 public class TextLoader {
     private static TextLoader INSTANCE;
@@ -17,8 +17,8 @@ public class TextLoader {
     private TextLoader() {}
 
     /**
-     * Gets the TextLoader instance
-     * @return Instance of TextLoader
+     * Palauttaa TextLoader instanssin
+     * @return TextLoader
      */
     public static TextLoader getInstance() {
         if (TextLoader.INSTANCE == null) {
@@ -48,9 +48,9 @@ public class TextLoader {
     }
 
     /**
-     * Retrieves the resource specified by String name that should point to a key in a properties file
-     * @param name is the key to a property
-     * @return String associated with the property key
+     * Palauttaa resurssin annetulla avaimella.
+     * @param name Resurssin nimi
+     * @return String objekti
      */
     public String getResource(String name) {
         if (bundle == null) {
@@ -59,16 +59,6 @@ public class TextLoader {
         return bundle.getString(name);
     }
 
-
-    /*
-     * Sets the current locale object to be used for retrieving the correct resource bundle
-     * @param language String for locale object constructor language parameter
-     * @param country String for locale object constructor country parameter
-
-    public void setLocale(String language, String country) {
-        this.locale = new Locale(language, country);
-    }
-            */
     /**
      * palauttaa bundleobjektin, mikäli sellainen on olemassa
      */
