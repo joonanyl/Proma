@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="container-background" prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/dashboard-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.dashboardView.DashboardViewController">
+<AnchorPane prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/dashboard-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.dashboardView.DashboardViewController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutY="-6.0" prefHeight="80.0" prefWidth="700.0" AnchorPane.topAnchor="-6.0">
          <children>
@@ -55,7 +55,7 @@
          </children>
       </HBox>
       <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <HBox layoutX="10.0" layoutY="10.0" prefHeight="841.0" prefWidth="1670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="841.0" prefWidth="1670.0" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
          <children>
             <VBox prefHeight="800.0" prefWidth="500.0">
                <HBox.margin>

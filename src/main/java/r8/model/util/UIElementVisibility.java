@@ -10,7 +10,7 @@ public class UIElementVisibility {
     }
 
     public void toggleAdminVisibility(Pane pane, boolean admin) {
-        if(admin) { pane.setVisible(true); pane.setManaged(true); };
-        if(!admin) { pane.setVisible(false); pane.setManaged(false); };
+        if(admin) { pane.setVisible(true); pane.setManaged(true); }
+        if(!admin) { pane.setVisible(false); pane.setManaged(false); }
     }
 }
