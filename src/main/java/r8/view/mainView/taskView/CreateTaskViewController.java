@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
@@ -11,11 +12,15 @@ import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
+import r8.model.util.UIElementVisibility;
 
 import java.util.List;
 import java.util.Optional;
 
 public class CreateTaskViewController {
+
+    @FXML
+    private VBox assignTaskVbox = new VBox();
 
     @FXML
     private SearchableComboBox<Account> comboBoxUser;
@@ -54,16 +59,20 @@ public class CreateTaskViewController {
     private TextField createTaskTypeField;
 
     private final IControllerMain controller = new Controller();
+    private final UIElementVisibility visibility = new UIElementVisibility();
 
     public void initialize(){
+
         comboBoxTeam.getItems().addAll(controller.getAllTeams());
 
         // TODO refactor getting account
         projectComboBox.getItems().addAll(controller.loadProjects(AppState.getInstance().getLoggedAccount()));
 
         List<Account> accountList = controller.getAllAccounts();
+        Account loggedAccount = AppState.getInstance().getLoggedAccount();
         comboBoxUser.getItems().addAll(accountList);
 
+        visibility.toggleAdminVisibility(assignTaskVbox, loggedAccount.getAdmin());
         updateTaskTypes();
 
         TextFieldValidator textFieldValidator = new TextFieldValidator();
