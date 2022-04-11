@@ -63,12 +63,12 @@ public class App extends Application
     }
 
     private void setStageSize() {
-        stage.setTitle("Proma - Project Manager v0.1");
+        stage.setTitle(TextLoader.getInstance().getResource("appTitle"));
         stage.setResizable(!displayLogin);
         stage.setMaximized(!displayLogin);
 
         if (displayLogin) {
-            stage.setTitle("Proma - Login");
+            stage.setTitle(TextLoader.getInstance().getResource("loginTitle"));
             stage.sizeToScene();
             stage.centerOnScreen();
         }
