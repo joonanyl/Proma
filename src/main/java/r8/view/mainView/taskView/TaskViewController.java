@@ -8,10 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import org.controlsfx.control.SearchableComboBox;
+import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.CombinedList;
+import r8.model.Comment;
 import r8.model.Team;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
@@ -47,6 +49,9 @@ public class TaskViewController {
 
     @FXML
     private SearchableComboBox<CombinedList> assignNewComboBox;
+
+    @FXML
+    private TextArea commentText;
 
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
@@ -158,5 +163,14 @@ public class TaskViewController {
         this.selectedTask.setAccounts(getAssignedAccounts());
         this.selectedTask.setTeams(getAssignedTeams());
         controller.updateTask(this.selectedTask);
+    }
+
+    @FXML
+    private void postComment(){
+        if(commentText.getText() != null){
+            Comment comment = new Comment(AppState.getInstance().getLoggedAccount(), commentText.getText());
+            //TODO save comment to database;
+        }
+
     }
 }
