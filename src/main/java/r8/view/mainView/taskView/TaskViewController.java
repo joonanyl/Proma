@@ -53,6 +53,9 @@ public class TaskViewController {
     @FXML
     private TextArea commentText;
 
+    @FXML
+    private ListView<Comment> commentList;
+
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
@@ -88,6 +91,7 @@ public class TaskViewController {
                 labelCreatedBy.setText("Created by: " + accountsSet.iterator().next().toString());
             }
             textAreaDescription.setText(selectedTask.getDescription());
+            retrieveComments();
         }
     }
 
@@ -168,9 +172,20 @@ public class TaskViewController {
     @FXML
     private void postComment(){
         if(commentText.getText() != null){
-            Comment comment = new Comment(AppState.getInstance().getLoggedAccount(), commentText.getText());
-            //TODO save comment to database;
+            Comment comment = new Comment(AppState.getInstance().getLoggedAccount(), commentText.getText(), this.selectedTask.getTaskId());
+            controller.createComment(comment);
+            commentText.clear();
+            retrieveComments();
         }
+    }
 
+    @FXML
+    private void retrieveComments(){
+        List<Comment> comments = controller.getComments(this.selectedTask);
+        if(comments != null){
+            commentList.getItems().setAll(controller.getComments(this.selectedTask));
+        }
+        System.out.println("Comments retrieved");
+        System.out.println(comments);
     }
 }

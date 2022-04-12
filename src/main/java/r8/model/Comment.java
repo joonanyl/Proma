@@ -51,9 +51,10 @@ public class Comment {
 	 * @param a Author
 	 * @param content Comment's text
 	 */
-	public Comment(Account a, String content) {
+	public Comment(Account a, String content, int taskID) {
 		this.account = a;
 		this.content = content;
+		this.taskID = taskID;
 	}
 
 	public Comment() {}

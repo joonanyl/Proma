@@ -38,4 +38,8 @@ public interface IControllerMain {
     List<Project> getProjects();
 
     List<Sprint> getAllSprints();
+
+    void createComment(Comment comment);
+
+    List<Comment> getComments(Task task);
 }
