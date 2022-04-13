@@ -1,25 +1,33 @@
 package r8.model;
 
-import java.util.List;
-
-public class CombinedList {
+/**
+ * An object containing either an account or a team object
+ */
+public class CombinedObject {
     private Account account;
     private Team team;
+    //true if account, false if team
+    private boolean accountCheck;
 
-    public CombinedList(Account account, Team team){
+    public CombinedObject(Account account){
         this.account = account;
+        this.team = null;
+        accountCheck = true;
+    }
+
+    public CombinedObject(Team team){
         this.team = team;
+        this.account = null;
+        accountCheck = false;
     }
 
     public boolean checkIfAccount(){
-        if(team == null){
-            return true;
-        }else return false;
+        return accountCheck;
     }
 
     @Override
     public String toString(){
-        if(account == null){
+        if(!accountCheck){
             return team.toString();
         }else return account.toString();
     }

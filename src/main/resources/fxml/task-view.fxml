@@ -143,7 +143,7 @@
                               <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                            </HBox.margin>
                            <children>
-                              <TextArea fx:id="commentText" prefHeight="200.0" prefWidth="400.0" />
+                              <TextArea fx:id="commentText" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: transparent transparent gray transparent; -fx-background-insets: 0;" />
                               <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                 <buttons>
                                     <Button fx:id="postComment" mnemonicParsing="false" onAction="#postComment" text="Send" />
