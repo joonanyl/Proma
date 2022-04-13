@@ -135,7 +135,7 @@ public class TaskViewController {
         Set<Account> accounts = new HashSet<Account>();
         ObservableList<CombinedObject> assigned = assignedToList.getItems();
         assigned.forEach((item) -> {
-            if(item.checkIfAccount()){
+            if(item.isAccount()){
                 accounts.add(item.getAccount());
             }
         });
@@ -146,7 +146,7 @@ public class TaskViewController {
         Set<Team> teams = new HashSet<Team>();
         ObservableList<CombinedObject> assigned = assignedToList.getItems();
         assigned.forEach((item) -> {
-            if(!item.checkIfAccount()){
+            if(!item.isAccount()){
                 teams.add(item.getTeam());
             }
         });

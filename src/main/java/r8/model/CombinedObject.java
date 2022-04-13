@@ -4,18 +4,16 @@ package r8.model;
  * An object containing either an account or a team object
  */
 public class CombinedObject {
-    private Account account;
-    private Team team;
+    private final Object object;
     //true if account, false if team
-    private boolean accountCheck;
+    private final boolean accountCheck;
 
     /**
      * Create a combined object containing an account object
      * @param account
      */
     public CombinedObject(Account account){
-        this.account = account;
-        this.team = null;
+        this.object = account;
         accountCheck = true;
     }
 
@@ -24,8 +22,7 @@ public class CombinedObject {
      * @param team
      */
     public CombinedObject(Team team){
-        this.team = team;
-        this.account = null;
+        this.object = team;
         accountCheck = false;
     }
 
@@ -33,23 +30,37 @@ public class CombinedObject {
      *
      * @return returns true if combinedObject is an account, false if it is a team
      */
-    public boolean checkIfAccount(){
+    public boolean isAccount(){
         return accountCheck;
     }
 
     @Override
     public String toString(){
-        if(!accountCheck){
-            return team.toString();
-        }else return account.toString();
+        return object.toString();
     }
 
+    /**
+     *
+     * @return returns an account if this object is an account, null if it's not.
+     */
     public Account getAccount(){
-        return account;
+        try {
+            return (Account) object;
+        }catch (ClassCastException ignore){
+            return null;
+        }
     }
 
+    /**
+     *
+     * @return returns a team object if this object is a team, null if it's not
+     */
     public Team getTeam(){
-        return team;
+        try {
+            return (Team) object;
+        }catch (ClassCastException ignore){
+            return null;
+        }
     }
 
 }

@@ -5,6 +5,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 
+/**
+ * Used to apply validation styling Change listeners to text input controls.
+ */
 public class TextFieldValidator {
     /**
      * Used to Change border color on a TextField based on given regex
