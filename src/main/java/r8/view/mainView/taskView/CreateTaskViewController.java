@@ -64,8 +64,7 @@ public class CreateTaskViewController {
 
         updateTaskTypes();
 
-        TextFieldValidator textFieldValidator = new TextFieldValidator();
-        textFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
+        TextFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
 
     }
 

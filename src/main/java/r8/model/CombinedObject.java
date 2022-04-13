@@ -9,18 +9,30 @@ public class CombinedObject {
     //true if account, false if team
     private boolean accountCheck;
 
+    /**
+     * Create a combined object containing an account object
+     * @param account
+     */
     public CombinedObject(Account account){
         this.account = account;
         this.team = null;
         accountCheck = true;
     }
 
+    /**
+     * Create a combined object containing a team object
+     * @param team
+     */
     public CombinedObject(Team team){
         this.team = team;
         this.account = null;
         accountCheck = false;
     }
 
+    /**
+     *
+     * @return returns true if combinedObject is an account, false if it is a team
+     */
     public boolean checkIfAccount(){
         return accountCheck;
     }
