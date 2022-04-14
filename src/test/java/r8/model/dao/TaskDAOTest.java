@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TaskDAOTest {
-/*
+
     private static Task task;
     private static TaskDAO taskDAO;
     private static TaskType taskType;
@@ -18,71 +18,39 @@ class TaskDAOTest {
     private static ProjectDAO projectDAO;
     private static TaskTypeDAO taskTypeDAO;
 
+
     @BeforeAll
     static void setUpBeforeTesting() {
-        taskDAO = new TaskDAO();
-        projectDAO = new ProjectDAO();
         project = new Project("project", "desc");
         taskType = new TaskType("tasktype x");
+        taskDAO = new TaskDAO();
+        projectDAO = new ProjectDAO();
+        taskTypeDAO = new TaskTypeDAO();
+        taskTypeDAO.persist(taskType);
+        projectDAO.persist(project);
         task = new Task("task", TaskState.NOT_STARTED, taskType, 3, "desc");
         task.setProject(project);
-        taskTypeDAO = new TaskTypeDAO();
+        System.out.println("project id: " + project.getProjectId());
     }
 
     @Test
     @Order(1)
     void persist() {
-        taskTypeDAO.persist(taskType);
-        projectDAO.persist(project);
+//        countInDB = taskDAO.getAll().size();
         taskDAO.persist(task);
-    }
-
-    @Test
-    @Order(2)
-    void get() {
-        assertEquals(task, taskDAO.get(task.getTaskId()), "Taskin hakeminen tietokannasta epäonnistui");
-    }
-    @Disabled
-    @Test
-    void getAll() {
-
-    }
-    @Disabled
-    @Test
-    void getByTeam() {
-
-    }
-    @Disabled
-    @Test
-    void getByProject() {
-
-    }
-    @Disabled
-    @Test
-    void getByAccount() {
-
-    }
-    @Disabled
-    @Test
-    void getByTaskType() {
-
-    }
-    @Disabled
-    @Test
-    void update() {
-
-    }
-    @Disabled
-    @Test
-    void remove() {
+        assertEquals(task.getName(), taskDAO.get(task.getTaskId()).getName(), "Tietokannasta haettu taskname ei täsmää");
 
     }
 
     @AfterAll
     static void clearDatabase(){
-        taskTypeDAO.remove(taskType);
-        taskDAO.remove(task);
-        projectDAO.removeProject(project);
+        projectDAO.remove(project);
+//        taskTypeDAO.remove(taskType);
 
-    } */
+
+        taskDAO.remove(task);
+
+
+        System.out.println("db cleared");
+    }
 }

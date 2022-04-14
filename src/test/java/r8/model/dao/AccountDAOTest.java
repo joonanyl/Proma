@@ -14,12 +14,14 @@ class AccountDAOTest {
 
     private static AccountDAO accountDAO;
     private static Account account1, account2;
+    private static int countInDB;
 
     @BeforeAll
     static void setUpBeforeTesting() {
         accountDAO = new AccountDAO();
         account1 = new Account("etunimi", "sukunimi", "email", "pwd");
         account2 = new Account("etunimi2", "sukunimi2", "email2", "pwd2");
+        countInDB = accountDAO.getAll().size();
     }
 
     @Test
@@ -27,7 +29,7 @@ class AccountDAOTest {
     void persist(){
         accountDAO.persist(account1);
         assertEquals(account1.getFirstName(), accountDAO.get(account1.getAccountId()).getFirstName(), "Ei toimi");
-        assertNotEquals(0, accountDAO.getAll().size(), "Tietokanta accountien kannalta tyhjä");
+        assertNotEquals(countInDB, accountDAO.getAll().size(), "Käyttäjätili ei suurella todennäköisyydellä päätynyt tietokantaan");
     }
 
     @Test
@@ -82,6 +84,7 @@ class AccountDAOTest {
         accountDAO.removeAccount(account1);
         accountDAO.removeAccount(account2);
 
+        assertEquals(countInDB, accountDAO.getAll().size(), "Testissä käytetyt käyttäjätilit eivät suurella todennäköisyydellä poistuneet tietokannasta");
         assertFalse(accountDAO.checkIfEmailExists(account1.getEmail()), "Account1 poisto taisi epäonnistua");
         assertFalse(accountDAO.checkIfEmailExists(account2.getEmail()), "Account2 poisto taisi epäonnistua");
 
