@@ -125,7 +125,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     //TEAMS tähän myös, päivitä samalla AppState?
-    public void updateProject(Project project, String name, String description, List<Team> teams) {
+    public void updateProject(Project project, String name, String description, Set<Team> teams) {
         project.setName(name);
         project.setDescription(description);
         project.setTeams(teams);
