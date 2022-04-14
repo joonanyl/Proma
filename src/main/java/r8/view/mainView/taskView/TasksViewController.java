@@ -20,10 +20,7 @@ import r8.view.IViewController;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class TasksViewController {
 
@@ -95,16 +92,16 @@ public class TasksViewController {
     @FXML
     private Project selectedProject;
     @FXML
-    private List<Task> allTasks;
+    private Set<Task> allTasks;
     @FXML
-    private List<Task> personalTasks;
+    private Set<Task> personalTasks;
     @FXML
-    private List<Task> teamTasks;
+    private Set<Task> teamTasks;
 
     @FXML
     public void initialize(){
-        personalTasks = new ArrayList<>();
-        teamTasks = new ArrayList<>();
+        personalTasks = new HashSet<>();
+        teamTasks = new HashSet<>();
         buttonGroup = new ToggleGroup();
         btnOverview.setToggleGroup(buttonGroup);
         btnPersonal.setToggleGroup(buttonGroup);

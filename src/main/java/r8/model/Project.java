@@ -1,5 +1,6 @@
 package r8.model;
 
+import org.hibernate.annotations.Cascade;
 import r8.model.task.Task;
 
 import javax.persistence.*;
@@ -36,11 +37,12 @@ public class Project {
 	@Column(name = "description")
 	private String description;
 
-	@OneToMany(mappedBy = "project")
-	private List<Task> tasks = new ArrayList<>();
-
-	@OneToMany(mappedBy = "project")
-	private List<Team> teams = new ArrayList<>();
+	// Removing a project removes all tasks it
+	@OneToMany(mappedBy = "project", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	private Set<Task> tasks = new HashSet<>();
+	// Removing a project removes also all teams under
+	@OneToMany(mappedBy = "project", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	private Set<Team> teams = new HashSet<>();
 
 	/**
 	 * Contructor
@@ -115,19 +117,19 @@ public class Project {
 		this.description = description;
 	}
 
-	public List<Task> getTasks() {
+	public Set<Task> getTasks() {
 		return tasks;
 	}
 
-	public List<Team> getTeams() {
+	public Set<Team> getTeams() {
 		return teams;
 	}
 
-	public void setTeams(List<Team> teams) {
+	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
 	}
 
-	public void setTasks(ArrayList<Task> tasks) {
+	public void setTasks(Set<Task> tasks) {
 		this.tasks = tasks;
 	}
 

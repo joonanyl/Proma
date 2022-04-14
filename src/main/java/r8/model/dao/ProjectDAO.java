@@ -4,6 +4,7 @@ package r8.model.dao;
 import org.hibernate.HibernateException;
 import r8.model.Account;
 import r8.model.Project;
+import r8.model.task.Task;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -102,6 +103,12 @@ public class ProjectDAO {
         entityManager = DAOUtil.getEntityManager();
         try {
             entityManager.getTransaction().begin();
+            if (project.getTasks() != null) {
+                System.out.println(project.getTasks());
+                for (Task t : project.getTasks()) {
+                    t.setProject(null);
+                }
+            }
             entityManager.remove(entityManager.contains(project) ? project : entityManager.merge(project));
             entityManager.getTransaction().commit();
         } catch (HibernateException e) {
