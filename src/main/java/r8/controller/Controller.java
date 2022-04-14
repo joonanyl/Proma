@@ -348,4 +348,14 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     public void setActiveViewController(IViewController viewController) {
         AppState.getInstance().setViewController(viewController);
     }
+
+    @Override
+    public void createComment(Comment comment){
+        commentDAO.persist(comment);
+    }
+
+    @Override
+    public List<Comment> getComments(Task task){
+        return commentDAO.getComments(task);
+    }
 }

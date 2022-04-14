@@ -5,22 +5,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
-import r8.controller.Controller;
-import r8.model.CombinedList;
+import r8.model.CombinedObject;
 import r8.model.appState.AppState;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
-import r8.model.task.TaskType;
-import r8.view.IViewController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,13 +49,13 @@ public class CustomTaskComponentController extends GridPane {
             labelName.setText(task.getName());
             comboBoxState.getItems().setAll(TaskState.values());
             comboBoxState.setValue(TaskState.valueOf(task.getTaskStateString()));
-            ArrayList<CombinedList> arrayList = new ArrayList<>();
+            ArrayList<CombinedObject> arrayList = new ArrayList<>();
             task.getTeams().forEach(team -> {
-                CombinedList t = new CombinedList(null, team);
+                CombinedObject t = new CombinedObject(team);
                 arrayList.add(t);
             });
             task.getAccounts().forEach(account -> {
-                CombinedList a = new CombinedList(account, null);
+                CombinedObject a = new CombinedObject(account);
                 arrayList.add(a);
             });
             if(arrayList.size() == 0){

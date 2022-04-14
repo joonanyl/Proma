@@ -1,7 +1,5 @@
 package r8.view.mainView.taskView;
 
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,8 +8,6 @@ import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.*;
 import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
-import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 
@@ -44,7 +40,7 @@ public class CreateTaskViewController {
     private Button btnAssignUser;
 
     @FXML
-    private ListView<CombinedList> listViewAssignedTo;
+    private ListView<CombinedObject> listViewAssignedTo;
 
     @FXML
     private Button btnRemoveAssigned;
@@ -68,8 +64,7 @@ public class CreateTaskViewController {
 
         updateTaskTypes();
 
-        TextFieldValidator textFieldValidator = new TextFieldValidator();
-        textFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
+        TextFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
 
     }
 
@@ -124,8 +119,8 @@ public class CreateTaskViewController {
     private void AssignUser(){
         Account account = comboBoxUser.getSelectionModel().getSelectedItem();
         if(account != null){
-            if(!listViewAssignedTo.getItems().contains(new CombinedList(account, null))){
-                listViewAssignedTo.getItems().add(new CombinedList(account, null));
+            if(!listViewAssignedTo.getItems().contains(new CombinedObject(account))){
+                listViewAssignedTo.getItems().add(new CombinedObject(account));
             }
             comboBoxUser.getSelectionModel().clearSelection();
         }
@@ -135,18 +130,18 @@ public class CreateTaskViewController {
     private void AssignTeam(){
         Team team = comboBoxTeam.getSelectionModel().getSelectedItem();
         if(team != null){
-            if(!listViewAssignedTo.getItems().contains(new CombinedList(null, team))){
-                listViewAssignedTo.getItems().add(new CombinedList(null, team));
+            if(!listViewAssignedTo.getItems().contains(new CombinedObject(team))){
+                listViewAssignedTo.getItems().add(new CombinedObject(team));
             }
             comboBoxTeam.getSelectionModel().clearSelection();
         }
     }
 
     private Set<Team> getTeams(){
-        ObservableList<CombinedList> combinedLists = listViewAssignedTo.getItems();
+        ObservableList<CombinedObject> combinedObjects = listViewAssignedTo.getItems();
         Set<Team> teams = new HashSet<>();
-        combinedLists.forEach((item) -> {
-            if(!item.checkIfAccount()){
+        combinedObjects.forEach((item) -> {
+            if(!item.isAccount()){
                 teams.add(item.getTeam());
             }
         });
@@ -154,10 +149,10 @@ public class CreateTaskViewController {
     }
 
     private Set<Account> getAccounts(){
-        ObservableList<CombinedList> combinedLists = listViewAssignedTo.getItems();
+        ObservableList<CombinedObject> combinedObjects = listViewAssignedTo.getItems();
         Set<Account> accounts = new HashSet<>();
-        combinedLists.forEach((item) -> {
-            if(item.checkIfAccount()){
+        combinedObjects.forEach((item) -> {
+            if(item.isAccount()){
                 accounts.add(item.getAccount());
             }
         });
@@ -166,7 +161,7 @@ public class CreateTaskViewController {
 
     @FXML
     private void removeAssigned(){
-        CombinedList picked = listViewAssignedTo.getSelectionModel().getSelectedItem();
+        CombinedObject picked = listViewAssignedTo.getSelectionModel().getSelectedItem();
         if(picked != null){
             listViewAssignedTo.getItems().remove(picked);
         }

@@ -157,6 +157,9 @@ public class Account {
 		return accountId + " " + firstName + " " + lastName + " " + email;
 	}
 
+	/*
+
+	 */
 	@Override
 	public boolean equals(Object o) {
 		Account account;
