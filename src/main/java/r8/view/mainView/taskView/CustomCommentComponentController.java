@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import r8.model.Account;
 import r8.model.Comment;
@@ -31,6 +34,7 @@ public class CustomCommentComponentController extends GridPane {
 
     private Button showReplies = new Button();
     private ListView<CustomCommentComponentController> replies = new ListView<CustomCommentComponentController>();
+    private VBox repliesContainer = new VBox();
     private Comment comment;
 
     public CustomCommentComponentController(Comment comment, TaskViewController controller) {
@@ -64,9 +68,13 @@ public class CustomCommentComponentController extends GridPane {
                 Set<Comment> temp = comment.getChildComments();
                 temp.forEach(reply ->{
                     replies.getItems().add(new CustomCommentComponentController(reply, controller));
+                    repliesContainer.getChildren().add(new CustomCommentComponentController(reply, controller));
                 });
-                replies.getItems().add(new CustomCommentComponentController(new Comment(AppState.getInstance().getAccount(), "This is a test", 123), controller));
-                gridPane.add(replies, 0 , 3);
+                repliesContainer.getChildren().add(new CustomCommentComponentController(new Comment(AppState.getInstance().getAccount(), "This is a test", 123), controller));
+                for(Node child : repliesContainer.getChildren()){
+                    VBox.setVgrow(child, Priority.ALWAYS);
+                }
+                gridPane.add(repliesContainer, 0 , 3);
             }
         });
     }

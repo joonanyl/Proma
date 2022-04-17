@@ -3,10 +3,13 @@ package r8.view.mainView.taskView;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
@@ -53,7 +56,7 @@ public class TaskViewController {
     private TextArea commentText;
 
     @FXML
-    private ListView<CustomCommentComponentController> commentList;
+    private VBox commentList;
 
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
@@ -179,12 +182,16 @@ public class TaskViewController {
     }
 
     private void retrieveComments(){
+        commentList.getChildren().clear();
         List<Comment> comments = controller.getComments(this.selectedTask);
         if(comments != null){
             List<Comment> list = controller.getComments(this.selectedTask);
             list.forEach(comment -> {
-                commentList.getItems().add(new CustomCommentComponentController(comment, this));
+                commentList.getChildren().add(new CustomCommentComponentController(comment, this));
             });
+            for(Node child : commentList.getChildren()){
+                VBox.setVgrow(child, Priority.ALWAYS);
+            }
         }
     }
 }

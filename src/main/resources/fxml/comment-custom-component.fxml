@@ -31,10 +31,10 @@
          </GridPane.margin></Text>
    </children>
    <rowConstraints>
-      <RowConstraints />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints vgrow="ALWAYS"/>
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints vgrow="ALWAYS"/>
    </rowConstraints>
    <columnConstraints>
       <ColumnConstraints />
