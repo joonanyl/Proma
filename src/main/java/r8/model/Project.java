@@ -38,9 +38,9 @@ public class Project {
 	private String description;
 
 	// Removing a project removes all tasks it
-	@OneToMany(mappedBy = "project", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Task> tasks = new HashSet<>();
-	// Removing a project removes also all teams under
+	// Removing a project removes all teams under
 	@OneToMany(mappedBy = "project", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	private Set<Team> teams = new HashSet<>();
 

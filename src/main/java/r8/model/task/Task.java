@@ -48,6 +48,7 @@ public class Task {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 
+	//TODO: Tsekkaa miten toimii poisto!!
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE

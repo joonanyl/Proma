@@ -28,10 +28,11 @@ public class Event {
     private LocalDate date;
     @Column(name = "hours")
     private float hours;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
-    @OneToOne(fetch = FetchType.LAZY)
+
+    @OneToOne
     @JoinColumn(name = "task_id")
     private Task task;
 
