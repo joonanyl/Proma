@@ -53,7 +53,7 @@ public class TaskViewController {
     private TextArea commentText;
 
     @FXML
-    private ListView<Comment> commentList;
+    private ListView<CustomCommentComponentController> commentList;
 
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
@@ -181,7 +181,10 @@ public class TaskViewController {
     private void retrieveComments(){
         List<Comment> comments = controller.getComments(this.selectedTask);
         if(comments != null){
-            commentList.getItems().setAll(controller.getComments(this.selectedTask));
+            List<Comment> list = controller.getComments(this.selectedTask);
+            list.forEach(comment -> {
+                commentList.getItems().add(new CustomCommentComponentController(comment, this));
+            });
         }
     }
 }
