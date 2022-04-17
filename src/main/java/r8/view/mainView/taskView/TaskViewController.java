@@ -171,7 +171,7 @@ public class TaskViewController {
     @FXML
     private void postComment(){
         if(commentText.getText() != null){
-            Comment comment = new Comment(AppState.getInstance().getLoggedAccount(), commentText.getText(), this.selectedTask.getTaskId());
+            Comment comment = new Comment(this.selectedTask, AppState.getInstance().getLoggedAccount(), commentText.getText());
             controller.createComment(comment);
             commentText.clear();
             retrieveComments();

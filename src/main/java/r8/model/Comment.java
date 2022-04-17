@@ -49,14 +49,14 @@ public class Comment {
 	private Account account;
 
 	// Main-kommentin konstruktori
-	public Comment(Task task, String content, Account account) {
+	public Comment(Task task, Account account, String content) {
 		this.task = task;
 		this.content = content;
 		this.account = account;
 	}
 
 	// Replyn konstruktori
-	public Comment(Comment parentComment, String content, Account account) {
+	public Comment(Comment parentComment, Account account, String content) {
 		this.parentComment = parentComment;
 		this.task = parentComment.getTask();
 		this.content = content;
