@@ -104,20 +104,6 @@ public class ProjectDAO {
         entityManager = DAOUtil.getEntityManager();
         try {
             entityManager.getTransaction().begin();
-            if (project.getTasks() != null) {
-                System.out.println(project.getTasks());
-                for (Task t : project.getTasks()) {
-                    t.setProject(null);
-                }
-            }
-
-            if (project.getTeams() != null) {
-                System.out.println(project.getTeams());
-                for (Team t : project.getTeams()) {
-                    t.setProject(null);
-                }
-            }
-
             entityManager.remove(entityManager.contains(project) ? project : entityManager.merge(project));
             entityManager.getTransaction().commit();
         } catch (HibernateException e) {
