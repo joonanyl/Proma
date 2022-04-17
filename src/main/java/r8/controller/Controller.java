@@ -9,6 +9,7 @@ import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 import r8.view.IViewController;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -87,12 +88,14 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
 
     public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
         Project project = new Project(name, description);
-        if (accountList != null) {
-            accountList.forEach(project::addAccount);
-        }
-        project.addAccount(accountDAO.get(AppState.getInstance().getLoggedAccount().getAccountId()));
         // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
         projectDAO.persist(project);
+        addAccountToProject(AppState.getInstance().getLoggedAccount(), project);
+        if (accountList != null) {
+            accountList.forEach(account -> {
+                addAccountToProject(account, project);
+            });
+        }
         if (teamList != null) {
             teamList.forEach((item) -> {
                 createTeam(item, project);
@@ -184,16 +187,16 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         teamDAO.removeAccountAssociation(account, team);
     }
 
-    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams, Project project) {
+    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, Set<Account> accounts, Set<Team> teams, Project project) {
         Task task = new Task(name, ts, tt, hours, description);
         task.setProject(project);
 
         if (accounts != null) {
            // accounts.forEach(task::setAccounts);
-            task.setAccounts((Set<Account>) accounts); // herjasi kun oli assignAccount -> onhan oikein nyt?
+            task.setAccounts(accounts); // herjasi kun oli assignAccount -> onhan oikein nyt?
         }
         if (teams != null) {
-            teams.forEach(task::addTeam);
+            task.setTeams(teams);
         }
         taskDAO.persist(task);
     }
@@ -344,5 +347,15 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     @Override
     public void setActiveViewController(IViewController viewController) {
         AppState.getInstance().setViewController(viewController);
+    }
+
+    @Override
+    public void createComment(Comment comment){
+        commentDAO.persist(comment);
+    }
+
+    @Override
+    public List<Comment> getComments(Task task){
+        return commentDAO.getComments(task);
     }
 }

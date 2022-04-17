@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 import r8.model.task.Task;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -55,7 +56,7 @@ public class Project {
 
 	public void addAccount(Account account) {
 		this.accounts.add(account);
-		account.getProjects().add(this);
+		account.getProjects().remove(this);
 	}
 
 	public void removeAccount(Account account) {

@@ -32,7 +32,7 @@ public class Task {
 	@Column(name = "state")
 	private String taskStateString;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "task_type_id")
 	private TaskType taskType;
 
@@ -48,9 +48,9 @@ public class Task {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 
-	//TODO: Tsekkaa miten toimii poisto!!
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
+	@ManyToMany(
+			fetch = FetchType.EAGER,
+			cascade = {
 			CascadeType.MERGE
 	})
 	@JoinTable(
@@ -66,8 +66,9 @@ public class Task {
 	@JoinColumn(name = "project_id")
 	private Project project;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
+	@ManyToMany(
+			fetch = FetchType.EAGER,
+			cascade = {
 			CascadeType.MERGE
 	})
 	@JoinTable(
