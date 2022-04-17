@@ -6,7 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import r8.App;
+import r8.model.util.UIElementVisibility;
 import r8.view.navigation.BreadcrumbObject;
 import r8.view.navigation.GetView;
 import r8.view.navigation.NavigationHandler;
@@ -48,11 +50,25 @@ public class TimeManagementViewController {
     @FXML
     private TextField textNewEventName;*/
 
+    @FXML
+    private Button btnAddNewEvent;
+
+    @FXML
+    private VBox vBoxEntry = new VBox();
+
+    @FXML
+    private VBox vBoxEvent = new VBox();
+
+    @FXML
+    private VBox vBoxToggle = new VBox();
+
     private String currentSubview;
+    private UIElementVisibility visibility = new UIElementVisibility();
 
     @FXML
     private void initialize() throws IOException {
         initSubview("tracker-view-all");
+        visibility.toggleOff(vBoxToggle);
     }
 
     @FXML
@@ -67,6 +83,11 @@ public class TimeManagementViewController {
         GetView viewLoader = new GetView();
         trackerViewPane.setCenter(viewLoader.getView(viewName));
         currentSubview = viewName;
+    }
+
+    @FXML
+    public void toggleNewEvent() {
+        visibility.toggleVisibility(vBoxToggle);
     }
 
     //include data for task dropdown

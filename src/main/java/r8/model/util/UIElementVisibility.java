@@ -4,6 +4,11 @@ import javafx.scene.layout.Pane;
 
 public class UIElementVisibility {
 
+    public void toggleOff(Pane pane) {
+        pane.setVisible(false);
+        pane.setManaged(false);
+    }
+
     public void toggleVisibility(Pane pane) {
         pane.setVisible(!pane.isVisible());
         pane.setManaged(!pane.isManaged());
