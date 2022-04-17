@@ -9,6 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import r8.model.util.UIElementVisibility;
 import r8.view.navigation.BreadcrumbBar;
 import r8.view.navigation.BreadcrumbObject;
 import r8.view.navigation.GetView;
@@ -33,6 +34,12 @@ public class MainViewController implements IViewController {
     private Pane view;
 
     @FXML
+    private HBox hBoxQuicknav;
+
+    @FXML
+    private BorderPane quicknavContent;
+
+    @FXML
     private HBox hBoxBreadcrumb;
 
     @FXML
@@ -40,13 +47,16 @@ public class MainViewController implements IViewController {
     private final BreadcrumbBar breadcrumbBar = new BreadcrumbBar();
 
     private NavigationHandler nav = new NavigationHandler();
+    private UIElementVisibility visibility = new UIElementVisibility();
 
     // used to prevent loading current view repeatedly
     // TODO must change when top bar nav is used
     private String currentView;
 
     public void initialize() {
+
         initSubview(initialView);
+        visibility.toggleOff(hBoxQuicknav);
     }
 
     // reference to active view controller currently in AppState.
@@ -70,6 +80,11 @@ public class MainViewController implements IViewController {
     // called by subview controllers navigate()
     public void handleSubviewNavigation(ActionEvent event) throws IOException {
         mainViewPane.setCenter(nav.handleNavigation(event));
+    }
+
+    @FXML
+    private void toggleQuicknav() {
+        visibility.toggleVisibility(hBoxQuicknav);
     }
 
     // Update UI while running

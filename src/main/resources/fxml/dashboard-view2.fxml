@@ -59,10 +59,10 @@
          <children>
             <VBox prefHeight="800.0" prefWidth="500.0">
                <HBox.margin>
-                  <Insets bottom="25.0" left="55.0" right="25.0" top="25.0" />
+                  <Insets bottom="25.0" left="25.0" top="25.0" />
                </HBox.margin>
                <children>
-                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="510.0" prefWidth="500.0">
+                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="500.0" prefWidth="500.0">
                      <children>
                         <HBox minWidth="100.0" prefHeight="40.0" prefWidth="200.0">
                            <children>
@@ -71,7 +71,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="8.0" top="5.0" />
+                                    <Insets left="15.0" top="8.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
@@ -126,7 +126,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="255.0" prefWidth="500.0">
+                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="300.0" prefWidth="500.0">
                      <children>
                         <HBox prefHeight="40.0" prefWidth="255.0">
                            <children>
@@ -137,7 +137,7 @@
                                           <Font name="System Bold" size="17.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="8.0" top="5.0" />
+                                          <Insets left="15.0" top="8.0" />
                                        </HBox.margin>
                                     </Label>
                                  </children>
@@ -244,7 +244,7 @@
             </VBox>
             <VBox id="container-element" layoutX="10.0" layoutY="10.0" prefHeight="800.0" prefWidth="500.0">
                <HBox.margin>
-                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                  <Insets bottom="25.0" left="25.0" top="25.0" />
                </HBox.margin>
                <children>
                   <HBox minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="498.0">
@@ -254,7 +254,7 @@
                               <Font name="System Bold" size="17.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="8.0" top="5.0" />
+                              <Insets left="15.0" top="8.0" />
                            </HBox.margin>
                         </Label>
                      </children>
@@ -296,7 +296,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="8.0" top="5.0" />
+                                    <Insets left="15.0" top="8.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
@@ -317,7 +317,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="8.0" top="5.0" />
+                                    <Insets left="15.0" top="8.0" />
                                  </HBox.margin>
                               </Label>
                            </children>
