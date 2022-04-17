@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -31,11 +32,12 @@ public class CustomCommentComponentController extends GridPane {
     @FXML
     private GridPane gridPane;
 
-
-    private Button showReplies = new Button();
+    //TODO change button names to support localization
+    private Button showReplies = new Button("Show replies...");
+    private Button hideReplies = new Button("Hide replies...");
     private ListView<CustomCommentComponentController> replies = new ListView<CustomCommentComponentController>();
     private VBox repliesContainer = new VBox();
-    private Comment comment;
+    private final Comment comment;
 
     public CustomCommentComponentController(Comment comment, TaskViewController controller) {
         this.controller = controller;
@@ -53,13 +55,14 @@ public class CustomCommentComponentController extends GridPane {
             authorLabel.setText(comment.getAccount().getFirstName() + " " + comment.getAccount().getLastName());
             contentField.wrappingWidthProperty().bind(gridPane.widthProperty());
             contentField.setText(comment.getContent());
-            showReplies.setText("Show replies");
+            GridPane.setMargin(showReplies, new Insets(0,0,0,25));
+            GridPane.setMargin(hideReplies, new Insets(0,0,0,25));
             gridPane.add(showReplies,0, 3);
-            addShowRepliesListener();
+            setListeners();
         }
     }
 
-    private void addShowRepliesListener(){
+    private void setListeners(){
         showReplies.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -68,13 +71,22 @@ public class CustomCommentComponentController extends GridPane {
                 Set<Comment> temp = comment.getChildComments();
                 temp.forEach(reply ->{
                     replies.getItems().add(new CustomCommentComponentController(reply, controller));
-                    repliesContainer.getChildren().add(new CustomCommentComponentController(reply, controller));
+                    repliesContainer.getChildren().add(new CommentReplyComponentController(reply, controller));
                 });
-                repliesContainer.getChildren().add(new CustomCommentComponentController(new Comment(AppState.getInstance().getAccount(), "This is a test", 123), controller));
+                //test reply
+                repliesContainer.getChildren().add(new CommentReplyComponentController(new Comment(AppState.getInstance().getAccount(), "This is a test", 123), controller));
+                repliesContainer.getChildren().add(hideReplies);
                 for(Node child : repliesContainer.getChildren()){
                     VBox.setVgrow(child, Priority.ALWAYS);
                 }
                 gridPane.add(repliesContainer, 0 , 3);
+            }
+        });
+        hideReplies.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                gridPane.getChildren().remove(repliesContainer);
+                gridPane.add(showReplies, 0, 3);
             }
         });
     }
