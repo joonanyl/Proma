@@ -58,12 +58,15 @@ public class TaskViewController {
     @FXML
     private VBox commentList;
 
+
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
 
     private Task selectedTask = null;
+    private CustomCommentComponentController replyingToComment = null;
+    private CommentReplyComponentController replyingToReply = null;
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
@@ -179,6 +182,25 @@ public class TaskViewController {
             commentText.clear();
             retrieveComments();
         }
+    }
+
+    void openReplyToComment(CustomCommentComponentController commentController){
+        if(replyingToComment != null){
+            replyingToComment.hideReplyInput();
+        }else if(replyingToReply != null){
+            replyingToReply.hideReplyInput();
+            replyingToReply = null;
+        }
+        replyingToComment = commentController;
+    }
+    void openReplyToReply(CommentReplyComponentController commentController){
+        if(replyingToReply != null){
+            replyingToReply.hideReplyInput();
+        }else if(replyingToComment != null){
+            replyingToComment.hideReplyInput();
+            replyingToComment = null;
+        }
+        replyingToReply = commentController;
     }
 
     private void retrieveComments(){

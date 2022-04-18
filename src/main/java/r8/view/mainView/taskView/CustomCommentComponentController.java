@@ -31,13 +31,15 @@ public class CustomCommentComponentController extends GridPane {
     private Text contentField;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private ButtonBar buttonBar;
 
     //TODO change button names to support localization
     private Button showReplies = new Button("Show replies...");
     private Button hideReplies = new Button("Hide replies...");
-    private ListView<CustomCommentComponentController> replies = new ListView<CustomCommentComponentController>();
     private VBox repliesContainer = new VBox();
     private final Comment comment;
+    private ReplyInputComponentController replyInput;
 
     public CustomCommentComponentController(Comment comment, TaskViewController controller) {
         this.controller = controller;
@@ -58,6 +60,13 @@ public class CustomCommentComponentController extends GridPane {
             GridPane.setMargin(showReplies, new Insets(0,0,0,25));
             GridPane.setMargin(hideReplies, new Insets(0,0,0,25));
             gridPane.add(showReplies,0, 3);
+            gridPane.add(repliesContainer, 0 , 3);
+            repliesContainer.setVisible(false);
+            repliesContainer.setManaged(false);
+            replyInput = new ReplyInputComponentController(comment, this);
+            gridPane.add(replyInput, 0 , 2);
+            replyInput.setVisible(false);
+            replyInput.setManaged(false);
             setListeners();
         }
     }
@@ -66,11 +75,11 @@ public class CustomCommentComponentController extends GridPane {
         showReplies.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                gridPane.getChildren().remove(showReplies);
-                replies.getItems().clear();
+                showReplies.setVisible(false);
+                showReplies.setManaged(false);
+                repliesContainer.getChildren().clear();
                 Set<Comment> temp = comment.getChildComments();
                 temp.forEach(reply ->{
-                    replies.getItems().add(new CustomCommentComponentController(reply, controller));
                     repliesContainer.getChildren().add(new CommentReplyComponentController(reply, controller));
                 });
                 //test reply
@@ -79,15 +88,34 @@ public class CustomCommentComponentController extends GridPane {
                 for(Node child : repliesContainer.getChildren()){
                     VBox.setVgrow(child, Priority.ALWAYS);
                 }
-                gridPane.add(repliesContainer, 0 , 3);
+                repliesContainer.setVisible(true);
+                repliesContainer.setManaged(true);
             }
         });
         hideReplies.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                gridPane.getChildren().remove(repliesContainer);
-                gridPane.add(showReplies, 0, 3);
+                repliesContainer.setVisible(false);
+                repliesContainer.setManaged(false);
+                showReplies.setVisible(true);
+                showReplies.setManaged(true);
             }
         });
+    }
+
+    @FXML
+    private void reply(){
+        controller.openReplyToComment(this);
+        buttonBar.setVisible(false);
+        buttonBar.setManaged(false);
+        replyInput.setVisible(true);
+        replyInput.setManaged(true);
+    }
+
+    void hideReplyInput(){
+        replyInput.setVisible(false);
+        replyInput.setManaged(false);
+        buttonBar.setVisible(true);
+        buttonBar.setManaged(true);
     }
 }

@@ -3,6 +3,7 @@ package r8.view.mainView.taskView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
@@ -21,8 +22,12 @@ public class CommentReplyComponentController extends GridPane {
     private Text contentField;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private ButtonBar buttonBar;
 
     private Comment comment;
+
+    private ReplyInputComponentController replyInput;
 
     public CommentReplyComponentController(Comment comment, TaskViewController controller) {
         this.controller = controller;
@@ -40,6 +45,26 @@ public class CommentReplyComponentController extends GridPane {
             authorLabel.setText(comment.getAccount().getFirstName() + " " + comment.getAccount().getLastName());
             contentField.wrappingWidthProperty().bind(gridPane.widthProperty());
             contentField.setText(comment.getContent());
+            replyInput = new ReplyInputComponentController(comment, this);
+            gridPane.add(replyInput, 0 , 2);
+            replyInput.setVisible(false);
+            replyInput.setManaged(false);
         }
+    }
+
+    @FXML
+    private void reply(){
+        controller.openReplyToReply(this);
+        buttonBar.setVisible(false);
+        buttonBar.setManaged(false);
+        replyInput.setVisible(true);
+        replyInput.setManaged(true);
+    }
+
+    void hideReplyInput(){
+        replyInput.setVisible(false);
+        replyInput.setManaged(false);
+        buttonBar.setVisible(true);
+        buttonBar.setManaged(true);
     }
 }

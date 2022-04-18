@@ -22,9 +22,9 @@
             <Insets left="25.0" top="10.0" />
          </GridPane.margin>
       </Label>
-      <ButtonBar prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <ButtonBar fx:id="buttonBar" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <buttons>
-          <Button mnemonicParsing="false" text="Reply" />
+          <Button mnemonicParsing="false" onAction="#reply" text="Reply" />
         </buttons>
       </ButtonBar>
       <Text fx:id="contentField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -43,11 +43,11 @@
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints vgrow="ALWAYS" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints vgrow="ALWAYS" />
       <RowConstraints vgrow="ALWAYS" />
    </rowConstraints>
    <columnConstraints>
-      <ColumnConstraints maxWidth="50"/>
-      <ColumnConstraints maxWidth="450"/>
+      <ColumnConstraints maxWidth="50" />
+      <ColumnConstraints maxWidth="450" />
    </columnConstraints>
 </fx:root>
