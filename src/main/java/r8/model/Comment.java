@@ -41,7 +41,7 @@ public class Comment {
 	private String content;
 
 	// Kenties tämä hakisi tietokannasta kommentit, jossa parent_comment_id == comment_id
-	@OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "parentComment", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Set<Comment> childComments = new HashSet<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -58,7 +58,7 @@ public class Comment {
 	// Replyn konstruktori
 	public Comment(Comment parentComment, Account account, String content) {
 		this.parentComment = parentComment;
-		this.task = parentComment.getTask();
+		//this.task = parentComment.getTask();
 		this.content = content;
 		this.account = account;
 	}

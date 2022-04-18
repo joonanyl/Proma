@@ -9,7 +9,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import r8.controller.Controller;
+import r8.controller.IControllerMain;
 import r8.model.Comment;
+import r8.model.appState.AppState;
 
 import java.io.IOException;
 
@@ -61,7 +64,20 @@ public class ReplyInputComponentController extends GridPane {
 
     @FXML
     private void reply(){
-        Comment reply = new Comment();
+        IControllerMain controllerMain = new Controller();
+        Comment reply;
+        if(!isReplyToReply){
+            reply = new Comment(comment, AppState.getInstance().getLoggedAccount(), contentField.getText());
+        }else{
+            reply = new Comment(comment.getParentComment(), AppState.getInstance().getLoggedAccount(),
+                    "@" + comment.getAccount().getFirstName() + comment.getAccount().getLastName() + "\n" + contentField.getText());
+        }
+        controllerMain.createComment(reply);
+        if(!isReplyToReply){
+            commentController.retrieveComments();
+        }else replyController.retrieveComments();
+        cancel();
+
     }
 
     @FXML

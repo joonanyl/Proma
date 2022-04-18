@@ -61,9 +61,13 @@ public class CustomCommentComponentController extends GridPane {
             GridPane.setMargin(hideReplies, new Insets(0,0,0,25));
             gridPane.add(showReplies,0, 3);
             gridPane.add(repliesContainer, 0 , 3);
+            if(comment.getChildComments().size() == 0){
+                showReplies.setManaged(false);
+                showReplies.setVisible(false);
+            }
             repliesContainer.setVisible(false);
             repliesContainer.setManaged(false);
-            replyInput = new ReplyInputComponentController(comment, this);
+            replyInput = new ReplyInputComponentController(this.comment, this);
             gridPane.add(replyInput, 0 , 2);
             replyInput.setVisible(false);
             replyInput.setManaged(false);
@@ -82,8 +86,6 @@ public class CustomCommentComponentController extends GridPane {
                 temp.forEach(reply ->{
                     repliesContainer.getChildren().add(new CommentReplyComponentController(reply, controller));
                 });
-                //test reply
-                repliesContainer.getChildren().add(new CommentReplyComponentController(new Comment(comment, AppState.getInstance().getAccount(), "This is a test"), controller));
                 repliesContainer.getChildren().add(hideReplies);
                 for(Node child : repliesContainer.getChildren()){
                     VBox.setVgrow(child, Priority.ALWAYS);
@@ -117,5 +119,9 @@ public class CustomCommentComponentController extends GridPane {
         replyInput.setManaged(false);
         buttonBar.setVisible(true);
         buttonBar.setManaged(true);
+    }
+
+    void retrieveComments(){
+        controller.retrieveComments();
     }
 }

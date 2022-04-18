@@ -203,7 +203,7 @@ public class TaskViewController {
         replyingToReply = commentController;
     }
 
-    private void retrieveComments(){
+    void retrieveComments(){
         commentList.getChildren().clear();
         List<Comment> comments = controller.getComments(this.selectedTask);
         if(comments != null){

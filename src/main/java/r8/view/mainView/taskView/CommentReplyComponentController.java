@@ -67,4 +67,8 @@ public class CommentReplyComponentController extends GridPane {
         buttonBar.setVisible(true);
         buttonBar.setManaged(true);
     }
+
+    void retrieveComments(){
+        controller.retrieveComments();
+    }
 }
