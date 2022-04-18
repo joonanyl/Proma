@@ -83,7 +83,7 @@ public class CustomCommentComponentController extends GridPane {
                     repliesContainer.getChildren().add(new CommentReplyComponentController(reply, controller));
                 });
                 //test reply
-                repliesContainer.getChildren().add(new CommentReplyComponentController(new Comment(AppState.getInstance().getAccount(), "This is a test", 123), controller));
+                repliesContainer.getChildren().add(new CommentReplyComponentController(new Comment(comment, AppState.getInstance().getAccount(), "This is a test"), controller));
                 repliesContainer.getChildren().add(hideReplies);
                 for(Node child : repliesContainer.getChildren()){
                     VBox.setVgrow(child, Priority.ALWAYS);

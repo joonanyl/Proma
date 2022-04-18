@@ -94,8 +94,8 @@ public class CommentDAO {
         entityManager = DAOUtil.getEntityManager();
         try{
             entityManager.getTransaction().begin();
-            return entityManager.createQuery("SELECT c FROM Comment c WHERE c.taskID = :taskID", Comment.class)
-                    .setParameter("taskID", task.getTaskId()).getResultList();
+            return entityManager.createQuery("SELECT c FROM Comment c WHERE c.task = :task", Comment.class)
+                    .setParameter("task", task).getResultList();
         }catch (NullPointerException e){
             e.printStackTrace();
             return null;
