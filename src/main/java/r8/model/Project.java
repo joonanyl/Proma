@@ -39,11 +39,14 @@ public class Project {
 	private String description;
 
 	// Removing a project removes all tasks it
-	@OneToMany(mappedBy = "project", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Task> tasks = new HashSet<>();
-	// Removing a project removes also all teams under
+	// Removing a project removes all teams under
 	@OneToMany(mappedBy = "project", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	private Set<Team> teams = new HashSet<>();
+
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Sprint> sprints = new HashSet<>();
 
 	/**
 	 * Contructor
@@ -53,6 +56,8 @@ public class Project {
 		this.name = name;
 		this.description = description;
 	}
+
+	public Project() {}
 
 	public void addAccount(Account account) {
 		this.accounts.add(account);
@@ -84,7 +89,15 @@ public class Project {
 		team.setProject(null);
 	}
 
-	public Project() {}
+	public void addSprint(Sprint sprint) {
+		sprints.add(sprint);
+		sprint.setProject(this);
+	}
+
+	public void removeSprint(Sprint sprint) {
+		sprints.remove(sprint);
+		sprint.setProject(null);
+	}
 
 	public int getProjectId() {
 		return projectId;
@@ -132,6 +145,14 @@ public class Project {
 
 	public void setTasks(Set<Task> tasks) {
 		this.tasks = tasks;
+	}
+
+	public Set<Sprint> getSprints() {
+		return sprints;
+	}
+
+	public void setSprints(Set<Sprint> sprints) {
+		this.sprints = sprints;
 	}
 
 	@Override

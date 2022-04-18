@@ -52,6 +52,10 @@ public class Account {
 	@ManyToMany(mappedBy = "accounts")
 	private Set<Task> tasks = new HashSet<>();
 
+	// Pitäisikö poistaa eventit jos käyttäjä poistuu?
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Event> events = new HashSet<>();
+
 	public Account(String fName, String lName, String email, String password) {
 		this.firstName = fName;
 		this.lastName = lName;
@@ -81,13 +85,6 @@ public class Account {
 
 	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
-	}
-
-	public void addProject(Project project){
-		this.projects.add(project);
-	}
-	public void removeProject(Project project){
-		this.projects.remove(project);
 	}
 
 	public String getFirstName() {
@@ -157,27 +154,11 @@ public class Account {
 		return accountId + " " + firstName + " " + lastName + " " + email;
 	}
 
-	/*
-
-	 */
-	@Override
-	public boolean equals(Object o) {
-		Account account;
-		try{
-			account = (Account) o;
-		}catch (ClassCastException e){
-			return false;
-		}
-		if(account == null) return false;
-		if(this.accountId == account.accountId) return true;
-		else{
-			if(account.toString() == this.toString()) return true;
-			else return false;
-		}
+	public Set<Event> getEvents() {
+		return events;
 	}
 
-	@Override
-	public int hashCode(){
-		return accountId;
+	public void setEvents(Set<Event> events) {
+		this.events = events;
 	}
 }

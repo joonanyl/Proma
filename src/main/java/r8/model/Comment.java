@@ -1,10 +1,10 @@
 package r8.model;
 
+import r8.model.task.Task;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
-import static javax.persistence.FetchType.LAZY;
 
 /**
  * 
@@ -26,10 +26,11 @@ public class Comment {
 	@Column(name = "comment_id")
 	private int commentId;
 
-	@Column(name = "task_id")
-	private int taskID;
+	@ManyToOne
+	@JoinColumn(name = "task_id")
+	private Task task;
 
-	@ManyToOne(fetch = LAZY)
+	@ManyToOne
 	@JoinColumn(name = "parent_comment_id")
 	private Comment parentComment;
 
@@ -38,23 +39,28 @@ public class Comment {
 	 */
 	@Column(name = "content")
 	private String content;
+
 	// Kenties tämä hakisi tietokannasta kommentit, jossa parent_comment_id == comment_id
-	@Transient
+	@OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Comment> childComments = new HashSet<>();
-	@ManyToOne(fetch = LAZY)
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "account_id")
 	private Account account;
 
-
-	/**
-	 * Constructor
-	 * @param a Author
-	 * @param content Comment's text
-	 */
-	public Comment(Account a, String content, int taskID) {
-		this.account = a;
+	// Main-kommentin konstruktori
+	public Comment(Task task, Account account, String content) {
+		this.task = task;
 		this.content = content;
-		this.taskID = taskID;
+		this.account = account;
+	}
+
+	// Replyn konstruktori
+	public Comment(Comment parentComment, Account account, String content) {
+		this.parentComment = parentComment;
+		this.task = parentComment.getTask();
+		this.content = content;
+		this.account = account;
 	}
 
 	public Comment() {}
@@ -68,25 +74,19 @@ public class Comment {
 	}
 
 	public void addReply(Comment reply) {
-		if(childComments == null)
-			this.childComments = new HashSet<Comment>();
+		// Comment is already a reply
+		if (parentComment != null) {
+			return;
+		}
 
 		childComments.add(reply);
+		reply.setParentComment(this);
 	}
 
-	public String printChildComments() {
-		String ret;
-		if(childComments != null) {
-			ret = this.toString() + " " + "\n \t";
-			int order = 1;
-			for(Comment c : childComments) {
-				ret += order + ": " + c.toString() + "; \n \t";
-				order++;
-			}
-		} else {
-			ret = "No replys to show";
+	public void printChildComments() {
+		for (Comment c : childComments) {
+			System.out.println(c);
 		}
-		return ret;
 	}
 
 	public int getCommentId() {
@@ -97,12 +97,12 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
-	public int getTaskID() {
-		return taskID;
+	public Task getTask() {
+		return task;
 	}
 
-	public void setTaskID(int taskID) {
-		this.taskID = taskID;
+	public void setTask(Task task) {
+		this.task = task;
 	}
 
 	public Comment getParentComment() {
