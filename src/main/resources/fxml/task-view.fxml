@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -132,6 +133,34 @@
             </children>
         </Pane>
         <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-        <Pane id="pane-comments" fx:id="paneComments" layoutX="1056.0" layoutY="125.0" maxWidth="600.0" prefHeight="780.0" prefWidth="594.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="1056.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0" />
+        <Pane id="pane-comments" fx:id="paneComments" layoutX="1056.0" layoutY="125.0" maxWidth="600.0" prefHeight="780.0" prefWidth="594.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="1056.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
+         <children>
+            <VBox layoutX="-1.0" prefHeight="780.0" prefWidth="594.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <VBox prefHeight="94.0" prefWidth="594.0" spacing="25.0">
+                           <HBox.margin>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                           </HBox.margin>
+                           <children>
+                              <TextArea fx:id="commentText" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: transparent transparent gray transparent; -fx-background-insets: 0;" />
+                              <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                <buttons>
+                                    <Button fx:id="postComment" mnemonicParsing="false" onAction="#postComment" text="Send" />
+                                </buttons>
+                              </ButtonBar>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <ScrollPane prefHeight="649.0" prefWidth="594.0">
+                     <content>
+                        <VBox fx:id="commentList" spacing="10.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children></Pane>
     </children>
 </AnchorPane>

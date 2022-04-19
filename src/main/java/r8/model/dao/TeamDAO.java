@@ -139,7 +139,7 @@ public class TeamDAO {
         }
     }
 
-    public void removeAccountAssociation(Team team, Account account) {
+    public void removeAccountAssociation(Account account, Team team) {
         entityManager = DAOUtil.getEntityManager();
         team = entityManager.contains(team) ? team : entityManager.merge(team);
         account = entityManager.contains(account) ? account : entityManager.merge(account);

@@ -35,7 +35,9 @@ public class Team {
 	@Column(name = "name")
 	private String teamName;
 
-	@ManyToMany(cascade = {
+	@ManyToMany(
+			fetch = FetchType.EAGER,
+			cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
 	})
@@ -46,7 +48,7 @@ public class Team {
 	)
 	private Set<Account> accounts = new HashSet<>();
 
-	@ManyToMany(mappedBy = "teams")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "teams")
 	private Set<Task> tasks = new HashSet<>();
 
 	/**

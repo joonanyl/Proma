@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -66,10 +67,19 @@ public class MainViewController implements IViewController {
     @FXML
     public void handleNavigation(ActionEvent event) throws IOException {
         NavigationHandler nav = new NavigationHandler();
-        final Node eventSource = (Node) event.getSource();
-        String userData = (String) eventSource.getUserData();
-        Button target = (Button) event.getTarget();
-        String viewType = target.getText();
+        String userData = "";
+        String viewType = "";
+        System.out.println(event.getSource());
+        if(event.getSource().getClass().equals(MenuItem.class)){
+            MenuItem menuItem = (MenuItem) event.getSource();
+            userData = (String) menuItem.getUserData();
+            viewType = menuItem.getText();
+        }else{
+            final Node eventSource = (Node) event.getSource();
+            userData = (String) eventSource.getUserData();
+            Button target = (Button) event.getTarget();
+            viewType = target.getText();
+        }
         if (!userData.equals(currentView)) {
             System.out.println("Clicked " + userData);
             // No need to use NavigationHandler

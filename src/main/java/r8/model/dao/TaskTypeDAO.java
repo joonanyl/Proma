@@ -54,7 +54,7 @@ public class TaskTypeDAO {
         entityManager = DAOUtil.getEntityManager();
         try {
             return entityManager.createQuery(
-                            "SELECT tt FROM TaskType tt WHERE tt.name LIKE :name", TaskType.class)
+                    "SELECT tt FROM TaskType tt WHERE tt.name LIKE :name", TaskType.class)
                     .setParameter("name", name)
                     .getSingleResult();
         } catch (NullPointerException e) {
