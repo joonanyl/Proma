@@ -95,7 +95,7 @@ public class TasksViewController {
     @FXML
     private Project selectedProject;
     @FXML
-    private List<Task> allTasks;
+    private Set<Task> allTasks;
     @FXML
     private List<Task> personalTasks;
     @FXML

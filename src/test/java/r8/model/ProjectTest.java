@@ -83,7 +83,7 @@ class ProjectTest {
     @Test
     @Order(9)
     void getTasks() {
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        Set<Task> tasks = new HashSet<>();
         Task task1 = new Task();
         Task task2 = new Task();
         Task task3 = new Task();

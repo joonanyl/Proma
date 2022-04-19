@@ -36,20 +36,28 @@ class TaskDAOTest {
     @Test
     @Order(1)
     void persist() {
-//        countInDB = taskDAO.getAll().size();
         taskDAO.persist(task);
         assertEquals(task.getName(), taskDAO.get(task.getTaskId()).getName(), "Tietokannasta haettu taskname ei täsmää");
+    }
 
+    @Test
+    @Order(2)
+    void getTaskBytId(){
+        assertEquals(task.getTaskId(), taskDAO.get(task.getTaskId()).getTaskId(), "Tehtävän hakeminen tietokannasta id:n avulla epäonnistui");
+    }
+
+    // getAll pitää myös testata mut eka pitää tyhjentää db
+
+    @Test
+    @Order(3)
+    void getByTeam(){
+        // täää ei tuu toimii
+        
     }
 
     @AfterAll
     static void clearDatabase(){
         projectDAO.remove(project);
-//        taskTypeDAO.remove(taskType);
-
-
-        taskDAO.remove(task);
-
 
         System.out.println("db cleared");
     }
