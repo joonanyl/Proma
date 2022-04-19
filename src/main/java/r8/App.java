@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import r8.controller.Controller;
 import r8.controller.IControllerLogin;
 import r8.model.appState.AppState;
+import r8.util.TextLoader;
 import r8.view.IViewController;
 import r8.view.loginView.LoginViewController;
 import r8.view.mainView.MainViewController;
@@ -17,6 +18,7 @@ import r8.view.navigation.GetView;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class App extends Application
 {
@@ -33,7 +35,17 @@ public class App extends Application
     public void switchScene() {
         try {
             String viewToLoad = displayLogin ? "login-view" : "main-view";
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
+
+            //ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
+
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
+            loader.setLocation(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
+            loader.setResources(resourceBundle);
+
+            //loader.setLocation(App.class.getResource("/fxml/" + viewToLoad + ".fxml"));
+            //loader.setResources(resourceBundle);
+
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -53,12 +65,12 @@ public class App extends Application
     }
 
     private void setStageSize() {
-        stage.setTitle("Proma - Project Manager v0.1");
+        stage.setTitle(TextLoader.getInstance().getResource("appTitle"));
         stage.setResizable(!displayLogin);
         stage.setMaximized(!displayLogin);
 
         if (displayLogin) {
-            stage.setTitle("Proma - Login");
+            stage.setTitle(TextLoader.getInstance().getResource("loginTitle"));
             stage.sizeToScene();
             stage.centerOnScreen();
         }

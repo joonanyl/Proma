@@ -25,7 +25,7 @@
                   <Insets left="32.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="labelWelcome" text=", Welcome to Proma!">
+            <Label fx:id="labelWelcome" text="%welcomeProma">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -36,7 +36,7 @@
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="80.0">
                <children>
-                  <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="Label">
+                  <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="%label">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -56,27 +56,27 @@
       </HBox>
       <Pane id="container-dashboard" layoutX="30.0" layoutY="115.0" prefHeight="500.0" prefWidth="460.0" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="120.0">
          <children>
-            <Label layoutX="15.0" layoutY="8.0" text="Quick Access" textFill="#757171">
+            <Label layoutX="15.0" layoutY="8.0" text="%quickAccess" textFill="#757171">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button id="button-quick-access" layoutX="50.0" layoutY="75.0" mnemonicParsing="false" onAction="#navigate" text="Time Management" textFill="#1461c6" underline="true" userData="time-management-view2">
+            <Button id="button-quick-access" layoutX="50.0" layoutY="75.0" mnemonicParsing="false" onAction="#navigate" text="%timeManagement" textFill="#1461c6" underline="true" userData="time-management-view2">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button id="button-quick-access" layoutX="50.0" layoutY="150.0" mnemonicParsing="false" onAction="#navigate" text="OTP1-project" textFill="#1461c6" underline="true" userData="tasks-view">
+            <Button id="button-quick-access" layoutX="50.0" layoutY="150.0" mnemonicParsing="false" onAction="#navigate" text="%otp" textFill="#1461c6" underline="true" userData="tasks-view">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button id="button-quick-access" layoutX="50.0" layoutY="225.0" mnemonicParsing="false" onAction="#navigate" text="Create Project" textFill="#1461c6" underline="true" userData="create-project-view">
+            <Button id="button-quick-access" layoutX="50.0" layoutY="225.0" mnemonicParsing="false" onAction="#navigate" text="%createProject" textFill="#1461c6" underline="true" userData="create-project-view">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button id="button-quick-access" layoutX="50.0" layoutY="300.0" mnemonicParsing="false" onAction="#navigate" text="Create Task" textFill="#1461c6" underline="true" userData="create-task-view">
+            <Button id="button-quick-access" layoutX="50.0" layoutY="300.0" mnemonicParsing="false" onAction="#navigate" text="%createTask" textFill="#1461c6" underline="true" userData="create-task-view">
                <font>
                   <Font size="17.0" />
                </font>
@@ -85,40 +85,40 @@
       </Pane>
       <Pane id="container-dashboard" layoutX="30.0" layoutY="621.0" prefHeight="255.0" prefWidth="460.0" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="25.0" AnchorPane.topAnchor="645.0">
          <children>
-            <Label layoutX="15.0" layoutY="14.0" text="Active Tracking" textFill="#757171">
+            <Label layoutX="15.0" layoutY="14.0" text="%activeTracking" textFill="#757171">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="341.0" layoutY="14.0" text="detach tracker">
+            <Label layoutX="341.0" layoutY="14.0" text="%detachTracker">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="29.0" layoutY="55.0" text="Select active task">
+            <Label layoutX="29.0" layoutY="55.0" text="%selectTask">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="29.0" layoutY="165.0" text="Create new trackee">
+            <Label layoutX="29.0" layoutY="165.0" text="%createNewTrackee">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <TextField layoutX="29.0" layoutY="190.0" prefHeight="30.0" prefWidth="220.0" />
-            <Button id="button-tracker" layoutX="276.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="Start Tracking" textFill="#f8f6f6" userData="management-view">
+            <Button id="button-tracker" layoutX="276.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="%startTracking" textFill="#f8f6f6" userData="management-view">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button id="button-tracker" layoutX="276.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="Create Trackee" textFill="#f8f6f6">
+            <Button id="button-tracker" layoutX="276.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="%createTrackee" textFill="#f8f6f6">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
             <ComboBox id="combo-active-tracking" fx:id="cBoxActiveTrackingTasks" layoutX="29.0" layoutY="83.0" prefHeight="30.0" prefWidth="220.0" />
             <Line endX="124.5" layoutX="276.0" layoutY="133.0" startX="-233.5" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="0.1" />
-            <Label layoutX="215.0" layoutY="133.0" text="or" textFill="#757171">
+            <Label layoutX="215.0" layoutY="133.0" text="%or" textFill="#757171">
                <font>
                   <Font size="14.0" />
                </font>
@@ -127,12 +127,12 @@
       </Pane>
       <Pane id="container-dashboard" layoutX="552.0" layoutY="121.0" prefHeight="850.0" prefWidth="500.0" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="24.0" AnchorPane.topAnchor="121.0">
          <children>
-            <Label layoutX="14.0" layoutY="8.0" text="Personal Time Management" textFill="#757171">
+            <Label layoutX="14.0" layoutY="8.0" text="%personalTime" textFill="#757171">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button id="button-tracker" layoutX="144.0" layoutY="677.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="213.0" text="Go To Time Management" textFill="#f8f6f6" userData="management-view">
+            <Button id="button-tracker" layoutX="144.0" layoutY="677.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="213.0" text="%goToTime" textFill="#f8f6f6" userData="management-view">
                <font>
                   <Font size="16.0" />
                </font>
@@ -143,7 +143,7 @@
       <Region layoutX="520.0" layoutY="95.0" minWidth="0.0" prefHeight="805.0" prefWidth="1.0" rotate="180.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="120.0" />
       <Pane id="container-dashboard" layoutX="1110.0" layoutY="120.0" prefHeight="780.0" prefWidth="530.0" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="1110.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="120.0">
          <children>
-            <Label layoutX="14.0" layoutY="8.0" text="New in Proma" textFill="#757171">
+            <Label layoutX="14.0" layoutY="8.0" text="%newProma" textFill="#757171">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

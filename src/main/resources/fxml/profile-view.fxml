@@ -15,7 +15,7 @@
     <children>
       <VBox id="container-profile" fx:id="containerProfile" layoutX="6.0" layoutY="117.0" prefHeight="800.0" prefWidth="1660.0" stylesheets="@../styling/profile-view-styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-                    <Label text="Profile information" textFill="#757171">
+                    <Label text="%profileInformation" textFill="#757171">
                         <font>
                             <Font name="System Bold" size="17.0" />
                         </font>
@@ -25,7 +25,7 @@
                     </Label>
                     <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                <children>
-                  <Label text="First Name">
+                  <Label text="%firstName">
                      <HBox.margin>
                         <Insets left="55.0" right="50.0" />
                      </HBox.margin>
@@ -33,7 +33,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelUserFirstNameDisplay" text="userFirstNameDisplay">
+                  <Label fx:id="labelUserFirstNameDisplay" text="%userFirstNameDisplay">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -46,14 +46,14 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Edit" />
+                  <Label text="%edit" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin></HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                <children>
-                  <Label text="Last Name">
+                  <Label text="%lastName">
                      <HBox.margin>
                         <Insets left="55.0" right="52.0" />
                      </HBox.margin>
@@ -61,7 +61,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelUserLastNameDisplay" text="userLastNameDisplay">
+                  <Label fx:id="labelUserLastNameDisplay" text="%userLastNameDisplay">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -74,12 +74,12 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Edit" />
+                  <Label text="%edit" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                <children>
-                  <Label text="Email">
+                  <Label text="%emailLabel">
                      <HBox.margin>
                         <Insets left="55.0" right="86.0" />
                      </HBox.margin>
@@ -87,7 +87,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelUserEmailDisplay" text="userEmailDisplay">
+                  <Label fx:id="labelUserEmailDisplay" text="%userEmailDisplay">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -100,12 +100,12 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Edit" />
+                  <Label text="%edit" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                <children>
-                  <Label text="Phone No.">
+                  <Label text="%phoneNumber">
                      <HBox.margin>
                         <Insets left="55.0" right="52.0" />
                      </HBox.margin>
@@ -113,7 +113,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelUserPhoneDisplay" text="userPhoneDisplay">
+                  <Label fx:id="labelUserPhoneDisplay" text="%userPhoneDisplay">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -126,7 +126,7 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Edit" />
+                  <Label text="%edit" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -134,7 +134,7 @@
             </HBox>
             <VBox prefHeight="455.0" prefWidth="1620.0">
                <children>
-                  <Label text="Settings" textFill="#757171">
+                  <Label text="%settings" textFill="#757171">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -144,7 +144,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="UI Language">
+                        <Label text="%uiLanguage">
                            <HBox.margin>
                               <Insets left="55.0" right="70.0" />
                            </HBox.margin>
@@ -165,7 +165,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="Enable Tooltips">
+                        <Label text="%enableTooltips">
                            <HBox.margin>
                               <Insets left="55.0" right="52.0" />
                            </HBox.margin>
@@ -183,7 +183,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="UI Theme">
+                        <Label text="%uiTheme">
                            <HBox.margin>
                               <Insets left="55.0" right="90.0" />
                            </HBox.margin>
@@ -201,7 +201,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="Dark Mode">
+                        <Label text="%darkMode">
                            <HBox.margin>
                               <Insets left="55.0" right="80.0" />
                            </HBox.margin>
@@ -222,7 +222,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="isAdmin">
+                        <Label text="%isAdmin">
                            <HBox.margin>
                               <Insets left="55.0" right="80.0" />
                            </HBox.margin>

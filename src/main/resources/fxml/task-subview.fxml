@@ -16,7 +16,7 @@
             <children>
                 <VBox id="container-vbox" prefHeight="780.0" prefWidth="410.0">
                     <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Existing Tasks">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%existingTasks">
                             <font>
                                 <Font name="Arial Bold" size="16.0" />
                             </font>
@@ -36,7 +36,7 @@
                 </VBox>
                 <VBox id="container-vbox" prefHeight="780.0" prefWidth="410.0">
                     <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Info">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskInfo">
                             <font>
                                 <Font name="Arial Bold" size="16.0" />
                             </font>
@@ -52,7 +52,7 @@
                   </Region>
                         <HBox alignment="CENTER" prefHeight="75.0" prefWidth="398.0">
                             <children>
-                                <Button fx:id="btnRemoveTeam1" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Create New Task" textFill="#f8f6f6">
+                                <Button fx:id="btnRemoveTeam1" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="%createTask" textFill="#f8f6f6">
                                     <font>
                                         <Font size="16.0" />
                                     </font>

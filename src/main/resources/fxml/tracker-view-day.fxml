@@ -33,12 +33,12 @@
                     <content>
                         <TableView fx:id="tableViewWeek" prefHeight="409.0" prefWidth="778.0">
                             <columns>
-                                <TableColumn fx:id="tableColDate" prefWidth="128.0" text="Date" />
-                                <TableColumn fx:id="tableColEventName" prefWidth="126.0" text="Event Name" />
-                                <TableColumn fx:id="tableColEventType" minWidth="0.0" prefWidth="220.0" text="Event Type" />
-                                <TableColumn fx:id="tableColHoursWorked" minWidth="0.0" prefWidth="108.0" text="Hours Worked" />
-                                <TableColumn fx:id="tableColRemaining" minWidth="0.0" prefWidth="95.0" text="Remaining" />
-                                <TableColumn fx:id="tableColDescription" prefWidth="364.0" text="Description" />
+                                <TableColumn fx:id="tableColDate" prefWidth="128.0" text="%date" />
+                                <TableColumn fx:id="tableColEventName" prefWidth="126.0" text="%eventName" />
+                                <TableColumn fx:id="tableColEventType" minWidth="0.0" prefWidth="220.0" text="%eventType" />
+                                <TableColumn fx:id="tableColHoursWorked" minWidth="0.0" prefWidth="108.0" text="%hoursWorked" />
+                                <TableColumn fx:id="tableColRemaining" minWidth="0.0" prefWidth="95.0" text="%remaining" />
+                                <TableColumn fx:id="tableColDescription" prefWidth="364.0" text="%description" />
                             </columns>
                         </TableView>
                     </content>
@@ -48,7 +48,7 @@
                 </ScrollPane>
                 <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1240.0" spacing="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Label minWidth="134.0" prefHeight="26.0" prefWidth="134.0" text="Add Work Entry" textFill="#757171">
+                        <Label minWidth="134.0" prefHeight="26.0" prefWidth="134.0" text="%addWorkEntry" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -58,7 +58,7 @@
                         </Label>
                         <VBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="199.0">
                             <children>
-                                <Label alignment="CENTER" contentDisplay="BOTTOM" text="Date">
+                                <Label alignment="CENTER" contentDisplay="BOTTOM" text="%date">
                                     <VBox.margin>
                                         <Insets top="5.0" />
                                     </VBox.margin>
@@ -72,7 +72,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="199.0">
                             <children>
-                                <Label alignment="CENTER" contentDisplay="BOTTOM" text="Event Name">
+                                <Label alignment="CENTER" contentDisplay="BOTTOM" text="%eventName">
                                     <VBox.margin>
                                         <Insets top="5.0" />
                                     </VBox.margin>
@@ -86,7 +86,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="56.0" prefWidth="199.0">
                             <children>
-                                <Label alignment="CENTER" contentDisplay="BOTTOM" text="Event Type">
+                                <Label alignment="CENTER" contentDisplay="BOTTOM" text="%eventType">
                                     <VBox.margin>
                                         <Insets top="5.0" />
                                     </VBox.margin>
@@ -98,7 +98,7 @@
                                 </ComboBox>
                             </children>
                         </VBox>
-                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Hours Worked">
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="%hoursWorked">
                             <graphic>
                                 <TextField fx:id="textFieldHoursWorked" prefHeight="25.0" prefWidth="88.0">
                                     <padding>
@@ -109,7 +109,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Description">
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="%description">
                             <graphic>
                                 <TextField fx:id="textFieldDescription" prefHeight="25.0" prefWidth="346.0">
                                     <padding>
@@ -127,17 +127,17 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Button fx:id="btnAdd" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Add" textFill="#f8f6f6">
+                        <Button fx:id="btnAdd" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="%add" textFill="#f8f6f6">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btnEdit" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Edit" textFill="#f8f6f6">
+                        <Button fx:id="btnEdit" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="%edit" textFill="#f8f6f6">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btnDelete" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Delete" textFill="#f8f6f6">
+                        <Button fx:id="btnDelete" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="%delete" textFill="#f8f6f6">
                             <font>
                                 <Font size="16.0" />
                             </font>
@@ -156,14 +156,14 @@
             <children>
                 <VBox alignment="TOP_CENTER" minWidth="50.0" prefHeight="70.0" prefWidth="300.0">
                     <children>
-                        <Label alignment="TOP_CENTER" text="Month" textFill="#757171">
+                        <Label alignment="TOP_CENTER" text="%month" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
                         </Label>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Button id="button-calendar-left" fx:id="btnSubProject" mnemonicParsing="false" onAction="#previousMonth" prefHeight="30.0" prefWidth="50.0" text="Prev">
+                                <Button id="button-calendar-left" fx:id="btnSubProject" mnemonicParsing="false" onAction="#previousMonth" prefHeight="30.0" prefWidth="50.0" text="%previous">
                                     <HBox.margin>
                                         <Insets right="5.0" />
                                     </HBox.margin>
@@ -173,7 +173,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </TextField>
-                                <Button id="button-calendar-right" fx:id="btnAddProject" mnemonicParsing="false" onAction="#nextMonth" prefHeight="30.0" prefWidth="50.0" text="Next">
+                                <Button id="button-calendar-right" fx:id="btnAddProject" mnemonicParsing="false" onAction="#nextMonth" prefHeight="30.0" prefWidth="50.0" text="%next">
                                     <HBox.margin>
                                         <Insets left="5.0" />
                                     </HBox.margin>
@@ -187,14 +187,14 @@
                 </VBox>
                 <VBox alignment="TOP_CENTER" minWidth="50.0" prefHeight="70.0" prefWidth="200.0">
                     <children>
-                        <Label alignment="TOP_CENTER" text="Day" textFill="#757171">
+                        <Label alignment="TOP_CENTER" text="%day" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
                         </Label>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="100.0">
                             <children>
-                                <Button id="button-calendar-left" fx:id="btnSubSprint" mnemonicParsing="false" onAction="#previousDay" prefHeight="30.0" prefWidth="50.0" text="Prev">
+                                <Button id="button-calendar-left" fx:id="btnSubSprint" mnemonicParsing="false" onAction="#previousDay" prefHeight="30.0" prefWidth="50.0" text="%previous">
                                     <HBox.margin>
                                         <Insets right="5.0" />
                                     </HBox.margin>
@@ -204,7 +204,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </TextField>
-                                <Button id="button-calendar-right" fx:id="btnAddSprint" mnemonicParsing="false" onAction="#nextDay" prefHeight="30.0" prefWidth="50.0" text="Next">
+                                <Button id="button-calendar-right" fx:id="btnAddSprint" mnemonicParsing="false" onAction="#nextDay" prefHeight="30.0" prefWidth="50.0" text="%next">
                                     <HBox.margin>
                                         <Insets left="5.0" />
                                     </HBox.margin>

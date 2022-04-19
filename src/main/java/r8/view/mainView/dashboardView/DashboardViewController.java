@@ -13,6 +13,7 @@ import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
+import r8.util.TextLoader;
 import r8.view.IViewController;
 
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class DashboardViewController {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDateTime now = LocalDateTime.now();
             labelUserName.setText(account.getFirstName() +" "+ account.getLastName());
-            labelSystemTimeDisplay.setText("Today is " + dtf.format(now));
+            labelSystemTimeDisplay.setText(TextLoader.getInstance().getResource("dashboardDay") + " " + dtf.format(now));
         }
 }
 

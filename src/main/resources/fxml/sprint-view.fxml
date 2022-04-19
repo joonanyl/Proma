@@ -24,7 +24,7 @@
                         <Insets left="32.0" />
                     </HBox.margin>
                 </Label>
-                <Label fx:id="labelWelcome" text=", Welcome to Proma!">
+                <Label fx:id="labelWelcome" text="%welcomeProma">
                     <font>
                         <Font name="Arial" size="20.0" />
                     </font>
@@ -35,7 +35,7 @@
             <children>
                 <VBox alignment="TOP_RIGHT" prefHeight="80.0">
                     <children>
-                        <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="Label">
+                        <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="%label">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -58,7 +58,7 @@
          <children>
             <VBox id="container-vbox" prefHeight="839.0" prefWidth="450.0">
                <children>
-                      <Label text="Sprint Info" textFill="#757171">
+                      <Label text="%sprintInfo" textFill="#757171">
                           <font>
                               <Font name="System Bold" size="17.0" />
                           </font>
@@ -68,7 +68,7 @@
                       </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="Name">
+                        <Label text="%name">
                            <HBox.margin>
                               <Insets left="35.0" right="50.0" />
                            </HBox.margin>
@@ -76,7 +76,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="sprintName">
+                        <Label text="%sprintNameLabel">
                            <HBox.margin>
                               <Insets left="50.0" />
                            </HBox.margin>
@@ -93,7 +93,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="Project">
+                        <Label text="%project">
                            <HBox.margin>
                               <Insets left="35.0" right="50.0" />
                            </HBox.margin>
@@ -101,7 +101,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="associatedProjectName">
+                        <Label text="%associatedProjectName">
                            <HBox.margin>
                               <Insets left="44.0" />
                            </HBox.margin>
@@ -121,7 +121,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="Start Date">
+                        <Label text="%startDate">
                            <HBox.margin>
                               <Insets left="35.0" right="50.0" />
                            </HBox.margin>
@@ -129,7 +129,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="sprintStartDate">
+                        <Label text="%sprintStartDate">
                            <HBox.margin>
                               <Insets left="22.0" />
                            </HBox.margin>
@@ -149,7 +149,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <Label text="End Date">
+                        <Label text="%endDate">
                            <HBox.margin>
                               <Insets left="35.0" right="50.0" />
                            </HBox.margin>
@@ -157,7 +157,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label text="sprintEndDate">
+                        <Label text="%sprintEndDate">
                            <HBox.margin>
                               <Insets left="28.0" />
                            </HBox.margin>
@@ -177,7 +177,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="450.0">
                      <children>
-                        <Label text="Description">
+                        <Label text="%description">
                            <HBox.margin>
                               <Insets left="35.0" right="50.0" />
                            </HBox.margin>
@@ -195,7 +195,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <Label text="sprintDescription">
+                  <Label text="%sprintDescription">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -207,7 +207,7 @@
             </VBox>
             <VBox id="container-vbox" prefHeight="790.0" prefWidth="450.0">
                <children>
-                      <Label text="Sprint Tasks" textFill="#757171">
+                      <Label text="%sprintTasks" textFill="#757171">
                           <font>
                               <Font name="System Bold" size="17.0" />
                           </font>
@@ -217,7 +217,7 @@
                       </Label>
                   <HBox prefHeight="45.0" prefWidth="450.0">
                      <children>
-                            <Label text="Search" textFill="#757171">
+                            <Label text="%search" textFill="#757171">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
@@ -240,7 +240,7 @@
                         <Insets left="20.0" right="20.0" top="30.0" />
                      </VBox.margin>
                   </ListView>
-                      <Button id="button-go-to-task-view" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="Go To Task View" textFill="#f8f6f6" userData="task-view">
+                      <Button id="button-go-to-task-view" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="%goToTaskView" textFill="#f8f6f6" userData="task-view">
                           <font>
                               <Font size="16.0" />
                           </font>
@@ -255,7 +255,7 @@
             </VBox>
             <VBox id="container-vbox" prefHeight="790.0" prefWidth="450.0">
                <children>
-                  <Label text="Associated Personnel" textFill="#757171">
+                  <Label text="%associatedPersonnel" textFill="#757171">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -265,7 +265,7 @@
                   </Label>
                   <HBox prefHeight="45.0" prefWidth="450.0">
                      <children>
-                        <Label text="Search" textFill="#757171">
+                        <Label text="%search" textFill="#757171">
                            <font>
                               <Font size="15.0" />
                            </font>

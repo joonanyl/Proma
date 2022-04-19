@@ -16,7 +16,7 @@
          <children>
             <VBox id="container-vbox" prefHeight="780.0" prefWidth="410.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Sprints to Project">
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%addSprints">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
@@ -24,7 +24,7 @@
                         <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
                      </VBox.margin>
                   </Text>
-                  <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprint name">
+                  <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="%sprintName">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -42,7 +42,7 @@
                   </TextField>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="410.0">
                      <children>
-                        <Button fx:id="btnAddSprint" mnemonicParsing="false" prefWidth="130.0" text=" Add" textFill="#f8f6f6">
+                        <Button fx:id="btnAddSprint" mnemonicParsing="false" prefWidth="130.0" text="%add" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -52,7 +52,7 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprints to be created">
+                  <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="%sprintsToBe">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -67,7 +67,7 @@
                   </ListView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnRemoveSprint" mnemonicParsing="false" prefWidth="130.0" text="Remove" textFill="#f8f6f6">
+                        <Button fx:id="btnRemoveSprint" mnemonicParsing="false" prefWidth="130.0" text="%remove" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -76,7 +76,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnCreateSprint" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Create Sprints" textFill="#f8f6f6">
+                        <Button fx:id="btnCreateSprint" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="%createSprints" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -93,7 +93,7 @@
             </VBox>
             <VBox id="container-vbox" prefHeight="780.0" prefWidth="410.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Existing Sprints">
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%existingSprints">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
@@ -106,7 +106,7 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                   </ListView>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprint Info">
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%sprintInfo">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
