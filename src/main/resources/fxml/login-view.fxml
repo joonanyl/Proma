@@ -23,7 +23,7 @@
                         <Insets bottom="115.0" />
                      </VBox.margin>
                   </ImageView>
-                <Button id="button-website-link" alignment="CENTER" mnemonicParsing="false" stylesheets="@../styling/login-view-styling.css" text="proma.com" textFill="WHITE">
+                <Button id="button-website-link" alignment="CENTER" mnemonicParsing="false" stylesheets="@../styling/login-view-styling.css" text="%promaCom" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

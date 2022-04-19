@@ -19,7 +19,7 @@
                     <children>
                   <HBox prefHeight="60.0" prefWidth="200.0">
                      <children>
-                                <Label text="My Projects" textFill="#757171">
+                                <Label text="%myProjects" textFill="#757171">
                                     <font>
                                         <Font name="System Bold" size="17.0" />
                                     </font>
@@ -29,7 +29,7 @@
                                 </Label>
                                   <HBox fx:id="projectNavBar" alignment="TOP_CENTER" prefHeight="60.0" prefWidth="928.0">
                                       <children>
-                                          <Button id="button-day-view" fx:id="buttonAllProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="All" userData="overview-subview">
+                                          <Button id="button-day-view" fx:id="buttonAllProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="%all" userData="overview-subview">
                                               <font>
                                                   <Font size="13.0" />
                                               </font>
@@ -37,7 +37,7 @@
                                                   <Insets top="15.0" />
                                               </HBox.margin>
                                           </Button>
-                                          <Button id="button-sprint-view" fx:id="btnActiveProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Active" userData="task-subview">
+                                          <Button id="button-sprint-view" fx:id="btnActiveProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="%active" userData="task-subview">
                                               <font>
                                                   <Font size="13.0" />
                                               </font>
@@ -45,7 +45,7 @@
                                                   <Insets top="15.0" />
                                               </HBox.margin>
                                           </Button>
-                                          <Button id="button-project-view" fx:id="btnCompletedProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="Completed" userData="personnel-subview">
+                                          <Button id="button-project-view" fx:id="btnCompletedProjects" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css" text="%completed" userData="personnel-subview">
                                               <font>
                                                   <Font size="13.0" />
                                               </font>
@@ -71,7 +71,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Project Search" textFill="#757171">
+                                    <Label text="%projectSearch" textFill="#757171">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -94,7 +94,7 @@
                               </VBox>
                               <VBox prefHeight="543.0" prefWidth="544.0">
                                  <children>
-                                    <Label text="Project Info" textFill="#757171">
+                                    <Label text="%projectInfo" textFill="#757171">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -102,7 +102,7 @@
                                           <Insets left="15.0" top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Project">
+                                    <Label text="%project">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -110,7 +110,7 @@
                                           <Insets left="25.0" top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Sprint">
+                                    <Label text="%sprint">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -118,7 +118,7 @@
                                           <Insets left="25.0" top="35.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Created by">
+                                    <Label text="%createdBy">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -126,7 +126,7 @@
                                           <Insets left="25.0" top="35.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Priority">
+                                    <Label text="%priority">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -134,7 +134,7 @@
                                           <Insets left="25.0" top="35.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Task type">
+                                    <Label text="%taskType">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -142,7 +142,7 @@
                                           <Insets left="25.0" top="35.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="Task State">
+                                    <Label text="%taskState">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -157,7 +157,7 @@
                                                 <Insets top="25.0" />
                                              </VBox.margin>
                                           </Line>
-                                          <Button id="button-go-to-task-view" fx:id="btnGoToProjectView" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="Go To Project View" textFill="#f8f6f6" userData="task-view">
+                                          <Button id="button-go-to-task-view" fx:id="btnGoToProjectView" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="%goToProjectsView" textFill="#f8f6f6" userData="task-view">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>

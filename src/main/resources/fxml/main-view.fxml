@@ -24,14 +24,14 @@
          <children>
             <Pane prefHeight="70.0" prefWidth="250.0">
                <children>
-                  <Label id="button-leftnav" fx:id="labelPromaLogo" alignment="CENTER" graphicTextGap="0.0" layoutX="67.0" layoutY="18.0" text="Promalogo" textFill="WHITE">
+                  <Label id="button-leftnav" fx:id="labelPromaLogo" alignment="CENTER" graphicTextGap="0.0" layoutX="67.0" layoutY="18.0" text="%promaLogo" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Dashboard" textFill="#ddd8d8" userData="dashboard-view">
+            <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%dashboard" textFill="#ddd8d8" userData="dashboard-view">
                <padding>
                   <Insets left="20.0" />
                </padding>
@@ -46,7 +46,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Management" textFill="#ddd8d8" userData="time-management-view2">
+            <Button id="button-leftnav" fx:id="btnManagement" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%management" textFill="#ddd8d8" userData="time-management-view2">
                <padding>
                   <Insets left="17.0" />
                </padding>
@@ -63,7 +63,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Projects" textFill="#ddd8d8" userData="projects-view">
+            <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%projects" textFill="#ddd8d8" userData="projects-view">
                <padding>
                   <Insets left="23.0" />
                </padding>
@@ -78,7 +78,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text=" Teams" textFill="#ddd8d8" userData="teams-view">
+            <Button id="button-leftnav" fx:id="btnTeam" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%teams" textFill="#ddd8d8" userData="teams-view">
                <padding>
                   <Insets left="23.0" />
                </padding>
@@ -93,7 +93,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnTasks" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="  Tasks" textFill="#ddd8d8" userData="tasks-view">
+            <Button id="button-leftnav" fx:id="btnTasks" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%tasks" textFill="#ddd8d8" userData="tasks-view">
                <padding>
                   <Insets left="23.0" />
                </padding>
@@ -108,7 +108,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="button-leftnav" fx:id="btnArchive" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="Archive" textFill="#ddd8d8" userData="archive-view">
+            <Button id="button-leftnav" fx:id="btnArchive" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleLeftBarNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%archive" textFill="#ddd8d8" userData="archive-view">
                <font>
                   <Font name="Myanmar Text" size="18.0" />
                </font>
@@ -128,41 +128,41 @@
       <!-- Top Navbar Left Elements -->
       <HBox id="hbox-topnav" layoutX="250.0" prefHeight="50.0" prefWidth="540.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="250.0" HBox.hgrow="ALWAYS">
          <children>
-            <MenuButton id="button-topnav" fx:id="menuBtnCreate" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="120.0" stylesheets="@../styling/main-view-styling.css" text="Create" textFill="#15191c">
+            <MenuButton id="button-topnav" fx:id="menuBtnCreate" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="120.0" stylesheets="@../styling/main-view-styling.css" text="%create" textFill="#15191c">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Project" userData="create-project-view" />
-                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Team" userData="create-team-view" />
-                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Task" userData="create-task-view" />
-                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="+ New Time Entry" userData="time-management-view" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="%plusProject" userData="create-project-view" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="%plusTeam" userData="create-team-view" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="%plusTask" userData="create-task-view" />
+                <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="%plusEntry" userData="time-management-view" />
               </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />
                </font>
             </MenuButton>
-            <MenuButton id="button-topnav" fx:id="menuBtnExport" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" stylesheets="@../styling/main-view-styling.css" text="Export" textFill="#15191c">
+            <MenuButton id="button-topnav" fx:id="menuBtnExport" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" stylesheets="@../styling/main-view-styling.css" text="%export" textFill="#15191c">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Time Management -&gt; PDF" />
-                  <MenuItem mnemonicParsing="false" text="Time Management -&gt; Excel" />
+                  <MenuItem mnemonicParsing="false" text="%timeManagementPdf" />
+                  <MenuItem mnemonicParsing="false" text="%timeManagementExcel" />
                </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />
                </font>
             </MenuButton>
-            <MenuButton id="button-topnav" fx:id="menuBtnView" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="View" textFill="#15191c">
+            <MenuButton id="button-topnav" fx:id="menuBtnView" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="%view" textFill="#15191c">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Toggle Quick Navigation Bar" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="Go To..." userData="sprint-view" />
+                  <MenuItem mnemonicParsing="false" text="%toggleQuickNavigation" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="%goTo" userData="sprint-view" />
                </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />
                </font>
             </MenuButton>
-            <MenuButton id="button-topnav" fx:id="menuBtnHelp" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="Help" textFill="#15191c">
+            <MenuButton id="button-topnav" fx:id="menuBtnHelp" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="110.0" stylesheets="@../styling/main-view-styling.css" text="%help" textFill="#15191c">
                <items>
-                  <MenuItem mnemonicParsing="false" text="About Proma" />
-                  <MenuItem mnemonicParsing="false" text="What's new?" />
-                  <MenuItem mnemonicParsing="false" text="Help Center" />
-                  <MenuItem mnemonicParsing="false" text="Check for updates..." />
+                  <MenuItem mnemonicParsing="false" text="%aboutProma" />
+                  <MenuItem mnemonicParsing="false" text="%whatsNew" />
+                  <MenuItem mnemonicParsing="false" text="%helpCenter" />
+                  <MenuItem mnemonicParsing="false" text="%checkUpdates" />
                </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />
@@ -178,8 +178,8 @@
          <children>
             <MenuButton id="button-topnav-right" fx:id="menuBtnNotification" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" stylesheets="@../styling/main-view-styling.css" textFill="#15191c">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <MenuItem mnemonicParsing="false" text="%actionOne" />
+                  <MenuItem mnemonicParsing="false" text="%actionTwo" />
                </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />
@@ -194,9 +194,9 @@
             </MenuButton>
             <MenuButton id="button-topnav-right" fx:id="menuBtnAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" stylesheets="@../styling/main-view-styling.css" textFill="#15191c">
                <items>
-                  <RadioMenuItem fx:id="menuItemDarkMode" mnemonicParsing="false" text="Dark Mode" />
-                  <MenuItem fx:id="menuItemProfile" mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="Profile" userData="profile-view" />
-                  <MenuItem fx:id="menuItemLogOut" mnemonicParsing="false" onAction="#backToLoginScene" text="Log out" />
+                  <RadioMenuItem fx:id="menuItemDarkMode" mnemonicParsing="false" text="%darkMode" />
+                  <MenuItem fx:id="menuItemProfile" mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="%profile" userData="profile-view" />
+                  <MenuItem fx:id="menuItemLogOut" mnemonicParsing="false" onAction="#backToLoginScene" text="%logOut" />
                </items>
                <font>
                   <Font name="Myanmar Text" size="16.0" />
