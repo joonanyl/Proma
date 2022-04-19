@@ -39,7 +39,7 @@ class TaskTest {
     @Test
     @Order(1)
     void assignToTeam() {
-        task.assignToTeam(team);
+        task.addTeam(team);
         assertTrue(team.getTasks().contains(task), "Taskin lisääminen tiimille epäonnistui (ei löydy tiimin task-listasta)");
         assertTrue(task.getTeams().contains(team), "Taskin lisääminen tiimille epäonnistui (ei löytynyt omasta tiimi-listasta)");
     }
@@ -48,7 +48,7 @@ class TaskTest {
     @Test
     @Order(2)
     void removeFromTeam() {
-        task.removeFromTeam(team);
+        task.removeTeam(team);
         assertFalse(team.getTasks().contains(task), "Taskin poistaminen tiimiltä epäonnistui (löytyy tiimin task-listasta)");
         assertFalse(task.getTeams().contains(team), "Taskin poistaminen tiimilte epäonnistui (löytyy omasta tiimi-listasta)");
     }
@@ -56,7 +56,7 @@ class TaskTest {
     @Test
     @Order(3)
     void assignAccount() {
-        task.assignAccount(account);
+        task.addAccount(account);
         assertTrue(account.getTasks().contains(task), "Taskin lisääminen käyttäjätilille epäonnistui");
         assertTrue(task.getAccounts().contains(account), "Käyttäjätilin lisääminen taskin listaan epäonnistui");
     }
@@ -174,23 +174,16 @@ class TaskTest {
         assertEquals(accounts, task.getAccounts(), "Käyttäjätilien lisääminen tehtävälle epäonnistui");
     }
 
-    @Test
-    @Order(18)
-    void setAndGetSprint() {
-        sprint.setName("sprint1");
-        task.setSprint(sprint);
-        assertEquals(sprint, task.getSprint(), "Sprintin asettaminen tehtävälle epäonnistui");
-    }
 
     @Test
-    @Order(19)
+    @Order(18)
     void setAndGetProject() {
         task.setProject(project);
         assertEquals(project, task.getProject(), "Projektin asettaminen taskille epäonnistui");
     }
 
     @Test
-    @Order(20)
+    @Order(19)
     void setAndGetTeams() {
         Set<Team> teams = new HashSet<Team>();
         teams.add(team);

@@ -67,9 +67,7 @@ public class CreateProjectViewController {
 
     public void initialize(){
         List<Account> accountList = controller.getAllAccounts();
-        if(accountList.contains(controllerAccount.getAccount())){
-            accountList.remove(controllerAccount.getAccount());
-        }
+        accountList.remove(AppState.getInstance().getLoggedAccount());
         accountList.forEach((account)->{
             accountSearchableComboBox.getItems().add(account);
         });

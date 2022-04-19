@@ -4,8 +4,6 @@ import r8.model.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,7 +33,7 @@ public class Task {
 	@Column(name = "state")
 	private String taskStateString;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "task_type_id")
 	private TaskType taskType;
 
@@ -51,32 +49,37 @@ public class Task {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
+	@ManyToMany(
+			fetch = FetchType.EAGER,
+			cascade = {
 			CascadeType.MERGE
 	})
 	@JoinTable(
 			name = "account_task",
 			joinColumns = @JoinColumn(name = "task_id"),
 			inverseJoinColumns = @JoinColumn(name = "account_id"))
-	private Set<Account> accounts;
+	private Set<Account> accounts = new HashSet<>();
 
 	@ManyToMany(mappedBy = "tasks")
-	private Set<Sprint> sprints;
+	private Set<Sprint> sprints = new HashSet<>();
 
 	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private Project project;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
+	@ManyToMany(
+			fetch = FetchType.EAGER,
+			cascade = {
 			CascadeType.MERGE
 	})
 	@JoinTable(
 			name = "task_team",
 			joinColumns = @JoinColumn(name = "task_id"),
 			inverseJoinColumns = @JoinColumn(name = "team_id"))
-	private Set<Team> teams;
+	private Set<Team> teams = new HashSet<>();
+
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Event> events = new HashSet<>();
 
 	/**
 	 * Constructor
@@ -94,14 +97,34 @@ public class Task {
 
 	public Task() {}
 
-	public void assignToTeam(Team team) {
+	public void addTeam(Team team) {
 		teams.add(team);
 		team.getTasks().add(this);
 	}
 
-	public void removeFromTeam(Team team) {
+	public void removeTeam(Team team) {
 		teams.remove(team);
 		team.getTasks().remove(this);
+	}
+
+	public void addAccount(Account account) {
+		accounts.add(account);
+		account.getTasks().add(this);
+	}
+
+	public void removeAccount(Account account) {
+		accounts.remove(account);
+		account.getTasks().remove(this);
+	}
+
+	public void addEvent(Event event) {
+		events.add(event);
+		event.setTask(this);
+	}
+
+	public void removeEvent(Event event) {
+		events.remove(event);
+		event.setTask(null);
 	}
 
 	public int getTaskId() {
@@ -206,6 +229,14 @@ public class Task {
 
 	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
+	}
+
+	public Set<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
 	}
 
 	public String toString(){

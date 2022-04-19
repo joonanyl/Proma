@@ -49,11 +49,9 @@ public class CreateAccountViewController {
     public void initialize(){
         controller = new Controller();
 
-        TextFieldValidator textFieldValidator = new TextFieldValidator();
-
-        textFieldValidator.setValidation(textFieldEmail, emailRegEx);
-        textFieldValidator.setValidation(textFieldFirstName, nameRegEx);
-        textFieldValidator.setValidation(textFieldLastName, nameRegEx);
+        TextFieldValidator.setValidation(textFieldEmail, emailRegEx);
+        TextFieldValidator.setValidation(textFieldFirstName, nameRegEx);
+        TextFieldValidator.setValidation(textFieldLastName, nameRegEx);
         comparePassword();
     }
 

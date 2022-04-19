@@ -1,8 +1,10 @@
 package r8.model;
 
+import org.hibernate.annotations.Cascade;
 import r8.model.task.Task;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,11 +38,15 @@ public class Project {
 	@Column(name = "description")
 	private String description;
 
-	@OneToMany(mappedBy = "project")
-	private List<Task> tasks = new ArrayList<>();
+	// Removing a project removes all tasks it
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Task> tasks = new HashSet<>();
+	// Removing a project removes all teams under
+	@OneToMany(mappedBy = "project", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	private Set<Team> teams = new HashSet<>();
 
-	@OneToMany(mappedBy = "project")
-	private List<Team> teams = new ArrayList<>();
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Sprint> sprints = new HashSet<>();
 
 	/**
 	 * Contructor
@@ -51,9 +57,11 @@ public class Project {
 		this.description = description;
 	}
 
+	public Project() {}
+
 	public void addAccount(Account account) {
 		this.accounts.add(account);
-		account.getProjects().add(this);
+		account.getProjects().remove(this);
 	}
 
 	public void removeAccount(Account account) {
@@ -81,7 +89,15 @@ public class Project {
 		team.setProject(null);
 	}
 
-	public Project() {}
+	public void addSprint(Sprint sprint) {
+		sprints.add(sprint);
+		sprint.setProject(this);
+	}
+
+	public void removeSprint(Sprint sprint) {
+		sprints.remove(sprint);
+		sprint.setProject(null);
+	}
 
 	public int getProjectId() {
 		return projectId;
@@ -115,20 +131,28 @@ public class Project {
 		this.description = description;
 	}
 
-	public List<Task> getTasks() {
+	public Set<Task> getTasks() {
 		return tasks;
 	}
 
-	public List<Team> getTeams() {
+	public Set<Team> getTeams() {
 		return teams;
 	}
 
-	public void setTeams(List<Team> teams) {
+	public void setTeams(Set<Team> teams) {
 		this.teams = teams;
 	}
 
-	public void setTasks(ArrayList<Task> tasks) {
+	public void setTasks(Set<Task> tasks) {
 		this.tasks = tasks;
+	}
+
+	public Set<Sprint> getSprints() {
+		return sprints;
+	}
+
+	public void setSprints(Set<Sprint> sprints) {
+		this.sprints = sprints;
 	}
 
 	@Override

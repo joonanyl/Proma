@@ -52,6 +52,10 @@ public class Account {
 	@ManyToMany(mappedBy = "accounts")
 	private Set<Task> tasks = new HashSet<>();
 
+	// Pitäisikö poistaa eventit jos käyttäjä poistuu?
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Event> events = new HashSet<>();
+
 	public Account(String fName, String lName, String email, String password) {
 		this.firstName = fName;
 		this.lastName = lName;
@@ -150,4 +154,11 @@ public class Account {
 		return accountId + " " + firstName + " " + lastName + " " + email;
 	}
 
+	public Set<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
 }

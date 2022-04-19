@@ -2,6 +2,7 @@ package r8.model.dao;
 
 import org.hibernate.HibernateException;
 import r8.model.Comment;
+import r8.model.task.Task;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -85,6 +86,20 @@ public class CommentDAO {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         } finally {
+            entityManager.close();
+        }
+    }
+
+    public List<Comment> getComments(Task task){
+        entityManager = DAOUtil.getEntityManager();
+        try{
+            entityManager.getTransaction().begin();
+            return entityManager.createQuery("SELECT c FROM Comment c WHERE c.task = :task", Comment.class)
+                    .setParameter("task", task).getResultList();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            return null;
+        }finally {
             entityManager.close();
         }
     }
