@@ -23,9 +23,9 @@
              <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://10.114.32.64:3306/promatest"/>
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/promatest"/> -->
             
-            <property name="javax.persistence.jdbc.user" value="olso" />
+            <property name="javax.persistence.jdbc.user" value="joona" />
 
-            <property name="javax.persistence.jdbc.password" value="olso" />
+            <property name="javax.persistence.jdbc.password" value="ok1" />
 
             <property name="hibernate.show_sql" value="true" />
         </properties>

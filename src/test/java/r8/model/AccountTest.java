@@ -1,6 +1,7 @@
 package r8.model;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import r8.model.task.Task;
 
@@ -43,6 +44,7 @@ class AccountTest {
         assertFalse(project1.getAccounts().contains(account1), "Käyttäjätili ei poistunut projektin työntekijälistasta");
     }
 
+    @Disabled
     @Test
     void getProjects() {
         project1.addAccount(account1);
