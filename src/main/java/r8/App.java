@@ -39,7 +39,9 @@ public class App extends Application
             //ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
 
             FXMLLoader loader = new FXMLLoader();
+            ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
             loader.setLocation(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
+            loader.setResources(resourceBundle);
 
             //loader.setLocation(App.class.getResource("/fxml/" + viewToLoad + ".fxml"));
             //loader.setResources(resourceBundle);
