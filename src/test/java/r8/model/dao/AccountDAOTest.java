@@ -77,10 +77,10 @@ class AccountDAOTest {
 
     @AfterAll
     static void clearDatabase(){
-        accountDAO.removeAccount(account1);
-        accountDAO.removeAccount(account2);
-        accountDAO.removeAccount(account3);
-        accountDAO.removeAccount(account4);
+        accountDAO.remove(account1);
+        accountDAO.remove(account2);
+        accountDAO.remove(account3);
+        accountDAO.remove(account4);
         System.out.println("db cleared");
     }
 

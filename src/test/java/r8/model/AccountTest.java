@@ -35,15 +35,6 @@ class AccountTest {
     }
 
     @Test
-    void removeFromProject() {
-        project1.addAccount(account1);
-
-        account1.removeFromProject(project1);
-
-        assertFalse(project1.getAccounts().contains(account1), "Käyttäjätili ei poistunut projektin työntekijälistasta");
-    }
-
-    @Test
     void getProjects() {
         project1.addAccount(account1);
         project2.addAccount(account1);

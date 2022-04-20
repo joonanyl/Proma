@@ -99,6 +99,15 @@ public class Team {
 		accounts.remove(account);
 		account.getTeams().remove(this);
 	}
+
+	public void removeAccountById(int id) {
+		for (Account a : accounts) {
+			if (a.getAccountId() == id) {
+				accounts.remove(a);
+				a.getTeams().remove(this);
+			}
+		}
+	}
 	
 	/**
 	 *
@@ -124,7 +133,6 @@ public class Team {
 		}
 		return null;
 	}
-
 
 	public Project getProject() {
 		return project;

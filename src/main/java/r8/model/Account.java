@@ -52,7 +52,6 @@ public class Account {
 	@ManyToMany(mappedBy = "accounts")
 	private Set<Task> tasks = new HashSet<>();
 
-	// Pitäisikö poistaa eventit jos käyttäjä poistuu?
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Event> events = new HashSet<>();
 
@@ -114,7 +113,6 @@ public class Account {
 	}
 
 	public void setTasks(Set<Task> tasks) {
-		// tähän pitää laittaa looppeja ettei tulis duplikaatteja
 		this.tasks = tasks;
 	}
 
