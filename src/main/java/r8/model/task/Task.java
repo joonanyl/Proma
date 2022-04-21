@@ -107,6 +107,15 @@ public class Task {
 		team.getTasks().remove(this);
 	}
 
+	public void removeTeamWithId(int id) {
+		for (Team t : teams) {
+			if (t.getTeamId() == id) {
+				teams.remove(t);
+				t.getTasks().remove(this);
+			}
+		}
+	}
+
 	public void addAccount(Account account) {
 		accounts.add(account);
 		account.getTasks().add(this);
@@ -117,6 +126,15 @@ public class Task {
 		account.getTasks().remove(this);
 	}
 
+	public void removeAccountWithId(int id) {
+		for (Account a : accounts) {
+			if (a.getAccountId() == id) {
+				accounts.remove(a);
+				a.getProjects().remove(this);
+			}
+		}
+	}
+
 	public void addEvent(Event event) {
 		events.add(event);
 		event.setTask(this);
@@ -125,6 +143,15 @@ public class Task {
 	public void removeEvent(Event event) {
 		events.remove(event);
 		event.setTask(null);
+	}
+
+	public void removeEventWithId(int id) {
+		for (Event e : events) {
+			if (e.getEventId() == id) {
+				events.remove(e);
+				e.setTask(null);
+			}
+		}
 	}
 
 	public int getTaskId() {

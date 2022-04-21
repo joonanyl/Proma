@@ -9,7 +9,6 @@ import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 import r8.view.IViewController;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -83,7 +82,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     public void removeAccount(Account account) {
-        accountDAO.removeAccount(account);
+        accountDAO.remove(account);
     }
 
     public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
@@ -110,10 +109,6 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     @Override
     public List<Project> getProjects() {
         return null;
-    }
-
-    public Project getProjectByName(String name) {
-        return projectDAO.getByName(name);
     }
 
     public List<Project> getProjectByAccount(Account account) {
@@ -147,10 +142,6 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
 
     public Team getTeamById(int teamId) {
         return teamDAO.get(teamId);
-    }
-
-    public Team getTeamByName(String name) {
-        return teamDAO.getByName(name);
     }
 
     public List<Team> getTeamsByProject(Project project) {
@@ -356,6 +347,6 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
 
     @Override
     public List<Comment> getComments(Task task){
-        return commentDAO.getComments(task);
+        return commentDAO.getCommentsByTask(task);
     }
 }

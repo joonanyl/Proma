@@ -69,6 +69,15 @@ public class Sprint {
 		task.getSprints().remove(this);
 	}
 
+	public void removeTaskWithId(int id) {
+		for (Task t : tasks) {
+			if (t.getTaskId() == id) {
+				tasks.remove(t);
+				t.getSprints().remove(this);
+			}
+		}
+	}
+
 	public int getSprintId() {
 		return sprintId;
 	}

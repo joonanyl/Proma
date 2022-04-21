@@ -9,6 +9,7 @@ import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
+import r8.util.TextLoader;
 
 public class ProfileViewController {
 
@@ -51,7 +52,7 @@ public class ProfileViewController {
             labelUserLastNameDisplay.setText(controllerAccount.getAccount().getLastName());
             labelUserEmailDisplay.setText(controllerAccount.getAccount().getEmail());
         }
-        labelUserPhoneDisplay.setText("not set");
+        labelUserPhoneDisplay.setText(TextLoader.getInstance().getResource("notSet"));
     }
 
     @FXML

@@ -20,7 +20,7 @@
                     <children>
                         <HBox prefHeight="60.0" prefWidth="200.0">
                             <children>
-                                <Label text="My Projects" textFill="#757171">
+                                <Label text="%myProjects" textFill="#757171">
                                     <font>
                                         <Font name="System Bold" size="17.0" />
                                     </font>
@@ -32,7 +32,7 @@
                            <children>
                               <ToggleButton id="button-all-view" fx:id="btnOverview" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css">
                                  <graphic>
-                                    <Label text="All" />
+                                    <Label text="%all" />
                                  </graphic>
                                  <HBox.margin>
                                     <Insets top="25.0" />
@@ -40,7 +40,7 @@
                               </ToggleButton>
                               <ToggleButton id="button-sprint-view" fx:id="btnPersonal" prefHeight="35.0" prefWidth="100.0" selected="true" stylesheets="@../styling/time-management-styling.css">
                                  <graphic>
-                                    <Label text="Active" />
+                                    <Label text="%active" />
                                  </graphic>
                                  <HBox.margin>
                                     <Insets top="25.0" />
@@ -48,7 +48,7 @@
                               </ToggleButton>
                               <ToggleButton id="button-project-view" fx:id="btnTeam" prefHeight="35.0" prefWidth="100.0" stylesheets="@../styling/time-management-styling.css">
                                  <graphic>
-                                    <Label text="Completed" />
+                                    <Label text="%completed" />
                                  </graphic>
                                  <HBox.margin>
                                     <Insets top="25.0" />
@@ -72,7 +72,7 @@
                                     <children>
                                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                             <children>
-                                                <Label text="Project Search" textFill="#757171">
+                                                <Label text="%projectSearch" textFill="#757171">
                                                     <font>
                                                         <Font name="System Bold" size="17.0" />
                                                     </font>
@@ -95,7 +95,7 @@
                                         </VBox>
                                         <VBox prefHeight="543.0" prefWidth="544.0">
                                             <children>
-                                                <Label text="Project Info" textFill="#757171">
+                                                <Label text="%projectInfo" textFill="#757171">
                                                     <font>
                                                         <Font name="System Bold" size="17.0" />
                                                     </font>
@@ -103,7 +103,7 @@
                                                         <Insets left="15.0" top="15.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label text="Project">
+                                                <Label text="%project">
                                                     <font>
                                                         <Font size="15.0" />
                                                     </font>
@@ -111,7 +111,7 @@
                                                         <Insets left="25.0" top="15.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label text="Sprint">
+                                                <Label text="%sprint">
                                                     <font>
                                                         <Font size="15.0" />
                                                     </font>
@@ -119,7 +119,7 @@
                                                         <Insets left="25.0" top="35.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label text="Created by">
+                                                <Label text="%createdBy">
                                                     <font>
                                                         <Font size="15.0" />
                                                     </font>
@@ -127,7 +127,7 @@
                                                         <Insets left="25.0" top="35.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label text="Priority">
+                                                <Label text="%priority">
                                                     <font>
                                                         <Font size="15.0" />
                                                     </font>
@@ -135,7 +135,7 @@
                                                         <Insets left="25.0" top="35.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label text="Task type">
+                                                <Label text="%taskType">
                                                     <font>
                                                         <Font size="15.0" />
                                                     </font>
@@ -143,7 +143,7 @@
                                                         <Insets left="25.0" top="35.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label text="Task State">
+                                                <Label text="%taskState">
                                                     <font>
                                                         <Font size="15.0" />
                                                     </font>
@@ -158,7 +158,7 @@
                                                                 <Insets top="25.0" />
                                                             </VBox.margin>
                                                         </Line>
-                                                        <Button id="button-go-to-task-view" fx:id="btnGoToProjectView" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="Go To Project View" textFill="#f8f6f6" userData="task-view">
+                                                        <Button id="button-go-to-task-view" fx:id="btnGoToProjectView" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="%goToProjectsView" textFill="#f8f6f6" userData="task-view">
                                                             <font>
                                                                 <Font size="16.0" />
                                                             </font>

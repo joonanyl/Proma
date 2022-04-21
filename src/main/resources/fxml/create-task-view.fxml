@@ -17,7 +17,7 @@
 
 <AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.taskView.CreateTaskViewController">
    <children>
-      <Text layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new task" wrappingWidth="191.03125" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="35.0">
+      <Text layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%createTask" wrappingWidth="191.03125" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="35.0">
          <font>
             <Font name="Arial" size="26.0" />
          </font>
@@ -29,7 +29,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Project">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%selectProject">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -42,7 +42,7 @@
                               <Insets right="15.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task type">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskType">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -59,7 +59,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="960.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task name">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskName">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -75,7 +75,7 @@
                               <Insets bottom="25.0" right="25.0" top="25.0" />
                            </HBox.margin>
                         </TextField>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Task Type">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%createTaskType">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -88,12 +88,12 @@
                               <Insets />
                            </opaqueInsets>
                         </TextField>
-                        <Button mnemonicParsing="false" onAction="#createTaskType" text="Add" />
+                        <Button mnemonicParsing="false" onAction="#createTaskType" text="%add" />
                      </children>
                   </HBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="379.0" prefWidth="850.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%description">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -108,8 +108,8 @@
                         </TextArea>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                            <children>
-                              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveTask" text="Save task" />
-                              <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" />
+                              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveTask" text="%saveTask" />
+                              <Button fx:id="btnCancel" mnemonicParsing="false" text="%cancel" />
                            </children>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
@@ -125,7 +125,7 @@
          <children>
             <VBox prefHeight="670.0" prefWidth="305.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign to">
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%assignTo">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
@@ -135,29 +135,29 @@
                   </Text>
                   <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Team">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%team">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Text>
                         <SearchableComboBox fx:id="comboBoxTeam" maxHeight="25.0" prefWidth="150.0" />
-                        <Button fx:id="btnAssignTeam" mnemonicParsing="false" onAction="#AssignTeam" text="Assign" />
+                        <Button fx:id="btnAssignTeam" mnemonicParsing="false" onAction="#AssignTeam" text="%assign" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="User  ">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%user">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                         </Text>
                         <SearchableComboBox fx:id="comboBoxUser" maxHeight="25.0" prefWidth="150.0" />
-                        <Button fx:id="btnAssignUser" mnemonicParsing="false" onAction="#AssignUser" text="Assign" />
+                        <Button fx:id="btnAssignUser" mnemonicParsing="false" onAction="#AssignUser" text="%assign" />
                      </children>
                   </HBox>
                   <VBox prefHeight="352.0" prefWidth="305.0" spacing="20.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Assigned to:">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%assignedTo">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -172,7 +172,7 @@
                         </ListView>
                         <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnRemoveAssigned" mnemonicParsing="false" onAction="#removeAssigned" text="Remove" />
+                              <Button fx:id="btnRemoveAssigned" mnemonicParsing="false" onAction="#removeAssigned" text="%remove" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" />

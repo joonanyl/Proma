@@ -33,6 +33,8 @@ public abstract class DAO<T> {
         }
     }
 
+    // Tähän ehkä getByX()?
+
     public void persist(T t) {
         em = getEntityManager();
         doInTransaction(em -> em.persist(t));
@@ -48,7 +50,7 @@ public abstract class DAO<T> {
         doInTransaction(em -> em.remove(em.merge(t)));
     }
 
-    private void doInTransaction(Consumer<EntityManager> action) {
+    protected void doInTransaction(Consumer<EntityManager> action) {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -63,7 +65,7 @@ public abstract class DAO<T> {
         }
     }
 
-    private EntityManager getEntityManager() {
+    protected EntityManager getEntityManager() {
         return DAOUtil.getEntityManager();
     }
 }

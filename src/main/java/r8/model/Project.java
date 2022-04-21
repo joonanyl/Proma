@@ -1,13 +1,9 @@
 package r8.model;
 
-import org.hibernate.annotations.Cascade;
 import r8.model.task.Task;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,7 +24,7 @@ public class Project {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(
 			name = "project_account",
 			joinColumns = @JoinColumn(name = "project_id"),
@@ -60,32 +56,32 @@ public class Project {
 	public Project() {}
 
 	public void addAccount(Account account) {
-		this.accounts.add(account);
+		accounts.add(account);
 		account.getProjects().remove(this);
 	}
 
 	public void removeAccount(Account account) {
-		this.accounts.remove(account);
+		accounts.remove(account);
 		account.getProjects().remove(this);
 	}
 
 	public void addTask(Task task) {
-		this.tasks.add(task);
+		tasks.add(task);
 		task.setProject(this);
 	}
 
 	public void removeTask(Task task) {
-		this.tasks.remove(task);
+		tasks.remove(task);
 		task.setProject(null);
 	}
 
 	public void addTeam(Team team) {
-		this.teams.add(team);
+		teams.add(team);
 		team.setProject(this);
 	}
 
-	public void removeProject(Team team) {
-		this.teams.remove(team);
+	public void removeTeam(Team team) {
+		teams.remove(team);
 		team.setProject(null);
 	}
 
@@ -97,6 +93,15 @@ public class Project {
 	public void removeSprint(Sprint sprint) {
 		sprints.remove(sprint);
 		sprint.setProject(null);
+	}
+
+	public void removeAccountWithId(int id) {
+		for (Account a : accounts) {
+			if (a.getAccountId() == id) {
+				accounts.remove(a);
+				a.getProjects().remove(this);
+			}
+		}
 	}
 
 	public int getProjectId() {
@@ -153,6 +158,16 @@ public class Project {
 
 	public void setSprints(Set<Sprint> sprints) {
 		this.sprints = sprints;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Project project = (Project) o;
+
+		return projectId == project.projectId;
 	}
 
 	@Override

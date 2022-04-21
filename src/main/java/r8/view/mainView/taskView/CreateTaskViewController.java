@@ -4,12 +4,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.controlsfx.control.SearchableComboBox;
+
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
+import r8.util.TextLoader;
 
 import java.util.*;
 
@@ -92,27 +94,28 @@ public class CreateTaskViewController {
         String name = taskName.getText();
         String desc = descField.getText();
         Project project = projectComboBox.getSelectionModel().getSelectedItem();
+        TextLoader textloader = TextLoader.getInstance();
         if(!name.matches("([A-Za-z0-9\\s ]{1,20})")){
             System.out.println("didn't match");
-            showAlert("Invalid input", "Invalid task name!", Alert.AlertType.INFORMATION);
+            showAlert(textloader.getResource("invalidInput"), textloader.getResource("invalidTask"), Alert.AlertType.INFORMATION);
             return;
         }
         if(!desc.matches(".{0,200}")){
-            showAlert("Too long", "Your description is too long", Alert.AlertType.INFORMATION);
+            showAlert(textloader.getResource("tooLong"), textloader.getResource("longDescription"), Alert.AlertType.INFORMATION);
             return;
         }
         if(tt == null){
-            showAlert("Missing task type" ,"Please choose or create and choose a task type", Alert.AlertType.INFORMATION);
+            showAlert(textloader.getResource("missingTask"), textloader.getResource("chooseType"), Alert.AlertType.INFORMATION);
             return;
         }
-        if(!showAlert("Confirmation", "Are you sure you want to save this task?", Alert.AlertType.CONFIRMATION)){
+        if(!showAlert(textloader.getResource("confirmation"), textloader.getResource("saveTaskConfirm"), Alert.AlertType.CONFIRMATION)){
             return;
         }
         if(project == null){
             return;
         }
         controller.createTask(name, TaskState.NOT_STARTED, tt, 0,desc, getAccounts(), getTeams(), project);
-        showAlert("Success", "Successfully saved this task!", Alert.AlertType.INFORMATION);
+        showAlert(textloader.getResource("success"), textloader.getResource("saveTaskSuccess"), Alert.AlertType.INFORMATION);
     }
 
     @FXML

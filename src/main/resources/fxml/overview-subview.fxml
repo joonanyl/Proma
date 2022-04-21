@@ -15,7 +15,7 @@
          <children>
             <VBox prefHeight="780.0" prefWidth="273.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprints">
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%sprints">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
@@ -40,7 +40,7 @@
             </VBox>
             <VBox prefHeight="780.0" prefWidth="273.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks">
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%tasks">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
@@ -58,7 +58,7 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                      <children>
-                        <Button fx:id="btnGoToSelection" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Go To Selection" textFill="#f8f6f6">
+                        <Button fx:id="btnGoToSelection" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="%goToSelection" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -72,7 +72,7 @@
             </VBox>
             <VBox prefHeight="780.0" prefWidth="273.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Personnel">
+                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%personnel">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
@@ -87,7 +87,7 @@
                   </ListView>
                   <VBox prefHeight="300.0" prefWidth="280.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Teams">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%teams">
                            <font>
                               <Font name="Arial Bold" size="16.0" />
                            </font>

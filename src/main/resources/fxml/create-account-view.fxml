@@ -12,27 +12,27 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="440.0" style="-fx-background-color: F9F9F9;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.loginView.createAccountView.CreateAccountViewController">
     <children>
-        <Label layoutX="91.0" layoutY="29.0" text="Create new account">
+        <Label layoutX="91.0" layoutY="29.0" text="%createNew">
             <font>
                 <Font name="Microsoft New Tai Lue Bold" size="28.0" />
             </font>
         </Label>
-        <Label layoutX="91.0" layoutY="71.0" text="Please enter account information" textFill="#696565">
+        <Label layoutX="91.0" layoutY="71.0" text="%pleaseEnterInfo" textFill="#696565">
             <font>
                 <Font name="Microsoft New Tai Lue" size="16.0" />
             </font>
         </Label>
-        <Button id="button-create-account" fx:id="btnCreateAccount" layoutX="121.0" layoutY="478.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="48.0" prefWidth="200.0" stylesheets="@../styling/create-account-view-styling.css" text="Create Account" textFill="WHITE" userData="login-credentials-view">
+        <Button id="button-create-account" fx:id="btnCreateAccount" layoutX="121.0" layoutY="478.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="48.0" prefWidth="200.0" stylesheets="@../styling/create-account-view-styling.css" text="%createAccText" textFill="WHITE" userData="login-credentials-view">
             <font>
                 <Font name="Microsoft New Tai Lue Bold" size="22.0" />
             </font>
         </Button>
-        <Button id="button-back-to-login" fx:id="btnBackToLogin" layoutX="233.0" layoutY="531.0" mnemonicParsing="false" onAction="#navigate" stylesheets="@../styling/create-account-view-styling.css" text="Log In" textFill="#696565" underline="true" userData="login-credentials-view">
+        <Button id="button-back-to-login" fx:id="btnBackToLogin" layoutX="233.0" layoutY="531.0" mnemonicParsing="false" onAction="#navigate" stylesheets="@../styling/create-account-view-styling.css" text="%login" textFill="#696565" underline="true" userData="login-credentials-view">
             <font>
                 <Font name="Microsoft New Tai Lue" size="16.0" />
             </font>
         </Button>
-      <Button id="button-back-to-login-text" fx:id="btnBackToLoginText" layoutX="125.0" layoutY="532.0" mnemonicParsing="false" onAction="#navigate" stylesheets="@../styling/create-account-view-styling.css" text="Back to Login?" textFill="#696565" userData="login-credentials-view">
+      <Button id="button-back-to-login-text" fx:id="btnBackToLoginText" layoutX="125.0" layoutY="532.0" mnemonicParsing="false" onAction="#navigate" stylesheets="@../styling/create-account-view-styling.css" text="%backToLogin" textFill="#696565" userData="login-credentials-view">
          <font>
             <Font name="Microsoft New Tai Lue" size="16.0" />
          </font>
@@ -40,7 +40,7 @@
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <VBox layoutX="113.0" layoutY="114.0" prefHeight="278.0" prefWidth="220.0" spacing="5.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="107.0">
          <children>
-              <Label text="Email">
+              <Label text="%emailLabel">
                   <font>
                       <Font name="Arial" size="14.0" />
                   </font>
@@ -50,7 +50,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <Label text="First Name">
+            <Label text="%firstName">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -60,7 +60,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Last Name">
+            <Label text="%lastName">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -70,7 +70,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Password">
+            <Label text="%pwdLabel">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -80,7 +80,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </PasswordField>
-            <Label text="Confirm Password">
+            <Label text="%confirmPwd">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -88,8 +88,8 @@
             <PasswordField id="confirmPasswordField" fx:id="confirmPasswordField" />
          </children>
       </VBox>
-      <Label fx:id="characterCheck" layoutX="117.0" layoutY="418.0" text="Password must contain 8-30 characters, " textFill="#000000b2" />
-      <Label fx:id="uppercaseCheck" layoutX="117.0" layoutY="436.0" text="1 uppercase and lowercase character," textFill="#000000b2" />
-      <Label fx:id="numberCheck" layoutX="117.0" layoutY="453.0" text="1 number." textFill="#000000b2" />
+      <Label fx:id="characterCheck" layoutX="117.0" layoutY="418.0" text="%mustContainChar" textFill="#000000b2" />
+      <Label fx:id="uppercaseCheck" layoutX="117.0" layoutY="436.0" text="%upperAndLower" textFill="#000000b2" />
+      <Label fx:id="numberCheck" layoutX="117.0" layoutY="453.0" text="%oneNumber" textFill="#000000b2" />
     </children>
 </AnchorPane>
