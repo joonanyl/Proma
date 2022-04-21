@@ -46,10 +46,10 @@ public class Account {
 	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
 	private Set<Project> projects = new HashSet<>();
 
-	@ManyToMany(mappedBy = "accounts")
+	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
 	private Set<Team> teams = new HashSet<>();
 
-	@ManyToMany(mappedBy = "accounts")
+	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
 	private Set<Task> tasks = new HashSet<>();
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -107,9 +107,7 @@ public class Account {
 	}
 
 	public void setTask(Task t){
-		if(!this.tasks.contains(t)) {
-			this.tasks.add(t);
-		}
+		this.tasks.add(t);
 	}
 
 	public void setTasks(Set<Task> tasks) {
