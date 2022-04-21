@@ -144,10 +144,6 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         return teamDAO.get(teamId);
     }
 
-    public Team getTeamByName(String name) {
-        return teamDAO.getByName(name);
-    }
-
     public List<Team> getTeamsByProject(Project project) {
         return teamDAO.getByProject(project);
     }
