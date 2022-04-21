@@ -101,7 +101,7 @@
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </ComboBox>
-                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%createTaskType">
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%selectTaskType">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
