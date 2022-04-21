@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class App extends Application
 {
-	private Stage stage;
+    private Stage stage;
     private boolean displayLogin;
 
     @Override
@@ -32,6 +32,7 @@ public class App extends Application
             //ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
 
             FXMLLoader loader = new FXMLLoader();
+            TextLoader textLoader = TextLoader.getInstance();
             ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
             loader.setLocation(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
             loader.setResources(resourceBundle);
@@ -42,7 +43,7 @@ public class App extends Application
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle(displayLogin ? TextLoader.getInstance().getResource("loginTitle") : TextLoader.getInstance().getResource("loginTitle"));
+            stage.setTitle(displayLogin ? textLoader.getResource("loginTitle") : textLoader.getResource("appTitle"));
             setStageSize();
 
             // pass App reference to controller to enable sceneSwitching
@@ -54,7 +55,7 @@ public class App extends Application
 
             stage.show();
         } catch (IOException | IllegalArgumentException e) {
-            System.out.println("Failed to load view.");
+            e.printStackTrace();
         }
     }
 

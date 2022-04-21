@@ -118,7 +118,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="960.0">
                            <children>
-                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskNameTODO">
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskName">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>

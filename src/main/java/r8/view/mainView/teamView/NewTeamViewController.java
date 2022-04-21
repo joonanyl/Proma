@@ -51,8 +51,6 @@ public class NewTeamViewController {
     @FXML
     private Button buttonTeam111;
 
-    @FXML
-    private VBox containerAdmin;
 
     @FXML
     private ImageView imageTaskType;
@@ -73,7 +71,10 @@ public class NewTeamViewController {
     private HBox projectNavBar;
 
     @FXML
-    private BorderPane teamsSubViewPane;
+    private VBox containerAdmin = new VBox();
+
+    @FXML
+    private BorderPane teamsSubViewPane = new BorderPane();
 
     private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
@@ -113,13 +114,6 @@ public class NewTeamViewController {
         teamsSubViewPane.setCenter(viewLoader.getView(viewName));
         currentSubview = viewName;
     }
-
-    /*private void adminVisibility(boolean isAdmin) {
-        if (!admin) {
-            vboxProjectSprints.setVisible(false);
-            vboxProjectSprints.setManaged(false);
-        }
-    }*/
 
     @FXML
     private void navigate (ActionEvent event) throws IOException {

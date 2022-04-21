@@ -34,7 +34,7 @@ public class MainViewController implements IViewController {
     private Pane view;
 
     @FXML
-    private HBox hBoxQuicknav;
+    private HBox hBoxQuicknav = new HBox();
 
     @FXML
     private BorderPane quicknavContent;

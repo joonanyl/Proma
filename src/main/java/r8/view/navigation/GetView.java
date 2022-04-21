@@ -25,7 +25,7 @@ public class GetView {
             //view = FXMLLoader.load(viewUrl);
             loader.setLocation(viewUrl);
             loader.setResources(resourceBundle);
-            view= loader.load();
+            view = loader.load();
 
         } catch (Exception e) {
             e.printStackTrace();

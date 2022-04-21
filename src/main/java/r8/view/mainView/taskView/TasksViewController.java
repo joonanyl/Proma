@@ -91,7 +91,7 @@ public class TasksViewController {
 
     @FXML
     void navigateNewTask(ActionEvent event) throws IOException {
-        viewController.handleSubViewNavigation(event);
+        viewController.handleSubviewNavigation(event);
     }
 
     @FXML
