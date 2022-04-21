@@ -25,7 +25,7 @@
                   <Insets left="32.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="labelWelcome" text="\%welcomeProma">
+            <Label fx:id="labelWelcome" text="%welcomeProma">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -36,7 +36,7 @@
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="80.0">
                <children>
-                  <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="\%label">
+                  <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="%label">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -66,7 +66,7 @@
                      <children>
                         <HBox minWidth="100.0" prefHeight="40.0" prefWidth="200.0">
                            <children>
-                              <Label minWidth="50.0" text="\%quickAccess" textFill="#757171">
+                              <Label minWidth="50.0" text="%quickAccess" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -78,7 +78,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="189.0" minHeight="40.0" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
                            <children>
-                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="\%timeManagement" textFill="#1461c6" underline="true" userData="time-management-view2">
+                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="%timeManagement" textFill="#1461c6" underline="true" userData="time-management-view2">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -90,7 +90,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="289.0" minHeight="40.0" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
                            <children>
-                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="\%otp" textFill="#1461c6" underline="true" userData="tasks-view">
+                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="%createProject" textFill="#1461c6" underline="true" userData="tasks-view">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -102,7 +102,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="389.0" minHeight="40.0" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
                            <children>
-                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="\%createProject" textFill="#1461c6" underline="true" userData="create-project-view">
+                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="%createProject" textFill="#1461c6" underline="true" userData="create-project-view">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -114,7 +114,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="189.0" minHeight="40.0" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
                            <children>
-                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="\%dbCreateTask" textFill="#1461c6" underline="true" userData="create-task-view">
+                              <Button id="button-quick-access" mnemonicParsing="false" onAction="#navigate" text="%dbCreateTask" textFill="#1461c6" underline="true" userData="create-task-view">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -132,7 +132,7 @@
                            <children>
                               <HBox minHeight="20.0" minWidth="50.0" prefHeight="30.0" prefWidth="310.0">
                                  <children>
-                                    <Label minWidth="50.0" text="\%activeTracking" textFill="#757171">
+                                    <Label minWidth="50.0" text="%activeTracking" textFill="#757171">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -144,7 +144,7 @@
                               </HBox>
                               <HBox alignment="TOP_RIGHT" minHeight="20.0" minWidth="50.0" prefHeight="40.0" prefWidth="300.0">
                                  <children>
-                                    <Label text="\%detachTracker" textFill="#757171">
+                                    <Label text="%detachTracker" textFill="#757171">
                                        <font>
                                           <Font name="Arial" size="14.0" />
                                        </font>
@@ -160,7 +160,7 @@
                            <children>
                               <VBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="285.0">
                                  <children>
-                                    <Label text="\%selectTask">
+                                    <Label text="%selectTask">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -177,7 +177,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="86.0" prefWidth="176.0">
                                  <children>
-                                    <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="\%startTracking" textFill="#f8f6f6" userData="management-view">
+                                    <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="%startTracking" textFill="#f8f6f6" userData="management-view">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -192,7 +192,7 @@
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin></Line>
-                              <Label text="\%or" textFill="#757171">
+                              <Label text="%or" textFill="#757171">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -206,7 +206,7 @@
                            <children>
                               <VBox alignment="CENTER_LEFT" prefHeight="87.0" prefWidth="285.0">
                                  <children>
-                                    <Label text="\%createNewTrackee">
+                                    <Label text="%createNewTrackee">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -223,7 +223,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="87.0" prefWidth="175.0">
                                  <children>
-                                    <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="\%createTrackee" textFill="#f8f6f6">
+                                    <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="%createTrackee" textFill="#f8f6f6">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -249,7 +249,7 @@
                <children>
                   <HBox minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="498.0">
                      <children>
-                        <Label minWidth="50.0" text="\%personalTime" textFill="#757171">
+                        <Label minWidth="50.0" text="%personalTime" textFill="#757171">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
@@ -270,7 +270,7 @@
                   </VBox>
                   <VBox alignment="CENTER" minHeight="40.0" minWidth="100.0" prefHeight="100.0" prefWidth="500.0">
                      <children>
-                        <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="213.0" text="\%goToTime" textFill="#f8f6f6" userData="management-view">
+                        <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="213.0" text="%goToTime" textFill="#f8f6f6" userData="management-view">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -291,7 +291,7 @@
                      <children>
                         <HBox minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="498.0">
                            <children>
-                              <Label text="\%notifications" textFill="#757171">
+                              <Label text="%notifications" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -312,7 +312,7 @@
                      <children>
                         <HBox minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="498.0">
                            <children>
-                              <Label text="\%newProma" textFill="#757171">
+                              <Label text="%newProma" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
