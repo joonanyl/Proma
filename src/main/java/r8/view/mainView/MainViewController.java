@@ -64,8 +64,8 @@ public class MainViewController implements IViewController {
     @FXML
     public void handleNavigation(ActionEvent event) throws IOException {
         mainViewPane.setCenter(nav.handleNavigation(event));
-        createBreadcrumb(event);
         clearBreadCrumbs();
+        createBreadcrumb(event);
         currentView = breadcrumbBar.getCurrentView();
     }
 
