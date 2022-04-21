@@ -87,19 +87,21 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
 
     public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
         Project project = new Project(name, description);
-        // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
-        projectDAO.persist(project);
-        addAccountToProject(AppState.getInstance().getLoggedAccount(), project);
+        project.addAccount(AppState.getInstance().getLoggedAccount());
+
         if (accountList != null) {
-            accountList.forEach(account -> {
-                addAccountToProject(account, project);
-            });
+            for (Account a : accountList) {
+                project.addAccount(a);
+            }
         }
+
         if (teamList != null) {
-            teamList.forEach((item) -> {
-                createTeam(item, project);
-            });
+            for (String s : teamList) {
+                project.addTeam(new Team(s, project));
+            }
         }
+
+        projectDAO.persist(project);
     }
 
     public Project getProjectById(int projectId) {
