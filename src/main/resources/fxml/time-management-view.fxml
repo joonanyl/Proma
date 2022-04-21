@@ -34,7 +34,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" layoutX="544.0" minWidth="100.0" prefHeight="85.0" prefWidth="970.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button id="button-create-new-event" fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#toggleNewEvent" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="DeleteThis?" textFill="#f8f6f6">
+            <Button id="button-create-new-event" fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#toggleNewEvent" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="Push Me!" textFill="#f8f6f6">
                <font>
                   <Font size="16.0" />
                </font>
@@ -52,9 +52,9 @@
       <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <HBox layoutX="-1.0" layoutY="115.0" prefHeight="100.0" prefWidth="126.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="115.0">
          <children>
-            <VBox fx:id="vBoxToggle" prefHeight="810.0" prefWidth="700.0">
+            <VBox fx:id="vBoxToggle" prefHeight="1440.0" prefWidth="700.0">
                <children>
-                  <VBox id="container-element" fx:id="vBoxEntry" prefHeight="340.0" prefWidth="300.0">
+                  <VBox id="container-element" fx:id="vBoxEntry" prefHeight="600.0" prefWidth="300.0">
                      <children>
                         <HBox>
                            <children>
@@ -116,7 +116,7 @@
                         <Insets left="25.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox id="container-element" fx:id="vBoxEvent" prefHeight="440.0" prefWidth="300.0">
+                  <VBox id="container-element" fx:id="vBoxEvent" prefHeight="600.0" prefWidth="300.0">
                      <children>
                         <HBox>
                            <children>
@@ -164,7 +164,7 @@
                               </TextArea>
                            </children>
                         </VBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="298.0">
+                        <HBox alignment="CENTER" prefHeight="134.0" prefWidth="298.0">
                            <children>
                               <Button id="button-create-new-event" fx:id="btnCreateNewEvent1" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%createEvent" textFill="#f8f6f6">
                                  <font>
@@ -180,7 +180,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox id="container-element" minHeight="100.0" minWidth="300.0" prefHeight="810.0" prefWidth="1670.0">
+            <VBox id="container-element" minHeight="100.0" minWidth="300.0" prefHeight="1440.0" prefWidth="1670.0">
                <children>
                   <HBox minWidth="300.0" prefHeight="64.0" prefWidth="1280.0">
                      <children>
