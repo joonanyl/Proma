@@ -3,20 +3,25 @@ package r8.view.mainView.taskView;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Account;
-import r8.model.CombinedList;
+import r8.model.CombinedObject;
+import r8.model.Comment;
 import r8.model.Team;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
+import r8.util.TextLoader;
 import r8.view.IViewController;
 
 import java.io.IOException;
@@ -43,10 +48,17 @@ public class TaskViewController {
     private TextArea textAreaDescription;
 
     @FXML
-    private ListView<CombinedList> assignedToList;
+    private ListView<CombinedObject> assignedToList;
 
     @FXML
-    private SearchableComboBox<CombinedList> assignNewComboBox;
+    private SearchableComboBox<CombinedObject> assignNewComboBox;
+
+    @FXML
+    private TextArea commentText;
+
+    @FXML
+    private VBox commentList;
+
 
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
@@ -54,6 +66,8 @@ public class TaskViewController {
     private final IViewController viewController = controller.getActiveViewController();
 
     private Task selectedTask = null;
+    private CustomCommentComponentController replyingToComment = null;
+    private CommentReplyComponentController replyingToReply = null;
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
@@ -80,9 +94,10 @@ public class TaskViewController {
             comboBoxTaskStatus.setValue(TaskState.valueOf(selectedTask.getTaskStateString()));
             Set<Account> accountsSet = selectedTask.getAccounts();
             if(accountsSet.size() > 0){
-                labelCreatedBy.setText("Created by: " + accountsSet.iterator().next().toString());
+                labelCreatedBy.setText(TextLoader.getInstance().getResource("createdBy") + " " + accountsSet.iterator().next().toString());
             }
             textAreaDescription.setText(selectedTask.getDescription());
+            retrieveComments();
         }
     }
 
@@ -92,15 +107,15 @@ public class TaskViewController {
      * @param teams set<Team> if Account is null, otherwise this should be NULL
      * @return
      */
-    private List<CombinedList> transformObjects(Set<Account> accounts, Set<Team> teams){
-        List<CombinedList> list = new ArrayList<>();
+    private List<CombinedObject> transformObjects(Set<Account> accounts, Set<Team> teams){
+        List<CombinedObject> list = new ArrayList<>();
         if(accounts != null){
             accounts.forEach((account) -> {
-                list.add(new CombinedList(account, null));
+                list.add(new CombinedObject(account));
             });
         }else if(teams != null){
             teams.forEach((team) -> {
-                list.add(new CombinedList(null, team));
+                list.add(new CombinedObject(team));
             });
         }
         return list;
@@ -108,14 +123,14 @@ public class TaskViewController {
 
     @FXML
     private void assignNew(){
-        CombinedList selected = assignNewComboBox.getSelectionModel().getSelectedItem();
+        CombinedObject selected = assignNewComboBox.getSelectionModel().getSelectedItem();
         assignedToList.getItems().add(selected);
         assignNewComboBox.getSelectionModel().clearSelection();
     }
 
     @FXML
     private void removeAssigned(){
-       CombinedList selected = assignedToList.getSelectionModel().getSelectedItem();
+       CombinedObject selected = assignedToList.getSelectionModel().getSelectedItem();
         if(selected != null){
             if(assignedToList.getItems().contains(selected)){
                 assignedToList.getItems().remove(selected);
@@ -125,9 +140,9 @@ public class TaskViewController {
 
     private Set<Account> getAssignedAccounts(){
         Set<Account> accounts = new HashSet<Account>();
-        ObservableList<CombinedList> assigned = assignedToList.getItems();
+        ObservableList<CombinedObject> assigned = assignedToList.getItems();
         assigned.forEach((item) -> {
-            if(item.checkIfAccount()){
+            if(item.isAccount()){
                 accounts.add(item.getAccount());
             }
         });
@@ -136,9 +151,9 @@ public class TaskViewController {
 
     private Set<Team> getAssignedTeams(){
         Set<Team> teams = new HashSet<Team>();
-        ObservableList<CombinedList> assigned = assignedToList.getItems();
+        ObservableList<CombinedObject> assigned = assignedToList.getItems();
         assigned.forEach((item) -> {
-            if(!item.checkIfAccount()){
+            if(!item.isAccount()){
                 teams.add(item.getTeam());
             }
         });
@@ -158,5 +173,47 @@ public class TaskViewController {
         this.selectedTask.setAccounts(getAssignedAccounts());
         this.selectedTask.setTeams(getAssignedTeams());
         controller.updateTask(this.selectedTask);
+    }
+
+    @FXML
+    private void postComment(){
+        if(commentText.getText() != null){
+            Comment comment = new Comment(this.selectedTask, AppState.getInstance().getLoggedAccount(), commentText.getText());
+            controller.createComment(comment);
+            commentText.clear();
+            retrieveComments();
+        }
+    }
+
+    void openReplyToComment(CustomCommentComponentController commentController){
+        if(replyingToComment != null){
+            replyingToComment.hideReplyInput();
+        }else if(replyingToReply != null){
+            replyingToReply.hideReplyInput();
+            replyingToReply = null;
+        }
+        replyingToComment = commentController;
+    }
+    void openReplyToReply(CommentReplyComponentController commentController){
+        if(replyingToReply != null){
+            replyingToReply.hideReplyInput();
+        }else if(replyingToComment != null){
+            replyingToComment.hideReplyInput();
+            replyingToComment = null;
+        }
+        replyingToReply = commentController;
+    }
+
+    void retrieveComments(){
+        commentList.getChildren().clear();
+        List<Comment> comments = controller.getComments(this.selectedTask);
+        if(comments != null){
+            comments.forEach(comment -> {
+                commentList.getChildren().add(new CustomCommentComponentController(comment, this));
+            });
+            for(Node child : commentList.getChildren()){
+                VBox.setVgrow(child, Priority.ALWAYS);
+            }
+        }
     }
 }

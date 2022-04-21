@@ -25,7 +25,7 @@
                   <Insets left="32.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="labelWelcome" text=" logged in.">
+            <Label fx:id="labelWelcome" text="%loggedIn">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -34,7 +34,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" layoutX="544.0" minWidth="100.0" prefHeight="85.0" prefWidth="970.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button id="button-create-new-event" fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#toggleNewEvent" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="Add Event" textFill="#f8f6f6">
+            <Button id="button-create-new-event" fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#toggleNewEvent" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%addEventTODO" textFill="#f8f6f6">
                <font>
                   <Font size="16.0" />
                </font>
@@ -58,7 +58,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label text="Add Calendar Entry" textFill="#757171">
+                              <Label text="%addCalendarEntryTODO" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -70,7 +70,7 @@
                         </HBox>
                         <VBox prefHeight="100.0" prefWidth="298.0">
                            <children>
-                              <Label text="Date">
+                              <Label text="%date">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -87,7 +87,7 @@
                         </VBox>
                         <VBox prefHeight="110.0" prefWidth="298.0">
                            <children>
-                              <Label text="Hours worked">
+                              <Label text="%hoursWorked">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -104,7 +104,7 @@
                         </VBox>
                         <HBox alignment="CENTER" prefHeight="134.0" prefWidth="298.0">
                            <children>
-                              <Button id="button-create-new-event" fx:id="btnCreateNewEvent" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="Add Entry" textFill="#f8f6f6">
+                              <Button id="button-create-new-event" fx:id="btnCreateNewEvent" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%createEvent" textFill="#f8f6f6">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -149,7 +149,7 @@
                         </VBox>
                         <VBox prefHeight="170.0" prefWidth="298.0">
                            <children>
-                              <Label text="Description">
+                              <Label text="%descTODO">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -166,7 +166,7 @@
                         </VBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="298.0">
                            <children>
-                              <Button id="button-create-new-event" fx:id="btnCreateNewEvent1" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="Create Event" textFill="#f8f6f6">
+                              <Button id="button-create-new-event" fx:id="btnCreateNewEvent1" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%createEvent" textFill="#f8f6f6">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -186,7 +186,7 @@
                      <children>
                         <HBox prefHeight="64.0" prefWidth="200.0">
                            <children>
-                              <Label minWidth="104.0" text="Time Tracker" textFill="#757171">
+                              <Label minWidth="104.0" text="%timeTracker" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -199,7 +199,7 @@
                         <HBox minWidth="40.0" prefHeight="64.0" prefWidth="820.0" />
                         <HBox alignment="TOP_RIGHT" prefHeight="64.0" prefWidth="600.0">
                            <children>
-                              <Button id="button-all-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="All" userData="tracker-view-all">
+                              <Button id="button-all-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%all" userData="tracker-view-all">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -207,7 +207,7 @@
                                     <Insets top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button-day-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Day" userData="tracker-view-day">
+                              <Button id="button-day-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%day" userData="tracker-view-day">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -215,7 +215,7 @@
                                     <Insets top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button-week-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Week" userData="tracker-view-week">
+                              <Button id="button-week-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%week" userData="tracker-view-week">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -223,7 +223,7 @@
                                     <Insets top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button-sprint-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Sprint" userData="tracker-view-sprint">
+                              <Button id="button-sprint-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%sprint" userData="tracker-view-sprint">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -231,7 +231,7 @@
                                     <Insets top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button-project-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="Project" userData="tracker-view-project">
+                              <Button id="button-project-view" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%project" userData="tracker-view-project">
                                  <font>
                                     <Font size="13.0" />
                                  </font>

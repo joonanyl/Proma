@@ -1,91 +1,45 @@
 package r8.model.dao;
 
-import org.hibernate.HibernateException;
 import r8.model.Comment;
+import r8.model.task.Task;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class CommentDAO {
-    private EntityManager entityManager;
+public class CommentDAO extends DAO<Comment> {
+    private EntityManager em;
 
-    public void persist(Comment comment) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(comment);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public Comment get(int commentId) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            return entityManager.find(Comment.class, commentId);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public List<Comment> getAll() {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            return entityManager.createQuery("SELECT c FROM Comment c", Comment.class)
-                    .getResultList();
-        } catch (NullPointerException e) {
-            return null;
-        } finally {
-            entityManager.close();
-        }
+    public CommentDAO() {
+        setClassType(Comment.class);
     }
 
     public List<Comment> getAllReplies(Comment parentComment) {
-        entityManager = DAOUtil.getEntityManager();
+        entityManager();
         try {
-            return entityManager.createQuery(
+            return em.createQuery(
                             "SELECT c FROM Comment c WHERE c.parentComment = :parentComment", Comment.class)
                     .setParameter("parentComment", parentComment)
                     .getResultList();
         } catch (NullPointerException e) {
             return null;
         } finally {
-            entityManager.close();
+            em.close();
         }
     }
 
-    public void update(Comment comment) {
-        entityManager = DAOUtil.getEntityManager();
+    public List<Comment> getCommentsByTask(Task task){
+        entityManager();
         try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(comment);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
+            return em.createQuery("SELECT c FROM Comment c WHERE c.task = :task", Comment.class)
+                    .setParameter("task", task).getResultList();
+        } catch (NullPointerException e){
+            return null;
         } finally {
-            entityManager.close();
+            em.close();
         }
     }
 
-    public void remove(Comment comment) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.remove(entityManager.contains(comment) ? comment : entityManager.merge(comment));
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+    private void entityManager() {
+        em = super.getEntityManager();
     }
  }

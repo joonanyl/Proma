@@ -10,200 +10,87 @@ import r8.model.task.TaskType;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class TaskDAO {
-    private EntityManager entityManager;
+public class TaskDAO extends DAO<Task> {
+    private EntityManager em;
 
-    public void persist(Task task) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(task);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public Task get(int taskId) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            return entityManager.find(Task.class, taskId);
-        } catch (NullPointerException e) {
-            return null;
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public List<Task> getAll() {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            return entityManager.createQuery("SELECT t FROM Task t", Task.class)
-                    .getResultList();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            entityManager.close();
-        }
+    public TaskDAO() {
+        setClassType(Task.class);
     }
 
     public List<Task> getByTeam(Team team) {
-        entityManager = DAOUtil.getEntityManager();
+        entityManager();
         try {
-            return entityManager.createQuery(
+            return em.createQuery(
                             "SELECT t FROM Task t JOIN t.teams tm WHERE tm.teamId = :teamId", Task.class)
                     .setParameter("teamId", team.getTeamId())
                     .getResultList();
         } catch (NullPointerException e) {
-            e.printStackTrace();
             return null;
         } finally {
-            entityManager.close();
+            em.close();
         }
     }
 
     public List<Task> getByProject(Project project) {
-        entityManager = DAOUtil.getEntityManager();
+        entityManager();
         try {
-            return entityManager.createQuery(
-                            "SELECT t FROM Task t WHERE t.project = :project", Task.class)
+            return em.createQuery(
+                    "SELECT t FROM Task t WHERE t.project = :project", Task.class)
                     .setParameter("project", project)
                     .getResultList();
         } catch (NullPointerException e) {
-            e.printStackTrace();
             return null;
         } finally {
-            entityManager.close();
+            em.close();
         }
     }
 
     public List<Task> getByAccount(Account account) {
-        entityManager = DAOUtil.getEntityManager();
+        entityManager();
         try {
-            return entityManager.createQuery(
-                            "SELECT t FROM Task t join t.accounts a WHERE a.accountId = :accountId", Task.class)
+            return em.createQuery(
+                    "SELECT t FROM Task t join t.accounts a WHERE a.accountId = :accountId", Task.class)
                     .setParameter("accountId", account.getAccountId())
                     .getResultList();
         } catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         } finally {
-            entityManager.close();
+            em.close();
         }
     }
 
     public List<Task> getByTaskType(TaskType taskType) {
-        entityManager = DAOUtil.getEntityManager();
+        entityManager();
         try {
-            return entityManager.createQuery(
+            return em.createQuery(
                             "SELECT t FROM Task t WHERE t.taskType = :taskType", Task.class)
                     .setParameter("taskType", taskType)
                     .getResultList();
         } catch (NullPointerException e) {
-            e.printStackTrace();
             return null;
         } finally {
-            entityManager.close();
-        }
-    }
-
-    public void update(Task task) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(task);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
-    }
-
-    public void remove(Task task) {
-        entityManager = DAOUtil.getEntityManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.remove(task);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
+            em.close();
         }
     }
 
     public void assignToTeam(Team team, Task task) {
-        entityManager = DAOUtil.getEntityManager();
-        team = entityManager.contains(team) ? team : entityManager.merge(team);
-        task = entityManager.contains(task) ? task : entityManager.merge(task);
-
-        try {
-            entityManager.getTransaction().begin();
-            task.addTeam(team);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+        doInTransaction(em -> task.addTeam(team));
     }
 
     public void removeTeamAssociation(Team team, Task task) {
-        entityManager = DAOUtil.getEntityManager();
-        team = entityManager.contains(team) ? team : entityManager.merge(team);
-        task = entityManager.contains(task) ? task : entityManager.merge(task);
-
-        try {
-            entityManager.getTransaction().begin();
-            task.removeTeam(team);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+        doInTransaction(em -> task.removeTeamWithId(team.getTeamId()));
     }
 
     public void assignToAccount(Account account, Task task) {
-        entityManager = DAOUtil.getEntityManager();
-        task = entityManager.contains(task) ? task : entityManager.merge(task);
-        task = entityManager.contains(task) ? task : entityManager.merge(task);
-
-        try {
-            entityManager.getTransaction().begin();
-            task.addAccount(account);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+        doInTransaction(em -> task.addAccount(account));
     }
 
     public void removeAccountAssociation(Account account, Task task) {
-        entityManager = DAOUtil.getEntityManager();
-        account = entityManager.contains(account) ? account : entityManager.merge(account);
-        task = entityManager.contains(task) ? task : entityManager.merge(task);
+       doInTransaction(em -> task.removeAccountWithId(account.getAccountId()));
+    }
 
-        try {
-            entityManager.getTransaction().begin();
-            task.removeAccount(account);
-            entityManager.getTransaction().commit();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            entityManager.getTransaction().rollback();
-        } finally {
-            entityManager.close();
-        }
+    private void entityManager() {
+        em = super.getEntityManager();
     }
 }

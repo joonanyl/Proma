@@ -6,16 +6,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
+
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
+import r8.util.TextLoader;
 import r8.model.util.UIElementVisibility;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class CreateTaskViewController {
 
@@ -47,7 +48,7 @@ public class CreateTaskViewController {
     private Button btnAssignUser;
 
     @FXML
-    private ListView<CombinedList> listViewAssignedTo;
+    private ListView<CombinedObject> listViewAssignedTo;
 
     @FXML
     private Button btnRemoveAssigned;
@@ -75,8 +76,7 @@ public class CreateTaskViewController {
         visibility.toggleAdminVisibility(assignTaskVbox, loggedAccount.getAdmin());
         updateTaskTypes();
 
-        TextFieldValidator textFieldValidator = new TextFieldValidator();
-        textFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
+        TextFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
     }
 
     // TODO does not accept all names, needs testing
@@ -103,35 +103,36 @@ public class CreateTaskViewController {
         String name = taskName.getText();
         String desc = descField.getText();
         Project project = projectComboBox.getSelectionModel().getSelectedItem();
+        TextLoader textloader = TextLoader.getInstance();
         if(!name.matches("([A-Za-z0-9\\s ]{1,20})")){
             System.out.println("didn't match");
-            showAlert("Invalid input", "Invalid task name!", Alert.AlertType.INFORMATION);
+            showAlert(textloader.getResource("invalidInput"), textloader.getResource("invalidTask"), Alert.AlertType.INFORMATION);
             return;
         }
         if(!desc.matches(".{0,200}")){
-            showAlert("Too long", "Your description is too long", Alert.AlertType.INFORMATION);
+            showAlert(textloader.getResource("tooLong"), textloader.getResource("longDescription"), Alert.AlertType.INFORMATION);
             return;
         }
         if(tt == null){
-            showAlert("Missing task type" ,"Please choose or create and choose a task type", Alert.AlertType.INFORMATION);
+            showAlert(textloader.getResource("missingTask"), textloader.getResource("chooseType"), Alert.AlertType.INFORMATION);
             return;
         }
-        if(!showAlert("Confirmation", "Are you sure you want to save this task?", Alert.AlertType.CONFIRMATION)){
+        if(!showAlert(textloader.getResource("confirmation"), textloader.getResource("saveTaskConfirm"), Alert.AlertType.CONFIRMATION)){
             return;
         }
         if(project == null){
             return;
         }
         controller.createTask(name, TaskState.NOT_STARTED, tt, 0,desc, getAccounts(), getTeams(), project);
-        showAlert("Success", "Successfully saved this task!", Alert.AlertType.INFORMATION);
+        showAlert(textloader.getResource("success"), textloader.getResource("saveTaskSuccess"), Alert.AlertType.INFORMATION);
     }
 
     @FXML
     private void AssignUser(){
         Account account = comboBoxUser.getSelectionModel().getSelectedItem();
         if(account != null){
-            if(!listViewAssignedTo.getItems().contains(new CombinedList(account, null))){
-                listViewAssignedTo.getItems().add(new CombinedList(account, null));
+            if(!listViewAssignedTo.getItems().contains(new CombinedObject(account))){
+                listViewAssignedTo.getItems().add(new CombinedObject(account));
             }
             comboBoxUser.getSelectionModel().clearSelection();
         }
@@ -141,29 +142,29 @@ public class CreateTaskViewController {
     private void AssignTeam(){
         Team team = comboBoxTeam.getSelectionModel().getSelectedItem();
         if(team != null){
-            if(!listViewAssignedTo.getItems().contains(new CombinedList(null, team))){
-                listViewAssignedTo.getItems().add(new CombinedList(null, team));
+            if(!listViewAssignedTo.getItems().contains(new CombinedObject(team))){
+                listViewAssignedTo.getItems().add(new CombinedObject(team));
             }
             comboBoxTeam.getSelectionModel().clearSelection();
         }
     }
 
-    private ObservableList<Team> getTeams(){
-        ObservableList<CombinedList> combinedLists = listViewAssignedTo.getItems();
-        ObservableList<Team> teams = FXCollections.observableArrayList();;
-        combinedLists.forEach((item) -> {
-            if(!item.checkIfAccount()){
+    private Set<Team> getTeams(){
+        ObservableList<CombinedObject> combinedObjects = listViewAssignedTo.getItems();
+        Set<Team> teams = new HashSet<>();
+        combinedObjects.forEach((item) -> {
+            if(!item.isAccount()){
                 teams.add(item.getTeam());
             }
         });
         return teams;
     }
 
-    private ObservableList<Account> getAccounts(){
-        ObservableList<CombinedList> combinedLists = listViewAssignedTo.getItems();
-        ObservableList<Account> accounts = FXCollections.observableArrayList();;
-        combinedLists.forEach((item) -> {
-            if(item.checkIfAccount()){
+    private Set<Account> getAccounts(){
+        ObservableList<CombinedObject> combinedObjects = listViewAssignedTo.getItems();
+        Set<Account> accounts = new HashSet<>();
+        combinedObjects.forEach((item) -> {
+            if(item.isAccount()){
                 accounts.add(item.getAccount());
             }
         });
@@ -172,7 +173,7 @@ public class CreateTaskViewController {
 
     @FXML
     private void removeAssigned(){
-        CombinedList picked = listViewAssignedTo.getSelectionModel().getSelectedItem();
+        CombinedObject picked = listViewAssignedTo.getSelectionModel().getSelectedItem();
         if(picked != null){
             listViewAssignedTo.getItems().remove(picked);
         }

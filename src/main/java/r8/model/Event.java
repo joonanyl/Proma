@@ -17,21 +17,25 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "event")
 public class Event {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_id")
     private int eventId;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "date")
     private LocalDate date;
+
     @Column(name = "hours")
     private float hours;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
-    @OneToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
 
@@ -40,6 +44,14 @@ public class Event {
         this.date = date;
         this.hours = hours;
         this.account = account;
+    }
+
+    public Event(String description, LocalDate date, float hours, Account account, Task task) {
+        this.description = description;
+        this.date = date;
+        this.hours = hours;
+        this.account = account;
+        this.task = task;
     }
 
     public Event() {}

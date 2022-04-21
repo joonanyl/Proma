@@ -25,7 +25,7 @@
                      <children>
                         <HBox minWidth="100.0" prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Task Type">
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%createTaskType">
                                  <font>
                                     <Font name="Arial Bold" size="16.0" />
                                  </font>
@@ -52,7 +52,7 @@
                               </TextField>
                               <HBox alignment="CENTER" prefHeight="98.0" prefWidth="390.0">
                                  <children>
-                                    <Button fx:id="btnCreateTaskType" minWidth="150.0" mnemonicParsing="false" onAction="#createTaskType" prefWidth="150.0" text="Create Type" textFill="#f8f6f6">
+                                    <Button fx:id="btnCreateTaskType" minWidth="150.0" mnemonicParsing="false" onAction="#createTaskType" prefWidth="150.0" text="%add" textFill="#f8f6f6">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -88,7 +88,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
                            <children>
-                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Project">
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%selectProject">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -101,7 +101,7 @@
                                     <Insets right="15.0" />
                                  </HBox.margin>
                               </ComboBox>
-                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task type">
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%createTaskType">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -118,7 +118,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="960.0">
                            <children>
-                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task name">
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskNameTODO">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -138,7 +138,7 @@
                         </HBox>
                         <VBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="380.0" prefWidth="850.0">
                            <children>
-                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%description">
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
@@ -153,7 +153,7 @@
                               </TextArea>
                               <HBox alignment="CENTER" minWidth="100.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                                  <children>
-                                    <Button fx:id="btnsave" minWidth="150.0" mnemonicParsing="false" onAction="#saveTask" prefWidth="150.0" text="Create Task" textFill="#f8f6f6">
+                                    <Button fx:id="btnsave" minWidth="150.0" mnemonicParsing="false" onAction="#saveTask" prefWidth="150.0" text="%saveTask" textFill="#f8f6f6">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -176,7 +176,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Assign To">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%assignedTo">
                            <font>
                               <Font name="Arial Bold" size="16.0" />
                            </font>
@@ -191,7 +191,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Team">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%team">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -203,7 +203,7 @@
                            <HBox.margin>
                               <Insets left="2.0" />
                            </HBox.margin></SearchableComboBox>
-                        <Button fx:id="btnAssignTeam" minWidth="150.0" mnemonicParsing="false" onAction="#AssignTeam" prefWidth="150.0" text="Assign Team" textFill="#f8f6f6">
+                        <Button fx:id="btnAssignTeam" minWidth="150.0" mnemonicParsing="false" onAction="#AssignTeam" prefWidth="150.0" text="%assign" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -215,7 +215,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="User  ">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%user">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -224,7 +224,7 @@
                            </HBox.margin>
                         </Text>
                         <SearchableComboBox fx:id="comboBoxUser" maxHeight="25.0" minWidth="100.0" prefWidth="250.0" />
-                        <Button fx:id="btnAssignUser" minWidth="150.0" mnemonicParsing="false" onAction="#AssignUser" prefWidth="150.0" text="Assign User" textFill="#f8f6f6">
+                        <Button fx:id="btnAssignUser" minWidth="150.0" mnemonicParsing="false" onAction="#AssignUser" prefWidth="150.0" text="%assign" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -236,7 +236,7 @@
                   </HBox>
                   <VBox minWidth="100.0" prefHeight="371.0" prefWidth="796.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Assigned to">
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%assignedTo">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -251,7 +251,7 @@
                         </ListView>
                         <HBox alignment="CENTER" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnRemoveAssigned" minWidth="150.0" mnemonicParsing="false" onAction="#removeAssigned" prefWidth="150.0" text="Remove Assigned" textFill="#f8f6f6">
+                              <Button fx:id="btnRemoveAssigned" minWidth="150.0" mnemonicParsing="false" onAction="#removeAssigned" prefWidth="150.0" text="%remove" textFill="#f8f6f6">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -270,7 +270,7 @@
             </VBox>
          </children>
       </HBox>
-      <Text fill="#545252" layoutX="36.0" layoutY="52.10546875" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Task" wrappingWidth="230.0">
+      <Text fill="#545252" layoutX="36.0" layoutY="52.10546875" strokeType="OUTSIDE" strokeWidth="0.0" text="%createNewTask" wrappingWidth="230.0">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>

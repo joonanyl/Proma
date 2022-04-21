@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,7 +23,7 @@
             <children>
             <VBox prefHeight="80.0" prefWidth="300.0">
                <children>
-                  <Label fx:id="labelTaskName" text="Task Name">
+                  <Label fx:id="labelTaskName" text="%taskNameCapital">
                      <font>
                         <Font name="Arial" size="20.0" />
                      </font>
@@ -30,7 +31,7 @@
                         <Insets left="30.0" top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="labelCreatedBy" text="Created by:">
+                  <Label fx:id="labelCreatedBy" text="%createdBy">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
@@ -47,7 +48,7 @@
                         <Insets top="24.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label fx:id="labelTaskType" text="Task type">
+                  <Label fx:id="labelTaskType" text="%taskType">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -61,7 +62,7 @@
         </HBox>
         <HBox alignment="CENTER_RIGHT" layoutX="602.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
             <children>
-                <Button id="button-new-task" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="New Task" textFill="#f8f6f6" userData="create-task-view">
+                <Button id="button-new-task" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="%newTask" textFill="#f8f6f6" userData="create-task-view">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -78,23 +79,23 @@
         </HBox>
         <Pane id="container-task" fx:id="taskResPane" layoutX="30.0" layoutY="137.0" prefHeight="670.0" prefWidth="640.0" stylesheets="@../styling/task-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="110.0">
             <children>
-            <Label fx:id="btnStatus" layoutX="10.0" layoutY="19.0" text="Status:">
+            <Label fx:id="btnStatus" layoutX="10.0" layoutY="19.0" text="%status">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
             <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="83.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
             <ComboBox fx:id="comboBoxTaskStatus" layoutX="66.0" layoutY="17.0" prefHeight="26.0" prefWidth="180.0" />
-            <Label fx:id="btnStatus1" layoutX="342.0" layoutY="18.0" text="Assign to:">
+            <Label fx:id="btnStatus1" layoutX="342.0" layoutY="18.0" text="%assignToDotted">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
             <SearchableComboBox fx:id="assignNewComboBox" layoutX="416.0" layoutY="16.0" prefWidth="150.0" />
-            <Button layoutX="564.0" layoutY="16.0" mnemonicParsing="false" onAction="#assignNew" text="Assign" textFill="WHITE" />
+            <Button layoutX="564.0" layoutY="16.0" mnemonicParsing="false" onAction="#assignNew" text="%assign" textFill="WHITE" />
             <Pane id="container-dashboard" layoutX="8.0" layoutY="66.0" prefHeight="200.0" prefWidth="615.0" stylesheets="@../styling/dashboard-view-styling.css">
                <children>
-                  <Label layoutX="15.0" layoutY="8.0" text="Description" textFill="#757171">
+                  <Label layoutX="15.0" layoutY="8.0" text="%description" textFill="#757171">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -104,7 +105,7 @@
             </Pane>
             <Pane id="container-dashboard" layoutX="8.0" layoutY="284.0" prefHeight="200.0" prefWidth="615.0" stylesheets="@../styling/dashboard-view-styling.css">
                <children>
-                  <Label layoutX="15.0" layoutY="8.0" text="Implementation Info" textFill="#757171">
+                  <Label layoutX="15.0" layoutY="8.0" text="%implementationInfo" textFill="#757171">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -114,24 +115,52 @@
             </Pane>
             <ButtonBar layoutX="705.0" layoutY="545.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Cancel" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#saveTask" text="Save" textFill="WHITE" />
+                <Button mnemonicParsing="false" text="%cancel" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#saveTask" text="%save" textFill="WHITE" />
               </buttons>
             </ButtonBar>
             <Pane id="container-dashboard" layoutX="655.0" layoutY="66.0" prefHeight="420.0" prefWidth="250.0" stylesheets="@../styling/dashboard-view-styling.css">
                <children>
-                  <Label layoutX="15.0" layoutY="8.0" text="Assigned to" textFill="#757171">
+                  <Label layoutX="15.0" layoutY="8.0" text="%assignedTo" textFill="#757171">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
                   <ListView fx:id="assignedToList" layoutX="25.0" layoutY="51.0" prefHeight="325.0" prefWidth="200.0" />
-                  <Button layoutX="166.0" layoutY="381.0" mnemonicParsing="false" onAction="#removeAssigned" text="Remove" textFill="WHITE" />
+                  <Button layoutX="166.0" layoutY="381.0" mnemonicParsing="false" onAction="#removeAssigned" text="%remove" textFill="WHITE" />
                </children>
             </Pane>
             </children>
         </Pane>
         <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-        <Pane id="pane-comments" fx:id="paneComments" layoutX="1056.0" layoutY="125.0" maxWidth="600.0" prefHeight="780.0" prefWidth="594.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="1056.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0" />
+        <Pane id="pane-comments" fx:id="paneComments" layoutX="1056.0" layoutY="125.0" maxWidth="600.0" prefHeight="780.0" prefWidth="594.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styling/dashboard-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="1056.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="125.0">
+         <children>
+            <VBox layoutX="-1.0" prefHeight="780.0" prefWidth="594.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <VBox prefHeight="94.0" prefWidth="594.0" spacing="25.0">
+                           <HBox.margin>
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                           </HBox.margin>
+                           <children>
+                              <TextArea fx:id="commentText" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: transparent transparent gray transparent; -fx-background-insets: 0;" />
+                              <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                                <buttons>
+                                    <Button fx:id="postComment" mnemonicParsing="false" onAction="#postComment" text="Send" />
+                                </buttons>
+                              </ButtonBar>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <ScrollPane prefHeight="649.0" prefWidth="594.0">
+                     <content>
+                        <VBox fx:id="commentList" spacing="10.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children></Pane>
     </children>
 </AnchorPane>

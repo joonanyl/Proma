@@ -21,13 +21,17 @@ public class Sprint {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sprint_id")
 	private int sprintId;
+
 	@Column(name = "name")
 	private String name;
+
 	@Column(name = "start_date")
 	private LocalDate startDate;
+
 	@Column(name = "end_date")
 	private LocalDate endDate;
-	@ManyToOne(fetch = FetchType.LAZY)
+
+	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private Project project;
 
@@ -63,6 +67,15 @@ public class Sprint {
 	public void removeTask(Task task) {
 		tasks.remove(task);
 		task.getSprints().remove(this);
+	}
+
+	public void removeTaskWithId(int id) {
+		for (Task t : tasks) {
+			if (t.getTaskId() == id) {
+				tasks.remove(t);
+				t.getSprints().remove(this);
+			}
+		}
 	}
 
 	public int getSprintId() {

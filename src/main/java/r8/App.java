@@ -6,10 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import r8.model.appState.AppState;
+import r8.util.TextLoader;
 import r8.view.IViewController;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class App extends Application
 {
@@ -26,11 +28,21 @@ public class App extends Application
     public void switchScene() {
         try {
             String viewToLoad = displayLogin ? "login-view" : "main-view";
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
+
+            //ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
+
+            FXMLLoader loader = new FXMLLoader();
+            ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
+            loader.setLocation(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
+            loader.setResources(resourceBundle);
+
+            //loader.setLocation(App.class.getResource("/fxml/" + viewToLoad + ".fxml"));
+            //loader.setResources(resourceBundle);
+
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle(displayLogin ? "Proma - Login" : "Proma - Project Manager v0.2");
+            stage.setTitle(displayLogin ? TextLoader.getInstance().getResource("loginTitle") : TextLoader.getInstance().getResource("loginTitle"));
             setStageSize();
 
             // pass App reference to controller to enable sceneSwitching

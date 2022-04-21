@@ -19,7 +19,7 @@
             <children>
                 <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="300.0">
                     <children>
-                        <Label id="label-project-name" fx:id="labelTaskName" text="Team name">
+                        <Label id="label-project-name" fx:id="labelTaskName" text="%teamName">
                             <font>
                                 <Font name="Arial" size="20.0" />
                             </font>
@@ -36,7 +36,7 @@
                                 <Insets top="24.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label id="label-quick-description" fx:id="labelTaskType" text="Quick desc (what is it?)">
+                        <Label id="label-quick-description" fx:id="labelTaskType" text="%quickDesc">
                             <font>
                                 <Font name="Arial" size="16.0" />
                             </font>
@@ -50,7 +50,7 @@
         </HBox>
         <HBox alignment="CENTER_RIGHT" layoutX="602.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
             <children>
-                <Button id="button-new-team" fx:id="btnNewTeam" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="New Team" textFill="#f8f6f6" userData="create-team-view">
+                <Button id="button-new-team" fx:id="btnNewTeam" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="%newTeam" textFill="#f8f6f6" userData="create-team-view">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -67,21 +67,21 @@
         </HBox>
         <Pane id="container-task" fx:id="taskResPane" layoutX="30.0" layoutY="137.0" prefHeight="670.0" prefWidth="945.0" stylesheets="@../styling/task-view-styling.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="115.0">
             <children>
-                <Label fx:id="btnStatus" layoutX="10.0" layoutY="19.0" text="Status:">
+                <Label fx:id="btnStatus" layoutX="10.0" layoutY="19.0" text="%status">
                     <font>
                         <Font name="Arial" size="16.0" />
                     </font>
                 </Label>
                 <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="83.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
                 <ComboBox layoutX="119.0" layoutY="17.0" prefHeight="26.0" prefWidth="180.0" />
-                <Label fx:id="btnStatus1" layoutX="342.0" layoutY="18.0" text="Progress">
+                <Label fx:id="btnStatus1" layoutX="342.0" layoutY="18.0" text="%progress">
                     <font>
                         <Font name="Arial" size="16.0" />
                     </font>
                 </Label>
                 <Pane id="container-description" layoutX="8.0" layoutY="66.0" prefHeight="200.0" prefWidth="642.0" stylesheets="@../styling/project-view-styling.css">
                     <children>
-                        <Label layoutX="15.0" layoutY="8.0" text="Team personnel" textFill="#757171">
+                        <Label layoutX="15.0" layoutY="8.0" text="%teamPersonnel" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -90,7 +90,7 @@
                 </Pane>
                 <Pane id="container-implementation-info" layoutX="8.0" layoutY="284.0" prefHeight="200.0" prefWidth="642.0" stylesheets="@../styling/project-view-styling.css">
                     <children>
-                        <Label layoutX="15.0" layoutY="8.0" text="Implementation Info" textFill="#757171">
+                        <Label layoutX="15.0" layoutY="8.0" text="%implementationInfo" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -100,7 +100,7 @@
                 <ProgressBar id="progress-bar-completed" layoutX="430.0" layoutY="15.0" prefHeight="30.0" prefWidth="220.0" progress="0.0" />
                 <Pane id="container-personnel" layoutX="8.0" layoutY="496.0" prefHeight="135.0" prefWidth="642.0" stylesheets="@../styling/project-view-styling.css">
                     <children>
-                        <Label layoutX="15.0" layoutY="8.0" text="Personnel" textFill="#757171">
+                        <Label layoutX="15.0" layoutY="8.0" text="%personnel" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -109,7 +109,7 @@
                 </Pane>
                 <Pane id="container-sprints" layoutX="669.0" layoutY="14.0" prefHeight="313.0" prefWidth="250.0" stylesheets="@../styling/project-view-styling.css">
                     <children>
-                        <Label layoutX="15.0" layoutY="8.0" text="Tasks Assigned to Team" textFill="#757171">
+                        <Label layoutX="15.0" layoutY="8.0" text="%tasksToTeam" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -118,12 +118,12 @@
                 </Pane>
                 <Pane id="container-sprints" layoutX="669.0" layoutY="344.0" prefHeight="290.0" prefWidth="250.0" stylesheets="@../styling/project-view-styling.css">
                     <children>
-                        <Label id="container-sprint-info" layoutX="15.0" layoutY="8.0" text="Task Info" textFill="#757171">
+                        <Label id="container-sprint-info" layoutX="15.0" layoutY="8.0" text="%taskInfo" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
                         </Label>
-                  <Label fx:id="btnStatus2" layoutY="42.0" text="Name">
+                  <Label fx:id="btnStatus2" layoutY="42.0" text="%name">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -131,7 +131,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="btnStatus21" layoutY="62.0" text="Priority">
+                  <Label fx:id="btnStatus21" layoutY="62.0" text="%priority">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -139,7 +139,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="btnStatus211" layoutY="82.0" text="Status">
+                  <Label fx:id="btnStatus211" layoutY="82.0" text="%statusNoDots">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -147,7 +147,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="btnStatus2111" layoutY="102.0" text="Type">
+                  <Label fx:id="btnStatus2111" layoutY="102.0" text="%type">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -155,7 +155,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="btnStatus21111" layoutY="122.0" text="Hours worked on">
+                  <Label fx:id="btnStatus21111" layoutY="122.0" text="%hoursWorked">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>
@@ -163,7 +163,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="btnStatus211111" layoutY="142.0" text="Effort">
+                  <Label fx:id="btnStatus211111" layoutY="142.0" text="%effort">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>

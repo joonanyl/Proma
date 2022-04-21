@@ -43,7 +43,7 @@ public class Account {
 	@Column(name="admin")
 	private Boolean admin;
 
-	@ManyToMany(mappedBy = "accounts")
+	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
 	private Set<Project> projects = new HashSet<>();
 
 	@ManyToMany(mappedBy = "accounts")
@@ -51,6 +51,9 @@ public class Account {
 
 	@ManyToMany(mappedBy = "accounts")
 	private Set<Task> tasks = new HashSet<>();
+
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Event> events = new HashSet<>();
 
 	public Account(String fName, String lName, String email, String password) {
 		this.firstName = fName;
@@ -110,7 +113,6 @@ public class Account {
 	}
 
 	public void setTasks(Set<Task> tasks) {
-		// tähän pitää laittaa looppeja ettei tulis duplikaatteja
 		this.tasks = tasks;
 	}
 
@@ -150,4 +152,11 @@ public class Account {
 		return accountId + " " + firstName + " " + lastName + " " + email;
 	}
 
+	public Set<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
 }

@@ -82,22 +82,26 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     public void removeAccount(Account account) {
-        accountDAO.removeAccount(account);
+        accountDAO.remove(account);
     }
 
     public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
         Project project = new Project(name, description);
+        project.addAccount(AppState.getInstance().getLoggedAccount());
+
         if (accountList != null) {
-            accountList.forEach(project::addAccount);
+            for (Account a : accountList) {
+                project.addAccount(a);
+            }
         }
-        project.addAccount(accountDAO.get(AppState.getInstance().getLoggedAccount().getAccountId()));
-        // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
-        projectDAO.persist(project);
+
         if (teamList != null) {
-            teamList.forEach((item) -> {
-                createTeam(item, project);
-            });
+            for (String s : teamList) {
+                project.addTeam(new Team(s, project));
+            }
         }
+
+        projectDAO.persist(project);
     }
 
     public Project getProjectById(int projectId) {
@@ -109,10 +113,6 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         return null;
     }
 
-    public Project getProjectByName(String name) {
-        return projectDAO.getByName(name);
-    }
-
     public List<Project> getProjectByAccount(Account account) {
         return projectDAO.getByAccount(account);
     }
@@ -122,7 +122,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     //TEAMS tähän myös, päivitä samalla AppState?
-    public void updateProject(Project project, String name, String description, List<Team> teams) {
+    public void updateProject(Project project, String name, String description, Set<Team> teams) {
         project.setName(name);
         project.setDescription(description);
         project.setTeams(teams);
@@ -145,10 +145,6 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     public Team getTeamById(int teamId) {
         return teamDAO.get(teamId);
     }
-
-    /*public Team getTeamByName(String name) {
-        return teamDAO.getByName(name);
-    }*/
 
     public List<Team> getTeamsByProject(Project project) {
         return teamDAO.getByProject(project);
@@ -184,16 +180,16 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         teamDAO.removeAccountAssociation(account, team);
     }
 
-    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, ObservableList<Account> accounts, ObservableList<Team> teams, Project project) {
+    public void createTask(String name, TaskState ts, TaskType tt, float hours, String description, Set<Account> accounts, Set<Team> teams, Project project) {
         Task task = new Task(name, ts, tt, hours, description);
         task.setProject(project);
 
         if (accounts != null) {
            // accounts.forEach(task::setAccounts);
-            task.setAccounts((Set<Account>) accounts); // herjasi kun oli assignAccount -> onhan oikein nyt?
+            task.setAccounts(accounts); // herjasi kun oli assignAccount -> onhan oikein nyt?
         }
         if (teams != null) {
-            teams.forEach(task::addTeam);
+            task.setTeams(teams);
         }
         taskDAO.persist(task);
     }
@@ -344,5 +340,15 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     @Override
     public void setActiveViewController(IViewController viewController) {
         AppState.getInstance().setViewController(viewController);
+    }
+
+    @Override
+    public void createComment(Comment comment){
+        commentDAO.persist(comment);
+    }
+
+    @Override
+    public List<Comment> getComments(Task task){
+        return commentDAO.getCommentsByTask(task);
     }
 }

@@ -22,7 +22,7 @@
             <children>
                 <VBox prefHeight="80.0" prefWidth="300.0">
                     <children>
-                        <Label id="label-project-name" fx:id="labelProjectName" text="Project name">
+                        <Label id="label-project-name" fx:id="labelProjectName" text="%projectName">
                             <font>
                                 <Font name="Arial" size="20.0" />
                             </font>
@@ -30,7 +30,7 @@
                                 <Insets left="30.0" top="30.0" />
                             </VBox.margin>
                         </Label>
-                        <Label id="label-created-by" fx:id="labelCreatedBy" text="Created by:">
+                        <Label id="label-created-by" fx:id="labelCreatedBy" text="%createdBy">
                             <font>
                                 <Font name="Arial" size="14.0" />
                             </font>
@@ -47,7 +47,7 @@
                                 <Insets top="24.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label id="label-quick-description" fx:id="labelTaskType" text="Quick desc (what is it?)">
+                        <Label id="label-quick-description" fx:id="labelTaskType" text="%quickDesc">
                             <font>
                                 <Font name="Arial" size="16.0" />
                             </font>
@@ -61,7 +61,7 @@
         </HBox>
         <HBox alignment="CENTER_RIGHT" layoutX="602.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
             <children>
-                <Button id="button-new-project" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="New Project" textFill="#f8f6f6" userData="create-project-view">
+                <Button id="button-new-project" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="%newProject" textFill="#f8f6f6" userData="create-project-view">
                     <font>
                         <Font size="16.0" />
                     </font>
@@ -82,7 +82,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                            <Label fx:id="btnStatus" text="Status:">
+                            <Label fx:id="btnStatus" text="%status">
                                 <font>
                                     <Font name="Arial" size="16.0" />
                                 </font>
@@ -100,7 +100,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ComboBox>
-                            <Label fx:id="btnStatus1" text="Progress">
+                            <Label fx:id="btnStatus1" text="%progress">
                                 <font>
                                     <Font name="Arial" size="16.0" />
                                 </font>
@@ -117,7 +117,7 @@
                   </HBox>
                   <VBox id="content-vbox" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                              <Label text="Description" textFill="#757171">
+                              <Label text="%description" textFill="#757171">
                                   <font>
                                       <Font name="System Bold" size="17.0" />
                                   </font>
@@ -137,7 +137,7 @@
                   </VBox>
                   <VBox id="content-vbox" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Implementation Info" textFill="#757171">
+                        <Label text="%implementationInfo" textFill="#757171">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
@@ -157,7 +157,7 @@
                   </VBox>
                   <VBox id="content-vbox" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Randomness" textFill="#757171">
+                        <Label text="%randomness" textFill="#757171">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
@@ -183,7 +183,7 @@
                      <children>
                         <Pane id="container-sprints" prefHeight="430.0" prefWidth="260.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
-                              <Label layoutX="15.0" layoutY="8.0" text="Sprints" textFill="#757171">
+                              <Label layoutX="15.0" layoutY="8.0" text="%sprints" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -193,7 +193,7 @@
                         </Pane>
                         <Pane id="container-sprints" prefHeight="321.0" prefWidth="250.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
-                              <Label id="container-sprint-info" layoutX="15.0" layoutY="8.0" text="Sprint Info" textFill="#757171">
+                              <Label id="container-sprint-info" layoutX="15.0" layoutY="8.0" text="%sprintInfo" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -213,7 +213,7 @@
                      <children>
                         <Pane id="container-sprints" prefHeight="430.0" prefWidth="260.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
-                              <Label layoutX="15.0" layoutY="8.0" text="Tasks" textFill="#757171">
+                              <Label layoutX="15.0" layoutY="8.0" text="%tasks" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -223,7 +223,7 @@
                         </Pane>
                         <Pane id="container-sprints" prefHeight="321.0" prefWidth="250.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
-                              <Label id="container-sprint-info" layoutX="15.0" layoutY="8.0" text="Task Info" textFill="#757171">
+                              <Label id="container-sprint-info" layoutX="15.0" layoutY="8.0" text="%taskInfo" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -243,7 +243,7 @@
                      <children>
                         <Pane id="container-sprints" prefHeight="430.0" prefWidth="260.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
-                              <Label layoutX="15.0" layoutY="8.0" text="Personnel" textFill="#757171">
+                              <Label layoutX="15.0" layoutY="8.0" text="%personnel" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -253,7 +253,7 @@
                         </Pane>
                         <Pane id="container-sprints" prefHeight="321.0" prefWidth="250.0" stylesheets="@../styling/project-view-styling.css">
                            <children>
-                              <Label id="container-sprint-info" layoutX="15.0" layoutY="8.0" text="Teams" textFill="#757171">
+                              <Label id="container-sprint-info" layoutX="15.0" layoutY="8.0" text="%teams" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
