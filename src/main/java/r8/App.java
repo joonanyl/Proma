@@ -1,20 +1,13 @@
 package r8;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import r8.controller.Controller;
-import r8.controller.IControllerLogin;
 import r8.model.appState.AppState;
 import r8.util.TextLoader;
 import r8.view.IViewController;
-import r8.view.loginView.LoginViewController;
-import r8.view.mainView.MainViewController;
-import r8.view.navigation.GetView;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -22,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class App extends Application
 {
-	private Stage stage;
+    private Stage stage;
     private boolean displayLogin;
 
     @Override
@@ -39,6 +32,7 @@ public class App extends Application
             //ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
 
             FXMLLoader loader = new FXMLLoader();
+            TextLoader textLoader = TextLoader.getInstance();
             ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
             loader.setLocation(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
             loader.setResources(resourceBundle);
@@ -49,6 +43,7 @@ public class App extends Application
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle(displayLogin ? textLoader.getResource("loginTitle") : textLoader.getResource("appTitle"));
             setStageSize();
 
             // pass App reference to controller to enable sceneSwitching
@@ -65,12 +60,10 @@ public class App extends Application
     }
 
     private void setStageSize() {
-        stage.setTitle(TextLoader.getInstance().getResource("appTitle"));
         stage.setResizable(!displayLogin);
         stage.setMaximized(!displayLogin);
 
         if (displayLogin) {
-            stage.setTitle(TextLoader.getInstance().getResource("loginTitle"));
             stage.sizeToScene();
             stage.centerOnScreen();
         }

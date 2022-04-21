@@ -39,6 +39,9 @@ public class TasksViewController {
     private Button buttonAllTasks;
 
     @FXML
+    private ListView<Task> listViewMyTasks;
+
+    @FXML
     private HBox projectNavBar;
 
     @FXML
@@ -83,12 +86,12 @@ public class TasksViewController {
             return;
         }
         AppState.getInstance().setSelectedTask(selectedTask);
-        viewController.handleNavigation(event);
+        viewController.handleSubviewNavigation(event);
     }
 
     @FXML
     void navigateNewTask(ActionEvent event) throws IOException {
-        viewController.handleNavigation(event);
+        viewController.handleSubviewNavigation(event);
     }
 
     @FXML

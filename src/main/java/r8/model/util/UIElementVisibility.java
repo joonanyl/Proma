@@ -4,9 +4,18 @@ import javafx.scene.layout.Pane;
 
 public class UIElementVisibility {
 
-    public Pane toggleVisibility(Pane pane) {
+    public void toggleOff(Pane pane) {
+        pane.setVisible(false);
+        pane.setManaged(false);
+    }
+
+    public void toggleVisibility(Pane pane) {
         pane.setVisible(!pane.isVisible());
         pane.setManaged(!pane.isManaged());
-        return pane;
+    }
+
+    public void toggleAdminVisibility(Pane pane, boolean admin) {
+        if(admin) { pane.setVisible(true); pane.setManaged(true); }
+        if(!admin) { pane.setVisible(false); pane.setManaged(false); }
     }
 }

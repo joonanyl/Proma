@@ -1,7 +1,6 @@
 package r8.view.mainView.timeManagementView.trackerView;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -9,8 +8,6 @@ import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Project;
 import r8.model.Sprint;
-import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -86,7 +86,6 @@ public class TrackerViewAllController {
         initDatePicker();
     }
 
-
     private void initDatePicker() {
         datePickerEvent.setDayCellFactory(param -> new DateCell() {
             @Override
