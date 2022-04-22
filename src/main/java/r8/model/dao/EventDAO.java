@@ -1,6 +1,5 @@
 package r8.model.dao;
 
-import org.hibernate.HibernateException;
 import r8.model.Account;
 import r8.model.Event;
 import r8.model.task.Task;

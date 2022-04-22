@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/create-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.timeManagementView.TimeManagementViewController">
    <children>
@@ -54,7 +55,7 @@
          <children>
             <VBox fx:id="vBoxToggle" prefHeight="1440.0" prefWidth="700.0">
                <children>
-                  <VBox id="container-element" fx:id="vBoxEntry" prefHeight="600.0" prefWidth="300.0">
+                  <VBox id="container-element" fx:id="vBoxEntry" prefHeight="800.0" prefWidth="300.0">
                      <children>
                         <HBox>
                            <children>
@@ -87,6 +88,23 @@
                         </VBox>
                         <VBox prefHeight="110.0" prefWidth="298.0">
                            <children>
+                              <VBox prefHeight="110.0" prefWidth="298.0">
+                                 <children>
+                                    <Label text="%task">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="15.0" top="25.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <SearchableComboBox fx:id="comboBoxEventTask">
+                                       <VBox.margin>
+                                          <Insets left="15.0" right="15.0" top="5.0" />
+                                       </VBox.margin>
+                                    </SearchableComboBox>
+                                 </children>
+                              </VBox>
                               <Label text="%hoursWorked">
                                  <font>
                                     <Font size="15.0" />
@@ -102,9 +120,26 @@
                               </TextField>
                            </children>
                         </VBox>
-                        <HBox alignment="CENTER" prefHeight="134.0" prefWidth="298.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Button id="button-create-new-event" fx:id="btnCreateNewEvent" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%createEvent" textFill="#f8f6f6">
+                              <Label text="%description">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="15.0" top="25.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextArea prefHeight="200.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="140.0" prefWidth="298.0">
+                           <children>
+                              <Button id="button-create-new-event" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%createEvent" textFill="#f8f6f6">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -120,7 +155,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label text="\%createWorkEvent" textFill="#757171">
+                              <Label text="%createWorkEvent" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -132,7 +167,7 @@
                         </HBox>
                         <VBox prefHeight="110.0" prefWidth="298.0">
                            <children>
-                              <Label text="\%eventName">
+                              <Label text="%eventName">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -147,9 +182,9 @@
                               </TextField>
                            </children>
                         </VBox>
-                        <VBox prefHeight="170.0" prefWidth="298.0">
+                        <VBox prefHeight="125.0" prefWidth="298.0">
                            <children>
-                              <Label text="%tmDescription">
+                              <Label text="%description">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -157,7 +192,7 @@
                                     <Insets left="15.0" top="25.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextArea prefHeight="100.0" prefWidth="268.0">
+                              <TextArea prefHeight="60.0" prefWidth="268.0">
                                  <VBox.margin>
                                     <Insets left="15.0" right="15.0" top="5.0" />
                                  </VBox.margin>

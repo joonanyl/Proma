@@ -31,10 +31,10 @@
             <children>
                 <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="550.0" prefWidth="1240.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                     <content>
-                        <TableView fx:id="tableViewWeek" prefHeight="409.0" prefWidth="778.0">
+                        <TableView fx:id="tableViewAll" prefHeight="409.0" prefWidth="778.0">
                             <columns>
                                 <TableColumn fx:id="tableColDate" prefWidth="128.0" text="%date" />
-                                <TableColumn fx:id="tableColEventName" prefWidth="126.0" text="%eventName" />
+                                <TableColumn fx:id="tableColTask" prefWidth="126.0" text="%eventName" />
                                 <TableColumn fx:id="tableColEventType" minWidth="0.0" prefWidth="220.0" text="%eventType" />
                                 <TableColumn fx:id="tableColHoursWorked" minWidth="0.0" prefWidth="108.0" text="%hoursWorked" />
                                 <TableColumn fx:id="tableColRemaining" minWidth="0.0" prefWidth="95.0" text="%remaining" />
@@ -48,7 +48,7 @@
                 </ScrollPane>
                 <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1240.0" spacing="10.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Label minWidth="134.0" prefHeight="26.0" prefWidth="134.0" text="%addWorkEntry" textFill="#757171">
+                        <Label minWidth="134.0" prefHeight="26.0" prefWidth="134.0" text="%editWorkEvent" textFill="#757171">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -127,17 +127,17 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Button fx:id="btnAdd" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="%add" textFill="#f8f6f6">
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#updateEvent" prefHeight="50.0" prefWidth="100.0" text="%add" textFill="#f8f6f6">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btnEdit" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="%edit" textFill="#f8f6f6">
+                        <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#getSelectedEvent" prefHeight="50.0" prefWidth="100.0" text="%edit" textFill="#f8f6f6">
                             <font>
                                 <Font size="16.0" />
                             </font>
                         </Button>
-                        <Button fx:id="btnDelete" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="%delete" textFill="#f8f6f6">
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="50.0" prefWidth="100.0" text="%delete" textFill="#f8f6f6">
                             <font>
                                 <Font size="16.0" />
                             </font>
