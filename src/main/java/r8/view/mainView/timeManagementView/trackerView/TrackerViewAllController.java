@@ -61,7 +61,6 @@ public class TrackerViewAllController {
     @FXML
     private TableColumn<Event, String> tableColDate;
 
-
     @FXML
     private TableColumn<Event, String> tableColTask;
 

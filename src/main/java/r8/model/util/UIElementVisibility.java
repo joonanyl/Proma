@@ -9,6 +9,11 @@ public class UIElementVisibility {
         pane.setManaged(false);
     }
 
+    public void toggleOn(Pane pane) {
+        pane.setVisible(true);
+        pane.setManaged(true);
+    }
+
     public void toggleVisibility(Pane pane) {
         pane.setVisible(!pane.isVisible());
         pane.setManaged(!pane.isManaged());

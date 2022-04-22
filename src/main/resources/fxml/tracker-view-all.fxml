@@ -127,7 +127,7 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                     <children>
-                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#updateEvent" prefHeight="50.0" prefWidth="100.0" text="%add" textFill="#f8f6f6">
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#updateEvent" prefHeight="50.0" prefWidth="100.0" text="%update" textFill="#f8f6f6">
                             <font>
                                 <Font size="16.0" />
                             </font>

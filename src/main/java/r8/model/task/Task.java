@@ -95,6 +95,11 @@ public class Task {
 		this.startDate = LocalDate.now();
 	}
 
+	public Task(String name, String desc) {
+		this.name = name;
+		this.description = desc;
+	}
+
 	public Task() {}
 
 	public void addTeam(Team team) {
