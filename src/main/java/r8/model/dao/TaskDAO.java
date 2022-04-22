@@ -3,6 +3,7 @@ package r8.model.dao;
 import org.hibernate.HibernateException;
 import r8.model.Account;
 import r8.model.Project;
+import r8.model.Sprint;
 import r8.model.Team;
 import r8.model.task.Task;
 import r8.model.task.TaskType;
@@ -64,10 +65,42 @@ public class TaskDAO extends DAO<Task> {
         entityManager();
         try {
             return em.createQuery(
-                            "SELECT t FROM Task t WHERE t.taskType = :taskType", Task.class)
+                    "SELECT t FROM Task t WHERE t.taskType = :taskType", Task.class)
                     .setParameter("taskType", taskType)
                     .getResultList();
         } catch (NullPointerException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Task> getByAccountAndProject(Account account, Project project) {
+        entityManager();
+        try {
+            return em.createQuery("SELECT t FROM Task t JOIN t.accounts a " +
+                    "WHERE a.accountId = :accountId AND t.project = :project", Task.class)
+                    .setParameter("accountId", account.getAccountId())
+                    .setParameter("project", project)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Task> getByAccountAndSprint(Account account, Sprint sprint) {
+        entityManager();
+        try {
+            return em.createQuery("SELECT t FROM Task t JOIN t.accounts a INNER JOIN t.sprints s" +
+                    " WHERE a.accountId = :accountId AND s.sprintId = :sprintId", Task.class)
+                    .setParameter("accountId", account.getAccountId())
+                    .setParameter("sprintId", sprint)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         } finally {
             em.close();
