@@ -163,8 +163,9 @@ public class TimeManagementViewController {
     ObservableList<Project> projectsToDisplay = FXCollections.observableArrayList();
     ObservableList<Sprint> sprintsToDisplay = FXCollections.observableArrayList();
     private int indexToRemove;
-    private int projectIndex;
+    private int projectIndex = 0;
     private int sprintIndex;
+    private String activeFilter;
 
     @FXML
     private void initialize() throws IOException {
@@ -368,6 +369,7 @@ public class TimeManagementViewController {
 
     public void filterAll() {
         visibility.toggleOff(hBoxProjectSprint);
+        activeFilter = "all";
     }
 
     /**
@@ -377,7 +379,12 @@ public class TimeManagementViewController {
         visibility.toggleOn(hBoxProjectSprint);
         visibility.toggleOff(vBoxSprintSelect);
         displayProjectEvents(projectsToDisplay.get(projectIndex).getProjectId());
-        nextProject();
+        System.out.println(textFieldProjectDisplay.getText());
+        if (!activeFilter.equals("projects")) {
+            projectIndex = 1;
+            nextProject();
+        }
+        activeFilter = "projects";
     }
 
     /**
@@ -386,14 +393,16 @@ public class TimeManagementViewController {
     public void filterSprints() {
         visibility.toggleOn(hBoxProjectSprint);
         visibility.toggleOn(vBoxSprintSelect);
+        activeFilter = "sprints";
     }
 
     @FXML
     void nextProject() {
         projectIndex++;
 
-        if (projectIndex > projects.size())
+        if (projectIndex > projects.size()) {
             projectIndex = 1;
+        }
 
         textFieldProjectDisplay.setText(projectsToDisplay.get(projectIndex-1).getName());
         sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex-1).getSprints());
