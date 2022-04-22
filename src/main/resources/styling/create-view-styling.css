@@ -39,3 +39,16 @@
     -fx-background-color: #EAEAEA;
     -fx-background-radius: 5;
 }
+
+#container-background
+{
+    -fx-background-color: EAEAEA;
+}
+
+#container-element
+{
+    -fx-background-color: #F9F9F9;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-color: #CDCDCD;
+}

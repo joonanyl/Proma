@@ -21,11 +21,9 @@ public class GetView {
             if (viewUrl == null) {
                 throw new java.io.FileNotFoundException(viewName + ".fxml not found");
             }
-
-            //view = FXMLLoader.load(viewUrl);
             loader.setLocation(viewUrl);
             loader.setResources(resourceBundle);
-            view= loader.load();
+            view = loader.load();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,6 +31,7 @@ public class GetView {
         return view;
     }
 
+    // TODO remove if redundant
     public Pane getView(String viewName, App app) {
         try {
             URL viewUrl = getClass().getResource("/fxml/" + viewName + ".fxml");

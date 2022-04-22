@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/team-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.teamView.NewTeamViewController">
+    <children>
+        <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
+        <HBox id="button-tracker" alignment="CENTER_LEFT" layoutY="-6.0" minHeight="50.0" minWidth="150.0" prefHeight="100.0" prefWidth="600.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox minHeight="50.0" minWidth="50.0" prefHeight="80.0" prefWidth="300.0">
+                    <children>
+                        <Label id="label-team-name" fx:id="labelProjectName" text="Team name">
+                            <font>
+                                <Font name="Arial" size="20.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="30.0" top="25.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label id="label-created-by" fx:id="labelCreatedBy" text="Created by:">
+                            <font>
+                                <Font name="Arial" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="30.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER_LEFT" minHeight="50.0" minWidth="50.0" prefHeight="100.0" prefWidth="300.0">
+                    <children>
+                        <ImageView fx:id="imageTaskType" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <HBox.margin>
+                                <Insets top="24.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label id="label-quick-description" fx:id="labelQuickDescription" text="Team quick description?">
+                            <font>
+                                <Font name="Arial" size="16.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" layoutX="602.0" minHeight="50.0" minWidth="100.0" prefHeight="100.0" prefWidth="1068.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button id="button-new-team" fx:id="btnNewProject" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" text="New Team" textFill="#f8f6f6" userData="create-project-view">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets right="50.0" />
+                    </HBox.margin>
+                </Button>
+                <VBox alignment="TOP_RIGHT" prefHeight="80.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </VBox>
+            </children>
+        </HBox>
+        <HBox layoutY="100.0" minHeight="300.0" minWidth="300.0" prefHeight="825.0" prefWidth="1670.0" stylesheets="@../styling/project-view-styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <children>
+                <VBox id="container-element" minHeight="300.0" minWidth="150.0" prefHeight="825.0" prefWidth="800.0">
+                    <children>
+                        <HBox alignment="BOTTOM_LEFT" minHeight="50.0" minWidth="100.0" prefHeight="70.0" prefWidth="200.0">
+                            <children>
+                                <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                </ImageView>
+                        <Label minWidth="92.0" text="Members" textFill="#757171">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                            </children>
+                        </HBox>
+                  <HBox alignment="CENTER" minHeight="50.0" minWidth="100.0" prefHeight="50.0" prefWidth="761.0">
+                     <children>
+                              <Region maxHeight="1.0" prefHeight="64.0" prefWidth="700.0" style="-fx-background-color: #CDCDCD;">
+                           <HBox.margin>
+                              <Insets left="25.0" right="25.0" />
+                           </HBox.margin>
+                              </Region>
+                     </children>
+                  </HBox>
+                  <ListView prefHeight="625.0" prefWidth="583.0">
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </ListView>
+                    </children>
+               <HBox.margin>
+                  <Insets bottom="25.0" left="25.0" top="25.0" />
+               </HBox.margin>
+                </VBox>
+            <VBox id="container-admin" fx:id="containerAdmin" prefHeight="200.0" prefWidth="480.0">
+               <children>
+                  <VBox id="container-element" prefHeight="800.0" prefWidth="255.0">
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" top="25.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" minHeight="50.0" minWidth="50.0" prefHeight="70.0" prefWidth="200.0">
+                           <children>
+                              <Label minWidth="92.0" text="Add Members" textFill="#757171">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="310.0" prefWidth="100.0">
+                           <children>
+                              <ListView prefHeight="225.0" prefWidth="253.0">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </ListView>
+                              <HBox alignment="CENTER" minHeight="50.0" minWidth="200.0" prefHeight="70.0" prefWidth="200.0">
+                                 <children>
+                                    <Button id="button-add" fx:id="buttonSprint1" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;-" userData="sprint-subview">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Button id="button-remove" fx:id="buttonTeam11" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="-&gt;&gt;" userData="task-subview">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" minHeight="10.0" minWidth="50.0" prefHeight="10.0" prefWidth="253.0">
+                           <children>
+                              <Region maxHeight="1.0" prefHeight="64.0" prefWidth="700.0" style="-fx-background-color: #CDCDCD;">
+                                 <HBox.margin>
+                                    <Insets left="25.0" right="25.0" />
+                                 </HBox.margin>
+                              </Region>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" minHeight="50.0" minWidth="50.0" prefHeight="70.0" prefWidth="200.0">
+                           <children>
+                              <Label minWidth="92.0" text="Add Tasks" textFill="#757171">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="310.0" prefWidth="100.0">
+                           <children>
+                              <ListView prefHeight="225.0" prefWidth="253.0">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </ListView>
+                              <HBox alignment="CENTER" minHeight="50.0" minWidth="200.0" prefHeight="70.0" prefWidth="253.0">
+                                 <children>
+                                    <Button id="button-add" fx:id="buttonSprint11" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="&lt;&lt;-" userData="sprint-subview">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Button id="button-remove" fx:id="buttonTeam111" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="-&gt;&gt;" userData="task-subview">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+                <HBox prefHeight="825.0" prefWidth="870.0">
+               <children>
+                  <VBox id="container-element" prefHeight="825.0" prefWidth="875.0">
+                     <children>
+                        <HBox fx:id="projectNavBar" alignment="TOP_RIGHT" minHeight="40.0" minWidth="150.0" prefHeight="70.0" prefWidth="756.0">
+                           <children>
+                              <HBox alignment="BOTTOM_LEFT" minHeight="50.0" minWidth="50.0" prefHeight="70.0" prefWidth="300.0">
+                                 <children>
+                                    <Label minWidth="92.0" text="Team Tasks" textFill="#757171">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="40.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Button id="button-all-view" fx:id="buttonSprint" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="All" userData="sprint-subview">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <Button id="button-in-progress-view" fx:id="buttonTeam1" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="In Progress" userData="task-subview">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <Button id="button-current-sprint-view" fx:id="buttonTeam" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="Current Sprint" userData="team-subview">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <Button id="button-completed-view" fx:id="buttonPersonnel" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="Completed" userData="personnel-subview">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="30.0" minWidth="100.0" prefHeight="35.0" prefWidth="756.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" minWidth="0.0" prefHeight="35.0" prefWidth="228.0" />
+                              <HBox alignment="CENTER" prefHeight="35.0" prefWidth="505.0">
+                                 <children>
+                                            <Label fx:id="btnStatus1" minWidth="65.0" prefHeight="20.0" prefWidth="116.0" text="Task Progress">
+                                                <font>
+                                                    <Font name="Arial" size="16.0" />
+                                                </font>
+                                                <HBox.margin>
+                                                    <Insets />
+                                                </HBox.margin>
+                                            </Label>
+                                            <ProgressBar id="progress-bar-completed" fx:id="progressBar" minWidth="100.0" prefHeight="30.0" prefWidth="285.0" progress="0.0">
+                                                <HBox.margin>
+                                                    <Insets left="20.0" right="25.0" />
+                                                </HBox.margin>
+                                            </ProgressBar>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <BorderPane fx:id="teamsSubViewPane" minHeight="300.0" minWidth="150.0" prefHeight="640.0" prefWidth="756.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+                </HBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

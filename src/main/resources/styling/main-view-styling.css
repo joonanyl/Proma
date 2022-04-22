@@ -72,6 +72,18 @@
     -fx-border-color: #CDCDCD transparent transparent transparent;
 }
 
+#hbox-topnav
+{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CDCDCD transparent transparent transparent;
+}
+
+#hbox-quicknav
+{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CDCDCD transparent transparent transparent;
+}
+
 #main-view-pane
 {
     -fx-background-color: F6F6F6;

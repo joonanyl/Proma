@@ -220,7 +220,7 @@
                                                                 <Insets top="35.0" />
                                                             </VBox.margin>
                                                         </Button>
-                                          <Button id="button-go-to-create-task-view" mnemonicParsing="false" onAction="#navigateNewTask" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="%createTask" textFill="#f8f6f6" userData="create-task-view">
+                                          <Button id="button-go-to-create-task-view" mnemonicParsing="false" onAction="#navigateNewTask" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="%dbCreateTask" textFill="#f8f6f6" userData="create-task-view">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>

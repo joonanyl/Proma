@@ -1,40 +1,62 @@
-package r8.view.mainView.projectView;
+package r8.view.mainView.teamView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
+import r8.model.util.UIElementVisibility;
 import r8.view.IViewController;
 import r8.view.navigation.GetView;
 
 import java.io.IOException;
 
-public class NewProjectViewController {
+public class NewTeamViewController {
 
     @FXML
     private Button btnNewProject;
 
     @FXML
-    private Label btnStatus;
+    private Label btnStatus1;
 
     @FXML
-    private ComboBox<?> comboBoxProjectStatus;
+    private Button buttonPersonnel;
+
+    @FXML
+    private Button buttonSprint;
+
+    @FXML
+    private Button buttonSprint1;
+
+    @FXML
+    private Button buttonSprint11;
+
+    @FXML
+    private Button buttonTeam;
+
+    @FXML
+    private Button buttonTeam1;
+
+    @FXML
+    private Button buttonTeam11;
+
+    @FXML
+    private Button buttonTeam111;
+
+
+    @FXML
+    private ImageView imageTaskType;
 
     @FXML
     private Label labelCreatedBy;
-
-    @FXML
-    private Label labelDescription;
-
-    @FXML
-    private Label labelImplementationInfo;
 
     @FXML
     private Label labelProjectName;
@@ -46,22 +68,20 @@ public class NewProjectViewController {
     private ProgressBar progressBar;
 
     @FXML
-    private VBox vboxProjectPersonnel;
+    private HBox projectNavBar;
 
     @FXML
-    private VBox vboxProjectSprints;
+    private VBox containerAdmin = new VBox();
 
     @FXML
-    private VBox vboxProjectTasks;
-
-    @FXML
-    private BorderPane projectSubViewPane;
+    private BorderPane teamsSubViewPane = new BorderPane();
 
     private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
     private final IControllerAccount controllerAccount = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
 
+    private UIElementVisibility visibility = new UIElementVisibility();
     private boolean admin;
     private String currentSubview;
 
@@ -72,6 +92,7 @@ public class NewProjectViewController {
 
         handleNavigation("sprint-subview");
         //adminVisibility(admin);
+        visibility.toggleAdminVisibility(containerAdmin, admin);
     }
 
     @FXML
@@ -82,7 +103,7 @@ public class NewProjectViewController {
 
         if (!userData.equals(currentSubview)) {
             System.out.println("Clicked " + userData);
-            projectSubViewPane.setCenter(viewLoader.getView(userData));
+            teamsSubViewPane.setCenter(viewLoader.getView(userData));
             currentSubview = userData;
         }
     }
@@ -90,16 +111,9 @@ public class NewProjectViewController {
     @FXML
     public void handleNavigation(String viewName) throws IOException {
         GetView viewLoader = new GetView();
-        projectSubViewPane.setCenter(viewLoader.getView(viewName));
+        teamsSubViewPane.setCenter(viewLoader.getView(viewName));
         currentSubview = viewName;
     }
-
-    /*private void adminVisibility(boolean isAdmin) {
-        if (!admin) {
-            vboxProjectSprints.setVisible(false);
-            vboxProjectSprints.setManaged(false);
-        }
-    }*/
 
     @FXML
     private void navigate (ActionEvent event) throws IOException {
