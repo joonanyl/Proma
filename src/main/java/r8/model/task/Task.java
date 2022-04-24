@@ -180,6 +180,7 @@ public class Task {
 	public Sprint getActiveSprint() {
 		for (Sprint sprint : sprints) {
 			if (sprint.getEndDate().isAfter(LocalDate.now()) && sprint.getStartDate().isBefore(LocalDate.now()))
+				System.out.println("Returning sprint " +sprint);
 				return sprint;
 		}
 		return null;
