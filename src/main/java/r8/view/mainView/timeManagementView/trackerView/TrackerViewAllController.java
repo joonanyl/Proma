@@ -1,3 +1,4 @@
+/*
 package r8.view.mainView.timeManagementView.trackerView;
 
 import javafx.application.Platform;
@@ -246,3 +247,4 @@ public class TrackerViewAllController {
         });
     }
 }
+*/

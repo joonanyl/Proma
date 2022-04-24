@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.*;
@@ -25,6 +24,11 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author Aarni Pesonen
+ *
+ */
 public class TimeManagementViewController {
 
     @FXML
@@ -64,7 +68,7 @@ public class TimeManagementViewController {
     private ComboBox<Task> comboBoxEventName;
 
     @FXML
-    private SearchableComboBox<Task> comboBoxEventTask = new SearchableComboBox<>();
+    private ComboBox<Task> comboBoxEventTask = new ComboBox<>();
 
     @FXML
     private ComboBox<TaskType> comboBoxEventType;
@@ -148,9 +152,9 @@ public class TimeManagementViewController {
     private VBox vBoxToggle;
 
     @FXML
-    private ComboBox<Project> comboBoxEventProject = new ComboBox();
+    private ComboBox<Project> comboBoxEventProject = new ComboBox<>();
 
-    private UIElementVisibility visibility = new UIElementVisibility();
+    private final UIElementVisibility visibility = new UIElementVisibility();
 
     private IControllerMain controller = new Controller();
     private Account account = AppState.getInstance().getAccount();
@@ -335,18 +339,14 @@ public class TimeManagementViewController {
 
     private void filterProjectListener(){
         comboBoxEventProject.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+
             if(newValue != null){
-
                 Project project = comboBoxEventProject.getSelectionModel().getSelectedItem();
-
-                if(comboBoxEventTask.getItems() != null){
-
-                    comboBoxEventTask.getSelectionModel().clearSelection();
-                    comboBoxEventTask.getItems().clear();
-                }
+                comboBoxEventTask.getItems().clear();
                 comboBoxEventTask.getItems().addAll(project.getTasks());
             }
         });
+
     }
 
     private void sortTableView() {
