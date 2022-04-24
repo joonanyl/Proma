@@ -177,6 +177,14 @@ public class Task {
 		return name;
 	}
 
+	public Sprint getActiveSprint() {
+		for (Sprint sprint : sprints) {
+			if (sprint.getEndDate().isAfter(LocalDate.now()) && sprint.getStartDate().isBefore(LocalDate.now()))
+				return sprint;
+		}
+		return null;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

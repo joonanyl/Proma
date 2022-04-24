@@ -21,6 +21,7 @@ import r8.view.navigation.NavigationHandler;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,36 +34,6 @@ public class TimeManagementViewController {
 
     @FXML
     private HBox hBoxProjectSprint = new HBox();
-
-    @FXML
-    private HBox hBoxSprint;
-
-    @FXML
-    private Button btnAddNewEvent;
-
-    @FXML
-    private Button btnAddProject2;
-
-    @FXML
-    private Button btnAddSprint1;
-
-    @FXML
-    private Button btnCreateNewEvent1;
-
-    @FXML
-    private Button btnDelete;
-
-    @FXML
-    private Button btnEdit;
-
-    @FXML
-    private Button btnSubProject2;
-
-    @FXML
-    private Button btnSubSprint1;
-
-    @FXML
-    private Button btnUpdate;
 
     @FXML
     private ComboBox<Task> comboBoxEventName;
@@ -78,18 +49,6 @@ public class TimeManagementViewController {
 
     @FXML
     private DatePicker datePickerEvent;
-
-    @FXML
-    private GridPane gridPane;
-
-    @FXML
-    private Label labelUserName;
-
-    @FXML
-    private Label labelWelcome;
-
-    @FXML
-    private ScrollPane scrollPane;
 
     @FXML
     private TableColumn<Event, String> tableColDate;
@@ -137,15 +96,6 @@ public class TimeManagementViewController {
     private TextArea textNewEventDescription;
 
     @FXML
-    private VBox vBoxEntry;
-
-    @FXML
-    private VBox vBoxEvent;
-
-    @FXML
-    private VBox vBoxProjectSelect;
-
-    @FXML
     private VBox vBoxSprintSelect = new VBox();
 
     @FXML
@@ -156,13 +106,13 @@ public class TimeManagementViewController {
 
     private final UIElementVisibility visibility = new UIElementVisibility();
 
-    private IControllerMain controller = new Controller();
-    private Account account = AppState.getInstance().getAccount();
+    private final IControllerMain controller = new Controller();
+    private final Account account = AppState.getInstance().getAccount();
     private Set<Project> projects = new HashSet<>();
-    private Set<Sprint> sprints;
     private Set<Task> tasks = new HashSet<>();
-    private Set<Team> teams;
     private Set<Event> events = new HashSet<>();
+    private Set<Sprint> sprints;
+    private Set<Team> teams;
     ObservableList<Event> eventsToDisplay = FXCollections.observableArrayList();
     ObservableList<Project> projectsToDisplay = FXCollections.observableArrayList();
     ObservableList<Sprint> sprintsToDisplay = FXCollections.observableArrayList();
@@ -180,9 +130,12 @@ public class TimeManagementViewController {
         filterProjectListener();
         filterAll();
 
-        Thread thread = new Thread(() -> {
+        projectsToDisplay.addAll(controller.getProjectDAO().getByAccount(account));
+        System.out.println(projectsToDisplay);
+        /*Thread thread = new Thread(() -> {
             projects.addAll(controller.getProjectDAO().getByAccount(account));
             events.addAll(controller.getEventDAO().getByAccount(account));
+            System.out.println("events from db" + events);
 
             Platform.runLater(() -> {
                 projectsToDisplay.addAll(projects);
@@ -196,40 +149,17 @@ public class TimeManagementViewController {
                 System.out.println("TableView contents " +tableView.getItems().toString());
             });
         });
-        thread.start();
-    }
-
-    private void initDatePickers() {
-        DatePicker[] datePickers = {datePickerCalendarEntry, datePickerEvent};
-        for (DatePicker dp : datePickers) {
-            dp.setDayCellFactory(param -> new DateCell() {
-                @Override
-                public void updateItem(LocalDate date, boolean empty) {
-                    super.updateItem(date, empty);
-                    setDisable(empty || date.compareTo(LocalDate.now()) > 0 );
-                }
-            });
-        }
-    }
-
-    private void initTableView() {
-        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
-        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
-        tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
-        tableColEventType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
-        tableColHoursWorked.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHoursString()));
-        tableColDescription.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
-        //tableView.getColumns().addAll(tableColDate, tableColDescription, tableColTask, tableColEventType, tableColHoursWorked);
-
+        thread.start();*/
     }
 
     public void saveEvent() {
-        Event event = new Event();
-        event.setAccount(account);
-        event.setDate(datePickerCalendarEntry.getValue());
-        event.setTask(comboBoxEventTask.getSelectionModel().getSelectedItem());
-        event.setHours(Float.parseFloat(textHoursWorked.getText()));
-        event.setDescription(textNewEntryDescription.getText());
+        Event event = new Event(textNewEntryDescription.getText(), datePickerCalendarEntry.getValue(),
+                Float.parseFloat(textHoursWorked.getText()), account, comboBoxEventTask.getSelectionModel().getSelectedItem(),
+                comboBoxEventTask.getSelectionModel().getSelectedItem().getProject());
+
+        if  (comboBoxEventTask.getSelectionModel().getSelectedItem().getSprints() != null)
+            event.setSprint(comboBoxEventTask.getSelectionModel().getSelectedItem().getActiveSprint());
+
         controller.getEventDAO().persist(event);
         tableView.getItems().add(event);
         clearEntryFields();
@@ -252,11 +182,28 @@ public class TimeManagementViewController {
         textNewEntryDescription.clear();
     }
 
+    /**
+     * Clears work event data edit fields
+     */
+    public void clearFields() {
+        datePickerEvent.setValue(null);
+        comboBoxEventName.valueProperty().set(null);
+        comboBoxEventType.valueProperty().set(null);
+        textFieldHoursWorked.clear();
+        textFieldDescription.clear();
+    }
+
+    /**
+     * Clears "Add work event" input fields
+     */
     private void clearEventFields() {
         textNewEventName.clear();
         textNewEventDescription.clear();
     }
 
+    /**
+     * Updates work event info to database
+     */
     public void updateEvent() {
         Event event = new Event();
         event.setDate(datePickerEvent.getValue());
@@ -271,6 +218,9 @@ public class TimeManagementViewController {
         clearFields();
     }
 
+    /**
+     * Deletes work event info from database and UI tableView
+     */
     public void deleteEvent() {
         Event event = tableView.getSelectionModel().getSelectedItem();
         tableView.getItems().remove(tableView.getSelectionModel().getSelectedItem());
@@ -278,6 +228,9 @@ public class TimeManagementViewController {
         sortTableView();
     }
 
+    /**
+     * Sets work event details to UI fields for editing
+     */
     public void getSelectedEvent() {
         Event event = tableView.getSelectionModel().getSelectedItem();
         indexToRemove = tableView.getSelectionModel().getSelectedIndex();
@@ -291,6 +244,10 @@ public class TimeManagementViewController {
     }
 
     // TODO refactor Updates view comboboxes with all users tasks and also retrieves all available task types
+
+    /**
+     * Updates UI comboboxes with latest database entries
+     */
     private void updateComboBoxes() {
 
         for (Project project : projects) {
@@ -311,14 +268,9 @@ public class TimeManagementViewController {
 
     }
 
-    public void clearFields() {
-        datePickerEvent.setValue(null);
-        comboBoxEventName.valueProperty().set(null);
-        comboBoxEventType.valueProperty().set(null);
-        textFieldHoursWorked.clear();
-        textFieldDescription.clear();
-    }
-
+    /**
+     * TableView listener clears work event data editing fields if new item is selected from tableView
+     */
     private void tableViewListener(){
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if(newValue != null){
@@ -327,6 +279,9 @@ public class TimeManagementViewController {
         });
     }
 
+    /**
+     * Populates "Add new event" task combobox with task linked to selected project
+     */
     private void filterProjectListener(){
         comboBoxEventProject.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
 
@@ -345,34 +300,65 @@ public class TimeManagementViewController {
     }
 
     private void updateData() {
-        Platform.runLater(() -> {
+        Thread thread = new Thread(() -> {
+            projects.clear();
+            events.clear();
             projects.addAll(controller.loadProjects(account));
             events.addAll(controller.getEventDAO().getByAccount(account));
+            });
+
+        thread.start();
+        Platform.runLater(() -> {
+            System.out.println("Project + Event data updated.");
         });
     }
 
-    //TODO refactor, working with getByProject
-
-    private void displayProjectEvents() {
-        textFieldProjectDisplay.setText(projectsToDisplay.get(projectIndex).getName());
-        tasks.clear();
+    /**
+     * Fetches all user account related events from database
+     * and adds the retuned event to tableView
+     */
+    private void displayAllEvents() {
+        events.clear();
         Thread thread = new Thread(() -> {
-            tasks.addAll(controller.getTaskDAO().getByAccount(account));
+
+            events.addAll(controller.getEventDAO().getByAccount(account));
 
             Platform.runLater(() -> {
                 tableView.getItems().clear();
-                for (Event event : eventsToDisplay) {
-                    if (event.getTask().getProject().getProjectId() == projectsToDisplay.get(projectIndex).getProjectId())
-                        tableView.getItems().add(event);
-                }
+                tableView.getItems().addAll(events);
                 sortTableView();
             });
         });
         thread.start();
     }
 
+    /**
+     * Fetches user account events related to selected project from database
+     * and adds the returned events to tableView
+     */
+    private void displayProjectEvents() {
+
+        events.clear();
+        Thread thread = new Thread(() -> {
+
+            events.addAll(controller.getEventDAO().getByAccountAndProject(account, projectsToDisplay.get(projectIndex)));
+
+            Platform.runLater(() -> {
+                textFieldProjectDisplay.setText(projectsToDisplay.get(projectIndex).getName());
+                tableView.getItems().clear();
+                tableView.getItems().addAll(events);
+                sortTableView();
+            });
+        });
+        thread.start();
+    }
+
+    /**
+     *
+     */
     public void filterAll() {
         visibility.toggleOff(hBoxProjectSprint);
+        displayAllEvents();
         activeFilter = "all";
     }
 
@@ -397,28 +383,40 @@ public class TimeManagementViewController {
         activeFilter = "sprints";
     }
 
+    /**
+     * When project based event filtering is selected
+     * used to browse through users project list
+     */
     @FXML
     void nextProject() {
         projectIndex++;
 
-        if (projectIndex > projects.size()-1)
+        if (projectIndex > projectsToDisplay.size()-1)
             projectIndex = 0;
 
         sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex).getSprints());
         displayProjectEvents();
     }
 
+    /**
+     * When project based event filtering is selected
+     * used to browse through users project list
+     */
     @FXML
     void previousProject() {
         projectIndex--;
 
         if (projectIndex < 0)
-            projectIndex = (projects.size()-1);
+            projectIndex = (projectsToDisplay.size()-1);
 
         sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex).getSprints());
         displayProjectEvents();
     }
 
+    /**
+     * When sprint based event filtering is selected
+     * used to browse through users project specific sprint lists
+     */
     @FXML
     void nextSprint() {
         sprintIndex++;
@@ -430,6 +428,10 @@ public class TimeManagementViewController {
         textFieldSprintDisplay.setText(sprintsToDisplay.get(sprintIndex-1).getName());
     }
 
+    /**
+     * When sprint based event filtering is selected
+     * used to browse through users project specific sprint lists
+     */
     @FXML
     void previousSprint() {
         sprintIndex--;
@@ -440,11 +442,48 @@ public class TimeManagementViewController {
         textFieldSprintDisplay.setText(sprintsToDisplay.get(sprintIndex-1).getName());
     }
 
+    /**
+     * Initializes Date Pickers used in new work event creation
+     * and when editing existing work event
+     */
+    private void initDatePickers() {
+        DatePicker[] datePickers = {datePickerCalendarEntry, datePickerEvent};
+        for (DatePicker dp : datePickers) {
+            dp.setDayCellFactory(param -> new DateCell() {
+                @Override
+                public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+                    setDisable(empty || date.compareTo(LocalDate.now()) > 0 );
+                }
+            });
+        }
+    }
+
+    /**
+     * Initializes Table View for displaying user work events
+     */
+    private void initTableView() {
+        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
+        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
+        tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
+        tableColEventType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
+        tableColHoursWorked.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHoursString()));
+        tableColDescription.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
+    }
+
+    /**
+     * Used to handle subview navigation
+     * @param event button event triggering handleNavigation method
+     * @throws IOException thrown if there is a problem with botton related ActionEvent
+     */
     @FXML
     public void handleNavigation(ActionEvent event) throws IOException {
         NavigationHandler nav = new NavigationHandler();
     }
 
+    /**
+     * Visibility toggle for New Event Creation UI panel
+     */
     @FXML
     public void toggleNewEvent() {
         visibility.toggleVisibility(vBoxToggle);

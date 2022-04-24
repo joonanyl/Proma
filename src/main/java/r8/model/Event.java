@@ -62,6 +62,15 @@ public class Event {
         this.task = task;
     }
 
+    public Event(String description, LocalDate date, float hours, Account account, Task task, Project project) {
+        this.description = description;
+        this.date = date;
+        this.hours = hours;
+        this.account = account;
+        this.task = task;
+        this.project = project;
+    }
+
     public Event(int eventId, String description, LocalDate date, float hours, Account account, Task task, Project project, Sprint sprint) {
         this.eventId = eventId;
         this.description = description;
