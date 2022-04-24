@@ -172,7 +172,7 @@ public class TimeManagementViewController {
     private String activeFilter;
 
     @FXML
-    private void initialize() throws IOException {
+    private void initialize() {
 
         initDatePickers();
         tableView.getColumns().clear();
@@ -187,7 +187,6 @@ public class TimeManagementViewController {
         sortTableView();
         tableViewListener();
         filterProjectListener();
-        visibility.toggleOff(vBoxToggle);
         filterAll();
     }
 
