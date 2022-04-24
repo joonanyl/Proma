@@ -389,9 +389,9 @@
                                           <TableColumn fx:id="tableColDate" prefWidth="128.0" text="%date" />
                                           <TableColumn fx:id="tableColTask" prefWidth="126.0" text="%eventName" />
                                           <TableColumn fx:id="tableColEventType" minWidth="0.0" prefWidth="220.0" text="%eventType" />
-                                          <TableColumn fx:id="tableColHoursWorked" minWidth="0.0" prefWidth="108.0" text="%hoursWorked" />
-                                          <TableColumn fx:id="tableColRemaining" minWidth="0.0" prefWidth="95.0" text="%remaining" />
-                                          <TableColumn fx:id="tableColDescription" prefWidth="364.0" text="%description" />
+                                          <TableColumn fx:id="tableColHoursWorked" minWidth="0.0" prefWidth="99.0" text="%hoursWorked" />
+                                          <TableColumn fx:id="tableColRemaining" minWidth="0.0" prefWidth="114.0" text="%remaining" />
+                                          <TableColumn fx:id="tableColDescription" prefWidth="545.0" text="%description" />
                                        </columns>
                                     </TableView>
                                  </content>

@@ -1,4 +1,4 @@
-package r8.model.util;
+package r8.util;
 
 import javafx.scene.layout.Pane;
 

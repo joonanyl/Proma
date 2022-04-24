@@ -16,7 +16,7 @@ import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.task.Task;
 import r8.model.task.TaskType;
-import r8.model.util.UIElementVisibility;
+import r8.util.UIElementVisibility;
 import r8.view.navigation.NavigationHandler;
 
 import java.io.IOException;
@@ -175,19 +175,28 @@ public class TimeManagementViewController {
     private void initialize() {
 
         initDatePickers();
-        tableView.getColumns().clear();
-
-        projects.addAll(controller.getProjectDAO().getByAccount(account));
-        projectsToDisplay.addAll(projects);
-        events.addAll(controller.getEventDAO().getByAccount(account));
-
-        eventsToDisplay.addAll(events);
-        addToTableView();
-        updateComboBoxes();
-        sortTableView();
+        initTableView();
         tableViewListener();
         filterProjectListener();
         filterAll();
+
+        Thread thread = new Thread(() -> {
+            projects.addAll(controller.getProjectDAO().getByAccount(account));
+            events.addAll(controller.getEventDAO().getByAccount(account));
+
+            Platform.runLater(() -> {
+                projectsToDisplay.addAll(projects);
+                eventsToDisplay.addAll(events);
+                for (Event event : eventsToDisplay) {
+                    System.out.println("Adding to table view: " +event);
+                    tableView.getItems().add(event);
+                }
+                updateComboBoxes();
+                sortTableView();
+                System.out.println("TableView contents " +tableView.getItems().toString());
+            });
+        });
+        thread.start();
     }
 
     private void initDatePickers() {
@@ -203,34 +212,15 @@ public class TimeManagementViewController {
         }
     }
 
-    private void addToTableView() {
+    private void initTableView() {
+        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
+        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
+        tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
+        tableColEventType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
+        tableColHoursWorked.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHoursString()));
+        tableColDescription.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
+        //tableView.getColumns().addAll(tableColDate, tableColDescription, tableColTask, tableColEventType, tableColHoursWorked);
 
-        tableColDate = new TableColumn<>("Date");
-        tableColDate.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getDate().toString()));
-
-        tableColTask = new TableColumn<>("Task");
-        tableColTask.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getTask().getName()));
-
-        tableColEventType = new TableColumn<>("Event Type");
-        tableColEventType.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
-
-        tableColHoursWorked = new TableColumn<>("Hours Worked");
-        tableColHoursWorked.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getHoursString()));
-
-        tableColDescription = new TableColumn<>("Description");
-        tableColDescription.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getDescription()));
-
-        tableView.getColumns().addAll(tableColDate, tableColDescription, tableColTask, tableColEventType, tableColHoursWorked);
-
-        for (Event event : eventsToDisplay) {
-            System.out.println("Adding to table view: " +event);
-            tableView.getItems().add(event);
-        }
     }
 
     public void saveEvent() {
@@ -238,10 +228,8 @@ public class TimeManagementViewController {
         event.setAccount(account);
         event.setDate(datePickerCalendarEntry.getValue());
         event.setTask(comboBoxEventTask.getSelectionModel().getSelectedItem());
-        //event.getTask().setTaskType(comboBoxEventType.getSelectionModel().getSelectedItem());
         event.setHours(Float.parseFloat(textHoursWorked.getText()));
         event.setDescription(textNewEntryDescription.getText());
-
         controller.getEventDAO().persist(event);
         tableView.getItems().add(event);
         clearEntryFields();
@@ -302,22 +290,25 @@ public class TimeManagementViewController {
         }
     }
 
-    // Updates view comboboxes with all users tasks and also retrieves all available task types
+    // TODO refactor Updates view comboboxes with all users tasks and also retrieves all available task types
     private void updateComboBoxes() {
 
-        System.out.println("Get tasks by account: " +controller.getTaskDAO().getByAccount(account));
-        System.out.println("Get projects by account: " +controller.getProjectDAO().getByAccount(account));
         for (Project project : projects) {
             tasks.addAll(project.getTasks());
         }
-        comboBoxEventProject.getItems().clear();
-        comboBoxEventProject.getItems().addAll(projects);
-        comboBoxEventTask.getItems().clear();
-        comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getByAccount(account));
         comboBoxEventName.getItems().clear();
-        comboBoxEventName.getItems().addAll(tasks);
+        comboBoxEventProject.getItems().clear();
+        comboBoxEventTask.getItems().clear();
         comboBoxEventType.getItems().clear();
-        comboBoxEventType.getItems().addAll(controller.getAllTaskTypes());
+        comboBoxEventProject.getItems().addAll(projects);
+
+        Thread thread = new Thread(() -> {
+            comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getByAccount(account));
+            comboBoxEventType.getItems().addAll(controller.getAllTaskTypes());
+            Platform.runLater(() -> comboBoxEventName.getItems().addAll(tasks));
+        });
+        thread.start();
+
     }
 
     public void clearFields() {
@@ -345,7 +336,6 @@ public class TimeManagementViewController {
                 comboBoxEventTask.getItems().addAll(project.getTasks());
             }
         });
-
     }
 
     private void sortTableView() {
@@ -361,9 +351,24 @@ public class TimeManagementViewController {
         });
     }
 
-    @FXML
-    public void handleNavigation(ActionEvent event) throws IOException {
-        NavigationHandler nav = new NavigationHandler();
+    //TODO refactor, working with getByProject
+
+    private void displayProjectEvents() {
+        textFieldProjectDisplay.setText(projectsToDisplay.get(projectIndex).getName());
+        tasks.clear();
+        Thread thread = new Thread(() -> {
+            tasks.addAll(controller.getTaskDAO().getByAccount(account));
+
+            Platform.runLater(() -> {
+                tableView.getItems().clear();
+                for (Event event : eventsToDisplay) {
+                    if (event.getTask().getProject().getProjectId() == projectsToDisplay.get(projectIndex).getProjectId())
+                        tableView.getItems().add(event);
+                }
+                sortTableView();
+            });
+        });
+        thread.start();
     }
 
     public void filterAll() {
@@ -377,13 +382,10 @@ public class TimeManagementViewController {
     public void filterProjects() {
         visibility.toggleOn(hBoxProjectSprint);
         visibility.toggleOff(vBoxSprintSelect);
-        displayProjectEvents(projectsToDisplay.get(projectIndex).getProjectId());
-        System.out.println(textFieldProjectDisplay.getText());
         if (!activeFilter.equals("projects")) {
-            projectIndex = 1;
-            nextProject();
+            displayProjectEvents();
+            activeFilter = "projects";
         }
-        activeFilter = "projects";
     }
 
     /**
@@ -399,30 +401,26 @@ public class TimeManagementViewController {
     void nextProject() {
         projectIndex++;
 
-        if (projectIndex > projects.size()) {
-            projectIndex = 1;
-        }
+        if (projectIndex > projects.size()-1)
+            projectIndex = 0;
 
-        textFieldProjectDisplay.setText(projectsToDisplay.get(projectIndex-1).getName());
-        sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex-1).getSprints());
-        displayProjectEvents(projectsToDisplay.get(projectIndex-1).getProjectId());
+        sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex).getSprints());
+        displayProjectEvents();
     }
 
     @FXML
     void previousProject() {
         projectIndex--;
 
-        if (projectIndex < 1)
-            projectIndex = projects.size();
+        if (projectIndex < 0)
+            projectIndex = (projects.size()-1);
 
-        textFieldProjectDisplay.setText(projectsToDisplay.get(projectIndex-1).getName());
-        System.out.println("Selected project is " + projectsToDisplay.get(projectIndex-1).getName());
-        sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex-1).getSprints());
-        displayProjectEvents(projectsToDisplay.get(projectIndex-1).getProjectId());
+        sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex).getSprints());
+        displayProjectEvents();
     }
 
     @FXML
-    void nextSprint(ActionEvent event) {
+    void nextSprint() {
         sprintIndex++;
 
         if (sprintIndex > sprintsToDisplay.size())
@@ -433,7 +431,7 @@ public class TimeManagementViewController {
     }
 
     @FXML
-    void previousSprint(ActionEvent event) {
+    void previousSprint() {
         sprintIndex--;
         if (sprintIndex < 1)
             sprintIndex = sprintsToDisplay.size();
@@ -442,24 +440,9 @@ public class TimeManagementViewController {
         textFieldSprintDisplay.setText(sprintsToDisplay.get(sprintIndex-1).getName());
     }
 
-    //TODO refactor, working with getByProject
-    private void displayProjectEvents(int projectId) {
-        tasks.clear();
-        tasks.addAll(controller.getTaskDAO().getByAccount(account));
-        System.out.println("Tasks now contain " + tasks);
-        tableView.getItems().clear();
-        for (Event event : eventsToDisplay) {
-            if (event.getTask().getProject().getProjectId() == projectId)
-                tableView.getItems().add(event);
-        }
-        /*for (Event event : eventsToDisplay) {
-            for (Task task : tasks) {
-                if (event.getTask().getTaskId() == task.getTaskId())
-                    tableView.getItems().add(event);
-                    System.out.println("Adding to tableview" +event);
-            }
-        }*/
-        sortTableView();
+    @FXML
+    public void handleNavigation(ActionEvent event) throws IOException {
+        NavigationHandler nav = new NavigationHandler();
     }
 
     @FXML
