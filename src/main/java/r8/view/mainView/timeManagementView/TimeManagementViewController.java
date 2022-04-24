@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import r8.controller.Controller;
@@ -16,12 +15,12 @@ import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.task.Task;
 import r8.model.task.TaskType;
+import r8.util.ExportUtil;
 import r8.util.UIElementVisibility;
 import r8.view.navigation.NavigationHandler;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -108,14 +107,14 @@ public class TimeManagementViewController {
 
     private final IControllerMain controller = new Controller();
     private final Account account = AppState.getInstance().getAccount();
-    private Set<Project> projects = new HashSet<>();
-    private Set<Task> tasks = new HashSet<>();
-    private Set<Event> events = new HashSet<>();
-    private Set<Sprint> sprints;
-    private Set<Team> teams;
-    ObservableList<Event> eventsToDisplay = FXCollections.observableArrayList();
-    ObservableList<Project> projectsToDisplay = FXCollections.observableArrayList();
-    ObservableList<Sprint> sprintsToDisplay = FXCollections.observableArrayList();
+    private Set<Project> projectsSet = new HashSet<>();
+    private Set<Task> tasksSet = new HashSet<>();
+    private Set<Event> eventsSet = new HashSet<>();
+    private Set<Sprint> sprintsSet  =new HashSet<>();
+    private Set<Team> teamsSet;
+    ObservableList<Event> eventsList = FXCollections.observableArrayList();
+    ObservableList<Project> projectsList = FXCollections.observableArrayList();
+    ObservableList<Sprint> sprintsList = FXCollections.observableArrayList();
     private int indexToRemove;
     private int projectIndex = 0;
     private int sprintIndex;
@@ -126,21 +125,23 @@ public class TimeManagementViewController {
 
         initDatePickers();
         initTableView();
+        updateComboBoxes();
+
         tableViewListener();
         filterProjectListener();
         filterAll();
 
-        projectsToDisplay.addAll(controller.getProjectDAO().getByAccount(account));
-        System.out.println(projectsToDisplay);
-        /*Thread thread = new Thread(() -> {
-            projects.addAll(controller.getProjectDAO().getByAccount(account));
-            events.addAll(controller.getEventDAO().getByAccount(account));
-            System.out.println("events from db" + events);
+        //projectsList.addAll(controller.getProjectDAO().getByAccount(account));
+        /*System.out.println(projectsList);
+        Thread thread = new Thread(() -> {
+            projectsSet.addAll(controller.getProjectDAO().getByAccount(account));
+            eventsSet.addAll(controller.getEventDAO().getByAccount(account));
+            System.out.println("events from db" + eventsSet);
 
             Platform.runLater(() -> {
-                projectsToDisplay.addAll(projects);
-                eventsToDisplay.addAll(events);
-                for (Event event : eventsToDisplay) {
+                projectsList.addAll(projectsSet);
+                eventsList.addAll(eventsSet);
+                for (Event event : eventsList) {
                     System.out.println("Adding to table view: " +event);
                     tableView.getItems().add(event);
                 }
@@ -157,8 +158,8 @@ public class TimeManagementViewController {
                 Float.parseFloat(textHoursWorked.getText()), account, comboBoxEventTask.getSelectionModel().getSelectedItem(),
                 comboBoxEventTask.getSelectionModel().getSelectedItem().getProject());
 
-        if  (comboBoxEventTask.getSelectionModel().getSelectedItem().getSprints() != null)
-            event.setSprint(comboBoxEventTask.getSelectionModel().getSelectedItem().getActiveSprint());
+        /*if  (comboBoxEventTask.getSelectionModel().getSelectedItem().getSprints() != null)
+            event.setSprint(comboBoxEventTask.getSelectionModel().getSelectedItem().getActiveSprint());*/
 
         controller.getEventDAO().persist(event);
         tableView.getItems().add(event);
@@ -250,21 +251,33 @@ public class TimeManagementViewController {
      */
     private void updateComboBoxes() {
 
-        for (Project project : projects) {
-            tasks.addAll(project.getTasks());
+        for (Project project : projectsSet) {
+            tasksSet.addAll(project.getTasks());
         }
+
         comboBoxEventName.getItems().clear();
         comboBoxEventProject.getItems().clear();
         comboBoxEventTask.getItems().clear();
         comboBoxEventType.getItems().clear();
-        comboBoxEventProject.getItems().addAll(projects);
 
         Thread thread = new Thread(() -> {
+
+            projectsSet.addAll(controller.getProjectDAO().getByAccount(account));
             comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getByAccount(account));
             comboBoxEventType.getItems().addAll(controller.getAllTaskTypes());
-            Platform.runLater(() -> comboBoxEventName.getItems().addAll(tasks));
+
+            Platform.runLater(() -> {
+                comboBoxEventProject.getItems().addAll(projectsSet);
+                projectsList.addAll(projectsSet);
+                comboBoxEventName.getItems().addAll(tasksSet);
+                System.out.println("Sprints " +sprintsSet.toString());
+            });
         });
         thread.start();
+
+        for (Project p : projectsList) {
+            System.out.println(p.getSprints().toString());
+        }
 
     }
 
@@ -301,10 +314,10 @@ public class TimeManagementViewController {
 
     private void updateData() {
         Thread thread = new Thread(() -> {
-            projects.clear();
-            events.clear();
-            projects.addAll(controller.loadProjects(account));
-            events.addAll(controller.getEventDAO().getByAccount(account));
+            projectsSet.clear();
+            eventsSet.clear();
+            //projectsSet.addAll(controller.loadProjects(account));
+            eventsSet.addAll(controller.getEventDAO().getByAccount(account));
             });
 
         thread.start();
@@ -318,14 +331,14 @@ public class TimeManagementViewController {
      * and adds the retuned event to tableView
      */
     private void displayAllEvents() {
-        events.clear();
+        eventsSet.clear();
         Thread thread = new Thread(() -> {
 
-            events.addAll(controller.getEventDAO().getByAccount(account));
+            eventsSet.addAll(controller.getEventDAO().getByAccount(account));
 
             Platform.runLater(() -> {
                 tableView.getItems().clear();
-                tableView.getItems().addAll(events);
+                tableView.getItems().addAll(eventsSet);
                 sortTableView();
             });
         });
@@ -338,15 +351,15 @@ public class TimeManagementViewController {
      */
     private void displayProjectEvents() {
 
-        events.clear();
+        eventsSet.clear();
         Thread thread = new Thread(() -> {
 
-            events.addAll(controller.getEventDAO().getByAccountAndProject(account, projectsToDisplay.get(projectIndex)));
+            eventsSet.addAll(controller.getEventDAO().getByAccountAndProject(account, projectsList.get(projectIndex)));
 
             Platform.runLater(() -> {
-                textFieldProjectDisplay.setText(projectsToDisplay.get(projectIndex).getName());
+                textFieldProjectDisplay.setText(projectsList.get(projectIndex).getName());
                 tableView.getItems().clear();
-                tableView.getItems().addAll(events);
+                tableView.getItems().addAll(eventsSet);
                 sortTableView();
             });
         });
@@ -391,10 +404,10 @@ public class TimeManagementViewController {
     void nextProject() {
         projectIndex++;
 
-        if (projectIndex > projectsToDisplay.size()-1)
+        if (projectIndex > projectsList.size()-1)
             projectIndex = 0;
 
-        sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex).getSprints());
+        sprintsList.addAll(projectsList.get(projectIndex).getSprints());
         displayProjectEvents();
     }
 
@@ -407,9 +420,9 @@ public class TimeManagementViewController {
         projectIndex--;
 
         if (projectIndex < 0)
-            projectIndex = (projectsToDisplay.size()-1);
+            projectIndex = (projectsList.size()-1);
 
-        sprintsToDisplay.addAll(projectsToDisplay.get(projectIndex).getSprints());
+        sprintsList.addAll(projectsList.get(projectIndex).getSprints());
         displayProjectEvents();
     }
 
@@ -421,11 +434,11 @@ public class TimeManagementViewController {
     void nextSprint() {
         sprintIndex++;
 
-        if (sprintIndex > sprintsToDisplay.size())
+        if (sprintIndex > sprintsList.size())
             sprintIndex = 1;
 
-        if(sprintsToDisplay != null)
-        textFieldSprintDisplay.setText(sprintsToDisplay.get(sprintIndex-1).getName());
+        if(sprintsList != null)
+        textFieldSprintDisplay.setText(sprintsList.get(sprintIndex-1).getName());
     }
 
     /**
@@ -436,10 +449,10 @@ public class TimeManagementViewController {
     void previousSprint() {
         sprintIndex--;
         if (sprintIndex < 1)
-            sprintIndex = sprintsToDisplay.size();
+            sprintIndex = sprintsList.size();
 
-        if(sprintsToDisplay != null)
-        textFieldSprintDisplay.setText(sprintsToDisplay.get(sprintIndex-1).getName());
+        if(sprintsList != null)
+        textFieldSprintDisplay.setText(sprintsList.get(sprintIndex-1).getName());
     }
 
     /**
@@ -487,5 +500,11 @@ public class TimeManagementViewController {
     @FXML
     public void toggleNewEvent() {
         visibility.toggleVisibility(vBoxToggle);
+    }
+
+    @FXML
+    public void exportExcel() {
+        ExportUtil exp = new ExportUtil();
+        exp.exportExcel(tableView);
     }
 }
