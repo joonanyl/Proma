@@ -351,4 +351,19 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     public List<Comment> getComments(Task task){
         return commentDAO.getCommentsByTask(task);
     }
+
+    @Override
+    public EventDAO getEventDAO() {
+        return this.eventDAO;
+    }
+
+    @Override
+    public TaskDAO getTaskDAO() {
+        return this.taskDAO;
+    }
+
+    @Override
+    public ProjectDAO getProjectDAO() {
+        return this.projectDAO;
+    }
 }

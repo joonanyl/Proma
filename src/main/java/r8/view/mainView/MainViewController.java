@@ -9,7 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import r8.model.util.UIElementVisibility;
+import r8.util.UIElementVisibility;
 import r8.view.navigation.BreadcrumbBar;
 import r8.view.navigation.BreadcrumbObject;
 import r8.view.navigation.GetView;

@@ -1,8 +1,5 @@
 package r8.model.dao;
 
-import org.hibernate.HibernateException;
-import r8.model.Project;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;

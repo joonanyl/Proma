@@ -83,16 +83,27 @@ public class Task {
 
 	/**
 	 * Constructor
-	 * @param n Task's name
+	 * @param name Task's name
 	 */
-	public Task(String n, TaskState ts, TaskType tt, float hours, String desc) {
-		this.name = n;
-		this.taskState = ts;
-		this.taskStateString = taskState.toString();
-		this.taskType = tt;
+	public Task(String name, TaskState taskState, TaskType taskType, float hours, String desc) {
+		this.name = name;
+		this.taskState = taskState;
+		this.taskStateString = this.taskState.toString();
+		this.taskType = taskType;
 		this.hours = hours;
 		this.description = desc;
 		this.startDate = LocalDate.now();
+	}
+
+	/**
+	 * Constructor for user generated non-task related work events,
+	 * to be saved to database as tasks
+	 * @param name of work event
+	 * @param desc description of work event
+	 */
+	public Task(String name, String desc) {
+		this.name = name;
+		this.description = desc;
 	}
 
 	public Task() {}

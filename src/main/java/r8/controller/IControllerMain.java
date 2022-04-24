@@ -3,6 +3,9 @@ package r8.controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import r8.model.*;
+import r8.model.dao.EventDAO;
+import r8.model.dao.ProjectDAO;
+import r8.model.dao.TaskDAO;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
@@ -42,4 +45,10 @@ public interface IControllerMain {
     void createComment(Comment comment);
 
     List<Comment> getComments(Task task);
+
+    EventDAO getEventDAO();
+
+    TaskDAO getTaskDAO();
+
+    ProjectDAO getProjectDAO();
 }

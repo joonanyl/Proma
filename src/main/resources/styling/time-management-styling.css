@@ -35,7 +35,7 @@
 {
     -fx-background-color: #E3E3E3;
     -fx-border-color: gray gray gray gray;
-    -fx-background-radius: 10 0 0 10;
+    -fx-background-radius: 0 10 10 0;
     -fx-border-radius: 2 4 4 2;
     -fx-border-width: 1px;
 }
@@ -135,4 +135,17 @@
 {
     -fx-background-color: EAEAEA;
     -fx-background-radius: 5;
+}
+
+#container-background
+{
+    -fx-background-color: EAEAEA;
+}
+
+#container-element
+{
+    -fx-background-color: #F9F9F9;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-color: #CDCDCD;
 }

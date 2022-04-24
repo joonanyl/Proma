@@ -45,10 +45,36 @@
     -fx-background-color: EAEAEA;
 }
 
+#description-area
+{
+    -fx-background-color: transparent;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
 #container-element
 {
     -fx-background-color: #F9F9F9;
     -fx-background-radius: 3px;
     -fx-border-radius: 3px;
     -fx-border-color: #CDCDCD;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
 }

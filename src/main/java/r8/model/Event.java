@@ -75,48 +75,50 @@ public class Event {
 
     public Event() {}
 
+    public Account getAccount() {
+        return account;
+    }
+
     public int getEventId() {
         return eventId;
-    }
-
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public String getDescription() {
+        return description;
     }
 
     public float getHours() {
         return hours;
     }
 
+    public String getHoursString() { return Float.toString(hours); }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public void setHours(float hours) {
         this.hours = hours;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public Task getTask() {
-        return task;
     }
 
     public void setTask(Task task) {

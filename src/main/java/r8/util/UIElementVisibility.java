@@ -1,4 +1,4 @@
-package r8.model.util;
+package r8.util;
 
 import javafx.scene.layout.Pane;
 
@@ -7,6 +7,11 @@ public class UIElementVisibility {
     public void toggleOff(Pane pane) {
         pane.setVisible(false);
         pane.setManaged(false);
+    }
+
+    public void toggleOn(Pane pane) {
+        pane.setVisible(true);
+        pane.setManaged(true);
     }
 
     public void toggleVisibility(Pane pane) {

@@ -1,6 +1,5 @@
 package r8.view.mainView.taskView;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,7 +13,7 @@ import r8.model.appState.AppState;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 import r8.util.TextLoader;
-import r8.model.util.UIElementVisibility;
+import r8.util.UIElementVisibility;
 
 import java.util.*;
 
@@ -78,7 +77,6 @@ public class CreateTaskViewController {
 
         TextFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
     }
-
 
     // TODO does not accept all names, needs testing
     @FXML
