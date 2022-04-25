@@ -60,7 +60,7 @@ public class Task {
 			inverseJoinColumns = @JoinColumn(name = "account_id"))
 	private Set<Account> accounts = new HashSet<>();
 
-	@ManyToMany(mappedBy = "tasks")
+	@ManyToMany(mappedBy = "tasks", fetch = FetchType.EAGER)
 	private Set<Sprint> sprints = new HashSet<>();
 
 	@ManyToOne
