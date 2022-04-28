@@ -88,35 +88,39 @@
                         </HBox>
                     </children>
                     <HBox.margin>
-                        <Insets left="25.0" />
+                        <Insets bottom="25.0" left="25.0" />
                     </HBox.margin>
                 </VBox>
                 <VBox id="container-element" prefHeight="780.0" prefWidth="410.0">
                     <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%existingTeams">
-                            <font>
-                                <Font name="Arial Bold" size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
-                            </VBox.margin>
-                        </Text>
-                        <ListView fx:id="listViewExistingTeams" prefHeight="300.0" prefWidth="350.0">
-                            <VBox.margin>
-                                <Insets left="20.0" right="20.0" />
-                            </VBox.margin>
-                        </ListView>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%teamInfo">
-                            <font>
-                                <Font name="Arial Bold" size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
-                            </VBox.margin>
-                        </Text>
+                  <VBox prefHeight="430.0" prefWidth="396.0">
+                     <children>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%existingTeams">
+                                  <font>
+                                      <Font name="Arial Bold" size="16.0" />
+                                  </font>
+                                  <VBox.margin>
+                                      <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                                  </VBox.margin>
+                              </Text>
+                              <ListView fx:id="listViewExistingTeams" prefHeight="1000.0" prefWidth="1000.0">
+                                  <VBox.margin>
+                                      <Insets left="30.0" right="30.0" />
+                                  </VBox.margin>
+                              </ListView>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%teamInfo">
+                                  <font>
+                                      <Font name="Arial Bold" size="16.0" />
+                                  </font>
+                                  <VBox.margin>
+                                      <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                                  </VBox.margin>
+                              </Text>
+                     </children>
+                  </VBox>
                     </children>
                     <HBox.margin>
-                        <Insets left="25.0" right="25.0" />
+                        <Insets bottom="25.0" left="25.0" right="25.0" />
                     </HBox.margin>
                 </VBox>
             </children>

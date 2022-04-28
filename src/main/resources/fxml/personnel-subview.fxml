@@ -12,9 +12,9 @@
 
 <AnchorPane prefHeight="780.0" prefWidth="870.0" stylesheets="@../styling/time-management-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.projectView.subview.PersonnelSubviewController">
     <children>
-        <HBox prefHeight="780.0" prefWidth="870.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox prefHeight="1200.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox id="container-vbox" prefHeight="780.0" prefWidth="410.0">
+                <VBox id="container-element" prefHeight="1000.0" prefWidth="1400.0">
                     <children>
                         <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%addPersonnelTo">
                             <font>
@@ -85,27 +85,43 @@
                         </HBox>
                     </children>
                     <HBox.margin>
-                        <Insets left="25.0" />
+                        <Insets bottom="25.0" left="25.0" />
                     </HBox.margin>
                 </VBox>
-                <VBox id="container-vbox" prefHeight="780.0" prefWidth="410.0">
+                <VBox id="container-element" prefHeight="1000.0" prefWidth="1400.0">
                     <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%projectPersonnel">
-                            <font>
-                                <Font name="Arial Bold" size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
-                            </VBox.margin>
-                        </Text>
-                        <ListView fx:id="listViewExistingSprints" prefHeight="720.0" prefWidth="358.0">
-                            <VBox.margin>
-                                <Insets bottom="25.0" left="20.0" right="20.0" />
-                            </VBox.margin>
-                        </ListView>
+                  <VBox prefHeight="753.0" prefWidth="1000.0">
+                     <children>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%projectPersonnel">
+                                  <font>
+                                      <Font name="Arial Bold" size="16.0" />
+                                  </font>
+                                  <VBox.margin>
+                                      <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                                  </VBox.margin>
+                              </Text>
+                              <ListView fx:id="listViewExistingSprints" prefHeight="720.0" prefWidth="358.0">
+                                  <VBox.margin>
+                                      <Insets bottom="25.0" left="20.0" right="20.0" />
+                                  </VBox.margin>
+                              </ListView>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="btnRemoveFromProject" mnemonicParsing="false" prefWidth="130.0" text="%remove" textFill="#f8f6f6">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="25.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
                     </children>
                     <HBox.margin>
-                        <Insets left="25.0" right="25.0" />
+                        <Insets bottom="25.0" left="25.0" right="25.0" />
                     </HBox.margin>
                 </VBox>
             </children>
