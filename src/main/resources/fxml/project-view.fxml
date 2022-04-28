@@ -223,7 +223,7 @@
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <Button id="button-completed-view" fx:id="buttonTask" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="%task" userData="task-subview">
+                        <Button id="button-completed-view" fx:id="buttonPersonnel" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="%personnel" userData="personnel-subview">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -231,14 +231,18 @@
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <Button id="button-in-progress-view" fx:id="buttonPersonnel" layoutX="501.0" layoutY="10.0" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="%personnel" userData="personnel-subview">
+                        <Button id="button-in-progress-view" fx:id="buttonTask" layoutX="501.0" layoutY="10.0" minWidth="105.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="35.0" prefWidth="105.0" text="%task" userData="task-subview">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  <BorderPane fx:id="projectSubViewPane" minHeight="300.0" minWidth="150.0" prefHeight="801.0" prefWidth="833.0" />
+                  <BorderPane fx:id="projectSubViewPane" minHeight="300.0" minWidth="150.0" prefHeight="801.0" prefWidth="833.0">
+                     <VBox.margin>
+                        <Insets bottom="1.0" />
+                     </VBox.margin>
+                  </BorderPane>
                </children>
                <HBox.margin>
                   <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

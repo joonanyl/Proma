@@ -32,7 +32,7 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField id="taskName" fx:id="tesxtFieldSprintName" minHeight="30.0" prefHeight="30.0">
+                  <TextField id="taskName" fx:id="textFieldSprintName" minHeight="30.0" prefHeight="30.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -42,7 +42,7 @@
                   </TextField>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="410.0">
                      <children>
-                        <Button fx:id="btnAddSprint" mnemonicParsing="false" prefWidth="130.0" text="%add" textFill="#f8f6f6">
+                        <Button fx:id="btnAddSprint" mnemonicParsing="false" onAction="#addSprintToList" prefWidth="130.0" text="%add" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -62,12 +62,12 @@
                   </Text>
                   <ListView fx:id="listViewSprintsToAdd" prefHeight="276.0" prefWidth="350.0">
                      <VBox.margin>
-                        <Insets left="30.0" right="20.0" />
+                        <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                   </ListView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnRemoveSprint" mnemonicParsing="false" prefWidth="130.0" text="%remove" textFill="#f8f6f6">
+                        <Button fx:id="btnRemoveSprintFromList" mnemonicParsing="false" onAction="#removeSprintFromList" prefWidth="130.0" text="%remove" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -76,7 +76,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnCreateSprint" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="%createSprints" textFill="#f8f6f6">
+                        <Button fx:id="btnAddSprintToDB" mnemonicParsing="false" onAction="#addSprintToDB" prefHeight="50.0" prefWidth="150.0" text="%createSprints" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -93,27 +93,47 @@
             </VBox>
             <VBox id="container-element" prefHeight="780.0" prefWidth="410.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%existingSprints">
-                     <font>
-                        <Font name="Arial Bold" size="16.0" />
-                     </font>
+                  <VBox prefHeight="800.0" prefWidth="400.0">
+                     <children>
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%existingSprints">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <ListView fx:id="listViewProjectSprints" prefHeight="1000.0" prefWidth="1000.0">
+                           <VBox.margin>
+                              <Insets left="30.0" right="30.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0">
+                     <children>
+                        <Button fx:id="btnRemoveSprint" mnemonicParsing="false" onAction="#removeSprintFromProject" prefHeight="50.0" prefWidth="150.0" text="%remove" textFill="#f8f6f6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                        <Insets top="25.0" />
                      </VBox.margin>
-                  </Text>
-                  <ListView fx:id="listViewExistingSprints" prefHeight="300.0" prefWidth="350.0">
-                     <VBox.margin>
-                        <Insets left="30.0" right="30.0" />
-                     </VBox.margin>
-                  </ListView>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%sprintInfo">
-                     <font>
-                        <Font name="Arial Bold" size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                  </Text>
+                  </VBox>
+                  <VBox prefHeight="600.0" prefWidth="400.0">
+                     <children>
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%sprintInfo">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                  </VBox>
                </children>
                <HBox.margin>
                   <Insets bottom="25.0" left="25.0" right="25.0" />
