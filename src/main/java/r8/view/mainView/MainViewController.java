@@ -1,6 +1,5 @@
 package r8.view.mainView;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -19,7 +18,6 @@ import r8.App;
 import java.io.IOException;
 import java.util.Objects;
 
-// TODO refactor methods
 public class MainViewController implements IViewController {
 
     private App app;
@@ -80,6 +78,7 @@ public class MainViewController implements IViewController {
     // called by subview controllers navigate()
     public void handleSubviewNavigation(ActionEvent event) throws IOException {
         mainViewPane.setCenter(nav.handleNavigation(event));
+        createBreadcrumb(event);
     }
 
     @FXML
@@ -87,14 +86,6 @@ public class MainViewController implements IViewController {
         visibility.toggleVisibility(hBoxQuicknav);
     }
 
-    // Update UI while running
-    public void updateUI() {
-        Platform.runLater(new Runnable() {
-            public void run() {
-                // tarvitaanko ainoastaan kellonajan näyttämiseen?
-            }
-        });
-    }
     // loads initial subview based on BreadcrumbObject received as parameter
     private void initSubview(BreadcrumbObject bcObj) {
         createBreadcrumb(initialView);
@@ -125,6 +116,11 @@ public class MainViewController implements IViewController {
     private void clearBreadCrumbs() {
         hBoxBreadcrumb.getChildren().clear();
         breadcrumbBar.clear();
+    }
+
+    @FXML
+    public void export() {
+
     }
 
     @FXML

@@ -144,7 +144,7 @@
                         <MenuButton id="button-topnav" fx:id="menuBtnExport" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" stylesheets="@../styling/main-view-styling.css" text="%export" textFill="#15191c">
                            <items>
                               <MenuItem mnemonicParsing="false" text="Time Management -&gt; PDF" />
-                              <MenuItem mnemonicParsing="false" text="Time Management -&gt; Excel" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="Time Management -&gt; Excel" userData="time-management-view"/>
                            </items>
                            <font>
                               <Font name="Myanmar Text" size="16.0" />

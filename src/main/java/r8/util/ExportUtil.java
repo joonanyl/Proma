@@ -6,8 +6,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import r8.model.Event;
+import r8.model.appState.AppState;
 
 import java.io.FileOutputStream;
+import java.time.LocalDate;
 
 public class ExportUtil {
 
@@ -35,7 +37,8 @@ public class ExportUtil {
                 }
             }
 
-            FileOutputStream fileOut = new FileOutputStream("workbook.xls");
+            String name = (AppState.getInstance().getLoggedAccount().getFirstName() + AppState.getInstance().getLoggedAccount().getLastName());
+            FileOutputStream fileOut = new FileOutputStream(LocalDate.now() + "_" + name + "_export.xls");
             workbook.write(fileOut);
             fileOut.close();
             System.out.println("Export successful");
