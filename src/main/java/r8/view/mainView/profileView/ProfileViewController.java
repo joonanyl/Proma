@@ -1,5 +1,8 @@
 package r8.view.mainView.profileView;
 
+import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -24,7 +27,7 @@ public class ProfileViewController {
     private CheckBox checkBoxIsAdmin;
 
     @FXML
-    private ComboBox<?> comboBoxUILanguage;
+    private ComboBox<String> comboBoxUILanguage;
 
     @FXML
     private ComboBox<?> comboBoxUiTheme;
@@ -45,14 +48,28 @@ public class ProfileViewController {
     private Label labelUserPhoneDisplay;
 
     // Retrieves loggedAccount data from AppState
-    public void initialize() {
+    @FXML
+    private void initialize() {
+        TextLoader loader = TextLoader.getInstance();
         if (controllerAccount.getAccount() != null){
             checkBoxIsAdmin.setSelected(adminAccount.getIsAdmin());
             labelUserFirstNameDisplay.setText(controllerAccount.getAccount().getFirstName());
             labelUserLastNameDisplay.setText(controllerAccount.getAccount().getLastName());
             labelUserEmailDisplay.setText(controllerAccount.getAccount().getEmail());
         }
-        labelUserPhoneDisplay.setText(TextLoader.getInstance().getResource("notSet"));
+        labelUserPhoneDisplay.setText(loader.getResource("notSet"));
+
+        //Setting available languages listed in app properties file.
+        try {
+            String[] languages = loader.getAppResource("availableLocales").split(":");
+            for (String language : languages) {
+                Platform.runLater(() -> comboBoxUILanguage.getItems().add(language));
+            }
+            //Setting default value English(US), which is first in the list.
+            Platform.runLater(() -> comboBoxUILanguage.getSelectionModel().select(0));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
