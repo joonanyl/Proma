@@ -1,10 +1,7 @@
 package r8.view.navigation;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import r8.App;
-import r8.util.TextLoader;
-
+import r8.util.lang.ResourceHandler;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +13,7 @@ public class GetView {
     public Pane getView(String viewName) {
         FXMLLoader loader = new FXMLLoader();
         try {
-            ResourceBundle resourceBundle = TextLoader.getInstance().getBundle();
+            ResourceBundle resourceBundle = ResourceHandler.getInstance().getBundle();
             URL viewUrl = getClass().getResource("/fxml/" + viewName + ".fxml");
             if (viewUrl == null) {
                 throw new java.io.FileNotFoundException(viewName + ".fxml not found");
@@ -32,7 +29,7 @@ public class GetView {
     }
 
     // TODO remove if redundant
-    public Pane getView(String viewName, App app) {
+    /* public Pane getView(String viewName, App app) {
         try {
             URL viewUrl = getClass().getResource("/fxml/" + viewName + ".fxml");
             FXMLLoader loader = new FXMLLoader(viewUrl);
@@ -45,6 +42,6 @@ public class GetView {
             e.printStackTrace();
         }
         return view;
-    }
+    } */
 }
 

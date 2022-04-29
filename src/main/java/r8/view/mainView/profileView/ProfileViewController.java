@@ -2,7 +2,6 @@ package r8.view.mainView.profileView;
 
 import java.io.IOException;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -12,7 +11,8 @@ import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
-import r8.util.TextLoader;
+import r8.util.lang.LanguageHandler;
+import r8.util.lang.ResourceHandler;
 
 public class ProfileViewController {
 
@@ -50,23 +50,23 @@ public class ProfileViewController {
     // Retrieves loggedAccount data from AppState
     @FXML
     private void initialize() {
-        TextLoader loader = TextLoader.getInstance();
-        if (controllerAccount.getAccount() != null){
+        ResourceHandler loader = ResourceHandler.getInstance();
+        if (controllerAccount.getAccount() != null) {
             checkBoxIsAdmin.setSelected(adminAccount.getIsAdmin());
             labelUserFirstNameDisplay.setText(controllerAccount.getAccount().getFirstName());
             labelUserLastNameDisplay.setText(controllerAccount.getAccount().getLastName());
             labelUserEmailDisplay.setText(controllerAccount.getAccount().getEmail());
         }
-        labelUserPhoneDisplay.setText(loader.getResource("notSet"));
+        labelUserPhoneDisplay.setText(loader.getTextResource("notSet"));
 
-        //Setting available languages listed in app properties file.
+        // Setting available languages listed in app properties file.
         try {
-            String[] languages = loader.getAppResource("availableLocales").split(":");
+            String[] languages = loader.getAppResource("availableLanguages").split(":");
             for (String language : languages) {
-                Platform.runLater(() -> comboBoxUILanguage.getItems().add(language));
+                comboBoxUILanguage.getItems().add(language);
             }
-            //Setting default value English(US), which is first in the list.
-            Platform.runLater(() -> comboBoxUILanguage.getSelectionModel().select(0));
+            // Setting default value English(US), which is first in the list.
+            comboBoxUILanguage.getSelectionModel().select(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,6 +75,12 @@ public class ProfileViewController {
     @FXML
     private void setAdminChecked() {
         if (controllerAccount.getAccount() != null)
-        adminAccount.setIsAdmin(adminAccount.getIsAdmin());
+            adminAccount.setIsAdmin(adminAccount.getIsAdmin());
+    }
+
+    @FXML
+    private void setSelectedLanguage() {
+        LanguageHandler.changeLanguage(
+                comboBoxUILanguage.getItems().get(comboBoxUILanguage.getSelectionModel().getSelectedIndex()));
     }
 }
