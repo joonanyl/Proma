@@ -14,7 +14,7 @@ import r8.model.activeTracker.ActiveTracker;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
-import r8.util.TextLoader;
+import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
 
 import java.io.IOException;

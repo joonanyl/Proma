@@ -21,7 +21,7 @@ import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
-import r8.util.TextLoader;
+import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
 
 import java.io.IOException;
@@ -94,7 +94,7 @@ public class TaskViewController {
             comboBoxTaskStatus.setValue(TaskState.valueOf(selectedTask.getTaskStateString()));
             Set<Account> accountsSet = selectedTask.getAccounts();
             if(accountsSet.size() > 0){
-                labelCreatedBy.setText(TextLoader.getInstance().getResource("createdBy") + " " + accountsSet.iterator().next().toString());
+                labelCreatedBy.setText(ResourceHandler.getInstance().getTextResource("createdBy") + " " + accountsSet.iterator().next().toString());
             }
             textAreaDescription.setText(selectedTask.getDescription());
             retrieveComments();
