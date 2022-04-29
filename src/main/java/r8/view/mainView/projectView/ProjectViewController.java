@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Sprint;
+import r8.model.appState.AppState;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
@@ -84,10 +85,11 @@ public class ProjectViewController {
 
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
+    private final AppState appState = AppState.getInstance();
 
     private String currentSubview;
 
-    public void initialize() throws IOException {
+    public void initialize() {
         Task task = new Task("name", TaskState.NOT_STARTED, new TaskType("type"), 0, "desc");
         //listViewTask.getItems().add(task);
         textAreaTask.setEditable(false);
@@ -97,7 +99,7 @@ public class ProjectViewController {
     }
 
     @FXML
-    public void handleNavigation(ActionEvent event) throws IOException {
+    public void handleNavigation(ActionEvent event) {
         GetView viewLoader = new GetView();
         final Node eventSource = (Node) event.getSource();
         String userData = (String) eventSource.getUserData();
@@ -110,10 +112,15 @@ public class ProjectViewController {
     }
 
     @FXML
-    public void handleNavigation(String viewName) throws IOException {
-        GetView viewLoader = new GetView();
-        projectSubViewPane.setCenter(viewLoader.getView(viewName));
-        currentSubview = viewName;
+    public void handleNavigation(String viewName) {
+        try {
+            GetView viewLoader = new GetView();
+            projectSubViewPane.setCenter(viewLoader.getView(viewName));
+            currentSubview = viewName;
+        } catch (Exception e) {
+            System.out.println("Error loading " + viewName);
+        }
+
     }
 
         private void setListeners() {

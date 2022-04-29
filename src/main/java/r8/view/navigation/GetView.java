@@ -30,21 +30,5 @@ public class GetView {
         }
         return view;
     }
-
-    // TODO remove if redundant
-    public Pane getView(String viewName, App app) {
-        try {
-            URL viewUrl = getClass().getResource("/fxml/" + viewName + ".fxml");
-            FXMLLoader loader = new FXMLLoader(viewUrl);
-
-            if (viewUrl == null) {
-                throw new java.io.FileNotFoundException(viewName + ".fxml not found");
-            }
-            view = FXMLLoader.load(viewUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return view;
-    }
 }
 

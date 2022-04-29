@@ -4,6 +4,7 @@
     -fx-background-radius: 2px;
     -fx-border-radius: 2px;
     -fx-border-width: 5px;
+    -fx-text-fill: #ffffff;
 }
 
 .button:hover
@@ -22,6 +23,13 @@
     -fx-border-width: 5px;
 }
 
+#comment-custom-component
+{
+    -fx-background-color: #F9F9F9;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-color: #CDCDCD;
+}
 #container-project-info
 {
     -fx-background-color: #EAEAEA;
@@ -45,11 +53,6 @@
     -fx-background-color: EAEAEA;
 }
 
-#description-area
-{
-    -fx-background-color: transparent;
-}
-
 #container-element
 {
     -fx-background-color: #F9F9F9;
@@ -61,3 +64,4 @@
 .scroll-pane .viewport {
     -fx-background-color: transparent;
 }
+

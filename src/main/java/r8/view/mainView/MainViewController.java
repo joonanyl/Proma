@@ -97,7 +97,7 @@ public class MainViewController implements IViewController {
     private void createBreadcrumb(ActionEvent event) {
         final Node eventSource = (Node) event.getSource();
         if (!Objects.equals(eventSource.getUserData(), breadcrumbBar.getCurrentView())){
-            hBoxBreadcrumb.getChildren().addAll(breadcrumbBar.add(event));
+            //hBoxBreadcrumb.getChildren().addAll(breadcrumbBar.add(event));
         }
     }
 
