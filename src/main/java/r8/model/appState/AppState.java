@@ -1,5 +1,7 @@
 package r8.model.appState;
 
+import r8.controller.Controller;
+import r8.controller.IControllerMain;
 import r8.model.task.Task;
 import r8.model.*;
 import r8.view.IViewController;
@@ -16,6 +18,7 @@ public enum AppState implements IAppStateMain {
 	// reference to active viewController
 	// currently needed when navigating from subviews
 	private IViewController viewController;
+	IControllerMain c = new Controller();
 
 	private Task selectedTask = null;
 
@@ -37,6 +40,9 @@ public enum AppState implements IAppStateMain {
 
 	@Override
 	public Account getAccount() {
+		if(loggedAccount == null)
+			return loggedAccount = c.getAllAccounts().get(0);
+
 		return this.loggedAccount;
 	}
 
