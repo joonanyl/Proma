@@ -170,7 +170,7 @@
                                           <Insets left="25.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <ComboBox id="combo-active-tracking" fx:id="cBoxActiveTrackingTasks" minHeight="20.0" minWidth="50.0" prefHeight="30.0" prefWidth="220.0">
+                                    <ComboBox id="combo-active-tracking" fx:id="comboBoxActiveTrackingTasks" minHeight="20.0" minWidth="50.0" prefHeight="30.0" prefWidth="220.0">
                                        <VBox.margin>
                                           <Insets left="25.0" top="5.0" />
                                        </VBox.margin>
@@ -179,7 +179,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="96.0" prefWidth="241.0">
                                  <children>
-                                    <Button id="button-tracker" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" text="%startTracking" textFill="#f8f6f6" userData="management-view">
+                                    <Button id="button-tracker" fx:id="btnToggleTracking" minHeight="20.0" minWidth="50.0" mnemonicParsing="false" onAction="#toggleTracking" prefHeight="40.0" prefWidth="140.0" text="%startTracking" textFill="#f8f6f6" userData="management-view">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

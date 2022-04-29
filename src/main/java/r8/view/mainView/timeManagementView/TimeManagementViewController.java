@@ -52,7 +52,7 @@ public class TimeManagementViewController {
     @FXML
     private TableColumn<Event, String> tableColHoursWorked;
     @FXML
-    private TableColumn<Event, Integer> tableColProject;
+    private TableColumn<Event, String> tableColProject;
     @FXML
     private TableColumn<Event, String> tableColDescription;
     @FXML
@@ -249,8 +249,6 @@ public class TimeManagementViewController {
         });
         thread.start();
     }
-
-
 
     /**
      * Arranges table view in descending order based on date column value
@@ -551,6 +549,7 @@ public class TimeManagementViewController {
         tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
         tableColEventType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
         tableColHoursWorked.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHoursString()));
+        tableColProject.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProject().getName()));
         tableColDescription.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
     }
 

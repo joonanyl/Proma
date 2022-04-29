@@ -4,17 +4,16 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Event;
+import r8.model.activeTracker.ActiveTracker;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
+import r8.model.task.Task;
 import r8.util.TextLoader;
 import r8.view.IViewController;
 
@@ -22,6 +21,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 public class DashboardViewController {
@@ -35,6 +35,10 @@ public class DashboardViewController {
     @FXML
     private Button btnCustomizeView;
     @FXML
+    private Button btnToggleTracking;
+    @FXML
+    private ComboBox<Task> comboBoxActiveTrackingTasks = new ComboBox<>();
+    @FXML
     private TableColumn<Event, String> tableColDate;
     @FXML
     private TableColumn<Event, String> tableColProject;
@@ -45,15 +49,18 @@ public class DashboardViewController {
     @FXML
     private TableView<Event> tableViewEvents;
 
+    ResourceBundle rb = TextLoader.getInstance().getBundle();
     IControllerMain controller = new Controller();
-
+    ActiveTracker activeTracker = ActiveTracker.getInstance();
     Account account = AppState.getInstance().getAccount();
     Set<Event> userEvents = new HashSet<>();
+    Set<Task> userTasks = new HashSet<>();
     private App app;
 
     @FXML
     private void initialize() {
         getEvents();
+        getTasks();
         initEventsTable();
         mockData();
     }
@@ -64,6 +71,17 @@ public class DashboardViewController {
             userEvents.addAll(controller.getEventDAO().getByAccount(account));
 
             Platform.runLater(this::updateEventsTable);
+        });
+        thread.start();
+    }
+
+    private void getTasks() {
+        Thread thread = new Thread(() -> {
+
+            //userTasks.addAll(controller.getTaskDAO().getByAccount(account));
+            comboBoxActiveTrackingTasks.getItems().addAll(controller.getTaskDAO().getByAccount(account));
+            System.out.println("userTasks: " + userTasks.toString());
+            Platform.runLater(this::updateTasksComboBox);
         });
         thread.start();
     }
@@ -85,11 +103,35 @@ public class DashboardViewController {
         tableViewEvents.getItems().addAll(userEvents);
     }
 
+    private void updateTasksComboBox() {
+        comboBoxActiveTrackingTasks.getItems().addAll(userTasks);
+    }
+
     private void initEventsTable() {
         tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
         tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
         tableColTaskType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
         tableColProject.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProject().getName()));
+    }
+
+    @FXML
+    private void toggleTracking() {
+        if(!activeTracker.isActive()){
+            btnToggleTracking.setText(rb.getString("stopTracking"));
+            Event event = new Event("Event created by Active Tracker", account, comboBoxActiveTrackingTasks.getSelectionModel().getSelectedItem());
+            activeTracker.startTracking(event);
+        } else {
+            btnToggleTracking.setText(rb.getString("startTracking"));
+
+            Event event = activeTracker.stopTracking();
+            Thread thread = new Thread(() -> {
+                controller.getEventDAO().persist(event);
+
+                Platform.runLater(this::updateEventsTable);
+            });
+            thread.start();
+        }
+
     }
 }
 

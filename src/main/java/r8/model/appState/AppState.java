@@ -51,7 +51,6 @@ public enum AppState implements IAppStateMain {
 	public void setIsAdmin(boolean isAdmin) {
 		loggedAccount.setAdmin(!isAdmin);
 	}
-
 	@Override
 	public void setSelectedTask(Task task){
 		this.selectedTask = task;
