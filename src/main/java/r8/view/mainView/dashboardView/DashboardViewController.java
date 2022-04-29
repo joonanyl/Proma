@@ -49,7 +49,7 @@ public class DashboardViewController {
     @FXML
     private TableView<Event> tableViewEvents;
 
-    ResourceBundle rb = TextLoader.getInstance().getBundle();
+    ResourceBundle rb = ResourceHandler.getInstance().getBundle();
     IControllerMain controller = new Controller();
     ActiveTracker activeTracker = ActiveTracker.getInstance();
     Account account = AppState.getInstance().getAccount();
@@ -103,7 +103,7 @@ public class DashboardViewController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         labelUserName.setText(account.getFirstName() + " " + account.getLastName());
-        labelSystemTimeDisplay.setText(TextLoader.getInstance().getResource("dashboardDay") + " " + dtf.format(now));
+        labelSystemTimeDisplay.setText(ResourceHandler.getInstance().getTextResource("dashboardDay") + " " + dtf.format(now));
     }
 
     /**

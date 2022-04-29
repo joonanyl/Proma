@@ -62,11 +62,14 @@ public class ProfileViewController {
         // Setting available languages listed in app properties file.
         try {
             String[] languages = loader.getAppResource("availableLanguages").split(":");
+            String currentLang = loader.getAppResource("setLocale");
             for (String language : languages) {
                 comboBoxUILanguage.getItems().add(language);
+                if (language.equals(currentLang)) {
+                    comboBoxUILanguage.getSelectionModel()
+                            .select(comboBoxUILanguage.getItems().lastIndexOf(currentLang));
+                }
             }
-            // Setting default value English(US), which is first in the list.
-            comboBoxUILanguage.getSelectionModel().select(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
