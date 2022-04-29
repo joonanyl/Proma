@@ -122,7 +122,10 @@ public class Project {
 	}
 
 	public String getName() {
-		return name;
+		if (name != null)
+			return name;
+
+		return "";
 	}
 
 	public void setName(String name) {

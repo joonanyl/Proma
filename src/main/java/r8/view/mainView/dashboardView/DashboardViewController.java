@@ -62,6 +62,8 @@ public class DashboardViewController {
         getEvents();
         getTasks();
         initEventsTable();
+        String btnText = activeTracker.isActive() ? rb.getString("stopTracking") : rb.getString("startTracking");
+        btnToggleTracking.setText(btnText);
         mockData();
     }
 
@@ -86,6 +88,11 @@ public class DashboardViewController {
         thread.start();
     }
 
+    /**
+     * Handles navigation calls made from dashboard view
+     * @param event triggering the navigation event
+     * @throws IOException thrown if there is an error loading appropriate fxml file
+     */
     @FXML
     private void navigate(ActionEvent event) throws IOException {
         IViewController viewController = controller.getActiveViewController();
@@ -95,18 +102,28 @@ public class DashboardViewController {
     private void mockData() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
-        labelUserName.setText(account.getFirstName() +" "+ account.getLastName());
+        labelUserName.setText(account.getFirstName() + " " + account.getLastName());
         labelSystemTimeDisplay.setText(TextLoader.getInstance().getResource("dashboardDay") + " " + dtf.format(now));
     }
 
+    /**
+     * Updates user work events table with latest data
+     */
     private void updateEventsTable() {
+        tableViewEvents.getItems().clear();
         tableViewEvents.getItems().addAll(userEvents);
     }
 
+    /**
+     * Updates combobox containing users tasks
+     */
     private void updateTasksComboBox() {
         comboBoxActiveTrackingTasks.getItems().addAll(userTasks);
     }
 
+    /**
+     * Initializes user work events table
+     */
     private void initEventsTable() {
         tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
         tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
@@ -114,24 +131,36 @@ public class DashboardViewController {
         tableColProject.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProject().getName()));
     }
 
+    /**
+     * Toggles ActiveTracking on/off and calls the appropriate method from tracker singleton
+     */
     @FXML
     private void toggleTracking() {
-        if(!activeTracker.isActive()){
-            btnToggleTracking.setText(rb.getString("stopTracking"));
+        if (!activeTracker.isActive()) {
+           setActiveTrackerButtonText();
             Event event = new Event("Event created by Active Tracker", account, comboBoxActiveTrackingTasks.getSelectionModel().getSelectedItem());
             activeTracker.startTracking(event);
         } else {
-            btnToggleTracking.setText(rb.getString("startTracking"));
-
+           setActiveTrackerButtonText();
             Event event = activeTracker.stopTracking();
             Thread thread = new Thread(() -> {
                 controller.getEventDAO().persist(event);
-
+                userEvents.add(event);
                 Platform.runLater(this::updateEventsTable);
             });
             thread.start();
         }
+    }
 
+    /**
+     * Changes ActiveTracker button text according to tracker status
+     */
+    private void setActiveTrackerButtonText() {
+        if (!activeTracker.isActive())
+            btnToggleTracking.setText(rb.getString("stopTracking"));
+        else
+            btnToggleTracking.setText(rb.getString("startTracking"));
     }
 }
+
 
