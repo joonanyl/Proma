@@ -85,7 +85,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         accountDAO.remove(account);
     }
 
-    public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
+    public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList, ObservableList<Sprint> sprintList) {
         Project project = new Project(name, description);
         project.addAccount(AppState.getInstance().getLoggedAccount());
 
@@ -98,6 +98,12 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         if (teamList != null) {
             for (String s : teamList) {
                 project.addTeam(new Team(s, project));
+            }
+        }
+
+        if(sprintList != null) {
+            for (Sprint s : sprintList) {
+                project.addSprint(s);
             }
         }
 
@@ -365,5 +371,10 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     @Override
     public ProjectDAO getProjectDAO() {
         return this.projectDAO;
+    }
+
+    @Override
+    public SprintDAO getSprintDAO() {
+        return this.sprintDAO;
     }
 }

@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import org.apache.commons.collections4.Get;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
@@ -61,16 +62,17 @@ public class NewProjectViewController {
     private final IControllerMain controller = new Controller();
     private final IControllerAccount controllerAccount = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
+    private final GetView getView = new GetView();
 
     private boolean admin;
     private String currentSubview;
 
-    public void initialize() throws IOException {
-        System.out.println("Using NewProjectViewController!");
+    @FXML
+    private void initialize() {
         if (controllerAccount.getAccount() != null)
             admin = appStateMain.getIsAdmin();
 
-        handleNavigation("sprint-subview");
+        handleNavigation("overview-subview");
         //adminVisibility(admin);
     }
 
@@ -88,10 +90,11 @@ public class NewProjectViewController {
     }
 
     @FXML
-    public void handleNavigation(String viewName) throws IOException {
-        GetView viewLoader = new GetView();
-        projectSubViewPane.setCenter(viewLoader.getView(viewName));
-        currentSubview = viewName;
+    public void handleNavigation(String viewName) {
+
+            GetView viewLoader = new GetView();
+            projectSubViewPane.setCenter(viewLoader.getView(viewName));
+            currentSubview = viewName;
     }
 
     /*private void adminVisibility(boolean isAdmin) {

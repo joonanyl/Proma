@@ -89,11 +89,11 @@ public class ProjectViewController {
 
     public void initialize() throws IOException {
         Task task = new Task("name", TaskState.NOT_STARTED, new TaskType("type"), 0, "desc");
-        listViewTask.getItems().add(task);
+        //listViewTask.getItems().add(task);
         textAreaTask.setEditable(false);
         textAreaSprint.setEditable(false);
         setListeners();
-        handleNavigation("sprint-subview");
+        handleNavigation("overview-subview");
     }
 
     @FXML

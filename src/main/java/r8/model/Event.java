@@ -47,6 +47,12 @@ public class Event {
     @JoinColumn(name = "sprint_id")
     private Sprint sprint;
 
+    public Event (String desc, Account account, Task task) {
+        this.description = desc;
+        this.account = account;
+        this.task = task;
+    }
+
     public Event(String desc, LocalDate date, float hours, Account account) {
         this.description = desc;
         this.date = date;

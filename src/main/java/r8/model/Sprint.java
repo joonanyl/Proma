@@ -48,13 +48,19 @@ public class Sprint {
 
 	/**
 	 * Constructor
-	 * @param n Sprint's name
+	 * @param name Sprint's name
 	 */
-	public Sprint(String n, LocalDate sD, LocalDate eD, Project project) {
-		this.name = n;
-		this.startDate = sD;
-		this.endDate = eD;
+	public Sprint(String name, LocalDate startDate, LocalDate endDate, Project project) {
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.project = project;
+	}
+
+	public Sprint(String name, LocalDate startDate, LocalDate endDate) {
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	public Sprint() {}

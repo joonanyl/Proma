@@ -1,10 +1,10 @@
 package r8.controller;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import r8.model.*;
 import r8.model.dao.EventDAO;
 import r8.model.dao.ProjectDAO;
+import r8.model.dao.SprintDAO;
 import r8.model.dao.TaskDAO;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
@@ -34,7 +34,7 @@ public interface IControllerMain {
 
     void createTask(String name, TaskState ts, TaskType tt, float hours, String description, Set<Account> accounts, Set<Team> teams, Project project);
 
-    void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList);
+    void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList, ObservableList<Sprint> items);
 
     Project getProjectById(int projectId);
 
@@ -51,4 +51,6 @@ public interface IControllerMain {
     TaskDAO getTaskDAO();
 
     ProjectDAO getProjectDAO();
+
+    SprintDAO getSprintDAO();
 }
