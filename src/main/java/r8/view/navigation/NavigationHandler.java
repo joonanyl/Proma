@@ -14,7 +14,12 @@ public class NavigationHandler {
 
     @FXML
     public Pane handleNavigation(ActionEvent event) throws IOException {
-        final Node eventSource = (Node) event.getSource();
+        final Node eventSource;
+        try{
+            eventSource = (Node) event.getSource();
+        }catch (ClassCastException e){
+            return handleMenuItemNavigation(event);
+        }
         String userData = (String) eventSource.getUserData();
         System.out.println("Clicked " + userData + " (printed from NavigationHandler)");
         GetView viewLoader = new GetView();
@@ -23,9 +28,10 @@ public class NavigationHandler {
     }
 
     public Pane handleMenuItemNavigation(ActionEvent event) throws IOException{
-        MenuItem eventsource = (MenuItem) event.getSource();
+        final MenuItem eventsource = (MenuItem) event.getSource();
         String userData = (String) eventsource.getUserData();
         GetView viewLoader = new GetView();
+        currentView = userData;
         return viewLoader.getView(userData);
     }
 

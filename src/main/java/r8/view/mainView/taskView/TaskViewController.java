@@ -207,6 +207,7 @@ public class TaskViewController {
     void retrieveComments(){
         commentList.getChildren().clear();
         List<Comment> comments = controller.getComments(this.selectedTask);
+        System.out.println(comments);
         if(comments != null){
             comments.forEach(comment -> {
                 commentList.getChildren().add(new CustomCommentComponentController(comment, this));

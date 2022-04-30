@@ -177,7 +177,7 @@ public class TasksViewController {
 
     public void deleteTask(Task task){
         allTasks.remove(task);
-        //controller.deleteTask(task);
+        controller.removeTask(task);
         updateView();
     }
 

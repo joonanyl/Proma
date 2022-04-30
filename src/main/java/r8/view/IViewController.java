@@ -1,6 +1,7 @@
 package r8.view;
 
 import javafx.event.ActionEvent;
+import javafx.scene.layout.Pane;
 import r8.App;
 
 import java.io.IOException;

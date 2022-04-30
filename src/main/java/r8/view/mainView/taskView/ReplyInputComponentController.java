@@ -13,6 +13,7 @@ import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Comment;
 import r8.model.appState.AppState;
+import r8.util.lang.ResourceHandler;
 
 import java.io.IOException;
 
@@ -39,6 +40,7 @@ public class ReplyInputComponentController extends GridPane {
                 "/fxml/comment-reply-input-custom-component.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+        fxmlLoader.setResources(ResourceHandler.getInstance().getBundle());
         try {
             fxmlLoader.load();
         } catch (IOException e) {
@@ -55,6 +57,7 @@ public class ReplyInputComponentController extends GridPane {
                 "/fxml/comment-reply-input-custom-component.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+        fxmlLoader.setResources(ResourceHandler.getInstance().getBundle());
         try {
             fxmlLoader.load();
         } catch (IOException e) {
