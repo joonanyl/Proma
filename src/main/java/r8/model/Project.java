@@ -3,6 +3,7 @@ package r8.model;
 import r8.model.task.Task;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -158,6 +159,17 @@ public class Project {
 
 	public Set<Sprint> getSprints() {
 		return sprints;
+	}
+
+	public Sprint getActiveSprint() {
+		if (sprints != null) {
+			for (Sprint sprint : sprints) {
+				if (sprint.getEndDate().isAfter(LocalDate.now()) && sprint.getStartDate().isBefore(LocalDate.now()))
+					System.out.println("Active sprint is " +sprint);
+				return sprint;
+			}
+		}
+		return null;
 	}
 
 	public void setSprints(Set<Sprint> sprints) {

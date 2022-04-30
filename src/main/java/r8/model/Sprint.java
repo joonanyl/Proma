@@ -63,6 +63,10 @@ public class Sprint {
 		this.endDate = endDate;
 	}
 
+	public Sprint(String name) {
+		this.name = name;
+	}
+
 	public Sprint() {}
 
 	public void addTask(Task task) {

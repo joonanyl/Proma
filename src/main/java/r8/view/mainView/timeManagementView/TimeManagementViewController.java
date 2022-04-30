@@ -44,6 +44,8 @@ public class TimeManagementViewController {
     @FXML
     private DatePicker datePickerEvent;
     @FXML
+    private Label labelUserName;
+    @FXML
     private TableColumn<Event, String> tableColDate;
     @FXML
     private TableColumn<Event, String> tableColTask;
@@ -99,6 +101,8 @@ public class TimeManagementViewController {
     @FXML
     private void initialize() {
 
+        labelUserName.setText(account.getFirstName() + " " + account.getLastName() + " ");
+
         initDatePickers();
         initTableView();
         updateComboBoxes();
@@ -112,10 +116,12 @@ public class TimeManagementViewController {
     /**
      * Retrieves user input values and attempts to save it to database
      */
-    public void saveEvent() {
+    public void addCalendarEntry() {
         Event event = new Event(textNewEntryDescription.getText(), datePickerCalendarEntry.getValue(),
                 Float.parseFloat(textHoursWorked.getText()), account, comboBoxEventTask.getSelectionModel().getSelectedItem(),
                 comboBoxEventTask.getSelectionModel().getSelectedItem().getProject());
+
+        System.out.println(event);
 
         if  (comboBoxEventTask.getSelectionModel().getSelectedItem().getSprints() != null) {
             event.setSprint(comboBoxEventTask.getSelectionModel().getSelectedItem().getActiveSprint());
@@ -173,17 +179,22 @@ public class TimeManagementViewController {
      * Updates work event info to database
      */
     public void updateEvent() {
-        Event event = new Event();
+        Event event = tableView.getSelectionModel().getSelectedItem();
         event.setDate(datePickerEvent.getValue());
         event.setHours(Float.parseFloat(textFieldHoursWorked.getText()));
         event.setDescription(textFieldDescription.getText());
+        event.setProject(comboBoxEventName.getValue().getProject());
         event.setTask(comboBoxEventName.getValue());
         event.getTask().setTaskType(comboBoxEventType.getValue());
         controller.getEventDAO().update(event);
+        int indexToRemove = tableView.getSelectionModel().getSelectedIndex();
         tableView.getItems().remove(indexToRemove);
-        tableView.getItems().add(event);
-        sortTableView();
-        clearEditFields();
+
+        Platform.runLater(() -> {
+            tableView.getItems().add(event);
+            sortTableView();
+            clearEditFields();
+        });
     }
 
     /**

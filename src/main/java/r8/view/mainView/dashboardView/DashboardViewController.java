@@ -80,10 +80,12 @@ public class DashboardViewController {
     private void getTasks() {
         Thread thread = new Thread(() -> {
 
-            //userTasks.addAll(controller.getTaskDAO().getByAccount(account));
-            comboBoxActiveTrackingTasks.getItems().addAll(controller.getTaskDAO().getByAccount(account));
+            userTasks.addAll(controller.getTaskDAO().getByAccount(account));
             System.out.println("userTasks: " + userTasks.toString());
-            Platform.runLater(this::updateTasksComboBox);
+            Platform.runLater(() -> {
+
+                comboBoxActiveTrackingTasks.getItems().addAll(controller.getTaskDAO().getByAccount(account));
+            });
         });
         thread.start();
     }

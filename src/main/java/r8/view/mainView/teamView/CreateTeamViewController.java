@@ -20,6 +20,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Aarni Pesonen
+ */
 public class CreateTeamViewController {
 
     @FXML
@@ -59,6 +62,9 @@ public class CreateTeamViewController {
         updateComboBoxes();
     }
 
+    /**
+     * Get account from combobox and adds it to listView
+     */
     @FXML
     void addAccountToList() {
         Account account = comboBoxAccount.getSelectionModel().getSelectedItem();
@@ -66,6 +72,9 @@ public class CreateTeamViewController {
         accountsToAdd.add(account);
     }
 
+    /**
+     * Removes previously added account from listView
+     */
     @FXML
     void removeAccountFromList(){
         int indexToRemove = listViewTeamAccounts.getSelectionModel().getSelectedIndex();
@@ -74,6 +83,9 @@ public class CreateTeamViewController {
         accountsToAdd.remove(account);
     }
 
+    /**
+     * Updates selected project with new team
+     */
     @FXML
     public void addTeamToProject() {
         Project project = comboBoxProject.getSelectionModel().getSelectedItem();
@@ -85,11 +97,18 @@ public class CreateTeamViewController {
         controller.getProjectDAO().update(project);
     }
 
+    /**
+     * Used to navigate to other views
+     * @param event triggering the navigation
+     */
     @FXML
     private void navigate(ActionEvent event) {
         viewController.handleNavigation(event);
     }
 
+    /**
+     * Fetches account and project information from database and displays it in comboboxes
+     */
     private void updateComboBoxes() {
         Thread thread = new Thread(() -> {
             List<Account> accounts = controller.getAllAccounts();

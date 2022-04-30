@@ -3,6 +3,7 @@ package r8.view.mainView.projectView.subview;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
@@ -21,10 +22,18 @@ public class TaskSubviewController {
 
     @FXML
     private Button btnCreateTask;
-
     @FXML
     private Button btnGoToTask;
-
+    @FXML
+    private Label labelDescription;
+    @FXML
+    private Label labelHoursWorked;
+    @FXML
+    private Label labelTaskName;
+    @FXML
+    private Label labelTaskState;
+    @FXML
+    private Label labelTaskType;
     @FXML
     private ListView<Task> listViewProjectTasks;
 
@@ -65,7 +74,16 @@ public class TaskSubviewController {
         listViewProjectTasks.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
                 selectedTask = newValue;
+                setTaskInfo(newValue);
             }
         });
+    }
+
+    private void setTaskInfo(Task task) {
+        labelTaskName.setText(task.getName());
+        labelTaskState.setText(task.getTaskStateString());
+        labelTaskType.setText(task.getTaskType().toString());
+        labelHoursWorked.setText(Float.toString(task.getHours()));
+        labelDescription.setText(task.getDescription());
     }
 }

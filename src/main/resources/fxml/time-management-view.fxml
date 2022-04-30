@@ -40,7 +40,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" layoutX="544.0" minWidth="100.0" prefHeight="85.0" prefWidth="970.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button id="button-create-new-event" fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#toggleNewEvent" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="Push Me!" textFill="#f8f6f6">
+            <Button id="button-create-new-event" fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#toggleNewEvent" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%createEvent" textFill="#f8f6f6">
                <font>
                   <Font size="16.0" />
                </font>
@@ -161,7 +161,7 @@
                         </VBox>
                         <HBox alignment="CENTER" prefHeight="140.0" prefWidth="298.0">
                            <children>
-                              <Button id="button-create-new-event" fx:id="btnCreateEntry" mnemonicParsing="false" onAction="#saveEvent" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%createEvent" textFill="#f8f6f6">
+                              <Button id="button-create-new-event" fx:id="btnCreateEntry" mnemonicParsing="false" onAction="#addCalendarEntry" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%addEntry" textFill="#f8f6f6">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -189,7 +189,7 @@
                         </HBox>
                         <VBox prefHeight="110.0" prefWidth="298.0">
                            <children>
-                              <Label text="%eventName">
+                              <Label text="%eventType">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

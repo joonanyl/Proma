@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
+import r8.model.Project;
 import r8.model.Sprint;
 import r8.model.appState.AppState;
 import r8.model.task.Task;
@@ -86,15 +87,17 @@ public class ProjectViewController {
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
     private final AppState appState = AppState.getInstance();
+    private final Project project = appState.getSelectedProject();
 
     private String currentSubview;
 
     public void initialize() {
         Task task = new Task("name", TaskState.NOT_STARTED, new TaskType("type"), 0, "desc");
+        System.out.println("Selected project: " + project.toString());
         //listViewTask.getItems().add(task);
-        textAreaTask.setEditable(false);
-        textAreaSprint.setEditable(false);
+        setProjectInfo();
         setListeners();
+
         handleNavigation("overview-subview");
     }
 
@@ -120,23 +123,27 @@ public class ProjectViewController {
         } catch (Exception e) {
             System.out.println("Error loading " + viewName);
         }
-
     }
 
-        private void setListeners() {
-            listViewTask.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
-                @Override
-                public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
-                    selectTask(newValue);
-                }
-            });
-            listViewSprint.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Sprint>() {
-                @Override
-                public void changed(ObservableValue<? extends Sprint> observable, Sprint oldValue, Sprint newValue) {
-                    selectSprint(newValue);
-                }
-            });
-        }
+    private void setProjectInfo() {
+        labelProjectName.setText(project.getName());
+        labelDescription.setText(project.getDescription());
+    }
+
+    private void setListeners() {
+        listViewTask.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
+            @Override
+            public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
+                selectTask(newValue);
+            }
+        });
+        listViewSprint.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Sprint>() {
+            @Override
+            public void changed(ObservableValue<? extends Sprint> observable, Sprint oldValue, Sprint newValue) {
+                selectSprint(newValue);
+            }
+        });
+    }
 
         private void selectTask(Task task){
             textAreaTask.setText(task.getDescription());
@@ -150,6 +157,5 @@ public class ProjectViewController {
         private void navigate (ActionEvent event) throws IOException {
             viewController.handleNavigation(event);
         }
-
     }
 

@@ -10,6 +10,7 @@ import org.apache.commons.collections4.Get;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
+import r8.model.Project;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.view.IViewController;
@@ -62,7 +63,8 @@ public class NewProjectViewController {
     private final IControllerMain controller = new Controller();
     private final IControllerAccount controllerAccount = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
-    private final GetView getView = new GetView();
+    private final AppState appState = AppState.getInstance();
+    private final Project project = appState.getSelectedProject();
 
     private boolean admin;
     private String currentSubview;
@@ -73,7 +75,7 @@ public class NewProjectViewController {
             admin = appStateMain.getIsAdmin();
 
         handleNavigation("overview-subview");
-        //adminVisibility(admin);
+        setProjectInfo();
     }
 
     @FXML
@@ -107,6 +109,11 @@ public class NewProjectViewController {
     @FXML
     private void navigate (ActionEvent event) throws IOException {
         viewController.handleNavigation(event);
+    }
+
+    private void setProjectInfo() {
+        labelProjectName.setText(project.getName());
+        labelDescription.setText(project.getDescription());
     }
 
 }

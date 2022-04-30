@@ -1,7 +1,6 @@
 package r8.view.mainView.projectView.subview;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -33,17 +32,19 @@ public class TeamSubviewController {
     @FXML
     private TextField textFieldTeamName;
 
-    private final Account account = AppState.getInstance().getAccount();
+    private final AppState appState = AppState.INSTANCE;
+    private final Account account = appState.getLoggedAccount();
+    private Project project;
+    private final IControllerMain controller = new Controller();
     private Set<Account> allAccounts = new HashSet<>();
     private Set<Team> projectTeams = new HashSet<>();
     private Set<Project> accountProjects = new HashSet<>();
 
-    IControllerMain controller = new Controller();
-    private Project project;
-
     @FXML
-    private void initialize() {
-        getProjectsFromDB();
+    public void initialize() {
+        project = appState.getSelectedProject();
+        System.out.println(project);
+        getProjectsTeamsDB();
     }
 
     @FXML
@@ -59,6 +60,7 @@ public class TeamSubviewController {
             for (String string : teams){
                 Team teamToAdd = new Team(string, project);
                 project.addTeam(teamToAdd);
+                listViewProjectTeams.getItems().add(teamToAdd);
             }
 
             controller.getProjectDAO().update(project);
@@ -74,10 +76,15 @@ public class TeamSubviewController {
         listViewTeamsToAdd.getItems().remove(toRemove);
     }
 
-    private void getProjectsFromDB() {
-        accountProjects.addAll(controller.getProjectDAO().getByAccount(account));
-        ArrayList<Project> projects = new ArrayList<>(accountProjects);
-        project = projects.get(0);
+    private void getProjectsTeamsDB() {
+
+        Thread thread = new Thread(() -> {
+
+            projectTeams.addAll(controller.getTeamDAO().getByProject(project));
+
+            Platform.runLater(() -> listViewProjectTeams.getItems().addAll(projectTeams));
+        });
+        thread.start();
     }
 
 }

@@ -374,7 +374,8 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     @Override
-    public SprintDAO getSprintDAO() {
-        return this.sprintDAO;
-    }
+    public SprintDAO getSprintDAO() { return this.sprintDAO; }
+
+    @Override
+    public TeamDAO getTeamDAO() { return this.teamDAO; }
 }
