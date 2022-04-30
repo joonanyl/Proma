@@ -14,8 +14,8 @@
          <buttons>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-                <Button mnemonicParsing="false" onAction="#reply" text="Reply" />
+                  <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" textFill="WHITE" />
+                <Button mnemonicParsing="false" onAction="#reply" text="Reply" textFill="WHITE" />
               </buttons>
             </ButtonBar>
          </buttons>

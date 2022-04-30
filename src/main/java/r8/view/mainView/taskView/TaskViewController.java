@@ -59,15 +59,15 @@ public class TaskViewController {
     @FXML
     private VBox commentList;
 
-
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
+    private final Account account = appStateMain.getAccount();
 
-    private Task selectedTask = null;
     private CustomCommentComponentController replyingToComment = null;
     private CommentReplyComponentController replyingToReply = null;
+    private Task selectedTask = null;
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
@@ -97,6 +97,9 @@ public class TaskViewController {
                 labelCreatedBy.setText(TextLoader.getInstance().getResource("createdBy") + " " + accountsSet.iterator().next().toString());
             }
             textAreaDescription.setText(selectedTask.getDescription());
+            if (!account.getAdmin())
+                textAreaDescription.setEditable(false);
+
             retrieveComments();
         }
     }

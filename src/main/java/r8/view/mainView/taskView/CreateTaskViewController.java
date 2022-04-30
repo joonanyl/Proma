@@ -60,6 +60,7 @@ public class CreateTaskViewController {
 
     private final IControllerMain controller = new Controller();
     private final UIElementVisibility visibility = new UIElementVisibility();
+    List<TaskType> ttList;
 
     public void initialize(){
 
@@ -82,14 +83,18 @@ public class CreateTaskViewController {
     @FXML
     private void createTaskType(){
         String tt = createTaskTypeField.getText();
-        if(tt.matches("[a-zA-Z0-9\\s ]{1,10}")){
+        ArrayList<String> ttNames = new ArrayList<>();
+        for (TaskType e : ttList)
+            ttNames.add(e.getName());
+
+        if(tt.matches("[a-zA-Z0-9\\s ]{1,20}") && !ttNames.contains(tt)){
             controller.createTaskType(tt);
         }
         updateTaskTypes();
     }
 
     private void updateTaskTypes(){
-        List<TaskType> ttList = controller.getAllTaskTypes();
+        ttList = controller.getAllTaskTypes();
         if(ttList != null){
             taskType.getItems().clear();
             taskType.getItems().addAll(ttList);

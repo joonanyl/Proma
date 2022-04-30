@@ -125,7 +125,7 @@ public class CreateProjectViewController {
 
     @FXML
     private void createProject() {
-        System.out.println("CREATEPROJECT");
+        System.out.println("createProject() called");
 
         String projectName = textProjectName.getText();
         String projectDesc = textDescription.getText();
@@ -165,24 +165,29 @@ public class CreateProjectViewController {
             }
             controller.getProjectDAO().persist(project);
 
-            Platform.runLater(() -> {
-                System.out.println("Project added to db");
-            });
+            Platform.runLater(() -> System.out.println("Project added to db"));
         });
         thread.start();
 
-        //controller.createProject(projectName, projectDesc, listViewAssignedAccounts.getItems(), listViewTeamsToBeCreated.getItems(), listViewSprintsToBeCreated.getItems());
-        listViewAssignedAccounts.getItems().clear();
-        listViewTeamsToBeCreated.getItems().clear();
-        textProjectName.clear();
-        textTeamName.clear();
-        textDescription.clear();
+        clearFields();
         System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
     }
 
     private void initDatePickers() {
         datePickerStartDate = new DatePicker(LocalDate.now());
         datePickerEndDate = new DatePicker(LocalDate.now());
+    }
+
+    private void clearFields() {
+        listViewAssignedAccounts.getItems().clear();
+        listViewTeamsToBeCreated.getItems().clear();
+        textProjectName.clear();
+        textTeamName.clear();
+        textDescription.clear();
+        textSprintName.clear();
+        datePickerStartDate.setValue(null);
+        datePickerEndDate.setValue(null);
+        listViewSprintsToBeCreated.getItems().clear();
     }
 
     @FXML

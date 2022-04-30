@@ -24,7 +24,7 @@
       </Label>
       <ButtonBar fx:id="buttonBar" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <buttons>
-          <Button mnemonicParsing="false" onAction="#reply" text="Reply" />
+          <Button mnemonicParsing="false" onAction="#reply" text="Reply" textFill="WHITE" />
         </buttons>
       </ButtonBar>
       <Text fx:id="contentField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1">

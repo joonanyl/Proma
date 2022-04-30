@@ -21,9 +21,9 @@
          </GridPane.margin>
       </Label>
       <ButtonBar fx:id="buttonBar" prefHeight="40.0" prefWidth="150.0" GridPane.rowIndex="2">
-        <buttons>
-          <Button fx:id="replyButton" mnemonicParsing="false" onAction="#reply" text="Reply" />
-        </buttons>
+         <buttons>
+            <Button fx:id="replyButton" mnemonicParsing="false" onAction="#reply" text="Reply" textFill="#f5f5f5" />
+         </buttons>
       </ButtonBar>
       <Text fx:id="contentField" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="1">
          <GridPane.margin>
