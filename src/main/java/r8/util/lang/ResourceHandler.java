@@ -10,7 +10,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * Class for handling resource files.
+ * Singleton object for handling resource files.
  * 
  * @author Sebastian Lundin, Sanna Kukkonen
  */
@@ -18,21 +18,20 @@ public class ResourceHandler {
 
     private static ResourceHandler INSTANCE;
     private ResourceBundle bundle;
-    private Locale locale;
 
     private ResourceHandler() {
         try {
-            locale = new Locale(getAppResource(APP_LANGUAGE), getAppResource(APP_COUNTRY));
-            bundle = ResourceBundle.getBundle(TEXT_RESOURCE_PATH, locale);
+            Locale newLocale = new Locale(getAppResource(APP_LANGUAGE), getAppResource(APP_COUNTRY));
+            bundle = ResourceBundle.getBundle(TEXT_RESOURCE_PATH, newLocale);
         } catch (NullPointerException | MissingResourceException | IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * ResourceHandler instance.
+     * ResourceHandler instance getter.
      * 
-     * @return ResourceHandler
+     * @return ResourceHandler instance
      */
     public static ResourceHandler getInstance() {
         if (ResourceHandler.INSTANCE == null) {
@@ -42,10 +41,10 @@ public class ResourceHandler {
     }
 
     /**
-     * A getter for application properties.
+     * Retrieves applivation properties.
      * 
-     * @param key Property key
-     * @return Resource associated with the key
+     * @param key property key
+     * @return resource associated with the key
      * @throws IOException
      */
     public String getAppResource(String key) throws IOException {
@@ -57,27 +56,23 @@ public class ResourceHandler {
     }
 
     /**
-     * Returns a localized string associated with the key.
+     * Returns a localized string property associated with the key.
      * 
      * @param key Resource key
      * @return String resource
      */
-    public String getTextResource(String key) {
+    protected String getTextResource(String key) {
         return bundle.getString(key);
-    }
-
-    /**
-     * Return the current resourcebundle.
-     */
-    public ResourceBundle getBundle() {
-        return bundle;
     }
 
     protected void setBundle(ResourceBundle bundle) {
         this.bundle = bundle;
     }
 
-    protected void setLocale(Locale locale) {
-        this.locale = locale;
+    /**
+     * Returns the current resourcebundle.
+     */
+    public ResourceBundle getBundle() {
+        return bundle;
     }
 }

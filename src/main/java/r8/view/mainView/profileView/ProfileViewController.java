@@ -57,7 +57,7 @@ public class ProfileViewController {
             labelUserLastNameDisplay.setText(controllerAccount.getAccount().getLastName());
             labelUserEmailDisplay.setText(controllerAccount.getAccount().getEmail());
         }
-        labelUserPhoneDisplay.setText(loader.getTextResource("notSet"));
+        labelUserPhoneDisplay.setText(LanguageHandler.getText("notSet"));
 
         // Setting available languages listed in app properties file.
         try {

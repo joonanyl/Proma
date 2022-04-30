@@ -10,7 +10,7 @@ import r8.controller.Controller;
 import r8.controller.IControllerLogin;
 import r8.model.Account;
 import r8.model.TextFieldValidator;
-import r8.util.lang.ResourceHandler;
+import r8.util.lang.LanguageHandler;
 
 import java.io.IOException;
 
@@ -108,30 +108,29 @@ public class CreateAccountViewController {
 
     @FXML
     private void createAccount(ActionEvent event) throws IOException {
-        ResourceHandler textloader = ResourceHandler.getInstance();
         if(!passwordField.getText().equals(confirmPasswordField.getText())){
             //System.out.println("Password comparison");
-            showAlert(textloader.getTextResource("dontMatch"), textloader.getTextResource("passwordMissmatch"));
+            showAlert(LanguageHandler.getText("dontMatch"), LanguageHandler.getText("passwordMissmatch"));
             return;
         }
         if(!textFieldEmail.getText().matches(emailRegEx)){
             //System.out.println("Email exception");
-            showAlert(textloader.getTextResource("invalidEmail"), textloader.getTextResource("invalidEmailInfo"));
+            showAlert(LanguageHandler.getText("invalidEmail"), LanguageHandler.getText("invalidEmailInfo"));
             return;
         }
         if(!passwordField.getText().matches(passwordRegEx)){
             //System.out.println("Password Exception");
-            showAlert(textloader.getTextResource("invalidPassword"), textloader.getTextResource("invalidPasswordInfo"));
+            showAlert(LanguageHandler.getText("invalidPassword"), LanguageHandler.getText("invalidPasswordInfo"));
             return;
         }
         if(!textFieldFirstName.getText().matches(nameRegEx) || !textFieldLastName.getText().matches(nameRegEx)){
             //System.out.println("Name Exception");
-            showAlert(textloader.getTextResource("invalidName"), textloader.getTextResource("invalidNameInfo"));
+            showAlert(LanguageHandler.getText("invalidName"), LanguageHandler.getText("invalidNameInfo"));
             return;
         }
         Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
         System.out.println(account.getFirstName());
-        showAlert(textloader.getTextResource("success"), textloader.getTextResource("accountSuccess"));
+        showAlert(LanguageHandler.getText("success"), LanguageHandler.getText("accountSuccess"));
 
         controller.createAccount(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
         navigate(event);

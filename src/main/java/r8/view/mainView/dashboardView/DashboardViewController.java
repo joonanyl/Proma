@@ -12,8 +12,8 @@ import r8.model.Account;
 import r8.model.Event;
 import r8.model.activeTracker.ActiveTracker;
 import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
+import r8.util.lang.LanguageHandler;
 import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
 
@@ -103,7 +103,7 @@ public class DashboardViewController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         labelUserName.setText(account.getFirstName() + " " + account.getLastName());
-        labelSystemTimeDisplay.setText(ResourceHandler.getInstance().getTextResource("dashboardDay") + " " + dtf.format(now));
+        labelSystemTimeDisplay.setText(LanguageHandler.getText("dashboardDay") + " " + dtf.format(now));
     }
 
     /**
