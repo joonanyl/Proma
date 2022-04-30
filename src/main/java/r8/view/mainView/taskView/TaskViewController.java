@@ -34,28 +34,20 @@ public class TaskViewController {
 
     @FXML
     private Label labelTaskName;
-
     @FXML
     private Label labelTaskType;
-
     @FXML
     private ComboBox<TaskState> comboBoxTaskStatus;
-
     @FXML
     private Label labelCreatedBy;
-
     @FXML
     private TextArea textAreaDescription;
-
     @FXML
     private ListView<CombinedObject> assignedToList;
-
     @FXML
     private SearchableComboBox<CombinedObject> assignNewComboBox;
-
     @FXML
     private TextArea commentText;
-
     @FXML
     private VBox commentList;
 

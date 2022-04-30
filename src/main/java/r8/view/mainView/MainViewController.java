@@ -15,7 +15,6 @@ import r8.view.navigation.GetView;
 import r8.view.navigation.NavigationHandler;
 import r8.view.IViewController;
 import r8.App;
-import java.io.IOException;
 import java.util.Objects;
 
 public class MainViewController implements IViewController {
@@ -60,7 +59,7 @@ public class MainViewController implements IViewController {
     // reference to active view controller currently in AppState.
     // method is called by left nav bar buttons
     @FXML
-    public void handleNavigation(ActionEvent event) throws IOException {
+    public void handleNavigation(ActionEvent event) {
         mainViewPane.setCenter(nav.handleNavigation(event));
         clearBreadCrumbs();
         createBreadcrumb(event);
@@ -69,14 +68,14 @@ public class MainViewController implements IViewController {
 
     // Topbar dropdown menuItem navigation
     @FXML
-    private void handleMenuItemNavigation(ActionEvent event) throws IOException {
+    private void handleMenuItemNavigation(ActionEvent event) {
         mainViewPane.setCenter(nav.handleMenuItemNavigation(event));
         clearBreadCrumbs();
         createMenuBreadcrumb(event);
     }
 
     // called by subview controllers navigate()
-    public void handleSubviewNavigation(ActionEvent event) throws IOException {
+    public void handleSubviewNavigation(ActionEvent event) {
         mainViewPane.setCenter(nav.handleNavigation(event));
         createBreadcrumb(event);
     }

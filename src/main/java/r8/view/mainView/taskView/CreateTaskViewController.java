@@ -21,40 +21,28 @@ public class CreateTaskViewController {
 
     @FXML
     private VBox assignTaskVbox = new VBox();
-
     @FXML
     private SearchableComboBox<Account> comboBoxUser;
-
     @FXML
     private SearchableComboBox<Team> comboBoxTeam;
-
     @FXML
     private TextField taskName;
-
     @FXML
     private ComboBox<TaskType> taskType;
-
     @FXML
     private TextArea descField;
-
     @FXML
     private Button btnSave;
-
     @FXML
     private Button btnCancel;
-
     @FXML
     private Button btnAssignUser;
-
     @FXML
     private ListView<CombinedObject> listViewAssignedTo;
-
     @FXML
     private Button btnRemoveAssigned;
-
     @FXML
     private ComboBox<Project> projectComboBox;
-
     @FXML
     private TextField createTaskTypeField;
 
@@ -198,5 +186,4 @@ public class CreateTaskViewController {
             return true;
         }
     }
-
 }

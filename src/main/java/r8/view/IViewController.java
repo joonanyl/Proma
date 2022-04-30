@@ -11,7 +11,7 @@ public interface IViewController {
 
     void setApp(App app);
 
-    void handleNavigation(ActionEvent event) throws IOException;
+    void handleNavigation(ActionEvent event);
 
-    void handleSubviewNavigation(ActionEvent event) throws IOException;
+    void handleSubviewNavigation(ActionEvent event);
 }

@@ -26,7 +26,7 @@ public class LoginViewController implements IViewController {
        setInitialView();
     }
 
-    public void handleNavigation(ActionEvent event) throws IOException {
+    public void handleNavigation(ActionEvent event) {
         NavigationHandler nav = new NavigationHandler();
         mainViewPane.setCenter(nav.handleNavigation(event));
     }

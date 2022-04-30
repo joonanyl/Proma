@@ -24,7 +24,7 @@ public class Project {
 	@Column(name = "name")
 	private String name;
 
-	//TODO changed
+	//TODO changed cascade type to persist (and back to merge), fetchtype to eager
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "project_account",

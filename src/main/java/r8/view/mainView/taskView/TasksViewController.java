@@ -28,35 +28,28 @@ public class TasksViewController {
 
     @FXML
     private Button btnActiveTasks;
-
     @FXML
     private Button btnCompletedTasks;
-
     @FXML
     private Button btnGotToTaskView;
-
     @FXML
     private Button buttonAllTasks;
-
     @FXML
     private ListView<Task> listViewMyTasks;
-
     @FXML
     private HBox projectNavBar;
-
     @FXML
     private SearchableComboBox<Project> comboBoxProjects;
 
     private ToggleGroup buttonGroup;
-
     @FXML
-    private ToggleButton btnOverview;
-
+    private ToggleButton btnProject;
     @FXML
     private ToggleButton btnPersonal;
-
     @FXML
     private ToggleButton btnTeam;
+    @FXML
+    private ToggleButton btnAll;
 
     @FXML
     private Label labelProjectInfo;
@@ -80,7 +73,7 @@ public class TasksViewController {
 
     @FXML
     private void navigate(ActionEvent event) throws IOException {
-        CustomTaskComponentController selectedObject = (CustomTaskComponentController) taskListView.getSelectionModel().getSelectedItem();
+        CustomTaskComponentController selectedObject = taskListView.getSelectionModel().getSelectedItem();
         Task selectedTask = selectedObject.getTask();
         if(selectedTask == null){
             return;
@@ -99,6 +92,8 @@ public class TasksViewController {
     @FXML
     private Set<Task> allTasks;
     @FXML
+    private Set<Task> projectTasks;
+    @FXML
     private Set<Task> personalTasks;
     @FXML
     private Set<Task> teamTasks;
@@ -107,12 +102,14 @@ public class TasksViewController {
     public void initialize(){
         personalTasks = new HashSet<>();
         teamTasks = new HashSet<>();
+        projectTasks = new HashSet<>();
         allTasks = new HashSet<>();
         buttonGroup = new ToggleGroup();
-        btnOverview.setToggleGroup(buttonGroup);
+        btnProject.setToggleGroup(buttonGroup);
         btnPersonal.setToggleGroup(buttonGroup);
         btnTeam.setToggleGroup(buttonGroup);
-        buttonGroup.selectToggle(btnOverview);
+        btnAll.setToggleGroup(buttonGroup);
+        buttonGroup.selectToggle(btnProject);
         List<Project> projectsList = controller.loadProjects(AppState.getInstance().getAccount());
         System.out.println(projectsList);
         if(projectsList != null){
@@ -123,13 +120,10 @@ public class TasksViewController {
     }
 
     private void addChangeListener(){
-        comboBoxProjects.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Project>() {
-            @Override
-            public void changed(ObservableValue<? extends Project> observable, Project oldValue, Project newValue) {
-                if(newValue != null) {
-                    selectedProject = newValue;
-                    retrieveTasks();
-                }
+        comboBoxProjects.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null) {
+                selectedProject = newValue;
+                retrieveTasks();
             }
         });
         buttonGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
@@ -141,14 +135,11 @@ public class TasksViewController {
     }
 
     private void listViewChangeListener(){
-        taskListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<CustomTaskComponentController>() {
-            @Override
-            public void changed(ObservableValue<? extends CustomTaskComponentController> observable, CustomTaskComponentController oldValue, CustomTaskComponentController newValue) {
-                if(newValue != null){
-                    labelProjectInfo.setText(newValue.getTask().getProject().getName());
-                    labelTaskType.setText(newValue.getTask().getTaskType().toString());
-                    labelTaskState.setText(newValue.getTask().getTaskStateString());
-                }
+        taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                labelProjectInfo.setText(newValue.getTask().getProject().getName());
+                labelTaskType.setText(newValue.getTask().getTaskType().toString());
+                labelTaskState.setText(newValue.getTask().getTaskStateString());
             }
         });
     }
@@ -156,12 +147,13 @@ public class TasksViewController {
     @Transactional
     public void retrieveTasks(){
         selectedProject = controller.getProjectById(selectedProject.getProjectId());
-        allTasks = selectedProject.getTasks();
+        projectTasks = selectedProject.getTasks();
         personalTasks.clear();
         teamTasks.clear();
         Account loggedAccount = AppState.getInstance().getLoggedAccount();
-        if(allTasks != null){
-            allTasks.forEach(task -> {
+        allTasks.addAll(controller.getTaskDAO().getByAccount(loggedAccount));
+        if(projectTasks != null){
+            projectTasks.forEach(task -> {
                 if(task.getAccounts().contains(loggedAccount)){
                     personalTasks.add(task);
                 }
@@ -173,10 +165,11 @@ public class TasksViewController {
             });
         }
         updateView();
+        System.out.println("all tasks contain" + allTasks.toString());
     }
 
     public void deleteTask(Task task){
-        allTasks.remove(task);
+        projectTasks.remove(task);
         //controller.deleteTask(task);
         updateView();
     }
@@ -185,10 +178,10 @@ public class TasksViewController {
         Platform.runLater(()->{
             Toggle tb = buttonGroup.getSelectedToggle();
             if(tb != null){
-                if(tb == btnOverview){
+                if(tb == btnProject){
                     taskListView.getItems().clear();
-                    if(allTasks != null){
-                        allTasks.forEach(task -> {
+                    if(projectTasks != null){
+                        projectTasks.forEach(task -> {
                             taskListView.getItems().add(new CustomTaskComponentController(task, this));
                         });
                     }
@@ -202,6 +195,14 @@ public class TasksViewController {
                     }
                 }
                 if(tb == btnTeam){
+                    taskListView.getItems().clear();
+                    if(teamTasks != null){
+                        teamTasks.forEach(task -> {
+                            taskListView.getItems().add(new CustomTaskComponentController(task, tasksViewController));
+                        });
+                    }
+                }
+                if(tb == btnAll){
                     taskListView.getItems().clear();
                     if(teamTasks != null){
                         teamTasks.forEach(task -> {

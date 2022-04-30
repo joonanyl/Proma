@@ -7,18 +7,21 @@ import r8.model.*;
 import r8.view.IViewController;
 import java.util.List;
 
+/**
+ * @author Aarni Pesonen
+ */
 public enum AppState implements IAppStateMain {
 
 	INSTANCE;
 	private Account loggedAccount = null;
 	private Project selectedProject = null;
+	private IControllerMain controller = new Controller();
 
 	private List<Project> projectsList;
 
 	// reference to active viewController
 	// currently needed when navigating from subviews
 	private IViewController viewController;
-	IControllerMain c = new Controller();
 
 	private Task selectedTask = null;
 
@@ -41,7 +44,7 @@ public enum AppState implements IAppStateMain {
 	@Override
 	public Account getAccount() {
 		if(loggedAccount == null)
-			return loggedAccount = c.getAllAccounts().get(0);
+			return loggedAccount = controller.getAllAccounts().get(0);
 
 		return this.loggedAccount;
 	}
@@ -71,6 +74,12 @@ public enum AppState implements IAppStateMain {
 	}
 	@Override
 	public Project getSelectedProject(){
+
+		if (selectedProject == null) {
+			List<Project> projects = controller.getProjectDAO().getByAccount(loggedAccount);
+			selectedProject = projects.get(0);
+		}
+
 		return this.selectedProject;
 	}
 }

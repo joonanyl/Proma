@@ -43,12 +43,9 @@ public class BreadcrumbBar {
 
             bcButton.setOnAction(event -> {
                 Node eventSource = (Node) event.getSource();
-                try {
+
                     if(!Objects.equals(eventSource.getUserData(), currentView))
                     AppState.getInstance().getViewController().handleNavigation(event);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             });
 
             System.out.println("hbox buttons in list: " + breadcrumbButtons);
