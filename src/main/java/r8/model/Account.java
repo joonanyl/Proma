@@ -164,4 +164,27 @@ public class Account {
 	public void setEvents(Set<Event> events) {
 		this.events = events;
 	}
+
+	@Override
+	public boolean equals(Object object){
+		if(object == null){
+			return false;
+		}
+		if(object.getClass() != this.getClass()){
+			return false;
+		}
+		final Account account = (Account) object;
+		if(this.accountId != account.accountId){
+			return false;
+		}
+		if(!this.email.equals(account.email)){
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public int hashCode(){
+		return (int) accountId * email.hashCode() * firstName.hashCode() * lastName.hashCode();
+	}
 }

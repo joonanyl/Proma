@@ -20,7 +20,7 @@ import java.util.*;
 public class CreateTaskViewController {
 
     @FXML
-    private VBox assignTaskVbox = new VBox();
+    private VBox assignTaskVbox;
     @FXML
     private SearchableComboBox<Account> comboBoxUser;
     @FXML

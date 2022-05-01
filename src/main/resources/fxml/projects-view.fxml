@@ -40,7 +40,7 @@
                                                 <HBox fx:id="projectNavBar" alignment="CENTER_RIGHT" minWidth="1.0" prefHeight="1090.0" prefWidth="861.0" />
                                     <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Button id="button-tooltip" fx:id="projectViewTooltip" mnemonicParsing="false">
+                                          <Button id="button-tooltip" fx:id="projectsViewTooltip" mnemonicParsing="false">
                                              <graphic>
                                                 <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>

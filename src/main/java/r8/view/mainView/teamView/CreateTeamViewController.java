@@ -93,6 +93,7 @@ public class CreateTeamViewController {
         for (Account account : accountsToAdd)
             team.addAccount(account);
 
+        team.getAccounts().forEach(System.out::println);
         project.addTeam(team);
         controller.getProjectDAO().update(project);
     }

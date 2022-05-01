@@ -74,7 +74,7 @@
                                             </ToggleButton>
                                                 </children>
                                             </HBox>
-                                    <Button id="button-tooltip" mnemonicParsing="false" stylesheets="@../styling/dashboard-view-styling.css">
+                                    <Button id="button-tooltip" fx:id="tasksViewTooltip" mnemonicParsing="false" stylesheets="@../styling/dashboard-view-styling.css">
                                        <graphic>
                                           <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
