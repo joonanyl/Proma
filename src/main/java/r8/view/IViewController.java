@@ -1,6 +1,7 @@
 package r8.view;
 
 import javafx.event.ActionEvent;
+import javafx.scene.layout.Pane;
 import r8.App;
 
 import java.io.IOException;
@@ -11,5 +12,7 @@ public interface IViewController {
 
     void setApp(App app);
 
-    void handleNavigation(ActionEvent event) throws IOException;
+    void handleNavigation(ActionEvent event);
+
+    void handleSubviewNavigation(ActionEvent event);
 }

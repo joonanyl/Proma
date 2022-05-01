@@ -14,6 +14,13 @@
     -fx-background-color : #FFFFFF;
 }
 
+#button-logo
+{
+    -fx-font-size: 18px;
+    -fx-background-radius: 0px;
+    -fx-background-color : #15191C;
+}
+
 #button-topnav
 {
     -fx-background-radius: 0px;
@@ -69,6 +76,18 @@
 #hbox-breadcrumb
 {
     -fx-background-color: #E3E3E3;
+    -fx-border-color: #CDCDCD transparent transparent transparent;
+}
+
+#hbox-topnav
+{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CDCDCD transparent transparent transparent;
+}
+
+#hbox-quicknav
+{
+    -fx-background-color: #FFFFFF;
     -fx-border-color: #CDCDCD transparent transparent transparent;
 }
 

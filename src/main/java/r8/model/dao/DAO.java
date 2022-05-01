@@ -1,8 +1,5 @@
 package r8.model.dao;
 
-import org.hibernate.HibernateException;
-import r8.model.Project;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.List;
@@ -63,6 +60,10 @@ public abstract class DAO<T> {
         } finally {
             em.close();
         }
+    }
+
+    protected void setEntityManager(){
+        em = DAOUtil.getEntityManager();
     }
 
     protected EntityManager getEntityManager() {

@@ -3,6 +3,7 @@ package r8.view.mainView.taskView;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
 
 import r8.controller.Controller;
@@ -11,77 +12,77 @@ import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
-import r8.util.TextLoader;
+import r8.util.UIElementVisibility;
+import r8.util.lang.ResourceHandler;
 
 import java.util.*;
 
 public class CreateTaskViewController {
 
     @FXML
+    private VBox assignTaskVbox = new VBox();
+    @FXML
     private SearchableComboBox<Account> comboBoxUser;
-
     @FXML
     private SearchableComboBox<Team> comboBoxTeam;
-
     @FXML
     private TextField taskName;
-
     @FXML
     private ComboBox<TaskType> taskType;
-
     @FXML
     private TextArea descField;
-
     @FXML
     private Button btnSave;
-
     @FXML
     private Button btnCancel;
-
     @FXML
     private Button btnAssignUser;
-
     @FXML
     private ListView<CombinedObject> listViewAssignedTo;
-
     @FXML
     private Button btnRemoveAssigned;
-
     @FXML
     private ComboBox<Project> projectComboBox;
-
     @FXML
     private TextField createTaskTypeField;
 
     private final IControllerMain controller = new Controller();
+    private final UIElementVisibility visibility = new UIElementVisibility();
+    List<TaskType> ttList;
 
     public void initialize(){
+
         comboBoxTeam.getItems().addAll(controller.getAllTeams());
 
         // TODO refactor getting account
         projectComboBox.getItems().addAll(controller.loadProjects(AppState.getInstance().getLoggedAccount()));
 
         List<Account> accountList = controller.getAllAccounts();
+        Account loggedAccount = AppState.getInstance().getLoggedAccount();
         comboBoxUser.getItems().addAll(accountList);
 
+        visibility.toggleAdminVisibility(assignTaskVbox, loggedAccount.getAdmin());
         updateTaskTypes();
 
         TextFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
-
     }
 
     // TODO does not accept all names, needs testing
     @FXML
     private void createTaskType(){
         String tt = createTaskTypeField.getText();
-        if(tt.matches("[a-zA-Z0-9\\s ]{1,10}")){
+        ArrayList<String> ttNames = new ArrayList<>();
+        for (TaskType e : ttList)
+            ttNames.add(e.getName());
+
+        if(tt.matches("[a-zA-Z0-9\\s ]{1,20}") && !ttNames.contains(tt)){
             controller.createTaskType(tt);
         }
         updateTaskTypes();
     }
 
     private void updateTaskTypes(){
-        List<TaskType> ttList = controller.getAllTaskTypes();
+        ttList = controller.getAllTaskTypes();
         if(ttList != null){
             taskType.getItems().clear();
             taskType.getItems().addAll(ttList);
@@ -94,28 +95,28 @@ public class CreateTaskViewController {
         String name = taskName.getText();
         String desc = descField.getText();
         Project project = projectComboBox.getSelectionModel().getSelectedItem();
-        TextLoader textloader = TextLoader.getInstance();
+        ResourceHandler textloader = ResourceHandler.getInstance();
         if(!name.matches("([A-Za-z0-9\\s ]{1,20})")){
             System.out.println("didn't match");
-            showAlert(textloader.getResource("invalidInput"), textloader.getResource("invalidTask"), Alert.AlertType.INFORMATION);
+            showAlert(textloader.getTextResource("invalidInput"), textloader.getTextResource("invalidTask"), Alert.AlertType.INFORMATION);
             return;
         }
         if(!desc.matches(".{0,200}")){
-            showAlert(textloader.getResource("tooLong"), textloader.getResource("longDescription"), Alert.AlertType.INFORMATION);
+            showAlert(textloader.getTextResource("tooLong"), textloader.getTextResource("longDescription"), Alert.AlertType.INFORMATION);
             return;
         }
         if(tt == null){
-            showAlert(textloader.getResource("missingTask"), textloader.getResource("chooseType"), Alert.AlertType.INFORMATION);
+            showAlert(textloader.getTextResource("missingTask"), textloader.getTextResource("chooseType"), Alert.AlertType.INFORMATION);
             return;
         }
-        if(!showAlert(textloader.getResource("confirmation"), textloader.getResource("saveTaskConfirm"), Alert.AlertType.CONFIRMATION)){
+        if(!showAlert(textloader.getTextResource("confirmation"), textloader.getTextResource("saveTaskConfirm"), Alert.AlertType.CONFIRMATION)){
             return;
         }
         if(project == null){
             return;
         }
         controller.createTask(name, TaskState.NOT_STARTED, tt, 0,desc, getAccounts(), getTeams(), project);
-        showAlert(textloader.getResource("success"), textloader.getResource("saveTaskSuccess"), Alert.AlertType.INFORMATION);
+        showAlert(textloader.getTextResource("success"), textloader.getTextResource("saveTaskSuccess"), Alert.AlertType.INFORMATION);
     }
 
     @FXML
@@ -185,5 +186,4 @@ public class CreateTaskViewController {
             return true;
         }
     }
-
 }

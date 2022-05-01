@@ -1,6 +1,7 @@
 package r8.controller;
 
 import javafx.collections.ObservableList;
+import r8.App;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.dao.*;
@@ -43,6 +44,11 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         return false;
     }
 
+    public boolean authenticatePassword(String password){
+        System.out.println(AppState.getInstance().getLoggedAccount().getEmail());
+        return AuthService.authenticatePassword(AppState.getInstance().getLoggedAccount().getEmail(), password);
+    }
+
     public void logout() {
         AppState.getInstance().setLoggedAccount(null);
     }
@@ -77,7 +83,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         account.setFirstName(firstName);
         account.setLastName(lastName);
         account.setEmail(email);
-        account.setPassword(AuthService.hashPassword(password));
+        account.setPassword(password);
         accountDAO.update(account);
     }
 
@@ -85,21 +91,29 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         accountDAO.remove(account);
     }
 
-    public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList) {
+    public void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList, ObservableList<Sprint> sprintList) {
         Project project = new Project(name, description);
-        // Tässä vaiko näkymän latauksessa päivitetään AppStateen projektit?
-        projectDAO.persist(project);
-        addAccountToProject(AppState.getInstance().getLoggedAccount(), project);
+        project.addAccount(AppState.getInstance().getLoggedAccount());
+
         if (accountList != null) {
-            accountList.forEach(account -> {
-                addAccountToProject(account, project);
-            });
+            for (Account a : accountList) {
+                project.addAccount(a);
+            }
         }
+
         if (teamList != null) {
-            teamList.forEach((item) -> {
-                createTeam(item, project);
-            });
+            for (String s : teamList) {
+                project.addTeam(new Team(s, project));
+            }
         }
+
+        if(sprintList != null) {
+            for (Sprint s : sprintList) {
+                project.addSprint(s);
+            }
+        }
+
+        projectDAO.persist(project);
     }
 
     public Project getProjectById(int projectId) {
@@ -349,4 +363,25 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     public List<Comment> getComments(Task task){
         return commentDAO.getCommentsByTask(task);
     }
+
+    @Override
+    public EventDAO getEventDAO() {
+        return this.eventDAO;
+    }
+
+    @Override
+    public TaskDAO getTaskDAO() {
+        return this.taskDAO;
+    }
+
+    @Override
+    public ProjectDAO getProjectDAO() {
+        return this.projectDAO;
+    }
+
+    @Override
+    public SprintDAO getSprintDAO() { return this.sprintDAO; }
+
+    @Override
+    public TeamDAO getTeamDAO() { return this.teamDAO; }
 }

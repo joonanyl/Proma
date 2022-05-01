@@ -8,182 +8,272 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<AnchorPane prefHeight="925.0" prefWidth="1670.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.taskView.CreateTaskViewController">
+<AnchorPane prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/create-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.taskView.CreateTaskViewController">
    <children>
-      <Text layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%createTask" wrappingWidth="191.03125" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="35.0">
-         <font>
-            <Font name="Arial" size="26.0" />
-         </font>
-      </Text>
-      <Region prefHeight="1.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
-      <Pane layoutY="101.0" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../styling/create-task-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="110.0">
+      <Region prefHeight="1.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="85.0" />
+      <HBox layoutY="99.0" prefHeight="1440.0" prefWidth="3440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
          <children>
-            <VBox layoutY="-1.0" prefHeight="700.0" prefWidth="640.0" spacing="25.0">
+            <VBox prefHeight="1000.0" prefWidth="1000.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%selectProject">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="25.0" right="15.0" />
-                           </HBox.margin>
-                        </Text>
-                        <ComboBox fx:id="projectComboBox" prefWidth="150.0">
-                           <HBox.margin>
-                              <Insets right="15.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskType">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="25.0" left="25.0" right="15.0" top="25.0" />
-                           </HBox.margin>
-                        </Text>
-                        <ComboBox fx:id="taskType" prefWidth="150.0">
-                           <HBox.margin>
-                              <Insets bottom="25.0" right="25.0" top="25.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="960.0">
-                     <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskName">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="25.0" left="25.0" right="15.0" top="25.0" />
-                           </HBox.margin>
-                        </Text>
-                        <TextField id="taskName" fx:id="taskName">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <HBox.margin>
-                              <Insets bottom="25.0" right="25.0" top="25.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%createTaskType">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="15.0" />
-                           </HBox.margin>
-                        </Text>
-                        <TextField id="taskName" fx:id="createTaskTypeField" prefWidth="100.0">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </TextField>
-                        <Button mnemonicParsing="false" onAction="#createTaskType" text="%add" />
-                     </children>
-                  </HBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="379.0" prefWidth="850.0">
-                     <children>
-                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%description">
-                           <font>
-                              <Font name="Arial" size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="25.0" right="25.0" top="25.0" />
-                           </VBox.margin>
-                        </Text>
-                        <TextArea fx:id="descField" wrapText="true">
-                           <VBox.margin>
-                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                        <HBox minWidth="100.0" prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveTask" text="%saveTask" />
-                              <Button fx:id="btnCancel" mnemonicParsing="false" text="%cancel" />
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%createTaskType">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="150.0" prefWidth="960.0">
+                           <children>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task type name">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" left="25.0" right="15.0" top="25.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <TextField id="taskName" fx:id="createTaskTypeField" prefWidth="230.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                              <HBox alignment="CENTER" prefHeight="98.0" prefWidth="390.0">
+                                 <children>
+                                    <Button fx:id="btnCreateTaskType" minWidth="150.0" mnemonicParsing="false" onAction="#createTaskType" prefWidth="150.0" text="%add" textFill="#f8f6f6">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                            <VBox.margin>
-                              <Insets left="20.0" right="20.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
                      </children>
+                     <VBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox id="container-element" minWidth="100.0" prefHeight="650.0" prefWidth="775.0" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="50.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="Task Info">
+                                 <font>
+                                    <Font name="Arial Bold" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%selectProject">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="25.0" right="15.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <ComboBox fx:id="projectComboBox" minWidth="80.0" prefWidth="250.0">
+                                 <HBox.margin>
+                                    <Insets right="15.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%selectTaskType">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" left="25.0" right="15.0" top="25.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <ComboBox fx:id="taskType" minWidth="80.0" prefWidth="250.0">
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" right="25.0" top="25.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="960.0">
+                           <children>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%taskName">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" left="25.0" right="15.0" top="25.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <TextField id="taskName" fx:id="taskName" minWidth="150.0" prefWidth="250.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" right="25.0" top="25.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="380.0" prefWidth="850.0">
+                           <children>
+                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%description">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="25.0" top="25.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <TextArea fx:id="descField" minWidth="100.0" prefHeight="180.0" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                              <HBox alignment="CENTER" minWidth="100.0" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <Button fx:id="btnsave" minWidth="150.0" mnemonicParsing="false" onAction="#saveTask" prefWidth="150.0" text="%saveTask" textFill="#f8f6f6">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" top="25.0" />
+                     </VBox.margin>
                   </VBox>
                </children>
             </VBox>
-         </children>
-      </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="675.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
-         <children>
-            <VBox prefHeight="670.0" prefWidth="305.0">
+            <VBox id="container-element" fx:id="assignTaskVbox" minWidth="100.0" prefHeight="1000.0" prefWidth="1000.0" spacing="10.0">
                <children>
-                  <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%assignTo">
-                     <font>
-                        <Font name="Arial Bold" size="16.0" />
-                     </font>
+                  <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%assignedTo">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
                      <VBox.margin>
-                        <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                        <Insets />
                      </VBox.margin>
-                  </Text>
-                  <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
                      <children>
                         <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%team">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Text>
-                        <SearchableComboBox fx:id="comboBoxTeam" maxHeight="25.0" prefWidth="150.0" />
-                        <Button fx:id="btnAssignTeam" mnemonicParsing="false" onAction="#AssignTeam" text="%assign" />
+                        <SearchableComboBox fx:id="comboBoxTeam" maxHeight="25.0" minWidth="100.0" prefWidth="250.0">
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin></SearchableComboBox>
+                        <Button fx:id="btnAssignTeam" minWidth="150.0" mnemonicParsing="false" onAction="#AssignTeam" prefWidth="150.0" text="%assign" textFill="#f8f6f6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="20.0">
+                  <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
                      <children>
                         <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%user">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Text>
-                        <SearchableComboBox fx:id="comboBoxUser" maxHeight="25.0" prefWidth="150.0" />
-                        <Button fx:id="btnAssignUser" mnemonicParsing="false" onAction="#AssignUser" text="%assign" />
+                        <SearchableComboBox fx:id="comboBoxUser" maxHeight="25.0" minWidth="100.0" prefWidth="250.0" />
+                        <Button fx:id="btnAssignUser" minWidth="150.0" mnemonicParsing="false" onAction="#AssignUser" prefWidth="150.0" text="%assign" textFill="#f8f6f6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
-                  <VBox prefHeight="352.0" prefWidth="305.0" spacing="20.0">
+                  <VBox minWidth="100.0" prefHeight="371.0" prefWidth="796.0">
                      <children>
                         <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%assignedTo">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="20.0" top="15.0" />
+                              <Insets left="25.0" top="25.0" />
                            </VBox.margin>
                         </Text>
-                        <ListView fx:id="listViewAssignedTo" prefHeight="125.0" prefWidth="305.0">
+                        <ListView fx:id="listViewAssignedTo" minWidth="100.0" prefHeight="180.0">
                            <VBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" />
+                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                            </VBox.margin>
                         </ListView>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="75.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnRemoveAssigned" mnemonicParsing="false" onAction="#removeAssigned" text="%remove" />
+                              <Button fx:id="btnRemoveAssigned" minWidth="150.0" mnemonicParsing="false" onAction="#removeAssigned" prefWidth="150.0" text="%remove" textFill="#f8f6f6">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
                      </children>
                   </VBox>
                </children>
+               <HBox.margin>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </HBox.margin>
             </VBox>
          </children>
-      </Pane>
-      <Region layoutX="10.0" layoutY="10.0" maxWidth="1.0" prefHeight="600.0" prefWidth="1.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="664.0" AnchorPane.topAnchor="130.0" />
+      </HBox>
+      <Text fill="#545252" layoutX="36.0" layoutY="52.10546875" strokeType="OUTSIDE" strokeWidth="0.0" text="%createNewTask" wrappingWidth="230.0">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

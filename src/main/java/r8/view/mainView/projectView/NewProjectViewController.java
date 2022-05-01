@@ -1,23 +1,18 @@
 package r8.view.mainView.projectView;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import org.apache.commons.collections4.Get;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
-import r8.model.Sprint;
+import r8.model.Project;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
-import r8.model.task.Task;
-import r8.model.task.TaskState;
-import r8.model.task.TaskType;
 import r8.view.IViewController;
 import r8.view.navigation.GetView;
 
@@ -68,17 +63,19 @@ public class NewProjectViewController {
     private final IControllerMain controller = new Controller();
     private final IControllerAccount controllerAccount = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
+    private final AppState appState = AppState.getInstance();
+    private final Project project = appState.getSelectedProject();
 
     private boolean admin;
     private String currentSubview;
 
-    public void initialize() throws IOException {
-        System.out.println("Using NewProjectViewController!");
+    @FXML
+    private void initialize() {
         if (controllerAccount.getAccount() != null)
             admin = appStateMain.getIsAdmin();
 
-        handleNavigation("sprint-subview");
-        //adminVisibility(admin);
+        handleNavigation("overview-subview");
+        setProjectInfo();
     }
 
     @FXML
@@ -95,10 +92,11 @@ public class NewProjectViewController {
     }
 
     @FXML
-    public void handleNavigation(String viewName) throws IOException {
-        GetView viewLoader = new GetView();
-        projectSubViewPane.setCenter(viewLoader.getView(viewName));
-        currentSubview = viewName;
+    public void handleNavigation(String viewName) {
+
+            GetView viewLoader = new GetView();
+            projectSubViewPane.setCenter(viewLoader.getView(viewName));
+            currentSubview = viewName;
     }
 
     /*private void adminVisibility(boolean isAdmin) {
@@ -111,6 +109,11 @@ public class NewProjectViewController {
     @FXML
     private void navigate (ActionEvent event) throws IOException {
         viewController.handleNavigation(event);
+    }
+
+    private void setProjectInfo() {
+        labelProjectName.setText(project.getName());
+        labelDescription.setText(project.getDescription());
     }
 
 }

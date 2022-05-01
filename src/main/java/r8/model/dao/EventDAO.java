@@ -21,7 +21,7 @@ public class EventDAO extends DAO<Event> {
         entityManager();
         try {
             return em.createQuery(
-                            "SELECT e FROM Event e WHERE e.account = :account", Event.class)
+                    "SELECT e FROM Event e WHERE e.account = :account", Event.class)
                     .setParameter("account", account)
                     .getResultList();
         } catch (NullPointerException e) {
@@ -34,8 +34,8 @@ public class EventDAO extends DAO<Event> {
     public List<Event> getByTask(Task task) {
         entityManager();
         try {
-            return em.createQuery(
-                            "SELECT e FROM Event e WHERE e.task = :task", Event.class)
+             return em.createQuery(
+                    "SELECT e FROM Event e WHERE e.task = :task", Event.class)
                     .setParameter("task", task)
                     .getResultList();
         } catch (NullPointerException e) {
@@ -49,7 +49,7 @@ public class EventDAO extends DAO<Event> {
         entityManager();
         try {
             return em.createQuery(
-                            "SELECT e FROM Event e WHERE e.account = :account AND e.project = :project", Event.class)
+                    "SELECT e FROM Event e WHERE e.account = :account AND e.project = :project", Event.class)
                     .setParameter("account", account)
                     .setParameter("project", project)
                     .getResultList();
@@ -65,7 +65,7 @@ public class EventDAO extends DAO<Event> {
         entityManager();
         try {
             return em.createQuery(
-                            "SELECT e FROM Event e WHERE e.account = :account AND e.sprint = :sprint", Event.class)
+                    "SELECT e FROM Event e WHERE e.account = :account AND e.sprint = :sprint", Event.class)
                     .setParameter("account", account)
                     .setParameter("sprint", sprint)
                     .getResultList();
