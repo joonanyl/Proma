@@ -3,8 +3,12 @@ package r8.model.dao;
 
 import r8.model.Account;
 import r8.model.Project;
+import r8.model.appState.AppState;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 
 import java.util.List;
 

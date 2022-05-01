@@ -1,13 +1,20 @@
 package r8.view.mainView.profileView;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerLogin;
@@ -17,6 +24,7 @@ import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.util.lang.LanguageHandler;
 import r8.util.lang.ResourceHandler;
+import r8.view.navigation.NavigationHandler;
 
 public class ProfileViewController {
 
@@ -71,6 +79,9 @@ public class ProfileViewController {
 
     @FXML
     private Label numberCheck;
+
+    @FXML
+    private Label profileInfoLabel;
 
     private final String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
 
@@ -131,41 +142,47 @@ public class ProfileViewController {
 
     @FXML
     private void changePassword(){
+        Account account = AppState.INSTANCE.getLoggedAccount();
         if(checkPasswordInputs()){
-            IControllerMain controllerAccount = new Controller();
-            Account account = AppState.getInstance().getLoggedAccount();
-            controllerAccount.updateAccount(account.getFirstName(), account.getLastName(), account.getEmail(), newPasswordTF.getText());
+            controllerAccount.updateAccount(account.getFirstName(), account.getLastName(),account.getEmail(), newPasswordTF.getText());
             ResourceHandler textloader = ResourceHandler.getInstance();
-            showAlert(textloader.getTextResource("passwordChangeSuccess"), "");
+            showNotification(textloader.getTextResource("passwordChangeSuccess"), "", true);
+            hidePasswordChange();
         }
-        hidePasswordChange();
     }
 
     private boolean checkPasswordInputs(){
         ResourceHandler textloader = ResourceHandler.getInstance();
-        IControllerLogin controllerLogin = new Controller();
-        if(!controllerLogin.authenticateLogin(AppState.getInstance().getAccount().getEmail(), oldPasswordTF.getText())){
-            showAlert(textloader.getTextResource("oldPasswordInvalid"), textloader.getTextResource("oldPasswordInvalidInfo"));
+        IControllerAccount controllerLogin = new Controller();
+        if(!controllerLogin.authenticatePassword(oldPasswordTF.getText())){
+            showNotification(textloader.getTextResource("oldPasswordInvalid"), textloader.getTextResource("oldPasswordInvalidInfo"), false);
             return false;
         }
         if(!newPasswordTF.getText().equals(confirmNewPasswordTF.getText())){
-            showAlert(textloader.getTextResource("dontMatch"), textloader.getTextResource("passwordMissmatch"));
+            showNotification(textloader.getTextResource("dontMatch"), textloader.getTextResource("passwordMissmatch"), false);
             return false;
         }
         if(!newPasswordTF.getText().matches(passwordRegEx)){
-            showAlert(textloader.getTextResource("invalidPassword"), textloader.getTextResource("invalidPasswordInfo"));
+            showNotification(textloader.getTextResource("invalidPassword"), textloader.getTextResource("invalidPasswordInfo"), false);
             return false;
         }
         return true;
     }
 
-    private void showAlert(String title, String text) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(text);
 
-        alert.showAndWait();
+    private void showNotification(String title, String text, boolean success){
+        ImageView icon = null;
+        if(success) icon = new ImageView(new Image("/image/success-ico.png"));
+        else icon = new ImageView(new Image("/image/fail-ico.png"));
+        Notifications notification = Notifications.create()
+                .title(title)
+                .text(text)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT)
+                .graphic(icon)
+                .darkStyle()
+                .owner(profileInfoLabel.getScene().getWindow());
+        notification.show();
     }
 
     private void addPasswordComparisonListener(){

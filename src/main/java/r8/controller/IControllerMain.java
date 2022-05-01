@@ -20,8 +20,6 @@ public interface IControllerMain {
 
     void setActiveViewController(IViewController viewController);
 
-    void updateAccount(String firstName, String lastName, String email, String password);
-
     List<Account> getAllAccounts();
 
     List<Team> getAllTeams();

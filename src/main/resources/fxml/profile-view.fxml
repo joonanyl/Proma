@@ -18,7 +18,7 @@
     <children>
       <VBox id="container-profile" fx:id="containerProfile" layoutX="6.0" layoutY="117.0" prefHeight="800.0" prefWidth="1660.0" stylesheets="@../styling/profile-view-styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-                    <Label text="%profileInformation" textFill="#757171">
+                    <Label fx:id="profileInfoLabel" text="%profileInformation" textFill="#757171">
                         <font>
                             <Font name="System Bold" size="17.0" />
                         </font>
