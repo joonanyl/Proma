@@ -25,7 +25,7 @@
                                     <children>
                                         <HBox prefHeight="700.0" prefWidth="996.0">
                                             <children>
-                                                <HBox prefHeight="43.0" prefWidth="203.0">
+                                                <HBox minWidth="200.0" prefHeight="43.0" prefWidth="203.0">
                                                     <children>
                                                         <Label text="%projects" textFill="#757171">
                                                             <font>
@@ -37,19 +37,23 @@
                                                         </Label>
                                                     </children>
                                                 </HBox>
-                                                <HBox fx:id="projectNavBar" alignment="CENTER_RIGHT" prefHeight="1090.0" prefWidth="861.0" />
-                                    <Button id="button-tooltip" fx:id="projectsViewTooltip" mnemonicParsing="false">
-                                       <graphic>
-                                          <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../icon/info_52.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <HBox.margin>
-                                          <Insets right="5.0" top="5.0" />
-                                       </HBox.margin>
-                                    </Button>
+                                                <HBox fx:id="projectNavBar" alignment="CENTER_RIGHT" minWidth="1.0" prefHeight="1090.0" prefWidth="861.0" />
+                                    <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button id="button-tooltip" fx:id="projectsViewTooltip" mnemonicParsing="false">
+                                             <graphic>
+                                                <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../icon/info_52.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
                                             </children>
                                         </HBox>
                                         <ListView fx:id="projectsListView" prefHeight="1400.0" prefWidth="946.0">
