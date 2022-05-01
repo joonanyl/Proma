@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
- * 
+ *
  * @author sanku
  *
  */
@@ -39,6 +39,14 @@ public class Event {
     @JoinColumn(name = "task_id")
     private Task task;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+    @ManyToOne
+    @JoinColumn(name = "sprint_id")
+    private Sprint sprint;
+
     public Event(String desc, LocalDate date, float hours, Account account) {
         this.description = desc;
         this.date = date;
@@ -54,54 +62,92 @@ public class Event {
         this.task = task;
     }
 
+    public Event(String description, LocalDate date, float hours, Account account, Task task, Project project) {
+        this.description = description;
+        this.date = date;
+        this.hours = hours;
+        this.account = account;
+        this.task = task;
+        this.project = project;
+    }
+
+    public Event(int eventId, String description, LocalDate date, float hours, Account account, Task task, Project project, Sprint sprint) {
+        this.eventId = eventId;
+        this.description = description;
+        this.date = date;
+        this.hours = hours;
+        this.account = account;
+        this.task = task;
+        this.project = project;
+        this.sprint = sprint;
+    }
+
     public Event() {}
+
+    public Account getAccount() {
+        return account;
+    }
 
     public int getEventId() {
         return eventId;
-    }
-
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public String getDescription() {
+        return description;
     }
 
     public float getHours() {
         return hours;
     }
 
-    public void setHours(float hours) {
-        this.hours = hours;
+    public String getHoursString() { return Float.toString(hours); }
+
+    public Task getTask() {
+        return task;
     }
 
-    public Account getAccount() {
-        return account;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setHours(float hours) {
+        this.hours = hours;
     }
 
     public void setAccount(Account account) {
         this.account = account;
     }
 
-    public Task getTask() {
-        return task;
-    }
-
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Sprint getSprint() {
+        return sprint;
+    }
+
+    public void setSprint(Sprint sprint) {
+        this.sprint = sprint;
     }
 
     @Override
