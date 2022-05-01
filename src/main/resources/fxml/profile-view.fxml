@@ -282,7 +282,7 @@
                               <Insets />
                            </HBox.margin>
                         </HBox>
-                        <CheckBox fx:id="checkBoxEnableTooltips" mnemonicParsing="false">
+                        <CheckBox fx:id="checkBoxEnableTooltips" mnemonicParsing="false" onAction="#setTooltipChecked">
                            <HBox.margin>
                               <Insets left="80.0" />
                            </HBox.margin></CheckBox>

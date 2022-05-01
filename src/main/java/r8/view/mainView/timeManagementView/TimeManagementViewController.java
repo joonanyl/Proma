@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -18,9 +17,7 @@ import r8.model.task.TaskType;
 import r8.util.ExportUtil;
 import r8.util.UIElementVisibility;
 import r8.util.lang.ResourceHandler;
-import r8.view.navigation.NavigationHandler;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -78,6 +75,12 @@ public class TimeManagementViewController {
     @FXML
     private TextArea textNewEventDescription;
     @FXML
+    private Button addCalendarEntryTooltip;
+    @FXML
+    private Button addWorkEventTooltip;
+    @FXML
+    private Button timeTrackerTooltip;
+    @FXML
     private VBox vBoxSprintSelect = new VBox();
     @FXML
     private VBox vBoxToggle;
@@ -103,9 +106,10 @@ public class TimeManagementViewController {
 
     @FXML
     private void initialize() {
+        Button[] tooltips = {addCalendarEntryTooltip, addWorkEventTooltip, timeTrackerTooltip};
+        visibility.setTooltipVisibility(tooltips);
 
         labelUserName.setText(account.getFirstName() + " " + account.getLastName() + " ");
-
         initDatePickers();
         initTableView();
         updateComboBoxes();

@@ -15,15 +15,14 @@ public enum AppState implements IAppStateMain {
 	INSTANCE;
 	private Account loggedAccount = null;
 	private Project selectedProject = null;
+	private Task selectedTask = null;
 	private IControllerMain controller = new Controller();
-
 	private List<Project> projectsList;
+	private boolean tooltipsEnabled = true;
 
 	// reference to active viewController
 	// currently needed when navigating from subviews
 	private IViewController viewController;
-
-	private Task selectedTask = null;
 
 	AppState() {}
 
@@ -40,6 +39,8 @@ public enum AppState implements IAppStateMain {
 	public void setViewController(IViewController viewController) {
 		this.viewController = viewController;
 	}
+
+
 
 	@Override
 	public Account getAccount() {
@@ -60,6 +61,17 @@ public enum AppState implements IAppStateMain {
 	public void setIsAdmin(boolean isAdmin) {
 		loggedAccount.setAdmin(!isAdmin);
 	}
+
+	@Override
+	public boolean getTooltipsEnabled() {
+		return tooltipsEnabled;
+	}
+
+	@Override
+	public void setTooltipsEnabled(boolean tooltipsEnabled) {
+		this.tooltipsEnabled = !tooltipsEnabled;
+	}
+
 	@Override
 	public void setSelectedTask(Task task){
 		this.selectedTask = task;

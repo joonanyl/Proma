@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -28,22 +30,22 @@
                                        <children>
                                                   <Label fx:id="labelProjectName" text="%tasks" textFill="#757171">
                                                       <font>
-                                                          <Font name="System Bold" size="19.0" />
+                                                          <Font name="System Bold" size="17.0" />
                                                       </font>
                                              <HBox.margin>
-                                                <Insets left="15.0" top="10.0" />
+                                                <Insets left="8.0" top="5.0" />
                                              </HBox.margin>
                                                   </Label>
                                        </children>
                                     </HBox>
-                                            <HBox fx:id="projectNavBar" alignment="CENTER_RIGHT" prefHeight="1090.0" prefWidth="861.0">
+                                            <HBox fx:id="projectNavBar" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="928.0">
                                                 <children>
                                             <ToggleButton id="button-project" fx:id="btnProject" prefHeight="35.0" prefWidth="100.0">
                                              <graphic>
                                                 <Label id="button-project" text="%project" />
                                              </graphic>
                                              <HBox.margin>
-                                                <Insets top="20.0" />
+                                                <Insets top="5.0" />
                                              </HBox.margin>
                                             </ToggleButton>
                                             <ToggleButton id="button-personal" fx:id="btnPersonal" prefHeight="35.0" prefWidth="100.0">
@@ -51,7 +53,7 @@
                                                 <Label text="%personal" />
                                              </graphic>
                                              <HBox.margin>
-                                                <Insets top="20.0" />
+                                                <Insets top="5.0" />
                                              </HBox.margin>
                                             </ToggleButton>
                                           <ToggleButton id="button-team" fx:id="btnTeam" layoutX="646.0" layoutY="24.0" prefHeight="35.0" prefWidth="100.0">
@@ -59,7 +61,7 @@
                                                 <Label text="%team" />
                                              </graphic>
                                              <HBox.margin>
-                                                <Insets top="20.0" />
+                                                <Insets top="5.0" />
                                              </HBox.margin>
                                           </ToggleButton>
                                             <ToggleButton id="button-all" fx:id="btnAll" prefHeight="35.0" prefWidth="100.0">
@@ -67,16 +69,28 @@
                                                 <Label text="%all" />
                                              </graphic>
                                              <HBox.margin>
-                                                <Insets right="25.0" top="20.0" />
+                                                <Insets right="25.0" top="5.0" />
                                              </HBox.margin>
                                             </ToggleButton>
                                                 </children>
                                             </HBox>
+                                    <Button id="button-tooltip" mnemonicParsing="false" stylesheets="@../styling/dashboard-view-styling.css">
+                                       <graphic>
+                                          <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icon/info_52.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <HBox.margin>
+                                          <Insets right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Button>
                                  </children>
                               </HBox>
-                              <ListView fx:id="taskListView" prefHeight="1400.0" prefWidth="946.0">
+                              <ListView fx:id="taskListView" prefHeight="1440.0" prefWidth="1000.0">
                                  <VBox.margin>
-                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
                               </ListView>
                            </children>

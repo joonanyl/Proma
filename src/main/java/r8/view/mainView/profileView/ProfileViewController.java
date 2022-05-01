@@ -88,6 +88,7 @@ public class ProfileViewController {
             addPasswordComparisonListener();
             hidePasswordChange();
             checkBoxIsAdmin.setSelected(adminAccount.getIsAdmin());
+            checkBoxEnableTooltips.setSelected(adminAccount.getTooltipsEnabled());
             labelUserFirstNameDisplay.setText(controllerAccount.getAccount().getFirstName());
             labelUserLastNameDisplay.setText(controllerAccount.getAccount().getLastName());
             labelUserEmailDisplay.setText(controllerAccount.getAccount().getEmail());
@@ -113,6 +114,12 @@ public class ProfileViewController {
     private void setAdminChecked() {
         if (controllerAccount.getAccount() != null)
             adminAccount.setIsAdmin(adminAccount.getIsAdmin());
+    }
+
+    @FXML
+    private void setTooltipChecked() {
+        if (controllerAccount.getAccount() != null)
+            adminAccount.setTooltipsEnabled(adminAccount.getTooltipsEnabled());
     }
 
     @FXML

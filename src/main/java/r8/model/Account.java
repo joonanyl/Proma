@@ -55,6 +55,9 @@ public class Account {
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Event> events = new HashSet<>();
 
+	@Transient
+	private boolean tooltipsEnabled = true;
+
 	public Account(String fName, String lName, String email, String password) {
 		this.firstName = fName;
 		this.lastName = lName;
@@ -145,6 +148,10 @@ public class Account {
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
 	}
+
+	public Boolean getTooltipsEnabled() { return this.tooltipsEnabled; }
+
+	public void setTooltipsEnabled(Boolean tooltipsEnabled) {this.tooltipsEnabled = tooltipsEnabled; }
 
 	public String toString() {
 		return firstName + " " + lastName;

@@ -14,6 +14,7 @@ import r8.model.activeTracker.ActiveTracker;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
+import r8.util.UIElementVisibility;
 import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
 
@@ -36,6 +37,10 @@ public class DashboardViewController {
     @FXML
     private Button btnToggleTracking;
     @FXML
+    private Button activeTrackingTooltip;
+    @FXML
+    private Button timeManagementTooltip;
+    @FXML
     private ComboBox<Task> comboBoxActiveTrackingTasks = new ComboBox<>();
     @FXML
     private TableColumn<Event, String> tableColDate;
@@ -49,6 +54,7 @@ public class DashboardViewController {
     private TableView<Event> tableViewEvents;
 
     ResourceBundle rb = ResourceHandler.getInstance().getBundle();
+    UIElementVisibility visibility = new UIElementVisibility();
     IControllerMain controller = new Controller();
     ActiveTracker activeTracker = ActiveTracker.getInstance();
     Account account = AppState.getInstance().getAccount();
@@ -59,6 +65,8 @@ public class DashboardViewController {
     @FXML
     private void initialize() {
         labelUserName.setText(account.getFirstName() + " " +account.getLastName());
+        Button[] tooltips = {activeTrackingTooltip, timeManagementTooltip};
+        visibility.setTooltipVisibility(tooltips);
         getEvents();
         getTasks();
         initEventsTable();

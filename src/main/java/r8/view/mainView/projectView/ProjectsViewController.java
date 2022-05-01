@@ -3,6 +3,7 @@ package r8.view.mainView.projectView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
@@ -13,6 +14,7 @@ import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.appState.AppState;
+import r8.util.UIElementVisibility;
 import r8.view.IViewController;
 
 import javax.transaction.Transactional;
@@ -23,26 +25,38 @@ import java.util.Set;
 public class ProjectsViewController {
 
     @FXML
+    private Button projectsViewTooltip;
+    @FXML
     private ProgressBar progressBar;
     @FXML
     private Label labelCreatedBy;
-
     @FXML
     private Label labelProjectName;
-
     @FXML
     private Label labelPersonnelAmount;
-
     @FXML
     private HBox projectNavBar;
 
     @FXML
     private ListView<CustomProjectComponentController> projectsListView;
+
+    private final UIElementVisibility visibility = new UIElementVisibility();
     private final ProjectsViewController projectsViewController = this;
     private final IControllerAccount controllerAccount = new Controller();
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
     private Set<Project> allProjects;
+
+    @FXML
+    public void initialize(){
+        List<Project> projectsList = controller.loadProjects(AppState.getInstance().getAccount());
+        allProjects = new HashSet<>();
+        visibility.setTooltipVisibility(projectsViewTooltip);
+
+        retrieveProjects();
+        updateView();
+        listViewChangeListener();
+    }
 
     @FXML
     void navigate(ActionEvent event) {
@@ -57,17 +71,6 @@ public class ProjectsViewController {
     @FXML
     void navigateNewProject(ActionEvent event) {
         viewController.handleSubviewNavigation(event);
-    }
-
-    @FXML
-    public void initialize(){
-        List<Project> projectsList = controller.loadProjects(AppState.getInstance().getAccount());
-        allProjects = new HashSet<>();
-        System.out.println(projectsList);
-
-        retrieveProjects();
-        updateView();
-        listViewChangeListener();
     }
 
     private void listViewChangeListener(){

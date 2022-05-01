@@ -14,6 +14,7 @@ import r8.model.Account;
 import r8.model.Project;
 import r8.model.appState.AppState;
 import r8.model.task.Task;
+import r8.util.UIElementVisibility;
 import r8.view.IViewController;
 
 
@@ -30,6 +31,8 @@ public class TasksViewController {
     private Button btnGotToTaskView;
     @FXML
     private Button buttonAllTasks;
+    @FXML
+    private Button tasksViewTooltip;
     @FXML
     private ListView<Task> listViewMyTasks;
     @FXML
@@ -61,29 +64,6 @@ public class TasksViewController {
     private Label labelTaskState;
     @FXML
     private ListView<CustomTaskComponentController> taskListView;
-
-    private final TasksViewController tasksViewController = this;
-    private final IControllerAccount controllerAccount = new Controller();
-    private final IControllerMain controller = new Controller();
-    private final IViewController viewController = controller.getActiveViewController();
-
-    @FXML
-    private void navigate(ActionEvent event) {
-        try {
-            CustomTaskComponentController selectedObject = taskListView.getSelectionModel().getSelectedItem();
-            Task selectedTask = selectedObject.getTask();
-            AppState.getInstance().setSelectedTask(selectedTask);
-            viewController.handleSubviewNavigation(event);
-        } catch (NullPointerException e) {
-            System.out.println("No task selected or the selected task is null.");
-        }
-    }
-
-    @FXML
-    void navigateNewTask(ActionEvent event) {
-        viewController.handleSubviewNavigation(event);
-    }
-
     @FXML
     private Project selectedProject;
     @FXML
@@ -95,8 +75,18 @@ public class TasksViewController {
     @FXML
     private Set<Task> teamTasks;
 
+    private final UIElementVisibility visibility = new UIElementVisibility();
+    private final TasksViewController tasksViewController = this;
+    private final IControllerAccount controllerAccount = new Controller();
+    private final IControllerMain controller = new Controller();
+    private final IViewController viewController = controller.getActiveViewController();
+
+
+
+
     @FXML
     public void initialize(){
+        visibility.setTooltipVisibility(tasksViewTooltip);
         personalTasks = new HashSet<>();
         teamTasks = new HashSet<>();
         projectTasks = new HashSet<>();
@@ -114,6 +104,23 @@ public class TasksViewController {
         }
         addChangeListener();
         listViewChangeListener();
+    }
+
+    @FXML
+    private void navigate(ActionEvent event) {
+        try {
+            CustomTaskComponentController selectedObject = taskListView.getSelectionModel().getSelectedItem();
+            Task selectedTask = selectedObject.getTask();
+            AppState.getInstance().setSelectedTask(selectedTask);
+            viewController.handleSubviewNavigation(event);
+        } catch (NullPointerException e) {
+            System.out.println("No task selected or the selected task is null.");
+        }
+    }
+
+    @FXML
+    void navigateNewTask(ActionEvent event) {
+        viewController.handleSubviewNavigation(event);
     }
 
     private void addChangeListener(){

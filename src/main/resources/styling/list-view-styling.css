@@ -41,6 +41,14 @@
     -fx-background-radius: 5 0 0 5;
 }
 
+#button-tooltip
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
 #container-element
 {
     -fx-background-color: #F9F9F9;
