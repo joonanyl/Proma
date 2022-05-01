@@ -10,91 +10,80 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CommentTest {
-    /*
-    // kohghjl
-    private static Task task, task2;
-    private static Comment comment, reply, reply2;
-    private static Account account, account2;
-    private static String content, replyContent, replyContent2;
+
+    static Task t;
+    static Account a, a2;
+    static String c, c2;
+    static Comment parent, reply, reply2, reply3;
 
     @BeforeAll
     static void setUpBeforeTesting() {
-        task = new Task();
-        task2 = new Task();
-        task.setTaskId(11);
-        task2.setTaskId(12);
-        content = "comment content :) ";
-        replyContent = "this is a reply to a comment!";
-        replyContent2 = "this is a second reply to a comment!";
-
-        reply = new Comment(account, replyContent);
-        reply2 = new Comment(account2, replyContent2);
-
-        account = new Account("fname", "lname", "mail", "pwd");
-        account2 = new Account("fname2", "lname2", "mail2", "pwd2");
-        comment = new Comment(account, content);
-        comment.setCommentId(1);
+        t = new Task();
+        a = new Account();
+        a2 = new Account();
+        c = "content";
+        c2 = "content2";
+        parent = new Comment(t, a, c);
     }
 
     @Test
     @Order(1)
-    void setAndGetAccount() {
-        comment.setAccount(account);
-        assertEquals(account, comment.getAccount(), "Kirjoittajan (account) asettaminen kommentille epäonnistui");
-        comment.setAccount(account2);
-        assertEquals(account2, comment.getAccount(), "Kirjoittajan (account) vaihtaminen epäonnistui");
+    void mainContructor() {
+        assertEquals(t, parent.getTask(), "Task ei täsmää");
+        assertEquals(a, parent.getAccount(), "Account ei täsmää");
+        assertEquals(c, parent.getContent(), "Teksti ei täsmää");
     }
 
-    @Disabled
     @Test
     @Order(2)
-    void setAndGetTaskID() {
-        comment.setTaskID(12);
-        assertEquals(task2.getTaskId(), comment.getTaskID(), "TehtäväID ei täsmää");
-
-        comment.setTaskID(11);
-        assertEquals(task.getTaskId(), comment.getTaskID(), "TehtäväID ei täsmää (2)");
+    void replyConstructor(){
+        reply = new Comment(parent, a2, c2);
+        assertEquals(a2, reply.getAccount(), "Account ei täsmää");
+        assertEquals(c2, reply.getContent(), "Teksti ei täsmää");
+        assertEquals(parent, reply.getParentComment(), "Alkuperäinen kommentti ei täsmää");
     }
 
     @Test
     @Order(3)
-    void getAndSetContent() {
-        assertEquals(content, comment.getContent(), "Kommenttiteksti ei täsmää");
+    void editText(){
+        String newText = parent.getContent() + " vol2";
+        parent.editText(newText);
 
-        String newContent = content + ".. pieni lisäys perään";
-        comment.setContent(newContent);
-
-        assertEquals(newContent, comment.getContent(), "Kommenttitekstin muokkaaminen epäonnistui");
+        assertEquals(newText, parent.getContent(), "Uusi teksti ei päivittynyt");
+        assertNotEquals(c, parent.getContent(), "Uusi teksti ei päivittynyt (2)");
     }
 
     @Test
     @Order(4)
-    void addReply() {
-        comment.addReply(reply);
-        comment.addReply(reply2);
-        reply.setParentComment(comment);
-        reply2.setParentComment(comment);
-        assertEquals(comment.getCommentId(), reply.getParentComment().getCommentId(), "Parent-kommentin asettaminen vastaukselle epäonnistui");
-        assertEquals(comment.getCommentId(), reply2.getParentComment().getCommentId(), "Parent-kommentin asettaminen vastaukselle epäonnistui");
-
-        assertTrue(comment.getChildComments().contains(reply), "Vastuasta ei löydy kommentin vastauslistalta");
-        assertTrue(comment.getChildComments().contains(reply2), "Vastuasta ei löydy kommentin vastauslistalta (2)");
+    void addReply(){
+        parent.addReply(reply);
+        assertTrue(parent.getChildComments().contains(reply), "Vastausta ei löytynyt");
+        assertEquals(parent, reply.getParentComment(), "Alkuperäinen kommentti ei täsmää");
     }
 
     @Test
     @Order(5)
-    void setChildComments() {
-        Set<Comment> replySet = new HashSet<>();
-
-        Comment reply3 = new Comment(account, "yet another reply");
-        Comment reply4 = new Comment(account, "yet another reply 2");
-
-        replySet.add(reply3);
-        replySet.add(reply4);
-
-        comment.setChildComments(replySet);
-        assertTrue(comment.getChildComments().containsAll(replySet), "Monen vastauksen lisääminen kommentille kerrallaan epäonnistui");
+    void testingChildcomments(){
+        reply2 = new Comment(parent, a, "this is a second reply");
+        reply3 = new Comment(parent, a2, "this is a third reply");
+        Set<Comment> replies = new HashSet<>();
+        replies.add(reply2);
+        replies.add(reply3);
+        parent.setChildComments(replies);
+        Set<Comment> children = parent.getChildComments();
+        assertTrue(children.contains(reply2), "toista vastausta ei löytynyt kommentin vastauksista");
+        assertTrue(children.contains(reply3), "kolmatta vastausta ei löytynyt kommentin vastauksista");
     }
-    */
+
+    @Test
+    @Order(6)
+    void changeParent(){
+        Comment newP = new Comment(t, a, "new parent commment");
+        reply.setParentComment(newP);
+        newP.addReply(reply);
+
+        assertFalse(parent.getChildComments().contains(reply), "vastaus ei poistunut alkuperäisestä kommentista, vaikka parent vaihtui");
+        assertEquals(newP, reply.getParentComment(), "Parent ei vaihtunut");
+    }
 
 }

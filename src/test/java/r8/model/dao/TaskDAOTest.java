@@ -1,67 +1,95 @@
 package r8.model.dao;
 
+import org.apache.poi.ss.formula.functions.T;
 import org.junit.jupiter.api.*;
+import r8.model.Account;
 import r8.model.Project;
+import r8.model.Team;
 import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TaskDAOTest {
-    /*
-
-    private static Task task;
-    private static TaskDAO taskDAO;
-    private static TaskType taskType;
-    private static Project project;
-    private static ProjectDAO projectDAO;
-    private static TaskTypeDAO taskTypeDAO;
-
+/*
+    static TaskDAO taskDAO;
+    static Task task;
+    static TaskType tt;
+    static TaskTypeDAO ttDAO;
+    static Project project;
+    static ProjectDAO projectDAO;
+    static Account account;
+    static AccountDAO accountDAO;
+    static Team team;
+    static TeamDAO teamDAO;
 
     @BeforeAll
     static void setUpBeforeTesting() {
-        project = new Project("project", "desc");
-        taskType = new TaskType("tasktype x");
         taskDAO = new TaskDAO();
+        ttDAO = new TaskTypeDAO();
         projectDAO = new ProjectDAO();
-        taskTypeDAO = new TaskTypeDAO();
-        taskTypeDAO.persist(taskType);
-        projectDAO.persist(project);
-        task = new Task("task", TaskState.NOT_STARTED, taskType, 3, "desc");
-        task.setProject(project);
-        System.out.println("project id: " + project.getProjectId());
+        accountDAO = new AccountDAO();
+        teamDAO = new TeamDAO();
+
+        tt = new TaskType("test bug");
+        project = new Project("project", "project desc");
+        account = new Account("fname", "lname", "email@proma.com", "password");
+        team = new Team("team1", project);
+
+        task = new Task("task1", TaskState.NOT_STARTED, tt, 30, "task desc");
+        task.addTeam(team);
+        team.setProject(project);
+        project.addTask(task);
+        task.addAccount(account);
+
+        Set<Task> tasks = new HashSet<>();
+        tasks.add(task);
+        project.setTasks(tasks);
+        account.setTask(task);
+
+        ttDAO.persist(tt);
+        accountDAO.persist(account);
+//        projectDAO.persist(project);
+//        teamDAO.persist(team);
     }
 
     @Test
     @Order(1)
-    void persist() {
+    void basics(){
         taskDAO.persist(task);
-        assertEquals(task.getName(), taskDAO.get(task.getTaskId()).getName(), "Tietokannasta haettu taskname ei täsmää");
+
+        assertEquals(task.getTaskId(), taskDAO.get(task.getTaskId()).getTaskId(), "EI TOIMI");
+
+        List<Task> tasksByProject = taskDAO.getByProject(project);
+        boolean foundByProject = false;
+
+        for(Task t : tasksByProject){
+            System.out.println("HERE WE ARE");
+            System.out.println("task: "+t.getTaskId());
+            if(t.getTaskId() == task.getTaskId())
+                foundByProject = true;
+        }
+
+        assertTrue(foundByProject, "Ei löydy projektin avulla");
+
+
+        List<Task> tasksByAccount = taskDAO.getByAccount(account);
+        boolean foundByAccount = false;
+
+        for(Task t : tasksByAccount){
+            System.out.println("HERE WE ARE");
+            System.out.println("task: "+t.getTaskId());
+            if(t.getTaskId() == task.getTaskId())
+                foundByAccount = true;
+        }
+        assertTrue(foundByAccount, "Ei löydy käyttäjätilin avulla");
+
     }
-
-    @Test
-    @Order(2)
-    void getTaskBytId(){
-        assertEquals(task.getTaskId(), taskDAO.get(task.getTaskId()).getTaskId(), "Tehtävän hakeminen tietokannasta id:n avulla epäonnistui");
-    }
-
-    // getAll pitää myös testata mut eka pitää tyhjentää db
-
-    @Test
-    @Order(3)
-    void getByTeam(){
-        // täää ei tuu toimii
-
-    }
-
-    @AfterAll
-    static void clearDatabase(){
-        projectDAO.remove(project);
-
-        System.out.println("db cleared");
-    }
-
-     */
+*/
 }

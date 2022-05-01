@@ -54,7 +54,7 @@ class SprintTest {
     void getProject() {
         System.out.println("sprintin palauttama projekti : " + sprint.getProject().getName());
         assertEquals(project, sprint.getProject(), "Projekti ei täsmää");
-        assertNotEquals(project2, sprint.getProject(), "Sprint palautti väärän projektin");
+        assertNotEquals(project2.getName(), sprint.getProject().getName(), "Sprint palautti väärän projektin");
     }
 
     @Test
@@ -62,7 +62,7 @@ class SprintTest {
     void setProject() {
         sprint.setProject(project2);
         assertEquals(project2, sprint.getProject(), "Projektin hakeminen epäonnistui - palautettu projekti ei täsmää sprintille asetetun projektin kanssa");
-        assertNotEquals(project, sprint.getProject(), "Sprint palautti väärän projektin");
+        assertNotEquals(project.getName(), sprint.getProject().getName(), "Sprint palautti väärän projektin");
 
     }
 }

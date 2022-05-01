@@ -1,10 +1,7 @@
 package r8.model.task;
 
 import org.junit.jupiter.api.*;
-import r8.model.Account;
-import r8.model.Project;
-import r8.model.Sprint;
-import r8.model.Team;
+import r8.model.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -14,13 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TaskTest {
-/*
+
     private static Task task;
     private static TaskType taskType;
     private static Project project;
     private static Team team1, team2, team3;
     private static Account account, account2, account3;
     private static Sprint sprint;
+    private static Event event, event2;
 
     @BeforeAll
     static void setUpBeforeTesting() {
@@ -39,7 +37,12 @@ class TaskTest {
     @Test
     @Order(1)
     void assignToTeam() {
-        task.assignToTeam(team1);
+        Set<Task> tasks = new HashSet<>();
+        Set<Team> teams = new HashSet<>();
+        tasks.add(task);
+        team1.setTasks(tasks);
+        teams.add(team1);
+        task.setTeams(teams);
         assertTrue(team1.getTasks().contains(task), "Taskin lisääminen tiimille epäonnistui (ei löydy tiimin task-listasta)");
         assertTrue(task.getTeams().contains(team1), "Taskin lisääminen tiimille epäonnistui (ei löytynyt omasta tiimi-listasta)");
     }
@@ -47,8 +50,8 @@ class TaskTest {
 
     @Test
     @Order(2)
-    void removeFromTeam() {
-        task.removeFromTeam(team1);
+    void removeTeam() {
+        task.removeTeam(team1);
         assertFalse(team1.getTasks().contains(task), "Taskin poistaminen tiimiltä epäonnistui (löytyy tiimin task-listasta)");
         assertFalse(task.getTeams().contains(team1), "Taskin poistaminen tiimilte epäonnistui (löytyy omasta tiimi-listasta)");
     }
@@ -58,8 +61,7 @@ class TaskTest {
     void assignAccount() {
         Set<Account> accountsToSet = new HashSet<>();
         accountsToSet.add(account);
-        task.setAccounts(accountsToSet); // tadaa
-        // tarvitaanko    assertTrue(account.getTasks().contains(task), "Taskin lisääminen käyttäjätilille epäonnistui");
+        task.setAccounts(accountsToSet);
         assertTrue(task.getAccounts().contains(account), "Käyttäjätilin lisääminen taskin listaan epäonnistui");
     }
 
@@ -88,10 +90,8 @@ class TaskTest {
     @Test
     @Order(8)
     void setTaskState() {
-        System.out.println("(setTaskStateTest)taskstate before: " + task.getTaskState());
         task.setTaskState(TaskState.DONE);
-        System.out.println("taskstate after: " + task.getTaskState());
-
+        task.setTaskStateString(task.getTaskState().toString());
         assertEquals(TaskState.DONE, task.getTaskState(), "Taskstaten muuttaminen epäonnistui");
         assertNotEquals(TaskState.NOT_STARTED, task.getTaskState(), "Taskstaten muuttaminen epäonnistui(2)");
     }
@@ -106,6 +106,7 @@ class TaskTest {
     @Order(10)
     void setTaskStateString() {
         task.setTaskStateString(TaskState.READY.toString());
+        task.setTaskState(TaskState.READY);
         assertEquals(TaskState.READY, task.getTaskState(), "TaskStaten muuttaminen setTaskStateString()-metodin+avulla epäonnistui");
     }
 
@@ -195,5 +196,17 @@ class TaskTest {
         task.setTeams(teams);
         assertEquals(teams, task.getTeams(), "Tiimien (monikko) lisääminen taskille epäonnistui");
     }
-    */
+
+    @Test
+    @Order(21)
+    void events(){
+        event = new Event();
+        event2 = new Event();
+        Set<Event> events = new HashSet<>();
+        events.add(event);
+        events.add(event2);
+        task.setEvents(events);
+        assertEquals(events, task.getEvents(), "Evenetit eivät täsmää");
+    }
+
 }

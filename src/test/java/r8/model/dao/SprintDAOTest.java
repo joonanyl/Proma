@@ -1,8 +1,12 @@
 package r8.model.dao;
 
+import org.apache.poi.ss.formula.functions.T;
 import org.junit.jupiter.api.*;
 import r8.model.Project;
 import r8.model.Sprint;
+import r8.model.task.Task;
+import r8.model.task.TaskState;
+import r8.model.task.TaskType;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,6 +19,8 @@ class SprintDAOTest {
     private static Sprint sprint;
     private static SprintDAO sprintDAO;
     private static ProjectDAO projectDAO;
+    private static Task task;
+    private static TaskDAO taskDAO;
 
     @BeforeAll
     static void setUpBeforeTesting() {
@@ -39,27 +45,23 @@ class SprintDAOTest {
         sprint.setName("new name");
         sprintDAO.update(sprint);
         Sprint sprintFromDB = sprintDAO.get(sprint.getSprintId());
-
         assertEquals(sprint.getName(), sprintFromDB.getName(), "Tietokannasta haettu sprint ei täsmää");
         assertNotEquals(oldName, sprintFromDB.getName(), "Sprintin nimen päivittääminen tietokannassa epäonnistui");
     }
 
     @Test
     @Order(3)
-    void removeAndGetAll() {
-        Sprint sprint2 = new Sprint("sprint2", LocalDate.now(), LocalDate.now().plusDays(14), project);
-
-        sprintDAO.persist(sprint2);
-
-        List<Sprint> dbList = sprintDAO.getAll();
-
-//        assertTrue(dbList.contains(sprint2), "Sprint2 ei löydy tietokannan listasta");
-
-        sprintDAO.remove(sprint2);
-        dbList = sprintDAO.getAll();
-
-        assertFalse(dbList.contains(sprint2), "Sprint2 ei poistunut tietokannan listasta");
-
+    void task(){
+        TaskType tt = new TaskType("tasktype");
+        TaskTypeDAO ttDAO = new TaskTypeDAO();
+        ttDAO.persist(tt);
+        task = new Task("task", TaskState.NOT_STARTED, tt, 10, "desc");
+        task.setName("tehtävä");
+        taskDAO = new TaskDAO();
+        taskDAO.persist(task);
+        sprintDAO.addTask(task, sprint);
+        assertTrue(sprint.getTasks().contains(task), "Taskin lisääminen epäonnistui");
     }
+
 
 }
