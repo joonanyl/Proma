@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -127,7 +128,7 @@ public class DashboardViewController {
      * Initializes user work events table
      */
     private void initEventsTable() {
-        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
+        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFormattedDate(String.valueOf(Locale.getDefault()))));
         tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
         tableColTaskType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
         tableColProject.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProject().getName()));

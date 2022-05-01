@@ -22,6 +22,7 @@ import r8.view.navigation.NavigationHandler;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -561,7 +562,7 @@ public class TimeManagementViewController {
      * Initializes Table View displaying user work events
      */
     private void initTableView() {
-        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
+        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFormattedDate(String.valueOf(Locale.getDefault()))));
         tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
         tableColEventType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
         tableColHoursWorked.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHoursString()));

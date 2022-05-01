@@ -4,6 +4,7 @@ import r8.model.task.Task;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 
@@ -98,8 +99,11 @@ public class Event {
         return eventId;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDate() { return date; }
+
+    public String getFormattedDate(String locale) {
+        if (locale.equals("fi_FI")) return date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        else return date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
     }
 
     public String getDescription() {
