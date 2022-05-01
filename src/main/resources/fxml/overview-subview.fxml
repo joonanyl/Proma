@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="780.0" prefWidth="870.0" stylesheets="@../styling/create-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.projectView.subview.OverviewSubviewController">
    <children>
-      <VBox id="container-profile" fx:id="containerProfile" layoutX="16.0" layoutY="127.0" prefHeight="800.0" prefWidth="1660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox id="container-profile" fx:id="containerProfile" layoutX="6.0" prefHeight="800.0" prefWidth="1660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="%info" textFill="#757171">
                <font>
@@ -24,11 +24,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="350.0">
                            <children>
                               <Label text="%createdBy">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="50.0" />
+                                    <Insets left="150.0" right="50.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -36,7 +36,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="300.0" />
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" />
                         <HBox alignment="CENTER_LEFT" layoutX="669.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="labelUserFirstNameDisplay" text="%userFirstNameDisplay">
@@ -56,11 +56,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%createdAt">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="52.0" />
+                                    <Insets left="150.0" right="52.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -68,7 +68,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="300.0" />
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" />
                         <HBox alignment="CENTER_LEFT" layoutX="667.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="labelUserLastNameDisplay" text="%userLastNameDisplay">
@@ -85,11 +85,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label prefHeight="21.0" prefWidth="140.0" text="%emailLabel">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="86.0" />
+                                    <Insets left="150.0" right="86.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -97,7 +97,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="300.0" />
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="150.0" />
                         <HBox alignment="CENTER_LEFT" layoutX="679.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="labelUserEmailDisplay" text="%userEmailDisplay">
@@ -114,11 +114,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%phoneNumber">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="52.0" />
+                                    <Insets left="150.0" right="52.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -126,7 +126,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="300.0" />
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="150.0" />
                         <HBox alignment="CENTER_LEFT" layoutX="679.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="labelUserPhoneDisplay" text="%userPhoneDisplay">
@@ -170,11 +170,11 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="350.0">
                            <children>
                               <Label text="%sprints">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="70.0" />
+                                    <Insets left="150.0" right="70.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -182,7 +182,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox minHeight="10.0" minWidth="10.0" prefHeight="100.0" prefWidth="300.0" />
+                        <HBox minHeight="10.0" minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
                         <Label fx:id="labelSprintsAmount">
                            <font>
                               <Font size="15.0" />
@@ -198,11 +198,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%currentSprint">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="52.0" />
+                                    <Insets left="150.0" right="52.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -213,7 +213,7 @@
                               <Insets />
                            </HBox.margin>
                         </HBox>
-                        <HBox minHeight="10.0" minWidth="10.0" prefHeight="100.0" prefWidth="300.0" />
+                        <HBox minHeight="10.0" minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
                         <Label fx:id="labelCurrentSprint">
                            <font>
                               <Font size="15.0" />
@@ -226,11 +226,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%tasksComplete">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="90.0" />
+                                    <Insets left="150.0" right="90.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -238,7 +238,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="300.0" />
+                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
                         <Label fx:id="labelTasksComplete">
                            <font>
                               <Font size="15.0" />
@@ -251,11 +251,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%personnel">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="80.0" />
+                                    <Insets left="150.0" right="80.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -263,7 +263,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="300.0" />
+                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
                         <Label fx:id="labelPersonnelAmount">
                            <font>
                               <Font size="15.0" />
@@ -279,11 +279,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%teams">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="80.0" />
+                                    <Insets left="150.0" right="80.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -291,7 +291,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="300.0" />
+                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
                         <Label fx:id="labelTeamsAmount">
                            <font>
                               <Font size="15.0" />

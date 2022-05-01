@@ -573,16 +573,6 @@ public class TimeManagementViewController {
     }
 
     /**
-     * Used to handle subview navigation
-     * @param event button event triggering handleNavigation method
-     * @throws IOException thrown if there is a problem with botton related ActionEvent
-     */
-    @FXML
-    public void handleNavigation(ActionEvent event) throws IOException {
-        NavigationHandler nav = new NavigationHandler();
-    }
-
-    /**
      * Visibility toggle for New Event Creation UI panel
      */
     @FXML

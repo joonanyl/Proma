@@ -37,19 +37,6 @@
       <HBox alignment="CENTER_RIGHT" layoutX="544.0" prefHeight="80.0" prefWidth="300.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="80.0">
-               <children>
-                  <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="%label">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets right="35.0" top="35.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

@@ -1,13 +1,11 @@
 package r8.view.mainView.taskView;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
@@ -15,13 +13,11 @@ import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.view.IViewController;
 
-import javax.swing.*;
+
 import javax.transaction.Transactional;
-import java.io.IOException;
 import java.util.*;
 
 public class TasksViewController {

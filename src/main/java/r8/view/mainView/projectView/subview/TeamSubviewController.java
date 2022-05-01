@@ -3,6 +3,7 @@ package r8.view.mainView.projectView.subview;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import r8.controller.Controller;
@@ -25,6 +26,12 @@ public class TeamSubviewController {
     private Button btnRemoveTeam;
     @FXML
     private Button buttonCreateTeams;
+    @FXML
+    private Label labelHoursWorked;
+    @FXML
+    private Label labelPersonnelAmount;
+    @FXML
+    private Label labelTasksAmount;
     @FXML
     private ListView<Team> listViewProjectTeams;
     @FXML
@@ -55,19 +62,33 @@ public class TeamSubviewController {
 
     @FXML
     void addTeamsToDB() {
+        List<Team> teamsToAdd = new ArrayList<>();
         Thread thread = new Thread(() -> {
             List<String> teams = listViewTeamsToAdd.getItems();
             for (String string : teams){
                 Team teamToAdd = new Team(string, project);
+                teamsToAdd.add(teamToAdd);
                 project.addTeam(teamToAdd);
-                listViewProjectTeams.getItems().add(teamToAdd);
             }
 
             controller.getProjectDAO().update(project);
 
-            Platform.runLater(() -> System.out.println("Project updated with new teams"));
+            Platform.runLater(() -> {
+                listViewTeamsToAdd.getItems().clear();
+                listViewProjectTeams.getItems().addAll(teamsToAdd);
+                System.out.println("Project updated with new teams");
+            });
         });
         thread.start();
+    }
+
+    @FXML
+    void deleteTeamFromDB() {
+        Platform.runLater(() -> {
+            Team team = listViewProjectTeams.getSelectionModel().getSelectedItem();
+            listViewProjectTeams.getItems().remove(team);
+            controller.getTeamDAO().remove(team);
+        });
     }
 
     @FXML

@@ -154,6 +154,6 @@ public class Team {
 		this.tasks = tasks;
 	}
 
-	public String toString() { return this.teamId + " " + this.teamName; }
+	public String toString() { return this.teamName; }
 	
 }

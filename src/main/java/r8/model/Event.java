@@ -48,10 +48,11 @@ public class Event {
     @JoinColumn(name = "sprint_id")
     private Sprint sprint;
 
-    public Event (String desc, Account account, Task task) {
+    public Event (String desc, Account account, Task task, Project project) {
         this.description = desc;
         this.account = account;
         this.task = task;
+        this.project = project;
     }
 
     public Event(String desc, LocalDate date, float hours, Account account) {

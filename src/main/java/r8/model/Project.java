@@ -188,6 +188,6 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return this.projectId + " " + this.name;
+		return this.name;
 	}
 }

@@ -32,8 +32,6 @@ public class DashboardViewController {
     @FXML
     Label labelWelcome;
     @FXML
-    Label labelSystemTimeDisplay;
-    @FXML
     private Button btnCustomizeView;
     @FXML
     private Button btnToggleTracking;
@@ -60,12 +58,12 @@ public class DashboardViewController {
 
     @FXML
     private void initialize() {
+        labelUserName.setText(account.getFirstName() + " " +account.getLastName());
         getEvents();
         getTasks();
         initEventsTable();
         String btnText = activeTracker.isActive() ? rb.getString("stopTracking") : rb.getString("startTracking");
         btnToggleTracking.setText(btnText);
-        mockData();
     }
 
     private void getEvents() {
@@ -102,13 +100,6 @@ public class DashboardViewController {
         viewController.handleNavigation(event);
     }
 
-    private void mockData() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        labelUserName.setText(account.getFirstName() + " " + account.getLastName());
-        labelSystemTimeDisplay.setText(ResourceHandler.getInstance().getTextResource("dashboardDay") + " " + dtf.format(now));
-    }
-
     /**
      * Updates user work events table with latest data
      */
@@ -141,7 +132,8 @@ public class DashboardViewController {
     private void toggleTracking() {
         if (!activeTracker.isActive()) {
            setActiveTrackerButtonText();
-            Event event = new Event("Event created by Active Tracker", account, comboBoxActiveTrackingTasks.getSelectionModel().getSelectedItem());
+           Task task = comboBoxActiveTrackingTasks.getSelectionModel().getSelectedItem();
+            Event event = new Event("Event created by Active Tracker", account, task, task.getProject());
             activeTracker.startTracking(event);
         } else {
            setActiveTrackerButtonText();

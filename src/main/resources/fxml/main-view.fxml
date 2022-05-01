@@ -63,7 +63,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%projects" textFill="#ddd8d8" userData="project-view">
+            <Button id="button-leftnav" fx:id="btnProject" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%projects" textFill="#ddd8d8" userData="projects-view">
                <padding>
                   <Insets left="23.0" />
                </padding>

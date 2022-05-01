@@ -138,7 +138,7 @@ public class Sprint {
 
 	@Override
 	public String toString() {
-		return this.name + " " + this.startDate + " " + this.endDate;
+		return this.name + " " + this.startDate + " - " + this.endDate;
 	}
 
 }

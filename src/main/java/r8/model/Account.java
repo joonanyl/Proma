@@ -147,7 +147,7 @@ public class Account {
 	}
 
 	public String toString() {
-		return accountId + " " + firstName + " " + lastName + " " + email;
+		return firstName + " " + lastName;
 	}
 
 	public Set<Event> getEvents() {
