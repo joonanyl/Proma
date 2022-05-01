@@ -62,12 +62,13 @@ public class TaskViewController {
     private Task selectedTask = null;
 
     @FXML
-    private void navigate(ActionEvent event) throws IOException {
+    private void navigate(ActionEvent event) {
        viewController.handleNavigation(event);
     }
 
     public void initialize(){
         this.selectedTask = appStateMain.getSelectedTask();
+        System.out.println("Selected task : " +selectedTask);
         comboBoxTaskStatus.getItems().addAll(TaskState.values());
         List<Account> accounts = controller.getAllAccounts();
         List<Team> teams = controller.getAllTeams();

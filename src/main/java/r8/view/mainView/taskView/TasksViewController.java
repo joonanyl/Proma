@@ -66,24 +66,25 @@ public class TasksViewController {
     @FXML
     private ListView<CustomTaskComponentController> taskListView;
 
-    private TasksViewController tasksViewController = this;
+    private final TasksViewController tasksViewController = this;
     private final IControllerAccount controllerAccount = new Controller();
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
 
     @FXML
-    private void navigate(ActionEvent event) throws IOException {
-        CustomTaskComponentController selectedObject = taskListView.getSelectionModel().getSelectedItem();
-        Task selectedTask = selectedObject.getTask();
-        if(selectedTask == null){
-            return;
+    private void navigate(ActionEvent event) {
+        try {
+            CustomTaskComponentController selectedObject = taskListView.getSelectionModel().getSelectedItem();
+            Task selectedTask = selectedObject.getTask();
+            AppState.getInstance().setSelectedTask(selectedTask);
+            viewController.handleSubviewNavigation(event);
+        } catch (NullPointerException e) {
+            System.out.println("No task selected or the selected task is null.");
         }
-        AppState.getInstance().setSelectedTask(selectedTask);
-        viewController.handleSubviewNavigation(event);
     }
 
     @FXML
-    void navigateNewTask(ActionEvent event) throws IOException {
+    void navigateNewTask(ActionEvent event) {
         viewController.handleSubviewNavigation(event);
     }
 
@@ -126,12 +127,7 @@ public class TasksViewController {
                 retrieveTasks();
             }
         });
-        buttonGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                updateView();
-            }
-        });
+        buttonGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> updateView());
     }
 
     private void listViewChangeListener(){

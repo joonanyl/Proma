@@ -230,6 +230,14 @@ public class TimeManagementViewController {
      */
     private void updateComboBoxes() {
 
+        comboBoxEventName.getItems().clear();
+        comboBoxEventProject.getItems().clear();
+        comboBoxEventTask.getItems().clear();
+        comboBoxEventType.getItems().clear();
+
+        projectsSet.clear();
+        sprintsSet.clear();
+
         for (Project project : projectsSet) {
             tasksSet.addAll(project.getTasks());
         }
@@ -238,23 +246,19 @@ public class TimeManagementViewController {
             sprintsSet.addAll(project.getSprints());
         }
 
-        comboBoxEventName.getItems().clear();
-        comboBoxEventProject.getItems().clear();
-        comboBoxEventTask.getItems().clear();
-        comboBoxEventType.getItems().clear();
-
         Thread thread = new Thread(() -> {
 
-            // Refactor to single method
             projectsSet.addAll(controller.getProjectDAO().getByAccount(account));
-            comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getByAccount(account));
-            comboBoxEventType.getItems().addAll(controller.getAllTaskTypes());
 
             Platform.runLater(() -> {
                 // Do in a single method
                 comboBoxEventProject.getItems().addAll(projectsSet);
-                projectsList.addAll(projectsSet);
+                //comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getByAccount(account));
+                //testing
+                comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getAll());
+                comboBoxEventType.getItems().addAll(controller.getAllTaskTypes());
                 comboBoxEventName.getItems().addAll(tasksSet);
+                //projectsList.addAll(projectsSet);
                 System.out.println("Sprints not yet loaded at start" +sprintsSet.toString());
             });
         });
@@ -383,6 +387,7 @@ public class TimeManagementViewController {
         visibility.toggleOn(hBoxProjectSprint);
         visibility.toggleOff(vBoxSprintSelect);
         if (!activeFilter.equals("projects")) {
+            getProjectsByAccount();
             textFieldProjectDisplay.setText(projectsList.get(projectIndex).getName());
             displayProjectEvents();
             activeFilter = "projects";
