@@ -6,6 +6,7 @@ import r8.model.Project;
 import r8.model.appState.AppState;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
@@ -43,7 +44,7 @@ public class AccountDAO extends DAO<Account> {
                     .setParameter("email", email)
                     .getSingleResult()
                     .getPassword();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | NoResultException e) {
             System.out.println("No account found with the given email address");
             return null;
         }
