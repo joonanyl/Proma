@@ -1,7 +1,6 @@
 package r8.view.mainView.profileView;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,21 +13,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
-import r8.controller.IControllerLogin;
-import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.util.lang.LanguageHandler;
 import r8.util.lang.ResourceHandler;
-import r8.view.navigation.NavigationHandler;
 
 public class ProfileViewController {
 
-    // TODO needs further refactoring
     IAppStateMain adminAccount = AppState.getInstance();
     IControllerAccount controllerAccount = new Controller();
 
@@ -83,6 +77,7 @@ public class ProfileViewController {
     @FXML
     private Label profileInfoLabel;
 
+    private ResourceHandler textLoader = ResourceHandler.getInstance();
     private final String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
 
     // Retrieves loggedAccount data from AppState
@@ -145,25 +140,23 @@ public class ProfileViewController {
         Account account = AppState.INSTANCE.getLoggedAccount();
         if(checkPasswordInputs()){
             controllerAccount.updateAccount(account.getFirstName(), account.getLastName(),account.getEmail(), newPasswordTF.getText());
-            ResourceHandler textloader = ResourceHandler.getInstance();
-            showNotification(textloader.getTextResource("passwordChangeSuccess"), "", true);
+            showNotification(textLoader.getTextResource("passwordChangeSuccess"), "", true);
             hidePasswordChange();
         }
     }
 
     private boolean checkPasswordInputs(){
-        ResourceHandler textloader = ResourceHandler.getInstance();
         IControllerAccount controllerLogin = new Controller();
         if(!controllerLogin.authenticatePassword(oldPasswordTF.getText())){
-            showNotification(textloader.getTextResource("oldPasswordInvalid"), textloader.getTextResource("oldPasswordInvalidInfo"), false);
+            showNotification(textLoader.getTextResource("oldPasswordInvalid"), textLoader.getTextResource("oldPasswordInvalidInfo"), false);
             return false;
         }
         if(!newPasswordTF.getText().equals(confirmNewPasswordTF.getText())){
-            showNotification(textloader.getTextResource("dontMatch"), textloader.getTextResource("passwordMissmatch"), false);
+            showNotification(textLoader.getTextResource("dontMatch"), textLoader.getTextResource("passwordMismatch"), false);
             return false;
         }
         if(!newPasswordTF.getText().matches(passwordRegEx)){
-            showNotification(textloader.getTextResource("invalidPassword"), textloader.getTextResource("invalidPasswordInfo"), false);
+            showNotification(textLoader.getTextResource("invalidPassword"), textLoader.getTextResource("invalidPasswordInfo"), false);
             return false;
         }
         return true;

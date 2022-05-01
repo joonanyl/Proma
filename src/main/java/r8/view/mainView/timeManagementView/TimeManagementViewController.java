@@ -17,12 +17,13 @@ import r8.model.task.Task;
 import r8.model.task.TaskType;
 import r8.util.ExportUtil;
 import r8.util.UIElementVisibility;
+import r8.util.lang.ResourceHandler;
 import r8.view.navigation.NavigationHandler;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
@@ -83,6 +84,7 @@ public class TimeManagementViewController {
     @FXML
     private ComboBox<Project> comboBoxEventProject = new ComboBox<>();
 
+    ResourceBundle rb = ResourceHandler.getInstance().getBundle();
     private final UIElementVisibility visibility = new UIElementVisibility();
     private final IControllerMain controller = new Controller();
     private final Account account = AppState.getInstance().getAccount();
@@ -562,7 +564,7 @@ public class TimeManagementViewController {
      * Initializes Table View displaying user work events
      */
     private void initTableView() {
-        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFormattedDate(String.valueOf(Locale.getDefault()))));
+        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFormattedDate(String.valueOf(rb.getLocale()))));
         tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
         tableColEventType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
         tableColHoursWorked.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHoursString()));
