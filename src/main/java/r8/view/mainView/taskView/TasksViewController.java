@@ -81,9 +81,6 @@ public class TasksViewController {
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
 
-
-
-
     @FXML
     public void initialize(){
         visibility.setTooltipVisibility(tasksViewTooltip);
