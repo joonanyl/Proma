@@ -2,13 +2,17 @@ package r8.view.mainView.profileView;
 
 import java.io.IOException;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
+import r8.controller.IControllerLogin;
+import r8.controller.IControllerMain;
+import r8.model.Account;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.util.lang.LanguageHandler;
@@ -45,19 +49,43 @@ public class ProfileViewController {
     private Label labelUserLastNameDisplay;
 
     @FXML
-    private Label labelUserPhoneDisplay;
+    private Button changePassword;
+
+    @FXML
+    private VBox changePasswordBox;
+
+    @FXML
+    private PasswordField oldPasswordTF;
+
+    @FXML
+    private PasswordField newPasswordTF;
+
+    @FXML
+    private PasswordField confirmNewPasswordTF;
+
+    @FXML
+    private Label characterCheck;
+
+    @FXML
+    private Label uppercaseCheck;
+
+    @FXML
+    private Label numberCheck;
+
+    private final String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
 
     // Retrieves loggedAccount data from AppState
     @FXML
     private void initialize() {
         ResourceHandler loader = ResourceHandler.getInstance();
         if (controllerAccount.getAccount() != null) {
+            addPasswordComparisonListener();
+            hidePasswordChange();
             checkBoxIsAdmin.setSelected(adminAccount.getIsAdmin());
             labelUserFirstNameDisplay.setText(controllerAccount.getAccount().getFirstName());
             labelUserLastNameDisplay.setText(controllerAccount.getAccount().getLastName());
             labelUserEmailDisplay.setText(controllerAccount.getAccount().getEmail());
         }
-        labelUserPhoneDisplay.setText(loader.getTextResource("notSet"));
 
         // Setting available languages listed in app properties file.
         try {
@@ -85,5 +113,104 @@ public class ProfileViewController {
     private void setSelectedLanguage() {
         LanguageHandler.changeLanguage(
                 comboBoxUILanguage.getItems().get(comboBoxUILanguage.getSelectionModel().getSelectedIndex()));
+    }
+
+    @FXML
+    private void showPasswordChange(){
+        changePassword.setVisible(false);
+        changePasswordBox.setVisible(true);
+        changePasswordBox.setManaged(true);
+    }
+
+    @FXML
+    private void hidePasswordChange(){
+        changePassword.setVisible(true);
+        changePasswordBox.setVisible(false);
+        changePasswordBox.setManaged(false);
+    }
+
+    @FXML
+    private void changePassword(){
+        if(checkPasswordInputs()){
+            IControllerMain controllerAccount = new Controller();
+            Account account = AppState.getInstance().getLoggedAccount();
+            controllerAccount.updateAccount(account.getFirstName(), account.getLastName(), account.getEmail(), newPasswordTF.getText());
+            ResourceHandler textloader = ResourceHandler.getInstance();
+            showAlert(textloader.getTextResource("passwordChangeSuccess"), "");
+        }
+        hidePasswordChange();
+    }
+
+    private boolean checkPasswordInputs(){
+        ResourceHandler textloader = ResourceHandler.getInstance();
+        IControllerLogin controllerLogin = new Controller();
+        if(!controllerLogin.authenticateLogin(AppState.getInstance().getAccount().getEmail(), oldPasswordTF.getText())){
+            showAlert(textloader.getTextResource("oldPasswordInvalid"), textloader.getTextResource("oldPasswordInvalidInfo"));
+            return false;
+        }
+        if(!newPasswordTF.getText().equals(confirmNewPasswordTF.getText())){
+            showAlert(textloader.getTextResource("dontMatch"), textloader.getTextResource("passwordMissmatch"));
+            return false;
+        }
+        if(!newPasswordTF.getText().matches(passwordRegEx)){
+            showAlert(textloader.getTextResource("invalidPassword"), textloader.getTextResource("invalidPasswordInfo"));
+            return false;
+        }
+        return true;
+    }
+
+    private void showAlert(String title, String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+
+        alert.showAndWait();
+    }
+
+    private void addPasswordComparisonListener(){
+        newPasswordTF.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                compare();
+            }
+        });
+        confirmNewPasswordTF.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                compare();
+            }
+        });
+        compare();
+    }
+    private void compare(){
+        if(!newPasswordTF.getText().matches(passwordRegEx)){
+            newPasswordTF.setStyle("-fx-border-color: red;");
+        }else{
+            newPasswordTF.setStyle("-fx-border-color: null;");
+        }
+        if(!confirmNewPasswordTF.getText().equals(newPasswordTF.getText())){
+            confirmNewPasswordTF.setStyle("-fx-border-color: red;");
+        }else{
+            confirmNewPasswordTF.setStyle("-fx-border-color: null;");
+        }
+        //checks if password contains 8-30 characters
+        if(!newPasswordTF.getText().matches(".{8,30}")){
+            characterCheck.setTextFill(Color.web("#ff0000"));
+        }else{
+            characterCheck.setTextFill(Color.web("#21a300"));
+        }
+        //checks if password contains an uppercase letter
+        if(!newPasswordTF.getText().matches("^(?=.*[a-z])(?=.*[A-Z]).*$")){
+            uppercaseCheck.setTextFill(Color.web("#ff0000"));
+        }else{
+            uppercaseCheck.setTextFill(Color.web("#21a300"));
+        }
+        //checks if the password contains a number
+        if(!newPasswordTF.getText().matches(".*[0-9].*")){
+            numberCheck.setTextFill(Color.web("#ff0000"));
+        }else{
+            numberCheck.setTextFill(Color.web("#21a300"));
+        }
     }
 }

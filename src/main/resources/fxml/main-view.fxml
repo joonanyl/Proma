@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,15 +19,18 @@
       <!-- Left Navbar Elements -->
       <VBox prefHeight="800.0" prefWidth="250.0" style="-fx-background-color: #15191C;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="70.0" prefWidth="250.0">
-               <children>
-                  <Label id="button-leftnav" fx:id="labelPromaLogo" alignment="CENTER" graphicTextGap="0.0" layoutX="67.0" layoutY="18.0" text="%promaLogo" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
+            <Button id="button-leftnav" fx:id="promaLogo" mnemonicParsing="false" prefHeight="86.0" prefWidth="252.0" stylesheets="@../styling/main-view-styling.css" onAction="#handleNavigation" userData="dashboard-view">
+               <graphic>
+                  <ImageView fitHeight="83.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/proma-logo-white.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="25.0" top="25.0" />
+               </VBox.margin>
+            </Button>
             <Button id="button-leftnav" fx:id="btnDashboard" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleNavigation" prefHeight="80.0" prefWidth="250.0" stylesheets="@../styling/main-view-styling.css" text="%dashboard" textFill="#ddd8d8" userData="dashboard-view">
                <padding>
                   <Insets left="20.0" />
@@ -144,7 +146,7 @@
                         <MenuButton id="button-topnav" fx:id="menuBtnExport" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" stylesheets="@../styling/main-view-styling.css" text="%export" textFill="#15191c">
                            <items>
                               <MenuItem mnemonicParsing="false" text="Time Management -&gt; PDF" />
-                              <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="Time Management -&gt; Excel" userData="time-management-view"/>
+                              <MenuItem mnemonicParsing="false" onAction="#handleMenuItemNavigation" text="Time Management -&gt; Excel" userData="time-management-view" />
                            </items>
                            <font>
                               <Font name="Myanmar Text" size="16.0" />
