@@ -165,12 +165,11 @@ public class TasksViewController {
             });
         }
         updateView();
-        System.out.println("all tasks contain" + allTasks.toString());
     }
 
     public void deleteTask(Task task){
         projectTasks.remove(task);
-        //controller.deleteTask(task);
+        controller.removeTask(task);
         updateView();
     }
 

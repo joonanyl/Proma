@@ -22,9 +22,6 @@ public class MainViewController implements IViewController {
     private App app;
 
     @FXML
-    private Label labelPromaLogo = new Label();
-
-    @FXML
     private BorderPane mainViewPane;
 
     @FXML

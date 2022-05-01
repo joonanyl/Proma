@@ -30,7 +30,7 @@ public class CommentDAO extends DAO<Comment> {
     public List<Comment> getCommentsByTask(Task task){
         entityManager();
         try {
-            return em.createQuery("SELECT c FROM Comment c WHERE c.task = :task", Comment.class)
+            return em.createQuery("SELECT c FROM Comment c WHERE c.task = :task ORDER BY c.timeStamp DESC", Comment.class)
                     .setParameter("task", task).getResultList();
         } catch (NullPointerException e){
             return null;

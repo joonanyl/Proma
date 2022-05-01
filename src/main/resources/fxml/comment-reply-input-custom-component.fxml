@@ -14,13 +14,13 @@
          <buttons>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" textFill="WHITE" />
-                <Button mnemonicParsing="false" onAction="#reply" text="Reply" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#cancel" text="%cancel" textFill="WHITE" />
+                <Button mnemonicParsing="false" onAction="#reply" text="%reply" textFill="WHITE" />
               </buttons>
             </ButtonBar>
          </buttons>
       </ButtonBar>
-      <TextArea fx:id="contentField" prefHeight="200.0" prefWidth="200.0">
+      <TextArea fx:id="contentField" prefHeight="200.0">
          <GridPane.margin>
             <Insets left="25.0" top="10.0" />
          </GridPane.margin>

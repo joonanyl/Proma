@@ -120,7 +120,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label text="Create New Work Event" textFill="#757171">
+                              <Label text="%createWorkEvent" textFill="#757171">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -132,7 +132,7 @@
                         </HBox>
                         <VBox prefHeight="110.0" prefWidth="298.0">
                            <children>
-                              <Label text="Event name">
+                              <Label text="%nameEvent">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

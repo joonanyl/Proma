@@ -1,6 +1,7 @@
 package r8.controller;
 
 import javafx.collections.ObservableList;
+import r8.App;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.dao.*;
@@ -43,6 +44,11 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         return false;
     }
 
+    public boolean authenticatePassword(String password){
+        System.out.println(AppState.getInstance().getLoggedAccount().getEmail());
+        return AuthService.authenticatePassword(AppState.getInstance().getLoggedAccount().getEmail(), password);
+    }
+
     public void logout() {
         AppState.getInstance().setLoggedAccount(null);
     }
@@ -77,7 +83,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         account.setFirstName(firstName);
         account.setLastName(lastName);
         account.setEmail(email);
-        account.setPassword(AuthService.hashPassword(password));
+        account.setPassword(password);
         accountDAO.update(account);
     }
 

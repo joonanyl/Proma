@@ -4,15 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
+
 import javafx.scene.layout.Pane;
-import java.io.IOException;
+
 
 /**
  * @author Aarni Pesonen
  */
 public class NavigationHandler {
-
 
     @FXML
     public Pane handleNavigation(ActionEvent event) {

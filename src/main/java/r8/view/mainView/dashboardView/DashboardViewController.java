@@ -14,7 +14,7 @@ import r8.model.activeTracker.ActiveTracker;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
-import r8.util.TextLoader;
+import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
 
 import java.io.IOException;
@@ -49,7 +49,7 @@ public class DashboardViewController {
     @FXML
     private TableView<Event> tableViewEvents;
 
-    ResourceBundle rb = TextLoader.getInstance().getBundle();
+    ResourceBundle rb = ResourceHandler.getInstance().getBundle();
     IControllerMain controller = new Controller();
     ActiveTracker activeTracker = ActiveTracker.getInstance();
     Account account = AppState.getInstance().getAccount();
@@ -105,7 +105,7 @@ public class DashboardViewController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         labelUserName.setText(account.getFirstName() + " " + account.getLastName());
-        labelSystemTimeDisplay.setText(TextLoader.getInstance().getResource("dashboardDay") + " " + dtf.format(now));
+        labelSystemTimeDisplay.setText(ResourceHandler.getInstance().getTextResource("dashboardDay") + " " + dtf.format(now));
     }
 
     /**

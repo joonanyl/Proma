@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import r8.util.TextLoader;
-
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Calendar;

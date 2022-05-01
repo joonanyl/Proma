@@ -29,6 +29,8 @@ public interface IControllerMain {
 
     void updateTask(Task task);
 
+    void removeTask(Task task);
+
     void createTask(String name, TaskState ts, TaskType tt, float hours, String description, Set<Account> accounts, Set<Team> teams, Project project);
 
     void createProject(String name, String description, ObservableList<Account> accountList, ObservableList<String> teamList, ObservableList<Sprint> items);
