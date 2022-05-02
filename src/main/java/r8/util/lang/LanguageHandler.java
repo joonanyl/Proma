@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
  * @author Sebastian Lundin
  */
 public class LanguageHandler {
+    // No instantiation needed. Only static methods present.
     private LanguageHandler() {};
 
     /**
@@ -42,7 +43,8 @@ public class LanguageHandler {
             return;
         }
 
-        // Write new Properties object to main app resource file (replacing the old one, not appending).
+        // Write new Properties object to main app resource file (replacing the old one,
+        // not appending).
         try (FileOutputStream outputStream = new FileOutputStream(APP_RESOURCE_PATH, false)) {
             properties.replace(APP_LANGUAGE, newLocale.getLanguage());
             properties.replace(APP_COUNTRY, newLocale.getCountry());
@@ -54,7 +56,8 @@ public class LanguageHandler {
     }
 
     /**
-     * A wrapper method for getting localized text resources with ResourceHandler from a static context.
+     * A wrapper method for getting localized text resources with ResourceHandler
+     * from a static context.
      * 
      * @param key the property key
      * @return localized string property

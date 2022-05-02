@@ -15,8 +15,7 @@ public class ExportUtil {
 
     public boolean exportExcel(TableView<Event> tableView) {
 
-        try {
-            Workbook workbook = new HSSFWorkbook();
+        try (Workbook workbook = new HSSFWorkbook()) {
             Sheet spreadsheet = workbook.createSheet("test6000");
 
             Row row = spreadsheet.createRow(0);
