@@ -10,6 +10,8 @@ import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -47,6 +49,7 @@ public class App extends Application
             ResourceBundle resourceBundle = ResourceHandler.getInstance().getBundle();
             loader.setLocation(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
             loader.setResources(resourceBundle);
+            loader.setCharset(StandardCharsets.UTF_8);
 
             Parent root = loader.load();
             Scene scene = new Scene(root);
