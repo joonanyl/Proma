@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import r8.model.appState.AppState;
 import r8.util.lang.ResourceHandler;
@@ -57,6 +58,7 @@ public class App extends Application
             stage.setTitle(displayLogin ? LanguageHandler.getText("loginTitle") : LanguageHandler.getText("appTitle"));
             setStageSize();
 
+            stage.getIcons().add(new Image("/image/proma-icon.png"));
             // pass App reference to controller to enable sceneSwitching
             IViewController viewController = loader.getController();
             viewController.setApp(this);
