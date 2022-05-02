@@ -43,13 +43,13 @@ public class Account {
 	@Column(name="admin")
 	private Boolean admin;
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Project> projects = new HashSet<>();
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Team> teams = new HashSet<>();
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Task> tasks = new HashSet<>();
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
