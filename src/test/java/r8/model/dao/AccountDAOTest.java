@@ -23,10 +23,9 @@ class AccountDAOTest {
     void basics(){
         accountDAO.persist(account1);
         accountDAO.persist(account2);
-        /* ei toimi
-        assertEquals(account1.getAccountId(), accountDAO.getByEmail(account1.getEmail()).getAccountId(), "käyttäjätilin hakeminen tietokannasta sähköpostilla epäonnistui");
-        assertEquals(account2.getAccountId(), accountDAO.getByEmail(account2.getEmail()).getAccountId(), "käyttäjätilin hakeminen tietokannasta sähköpostilla epäonnistui (2)");
-         */
+//        assertEquals(account1.getAccountId(), accountDAO.getByEmail(account1.getEmail()).getAccountId(), "käyttäjätilin hakeminen tietokannasta sähköpostilla epäonnistui");
+//        assertEquals(account2.getAccountId(), accountDAO.getByEmail(account2.getEmail()).getAccountId(), "käyttäjätilin hakeminen tietokannasta sähköpostilla epäonnistui (2)");
+
         assertTrue(accountDAO.checkIfEmailExists(account1.getEmail()), "Käyttäjätiliä ei löytynyt sähköpostilla");
         assertTrue(accountDAO.checkIfEmailExists(account2.getEmail()), "Käyttäjätiliä ei löytynyt sähköpostilla(2)");
     }

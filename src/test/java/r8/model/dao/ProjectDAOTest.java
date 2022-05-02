@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProjectDAOTest {
-/* ei toimi
+    /*
     private static ProjectDAO projectDAO;
     private static Project project;
     static Account account;
