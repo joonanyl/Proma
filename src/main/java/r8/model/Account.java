@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 
+ *
  * @author sanku, Joona Nylander
  *
  */
@@ -33,7 +33,7 @@ public class Account {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "password")
@@ -43,17 +43,20 @@ public class Account {
 	@Column(name="admin")
 	private Boolean admin;
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Project> projects = new HashSet<>();
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Team> teams = new HashSet<>();
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Task> tasks = new HashSet<>();
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Event> events = new HashSet<>();
+
+	@Transient
+	private boolean tooltipsEnabled = true;
 
 	public Account(String fName, String lName, String email, String password) {
 		this.firstName = fName;
@@ -61,6 +64,14 @@ public class Account {
 		this.email = email;
 		this.admin = false;
 		this.password = AuthService.hashPassword(password);
+	}
+
+	public Account(String firstName, String lastName, String email, String password, boolean admin) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = AuthService.hashPassword(password);
+		this.admin = admin;
 	}
 
 	public void removeFromProject(Project project) {
@@ -146,8 +157,12 @@ public class Account {
 		this.admin = admin;
 	}
 
+	public Boolean getTooltipsEnabled() { return this.tooltipsEnabled; }
+
+	public void setTooltipsEnabled(Boolean tooltipsEnabled) {this.tooltipsEnabled = tooltipsEnabled; }
+
 	public String toString() {
-		return accountId + " " + firstName + " " + lastName + " " + email;
+		return firstName + " " + lastName;
 	}
 
 	public Set<Event> getEvents() {
@@ -156,5 +171,28 @@ public class Account {
 
 	public void setEvents(Set<Event> events) {
 		this.events = events;
+	}
+
+	@Override
+	public boolean equals(Object object){
+		if(object == null){
+			return false;
+		}
+		if(object.getClass() != this.getClass()){
+			return false;
+		}
+		final Account account = (Account) object;
+		if(this.accountId != account.accountId){
+			return false;
+		}
+		if(!this.email.equals(account.email)){
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public int hashCode(){
+		return (int) accountId * email.hashCode() * firstName.hashCode() * lastName.hashCode();
 	}
 }
