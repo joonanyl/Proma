@@ -4,6 +4,8 @@ import javafx.scene.layout.Pane;
 import r8.util.lang.ResourceHandler;
 
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 public class GetView {
@@ -20,6 +22,7 @@ public class GetView {
             }
             loader.setLocation(viewUrl);
             loader.setResources(resourceBundle);
+            loader.setCharset(StandardCharsets.UTF_8);
             view = loader.load();
 
         } catch (Exception e) {
@@ -27,21 +30,5 @@ public class GetView {
         }
         return view;
     }
-
-    // TODO remove if redundant
-    /* public Pane getView(String viewName, App app) {
-        try {
-            URL viewUrl = getClass().getResource("/fxml/" + viewName + ".fxml");
-            FXMLLoader loader = new FXMLLoader(viewUrl);
-
-            if (viewUrl == null) {
-                throw new java.io.FileNotFoundException(viewName + ".fxml not found");
-            }
-            view = FXMLLoader.load(viewUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return view;
-    } */
 }
 

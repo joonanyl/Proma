@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import r8.controller.Controller;
+import r8.controller.IControllerMain;
 import r8.model.CombinedObject;
 import r8.model.appState.AppState;
 import r8.model.task.Task;
@@ -49,6 +51,12 @@ public class CustomTaskComponentController extends GridPane {
             labelName.setText(task.getName());
             comboBoxState.getItems().setAll(TaskState.values());
             comboBoxState.setValue(TaskState.valueOf(task.getTaskStateString()));
+            comboBoxState.valueProperty().addListener(new ChangeListener() {
+                @Override
+                public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                    updateTask((TaskState) newValue);
+                }
+            });
             ArrayList<CombinedObject> arrayList = new ArrayList<>();
             task.getTeams().forEach(team -> {
                 CombinedObject t = new CombinedObject(team);
@@ -72,14 +80,14 @@ public class CustomTaskComponentController extends GridPane {
     public Task getTask(){
         return this.task;
     }
-    private void setListener(){
-        comboBoxState.valueProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                //todo updateTaskState
-            }
-        });
 
+
+    private void updateTask(TaskState taskState){
+        System.out.println("Updated task");
+        IControllerMain controllerMain = new Controller();
+        this.task.setTaskStateString(taskState.toString());
+        this.task.setTaskState(taskState);
+        controllerMain.updateTask(this.task);
     }
 
     @FXML

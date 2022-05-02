@@ -11,16 +11,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
 <AnchorPane prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/create-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.taskView.TaskViewController">
-    <children>
-        <HBox id="button-tracker" alignment="CENTER_LEFT" layoutY="-6.0" prefHeight="80.0" prefWidth="600.0" AnchorPane.topAnchor="-6.0">
-            <children>
+   <children>
+      <HBox id="button-tracker" alignment="CENTER_LEFT" layoutY="-6.0" prefHeight="80.0" prefWidth="600.0" AnchorPane.topAnchor="-6.0">
+         <children>
             <VBox prefHeight="80.0" prefWidth="300.0">
                <children>
                   <Label fx:id="labelTaskName" text="%taskNameCapital">
@@ -58,39 +57,29 @@
                   </Label>
                </children>
             </HBox>
-            </children>
-        </HBox>
-        <HBox alignment="CENTER_RIGHT" layoutX="602.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
-            <children>
-                <Button id="button-new-task" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="%newTask" textFill="#f8f6f6" userData="create-task-view">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="602.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
+         <children>
+            <Button id="button-new-task" fx:id="btnNewTask" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/task-view-styling.css" text="%newTask" textFill="#f8f6f6" userData="create-task-view">
+               <font>
+                  <Font size="16.0" />
+               </font>
                <HBox.margin>
                   <Insets right="50.0" top="20.0" />
                </HBox.margin>
-                </Button>
-                <VBox alignment="TOP_RIGHT" prefHeight="80.0">
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-                </VBox>
-            </children>
-        </HBox>
-        <Pane id="container-task" fx:id="taskResPane" layoutX="30.0" layoutY="137.0" prefHeight="670.0" prefWidth="640.0" stylesheets="@../styling/task-view-styling.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="110.0">
-            <children>
-            <ButtonBar layoutX="705.0" layoutY="545.0" prefHeight="40.0" prefWidth="200.0">
-              <buttons>
-                <Button mnemonicParsing="false" text="%cancel" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#saveTask" text="%save" textFill="WHITE" />
-              </buttons>
-            </ButtonBar>
-            </children>
-        </Pane>
-        <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
+            </Button>
+            <VBox alignment="TOP_RIGHT" prefHeight="80.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </HBox>
+      <Region layoutX="56.0" layoutY="85.0" minWidth="10.0" prefHeight="0.1" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="100.0" />
       <HBox layoutY="95.0" prefHeight="100.0" prefWidth="1670.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
          <children>
-            <VBox id="container-element" prefHeight="825.0" prefWidth="665.0">
+            <VBox id="container-element" prefHeight="1440.0" prefWidth="600.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="663.0">
                      <children>
@@ -129,97 +118,139 @@
                   </VBox>
                   <VBox prefHeight="320.0" prefWidth="663.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="663.0">
+                        <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                           <buttons>
+                              <Button mnemonicParsing="false" text="%cancel" textFill="WHITE" />
+                              <Button mnemonicParsing="false" onAction="#saveTask" text="%save" textFill="WHITE" />
+                           </buttons>
+                        </ButtonBar>
+                     </children></VBox>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="25.0" left="25.0" top="25.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox id="container-element" prefHeight="1440.0" prefWidth="400.0">
+               <HBox.margin>
+                  <Insets bottom="25.0" left="25.0" top="25.0" />
+               </HBox.margin>
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="11.0" prefHeight="400.0" prefWidth="388.0">
+                     <children>
+                        <Label fx:id="btnStatus11" text="%assignToDotted" textFill="#757171">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="8.0" top="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="400.0" prefWidth="388.0">
+                     <children>
+                        <SearchableComboBox fx:id="assignNewComboBox" maxHeight="30.0" prefHeight="30.0" prefWidth="220.0">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </SearchableComboBox>
+                        <Button mnemonicParsing="false" onAction="#assignNew" prefHeight="30.0" prefWidth="90.0" text="%assign" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="1000.0" prefWidth="400.0">
+                     <children>
+                        <Label text="%assignedTo" textFill="#757171">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="8.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ListView fx:id="assignedToList" prefHeight="1440.0" prefWidth="600.0">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </ListView>
+                        <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="388.0">
                            <children>
-                              <Label fx:id="btnStatus1" text="%assignToDotted" textFill="#757171">
-                                 <font>
-                                    <Font name="System Bold" size="17.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="8.0" top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <SearchableComboBox fx:id="assignNewComboBox" maxHeight="30.0" prefHeight="30.0" prefWidth="150.0">
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </SearchableComboBox>
-                              <Button mnemonicParsing="false" onAction="#assignNew" prefHeight="30.0" prefWidth="80.0" text="%assign" textFill="WHITE">
-                                 <HBox.margin>
-                                    <Insets left="80.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="%assignedTo" textFill="#757171">
-                                 <font>
-                                    <Font name="System Bold" size="17.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="8.0" top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <ListView fx:id="assignedToList" prefHeight="325.0" prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets left="10.0" right="10.0" top="5.0" />
-                                 </VBox.margin>
-                              </ListView>
-                              <Button mnemonicParsing="false" onAction="#removeAssigned" text="%remove" textFill="WHITE" />
+                              <Button mnemonicParsing="false" onAction="#removeAssigned" prefHeight="40.0" prefWidth="130.0" text="%remove" textFill="WHITE" />
                            </children>
                         </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="1440.0" prefWidth="600.0">
+               <children>
+                  <VBox id="container-element" prefHeight="1000.0" prefWidth="588.0">
+                     <children>
+                        <Label text="%comments" textFill="#757171">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="8.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="1440.0" prefWidth="1000.0" style="-fx-background-color: #F9F9F9;">
+                           <content>
+                              <VBox fx:id="commentList" spacing="10.0" />
+                           </content>
+                           <VBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </VBox.margin>
+                        </ScrollPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="25.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox id="container-element" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="btnStatus21" text="%leaveComment" textFill="#757171">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="8.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="170.0" prefWidth="558.0" spacing="25.0">
+                           <children>
+                              <VBox prefHeight="118.0" prefWidth="508.0" spacing="25.0">
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <TextArea fx:id="commentText" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: transparent transparent gray transparent; -fx-background-insets: 0;" />
+                                    <ButtonBar prefHeight="48.0" prefWidth="508.0">
+                                       <buttons>
+                                          <Button fx:id="postComment" mnemonicParsing="false" onAction="#postComment" prefHeight="40.0" prefWidth="100.0" text="Send" textFill="WHITE" />
+                                       </buttons>
+                                    </ButtonBar>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="15.0" right="15.0" top="15.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
                <HBox.margin>
-                  <Insets bottom="25.0" left="25.0" top="25.0" />
-               </HBox.margin>
-            </VBox>
-            <VBox id="container-element" prefHeight="780.0" prefWidth="594.0">
-               <children>
-                  <Label fx:id="btnStatus2" text="%comments" textFill="#757171">
-                     <font>
-                        <Font name="System Bold" size="17.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="8.0" top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ScrollPane prefHeight="649.0" prefWidth="594.0">
-                     <content>
-                        <VBox fx:id="commentList" spacing="10.0" />
-                     </content>
-                     <VBox.margin>
-                        <Insets left="15.0" right="15.0" top="15.0" />
-                     </VBox.margin>
-                  </ScrollPane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
-                     <children>
-                        <VBox prefHeight="94.0" prefWidth="594.0" spacing="25.0">
-                           <HBox.margin>
-                              <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                           </HBox.margin>
-                           <children>
-                              <TextArea fx:id="commentText" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: transparent transparent gray transparent; -fx-background-insets: 0;" />
-                              <ButtonBar prefHeight="40.0" prefWidth="200.0">
-                                <buttons>
-                                    <Button fx:id="postComment" mnemonicParsing="false" onAction="#postComment" text="Send" />
-                                </buttons>
-                              </ButtonBar>
-                           </children>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="15.0" right="15.0" top="15.0" />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-               <HBox.margin>
-                  <Insets bottom="25.0" left="25.0" top="25.0" />
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                </HBox.margin>
             </VBox>
          </children>
       </HBox>
-    </children>
+   </children>
 </AnchorPane>

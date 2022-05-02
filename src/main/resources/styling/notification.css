@@ -1,0 +1,10 @@
+notification-bar > .pane .title{
+    -fx-font-size: 1.333em;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.notification-bar > .pane .label {
+    -fx-font-size: 1em;
+    -fx-text-fill: white;
+    -fx-alignment: top-left;
+}

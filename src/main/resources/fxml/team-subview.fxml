@@ -21,26 +21,30 @@
                                 <Font name="Arial Bold" size="16.0" />
                             </font>
                             <VBox.margin>
-                                <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                                <Insets bottom="20.0" left="15.0" right="20.0" top="20.0" />
                             </VBox.margin>
                         </Text>
-                        <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="%teamName">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="30.0" />
-                            </VBox.margin>
-                        </Text>
-                        <TextField id="taskName" fx:id="textFieldTeamName" minHeight="30.0" prefHeight="30.0">
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <VBox.margin>
-                                <Insets left="30.0" right="30.0" top="5.0" />
-                            </VBox.margin>
-                        </TextField>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="410.0">
+                  <VBox prefHeight="90.0" prefWidth="396.0">
+                     <children>
+                              <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="%teamName">
+                                  <font>
+                                      <Font size="15.0" />
+                                  </font>
+                                  <VBox.margin>
+                                      <Insets left="30.0" />
+                                  </VBox.margin>
+                              </Text>
+                              <TextField id="taskName" fx:id="textFieldTeamName" minHeight="30.0" prefHeight="30.0">
+                                  <opaqueInsets>
+                                      <Insets />
+                                  </opaqueInsets>
+                                  <VBox.margin>
+                                      <Insets left="30.0" right="30.0" top="5.0" />
+                                  </VBox.margin>
+                              </TextField>
+                     </children>
+                  </VBox>
+                        <HBox alignment="CENTER" prefHeight="441.0" prefWidth="396.0">
                             <children>
                                 <Button fx:id="btnAddTeam" mnemonicParsing="false" onAction="#addTeamToList" prefWidth="130.0" text="%add" textFill="#f8f6f6">
                                     <font>
@@ -52,20 +56,24 @@
                                 <Insets />
                             </VBox.margin>
                         </HBox>
-                        <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="%toBeCreated">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="5.0" left="30.0" />
-                            </VBox.margin>
-                        </Text>
-                        <ListView fx:id="listViewTeamsToAdd" prefHeight="276.0" prefWidth="350.0">
-                            <VBox.margin>
-                                <Insets left="30.0" right="30.0" />
-                            </VBox.margin>
-                        </ListView>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <VBox prefHeight="680.0" prefWidth="396.0">
+                     <children>
+                              <Text fill="#000000b2" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="%toBeCreated">
+                                  <font>
+                                      <Font size="15.0" />
+                                  </font>
+                                  <VBox.margin>
+                                      <Insets bottom="5.0" left="30.0" top="15.0" />
+                                  </VBox.margin>
+                              </Text>
+                              <ListView fx:id="listViewTeamsToAdd" prefHeight="1000.0" prefWidth="350.0">
+                                  <VBox.margin>
+                                      <Insets left="30.0" right="30.0" />
+                                  </VBox.margin>
+                              </ListView>
+                     </children>
+                  </VBox>
+                        <HBox alignment="CENTER" prefHeight="432.0" prefWidth="396.0">
                             <children>
                                 <Button fx:id="btnRemoveTeam" mnemonicParsing="false" onAction="#removeTeamFromList" prefWidth="130.0" text="%remove" textFill="#f8f6f6">
                                     <font>
@@ -74,7 +82,7 @@
                                 </Button>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="450.0" prefWidth="396.0">
                             <children>
                                 <Button fx:id="buttonCreateTeams" mnemonicParsing="false" onAction="#addTeamsToDB" prefHeight="50.0" prefWidth="150.0" text="%createTeams" textFill="#f8f6f6">
                                     <font>
@@ -93,33 +101,34 @@
                 </VBox>
                 <VBox id="container-element" prefHeight="780.0" prefWidth="410.0">
                     <children>
-                  <VBox prefHeight="1000.0" prefWidth="400.0">
+                  <VBox prefHeight="1000.0" prefWidth="396.0">
                      <children>
                               <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%existingTeams">
                                   <font>
                                       <Font name="Arial Bold" size="16.0" />
                                   </font>
                                   <VBox.margin>
-                                      <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
+                                      <Insets bottom="20.0" left="15.0" right="20.0" top="20.0" />
                                   </VBox.margin>
                               </Text>
                               <ListView fx:id="listViewProjectTeams" prefHeight="1000.0" prefWidth="1000.0">
                                   <VBox.margin>
-                                      <Insets left="30.0" right="30.0" />
+                                      <Insets left="30.0" right="30.0" top="25.0" />
                                   </VBox.margin>
                               </ListView>
                      </children>
                   </VBox>
-                  <VBox prefHeight="800.0" prefWidth="400.0">
+                  <VBox prefHeight="450.0" prefWidth="396.0">
                      <children>
-                              <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%teamInfo">
-                                  <font>
-                                      <Font name="Arial Bold" size="16.0" />
-                                  </font>
-                                  <VBox.margin>
-                                      <Insets bottom="20.0" left="25.0" right="20.0" top="20.0" />
-                                  </VBox.margin>
-                              </Text>
+                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="396.0">
+                           <children>
+                              <Button fx:id="btnDeleteTeam" mnemonicParsing="false" onAction="#deleteTeamFromDB" prefHeight="50.0" prefWidth="150.0" text="%deleteTeam" textFill="#f8f6f6">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                     </children>

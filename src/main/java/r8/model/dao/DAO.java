@@ -62,6 +62,10 @@ public abstract class DAO<T> {
         }
     }
 
+    protected void setEntityManager(){
+        em = DAOUtil.getEntityManager();
+    }
+
     protected EntityManager getEntityManager() {
         return DAOUtil.getEntityManager();
     }

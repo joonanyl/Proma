@@ -289,6 +289,6 @@ public class Task {
 	}
 
 	public String toString(){
-		return "TASK: " + this.name + ", " + this.description;
+		return this.name + " - " + this.description;
 	}
 }

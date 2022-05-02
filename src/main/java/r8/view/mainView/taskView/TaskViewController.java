@@ -34,48 +34,41 @@ public class TaskViewController {
 
     @FXML
     private Label labelTaskName;
-
     @FXML
     private Label labelTaskType;
-
     @FXML
     private ComboBox<TaskState> comboBoxTaskStatus;
-
     @FXML
     private Label labelCreatedBy;
-
     @FXML
     private TextArea textAreaDescription;
-
     @FXML
     private ListView<CombinedObject> assignedToList;
-
     @FXML
     private SearchableComboBox<CombinedObject> assignNewComboBox;
-
     @FXML
     private TextArea commentText;
-
     @FXML
     private VBox commentList;
-
 
     // TODO selected task needs this reference, maybe refactor
     private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
+    private final Account account = appStateMain.getAccount();
 
-    private Task selectedTask = null;
     private CustomCommentComponentController replyingToComment = null;
     private CommentReplyComponentController replyingToReply = null;
+    private Task selectedTask = null;
 
     @FXML
-    private void navigate(ActionEvent event) throws IOException {
+    private void navigate(ActionEvent event) {
        viewController.handleNavigation(event);
     }
 
     public void initialize(){
         this.selectedTask = appStateMain.getSelectedTask();
+        System.out.println("Selected task : " +selectedTask);
         comboBoxTaskStatus.getItems().addAll(TaskState.values());
         List<Account> accounts = controller.getAllAccounts();
         List<Team> teams = controller.getAllTeams();
@@ -97,6 +90,9 @@ public class TaskViewController {
                 labelCreatedBy.setText(LanguageHandler.getText("createdBy") + " " + accountsSet.iterator().next().toString());
             }
             textAreaDescription.setText(selectedTask.getDescription());
+            if (!account.getAdmin())
+                textAreaDescription.setEditable(false);
+
             retrieveComments();
         }
     }
@@ -207,6 +203,7 @@ public class TaskViewController {
     void retrieveComments(){
         commentList.getChildren().clear();
         List<Comment> comments = controller.getComments(this.selectedTask);
+        System.out.println(comments);
         if(comments != null){
             comments.forEach(comment -> {
                 commentList.getChildren().add(new CustomCommentComponentController(comment, this));

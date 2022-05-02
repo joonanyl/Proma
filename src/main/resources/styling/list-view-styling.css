@@ -1,0 +1,62 @@
+.button
+{
+    -fx-background-color: linear-gradient(from 1% 1% to 25% 40%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+    -fx-text-fill: #ffffff;
+}
+
+.button:hover
+{
+    -fx-background-color: linear-gradient(from 15% 15% to 100% 100%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+}
+
+.button:pressed
+{
+    -fx-background-color: linear-gradient(from 80% 80% to 100% 100%, #40515D, #15191C);
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-border-width: 5px;
+}
+
+#button-all
+{
+    -fx-border-radius: 0 5 5 0;
+    -fx-background-radius: 0 5 5 0;
+}
+
+#button-personal
+{
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
+#button-project
+{
+    -fx-border-radius: 5 0 0 5;
+    -fx-background-radius: 5 0 0 5;
+}
+
+#button-tooltip
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+#container-element
+{
+    -fx-background-color: #F9F9F9;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-color: #CDCDCD;
+}
+
+
+
+

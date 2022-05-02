@@ -59,7 +59,7 @@
         </HBox>
         <HBox alignment="CENTER_RIGHT" layoutX="602.0" minHeight="50.0" minWidth="100.0" prefHeight="100.0" prefWidth="1068.0" AnchorPane.leftAnchor="602.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Button id="button-new-team" fx:id="btnNewProject" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" text="New Team" textFill="#f8f6f6" userData="create-project-view">
+                <Button id="button-new-team" fx:id="btnNewProject" mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="140.0" text="New Team" textFill="#f8f6f6" userData="create-team-view">
                     <font>
                         <Font size="16.0" />
                     </font>

@@ -13,6 +13,10 @@ public interface IAppStateMain {
 
     void setIsAdmin(boolean isAdmin);
 
+    boolean getTooltipsEnabled();
+
+    void setTooltipsEnabled(boolean tooltipsEnabled);
+
     Task getSelectedTask();
 
     void setSelectedTask(Task task);

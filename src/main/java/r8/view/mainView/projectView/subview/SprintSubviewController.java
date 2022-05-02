@@ -1,9 +1,11 @@
 package r8.view.mainView.projectView.subview;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import r8.controller.Controller;
@@ -11,9 +13,10 @@ import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.Sprint;
-import r8.model.Team;
+
 import r8.model.appState.AppState;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -30,48 +33,58 @@ public class SprintSubviewController {
     @FXML
     private Button btnRemoveSprintFromList;
     @FXML
+    private DatePicker datePickerEndDate;
+    @FXML
+    private DatePicker datePickerStartDate;
+    @FXML
     private ListView<Sprint> listViewProjectSprints = new ListView<>();
     @FXML
-    private ListView<String> listViewSprintsToAdd;
+    private ListView<Sprint> listViewSprintsToAdd;
     @FXML
     private TextField textFieldSprintName;
 
-    Account account = AppState.getInstance().getAccount();
+    AppState appState = AppState.INSTANCE;
     IControllerMain controller = new Controller();
+    Account account = appState.getLoggedAccount();
+    private Project project = appState.getSelectedProject();
 
     private Set<Project> accountProjects = new HashSet<>();
     private Set<Sprint> projectSprints = new HashSet<>();
 
-    private Project project;
-
     @FXML
     private void initialize() {
+        initDatePickers();
         getProjectsFromDB();
         getSprintsFromDB();
         initProjectSprintList();
     }
 
-    //TODO Add start and end date
     @FXML
-    void addSprintToDB() {
-        Thread thread = new Thread(() -> {
-            /*List<String> sprints = listViewSprintsToAdd.getItems();
-            for (String string : sprints){
-                Sprint sprintToAdd = new Sprint(string, project);
-                project.addTeam(sprintToAdd);
-            }*/
-
-            controller.getProjectDAO().update(project);
-
-            Platform.runLater(() -> System.out.println("Project updated with new sprints"));
-        });
-        thread.start();
+    void addSprintToList() {
+        if (textFieldSprintName != null && datePickerStartDate != null && datePickerEndDate != null) {
+            Platform.runLater((() -> {
+                listViewSprintsToAdd.getItems().add(new Sprint(textFieldSprintName.getText(), datePickerStartDate.getValue(), datePickerEndDate.getValue()));
+                textFieldSprintName.clear();
+                datePickerStartDate.setValue(null);
+                datePickerEndDate.setValue(null);
+            }));
+        } else {
+            System.out.println("Check input field values.");
+        }
     }
 
     @FXML
-    void addSprintToList() {
-        listViewSprintsToAdd.getItems().add(textFieldSprintName.getText());
-        textFieldSprintName.clear();
+    void addSprintToDB() {
+        Thread thread = new Thread(() -> {
+            List<Sprint> sprints = listViewSprintsToAdd.getItems();
+            for (Sprint sprint : sprints){
+                project.addSprint(sprint);
+            }
+            controller.getProjectDAO().update(project);
+
+            Platform.runLater(() -> listViewProjectSprints.getItems().addAll(sprints));
+        });
+        thread.start();
     }
 
     @FXML
@@ -83,6 +96,17 @@ public class SprintSubviewController {
     @FXML
     void removeSprintFromProject() {
 
+            Sprint toRemove = listViewProjectSprints.getSelectionModel().getSelectedItem();
+            int indexToRemove = listViewProjectSprints.getSelectionModel().getSelectedIndex();
+
+            //does not get removed
+            //controller.getSprintDAO().remove(toRemove);
+            project.removeSprint(toRemove);
+            controller.getProjectDAO().update(project);
+
+            Platform.runLater(() -> listViewProjectSprints.getItems().remove(indexToRemove));
+
+        System.out.println(project.getSprints());
     }
 
     private void getSprintsFromDB() {
@@ -93,6 +117,11 @@ public class SprintSubviewController {
         accountProjects.addAll(controller.getProjectDAO().getByAccount(account));
         ArrayList<Project> projects = new ArrayList<>(accountProjects);
         project = projects.get(0);
+    }
+
+    private void initDatePickers() {
+        datePickerStartDate = new DatePicker(LocalDate.now());
+        datePickerEndDate = new DatePicker(LocalDate.now());
     }
 
     private void initProjectSprintList() {

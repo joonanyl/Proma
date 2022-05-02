@@ -35,18 +35,21 @@ public class PersonnelSubviewController {
     @FXML
     private ListView<Account> listViewProjectPersonnel;
 
-    private final Account account = AppState.getInstance().getAccount();
-    private Set<Account> allAccounts = new HashSet<>();
-    private Set<Account> projectAccounts = new HashSet<>();
-    private Set<Project> accountProjects = new HashSet<>();
+    private final AppState appState = AppState.getInstance();
+    private final Account account = appState.getAccount();
+    private ArrayList<Account> allAccounts = new ArrayList<>();
+    private ArrayList<Account> projectAccounts = new ArrayList<>();
+    private List<Project> accountProjects = new ArrayList<>();
 
     IControllerMain controller = new Controller();
-    private Project project;
+    private Project project = appState.getSelectedProject();
 
     @FXML
     private void initialize() {
-        getAccountsFromDB();
+        project = appState.getSelectedProject();
+
         getProjectsFromDB();
+        getAccountsFromDB();
 
         initProjectAccountList();
     }
@@ -64,12 +67,15 @@ public class PersonnelSubviewController {
             for (Account account : acs)
                 project.addAccount(account);
 
+            System.out.println("adding to bd accounts: " + acs.toString());
                 controller.getProjectDAO().update(project);
 
-            Platform.runLater(() -> System.out.println("Project updated."));
+            Platform.runLater(() -> {
+                //listViewProjectPersonnel.getItems().addAll(acs);
+                System.out.println("Project updated.");
+            });
         });
         thread.start();
-
     }
 
     @FXML
@@ -82,7 +88,13 @@ public class PersonnelSubviewController {
     void removePersonFromProject() {
         Account toRemove = listViewProjectPersonnel.getSelectionModel().getSelectedItem();
         project.removeAccount(toRemove);
-        controller.getProjectDAO().remove(project);
+        controller.getProjectDAO().removeAccountAssociation(account, project);
+    }
+
+    private void getProjectsFromDB() {
+        //not used
+        accountProjects.addAll(controller.getProjectDAO().getByAccount(account));
+        projectAccounts.addAll(project.getAccounts());
     }
 
     private void getAccountsFromDB() {
@@ -91,18 +103,15 @@ public class PersonnelSubviewController {
             allAccounts.addAll(controller.getAllAccounts());
 
             Platform.runLater(() -> comboBoxPerson.getItems().addAll(allAccounts));
+
         });
         thread.start();
     }
 
-    private void getProjectsFromDB() {
-        accountProjects.addAll(controller.getProjectDAO().getByAccount(account));
-    }
-
     private void initProjectAccountList() {
         ArrayList<Project> projects = new ArrayList<>(accountProjects);
-        project = projects.get(0);
-        listViewProjectPersonnel.getItems().addAll(project.getAccounts());
+
+        listViewProjectPersonnel.getItems().addAll(projectAccounts);
     }
 }
 

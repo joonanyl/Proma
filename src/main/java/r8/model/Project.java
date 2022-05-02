@@ -3,6 +3,7 @@ package r8.model;
 import r8.model.task.Task;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class Project {
 	@Column(name = "name")
 	private String name;
 
-	//TODO changed
+	//TODO changed cascade type to persist (and back to merge), fetchtype to eager
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "project_account",
@@ -160,6 +161,17 @@ public class Project {
 		return sprints;
 	}
 
+	public Sprint getActiveSprint() {
+		if (sprints != null) {
+			for (Sprint sprint : sprints) {
+				if (sprint.getEndDate().isAfter(LocalDate.now()) && sprint.getStartDate().isBefore(LocalDate.now()))
+					System.out.println("Active sprint is " +sprint);
+				return sprint;
+			}
+		}
+		return null;
+	}
+
 	public void setSprints(Set<Sprint> sprints) {
 		this.sprints = sprints;
 	}
@@ -176,6 +188,6 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return this.projectId + " " + this.name;
+		return this.name;
 	}
 }

@@ -2,11 +2,13 @@ package r8.view.loginView.loginCredentialsView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerLogin;
+import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
 
 import java.io.IOException;
@@ -31,8 +33,12 @@ public class LoginCredentialsViewController {
     @FXML
     private void login() {
         if (!textFieldEmail.getText().isEmpty() && !passwordField.getText().isEmpty()) {
-            controller.authenticateLogin(textFieldEmail.getText(), passwordField.getText());
-            toWorkScene();
+            if(controller.authenticateLogin(textFieldEmail.getText(), passwordField.getText())) toWorkScene();
+            else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(ResourceHandler.getInstance().getTextResource("invalidCredentials"));
+                alert.show();
+            }
         }
     }
 

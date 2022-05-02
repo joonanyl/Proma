@@ -8,6 +8,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -37,19 +39,6 @@
       <HBox alignment="CENTER_RIGHT" layoutX="544.0" prefHeight="80.0" prefWidth="300.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="80.0">
-               <children>
-                  <Label fx:id="labelSystemTimeDisplay" alignment="CENTER_RIGHT" prefHeight="20.0" text="%label">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets right="35.0" top="35.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -64,7 +53,7 @@
                   <Insets bottom="25.0" left="25.0" top="25.0" />
                </HBox.margin>
                <children>
-                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="1000.0" prefWidth="500.0">
+                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="1000.0" prefWidth="500.0" stylesheets="@../styling/dashboard-view-styling.css">
                      <children>
                         <HBox minWidth="100.0" prefHeight="40.0" prefWidth="200.0">
                            <children>
@@ -128,11 +117,11 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="800.0" prefWidth="500.0">
+                  <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="800.0" prefWidth="500.0" stylesheets="@../styling/create-view-styling.css">
                      <children>
                         <HBox prefHeight="40.0" prefWidth="255.0">
                            <children>
-                              <HBox minHeight="20.0" minWidth="50.0" prefHeight="30.0" prefWidth="310.0">
+                              <HBox minHeight="20.0" minWidth="50.0" prefHeight="30.0" prefWidth="800.0">
                                  <children>
                                     <Label minWidth="50.0" text="%activeTracking" textFill="#757171">
                                        <font>
@@ -146,14 +135,18 @@
                               </HBox>
                               <HBox alignment="TOP_RIGHT" minHeight="20.0" minWidth="50.0" prefHeight="40.0" prefWidth="300.0">
                                  <children>
-                                    <Label text="%detachTracker" textFill="#757171">
-                                       <font>
-                                          <Font name="Arial" size="14.0" />
-                                       </font>
+                                    <Button id="button-tooltip" fx:id="activeTrackingTooltip" mnemonicParsing="false">
+                                       <graphic>
+                                          <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icon/info_52.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                        <HBox.margin>
-                                          <Insets right="8.0" top="5.0" />
+                                          <Insets right="5.0" top="5.0" />
                                        </HBox.margin>
-                                    </Label>
+                                    </Button>
                                  </children>
                               </HBox>
                            </children>
@@ -251,14 +244,34 @@
                <children>
                   <HBox minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="498.0">
                      <children>
-                        <Label minWidth="50.0" text="%personalTime" textFill="#757171">
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" top="8.0" />
-                           </HBox.margin>
-                        </Label>
+                        <HBox prefHeight="40.0" prefWidth="800.0">
+                           <children>
+                              <Label minWidth="50.0" text="%personalTime" textFill="#757171">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="15.0" top="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="267.0">
+                           <children>
+                              <Button id="button-tooltip" fx:id="timeManagementTooltip" mnemonicParsing="false">
+                                 <graphic>
+                                    <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/info_52.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                   <VBox prefHeight="665.0" prefWidth="498.0">

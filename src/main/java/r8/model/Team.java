@@ -28,6 +28,7 @@ public class Team {
 	@Column(name = "team_id")
 	private int teamId;
 
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id")
 	private Project project;
@@ -38,8 +39,7 @@ public class Team {
 	@ManyToMany(
 			fetch = FetchType.EAGER,
 			cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
+			CascadeType.PERSIST
 	})
 	@JoinTable(
 			name = "account_team",
@@ -58,6 +58,9 @@ public class Team {
 	public Team(String tn, Project project) {
 		this.teamName = tn;
 		this.project = project;
+	}
+	public Team(String tn){
+		this.teamName = tn;
 	}
 
 	public Team() {}
@@ -154,6 +157,6 @@ public class Team {
 		this.tasks = tasks;
 	}
 
-	public String toString() { return this.teamId + " " + this.teamName; }
+	public String toString() { return this.teamName; }
 	
 }

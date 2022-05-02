@@ -15,9 +15,9 @@
          <left>
             <VBox id="login-proma-logo" alignment="BOTTOM_CENTER" prefHeight="604.0" prefWidth="406.0" stylesheets="@../styling/login-view-styling.css" BorderPane.alignment="BOTTOM_CENTER">
                <children>
-                  <ImageView fitHeight="347.0" fitWidth="364.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="276.0" fitWidth="283.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/proma-mock.png" />
+                        <Image url="@../image/proma-logo-white.png" />
                      </image>
                      <VBox.margin>
                         <Insets bottom="115.0" />

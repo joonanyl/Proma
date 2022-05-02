@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="780.0" prefWidth="870.0" stylesheets="@../styling/create-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="780.0" prefWidth="870.0" stylesheets="@../styling/create-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.projectView.subview.OverviewSubviewController">
    <children>
-      <VBox id="container-profile" fx:id="containerProfile" layoutX="16.0" layoutY="127.0" prefHeight="800.0" prefWidth="1660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox id="container-profile" fx:id="containerProfile" layoutX="6.0" prefHeight="800.0" prefWidth="1660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="%info" textFill="#757171">
                <font>
@@ -27,11 +24,11 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="350.0">
                            <children>
                               <Label text="%createdBy">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="50.0" />
+                                    <Insets left="150.0" right="50.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -39,7 +36,8 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" />
+                        <HBox alignment="CENTER_LEFT" layoutX="669.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="labelUserFirstNameDisplay" text="%userFirstNameDisplay">
                                  <HBox.margin>
@@ -51,16 +49,6 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="669.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets left="100.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label text="%edit" />
-                           </children>
-                        </HBox>
                      </children>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -68,11 +56,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%createdAt">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="52.0" />
+                                    <Insets left="150.0" right="52.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -80,7 +68,8 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" />
+                        <HBox alignment="CENTER_LEFT" layoutX="667.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="labelUserLastNameDisplay" text="%userLastNameDisplay">
                                  <HBox.margin>
@@ -92,26 +81,15 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="667.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets left="100.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label text="%edit" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="867.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label prefHeight="21.0" prefWidth="140.0" text="%emailLabel">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="86.0" />
+                                    <Insets left="150.0" right="86.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -119,7 +97,8 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="150.0" />
+                        <HBox alignment="CENTER_LEFT" layoutX="679.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="labelUserEmailDisplay" text="%userEmailDisplay">
                                  <HBox.margin>
@@ -131,25 +110,15 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="679.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets left="100.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label text="%edit" />
-                           </children>
-                        </HBox>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%phoneNumber">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="52.0" />
+                                    <Insets left="150.0" right="52.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -157,7 +126,8 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="150.0" />
+                        <HBox alignment="CENTER_LEFT" layoutX="679.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label fx:id="labelUserPhoneDisplay" text="%userPhoneDisplay">
                                  <HBox.margin>
@@ -167,16 +137,6 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="679.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets left="100.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label text="%edit" />
                            </children>
                         </HBox>
                      </children>
@@ -194,6 +154,9 @@
                      </VBox.margin>
                   </Region>
                </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
             </VBox>
             <VBox prefHeight="515.0" prefWidth="1670.0">
                <children>
@@ -207,11 +170,11 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="350.0">
                            <children>
                               <Label text="%sprints">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="70.0" />
+                                    <Insets left="150.0" right="70.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -219,16 +182,15 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ComboBox prefWidth="220.0">
-                           <HBox.margin>
-                              <Insets left="80.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <HBox minHeight="10.0" minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
+                        <Label fx:id="labelSprintsAmount">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
-                        </ImageView>
+                        </Label>
                      </children>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -236,11 +198,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%currentSprint">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="52.0" />
+                                    <Insets left="150.0" right="52.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -251,25 +213,24 @@
                               <Insets />
                            </HBox.margin>
                         </HBox>
-                        <CheckBox mnemonicParsing="false">
-                           <HBox.margin>
-                              <Insets left="80.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <HBox minHeight="10.0" minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
+                        <Label fx:id="labelCurrentSprint">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
-                        </ImageView>
+                        </Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%tasksComplete">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="90.0" />
+                                    <Insets left="150.0" right="90.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -277,25 +238,24 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ComboBox prefWidth="220.0">
-                           <HBox.margin>
-                              <Insets left="80.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
+                        <Label fx:id="labelTasksComplete">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
-                        </ImageView>
+                        </Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%personnel">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="80.0" />
+                                    <Insets left="150.0" right="80.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -303,16 +263,15 @@
                               </Label>
                            </children>
                         </HBox>
-                        <CheckBox mnemonicParsing="false">
-                           <HBox.margin>
-                              <Insets left="80.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
+                        <Label fx:id="labelPersonnelAmount">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
-                        </ImageView>
+                        </Label>
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -320,11 +279,11 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%teams">
                                  <HBox.margin>
-                                    <Insets left="55.0" right="80.0" />
+                                    <Insets left="150.0" right="80.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font size="15.0" />
@@ -332,16 +291,15 @@
                               </Label>
                            </children>
                         </HBox>
-                        <CheckBox mnemonicParsing="false">
-                           <HBox.margin>
-                              <Insets left="80.0" />
-                           </HBox.margin>
-                        </CheckBox>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <HBox minWidth="10.0" prefHeight="100.0" prefWidth="150.0" />
+                        <Label fx:id="labelTeamsAmount">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
-                        </ImageView>
+                        </Label>
                      </children>
                   </HBox>
                </children>

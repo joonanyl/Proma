@@ -63,6 +63,10 @@ public class Sprint {
 		this.endDate = endDate;
 	}
 
+	public Sprint(String name) {
+		this.name = name;
+	}
+
 	public Sprint() {}
 
 	public void addTask(Task task) {
@@ -134,7 +138,7 @@ public class Sprint {
 
 	@Override
 	public String toString() {
-		return this.name + " " + this.startDate + " " + this.endDate;
+		return this.name + " " + this.startDate + " - " + this.endDate;
 	}
 
 }

@@ -13,7 +13,7 @@ import r8.model.Event;
 import r8.model.activeTracker.ActiveTracker;
 import r8.model.appState.AppState;
 import r8.model.task.Task;
-import r8.util.lang.LanguageHandler;
+import r8.util.UIElementVisibility;
 import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
 
@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -31,11 +32,13 @@ public class DashboardViewController {
     @FXML
     Label labelWelcome;
     @FXML
-    Label labelSystemTimeDisplay;
-    @FXML
     private Button btnCustomizeView;
     @FXML
     private Button btnToggleTracking;
+    @FXML
+    private Button activeTrackingTooltip;
+    @FXML
+    private Button timeManagementTooltip;
     @FXML
     private ComboBox<Task> comboBoxActiveTrackingTasks = new ComboBox<>();
     @FXML
@@ -50,6 +53,7 @@ public class DashboardViewController {
     private TableView<Event> tableViewEvents;
 
     ResourceBundle rb = ResourceHandler.getInstance().getBundle();
+    UIElementVisibility visibility = new UIElementVisibility();
     IControllerMain controller = new Controller();
     ActiveTracker activeTracker = ActiveTracker.getInstance();
     Account account = AppState.getInstance().getAccount();
@@ -59,12 +63,14 @@ public class DashboardViewController {
 
     @FXML
     private void initialize() {
+        labelUserName.setText(account.getFirstName() + " " +account.getLastName());
+        Button[] tooltips = {activeTrackingTooltip, timeManagementTooltip};
+        visibility.setTooltipVisibility(tooltips);
         getEvents();
         getTasks();
         initEventsTable();
         String btnText = activeTracker.isActive() ? rb.getString("stopTracking") : rb.getString("startTracking");
         btnToggleTracking.setText(btnText);
-        mockData();
     }
 
     private void getEvents() {
@@ -80,10 +86,12 @@ public class DashboardViewController {
     private void getTasks() {
         Thread thread = new Thread(() -> {
 
-            //userTasks.addAll(controller.getTaskDAO().getByAccount(account));
-            comboBoxActiveTrackingTasks.getItems().addAll(controller.getTaskDAO().getByAccount(account));
+            userTasks.addAll(controller.getTaskDAO().getByAccount(account));
             System.out.println("userTasks: " + userTasks.toString());
-            Platform.runLater(this::updateTasksComboBox);
+            Platform.runLater(() -> {
+
+                comboBoxActiveTrackingTasks.getItems().addAll(controller.getTaskDAO().getByAccount(account));
+            });
         });
         thread.start();
     }
@@ -94,16 +102,9 @@ public class DashboardViewController {
      * @throws IOException thrown if there is an error loading appropriate fxml file
      */
     @FXML
-    private void navigate(ActionEvent event) throws IOException {
+    private void navigate(ActionEvent event) {
         IViewController viewController = controller.getActiveViewController();
         viewController.handleNavigation(event);
-    }
-
-    private void mockData() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        labelUserName.setText(account.getFirstName() + " " + account.getLastName());
-        labelSystemTimeDisplay.setText(LanguageHandler.getText("dashboardDay") + " " + dtf.format(now));
     }
 
     /**
@@ -125,7 +126,7 @@ public class DashboardViewController {
      * Initializes user work events table
      */
     private void initEventsTable() {
-        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
+        tableColDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFormattedDate(String.valueOf(rb.getLocale()))));
         tableColTask.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getName()));
         tableColTaskType.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTask().getTaskType().getName()));
         tableColProject.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProject().getName()));
@@ -138,7 +139,8 @@ public class DashboardViewController {
     private void toggleTracking() {
         if (!activeTracker.isActive()) {
            setActiveTrackerButtonText();
-            Event event = new Event("Event created by Active Tracker", account, comboBoxActiveTrackingTasks.getSelectionModel().getSelectedItem());
+           Task task = comboBoxActiveTrackingTasks.getSelectionModel().getSelectedItem();
+            Event event = new Event("Event created by Active Tracker", account, task, task.getProject());
             activeTracker.startTracking(event);
         } else {
            setActiveTrackerButtonText();
