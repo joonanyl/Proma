@@ -134,12 +134,20 @@ public class TimeManagementViewController {
             event.setSprint(comboBoxEventTask.getSelectionModel().getSelectedItem().getActiveSprint());
         }
 
-        controller.getEventDAO().persist(event);
-        tableView.getItems().add(event);
-        clearNewEntryFields();
-        updateComboBoxes();
-        sortTableView();
-        updateData();
+        if (event.getDate() == null)
+            event.setDate(LocalDate.now());
+
+        try {
+            controller.getEventDAO().persist(event);
+            tableView.getItems().add(event);
+            clearNewEntryFields();
+            updateComboBoxes();
+            sortTableView();
+            updateData();
+        } catch (NullPointerException e) {
+            System.out.println("Invalid field value when creating an event entry");
+        }
+
     }
 
     /**
@@ -258,15 +266,20 @@ public class TimeManagementViewController {
             projectsSet.addAll(controller.getProjectDAO().getByAccount(account));
 
             Platform.runLater(() -> {
-                // Do in a single method
-                comboBoxEventProject.getItems().addAll(projectsSet);
-                //comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getByAccount(account));
-                //testing
-                comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getAll());
-                comboBoxEventType.getItems().addAll(controller.getAllTaskTypes());
-                comboBoxEventName.getItems().addAll(tasksSet);
-                //projectsList.addAll(projectsSet);
-                System.out.println("Sprints not yet loaded at start" +sprintsSet.toString());
+                try {
+                    // Do in a single method
+                    comboBoxEventProject.getItems().addAll(projectsSet);
+                    //comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getByAccount(account));
+                    //testing
+                    comboBoxEventTask.getItems().addAll(controller.getTaskDAO().getAll());
+                    comboBoxEventType.getItems().addAll(controller.getAllTaskTypes());
+                    comboBoxEventName.getItems().addAll(tasksSet);
+                    //projectsList.addAll(projectsSet);
+                    System.out.println("Sprints not yet loaded at start" +sprintsSet.toString());
+                } catch (NullPointerException e) {
+                    System.out.println("Iterator initialization failed.");
+                }
+
             });
         });
         thread.start();
