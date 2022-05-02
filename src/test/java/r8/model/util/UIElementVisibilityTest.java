@@ -1,5 +1,5 @@
 package r8.model.util;
-
+/*
 import de.saxsys.javafx.test.JfxRunner;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -109,3 +109,5 @@ class UIElementVisibilityTest {
         }
     }
 }
+
+ */
