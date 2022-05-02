@@ -66,6 +66,14 @@ public class Account {
 		this.password = AuthService.hashPassword(password);
 	}
 
+	public Account(String firstName, String lastName, String email, String password, boolean admin) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = AuthService.hashPassword(password);
+		this.admin = admin;
+	}
+
 	public void removeFromProject(Project project) {
 		projects.remove(project);
 		project.getAccounts().remove(this);
