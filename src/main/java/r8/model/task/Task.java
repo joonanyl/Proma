@@ -178,9 +178,12 @@ public class Task {
 	}
 
 	public Sprint getActiveSprint() {
-		for (Sprint sprint : sprints) {
-			if (sprint.getEndDate().isAfter(LocalDate.now()) && sprint.getStartDate().isBefore(LocalDate.now()))
+		if (sprints != null) {
+			for (Sprint sprint : sprints) {
+				if (sprint.getEndDate().isAfter(LocalDate.now()) && sprint.getStartDate().isBefore(LocalDate.now()))
+					System.out.println("Returning sprint " +sprint);
 				return sprint;
+			}
 		}
 		return null;
 	}
@@ -286,6 +289,6 @@ public class Task {
 	}
 
 	public String toString(){
-		return "TASK: " + this.name + ", " + this.description;
+		return this.name + " - " + this.description;
 	}
 }

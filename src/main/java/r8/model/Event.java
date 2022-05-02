@@ -4,6 +4,7 @@ import r8.model.task.Task;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 
@@ -46,6 +47,13 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "sprint_id")
     private Sprint sprint;
+
+    public Event (String desc, Account account, Task task, Project project) {
+        this.description = desc;
+        this.account = account;
+        this.task = task;
+        this.project = project;
+    }
 
     public Event(String desc, LocalDate date, float hours, Account account) {
         this.description = desc;
@@ -92,8 +100,11 @@ public class Event {
         return eventId;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDate() { return date; }
+
+    public String getFormattedDate(String locale) {
+        if (locale.equals("fi_FI")) return date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        else return date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
     }
 
     public String getDescription() {

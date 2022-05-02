@@ -17,9 +17,9 @@
 <AnchorPane prefHeight="925.0" prefWidth="1670.0" stylesheets="@../styling/create-view-styling.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="r8.view.mainView.taskView.CreateTaskViewController">
    <children>
       <Region prefHeight="1.0" prefWidth="1000.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="85.0" />
-      <HBox layoutY="99.0" prefHeight="826.0" prefWidth="1670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+      <HBox layoutY="99.0" prefHeight="1440.0" prefWidth="3440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
          <children>
-            <VBox prefHeight="800.0" prefWidth="800.0">
+            <VBox prefHeight="1000.0" prefWidth="1000.0">
                <children>
                   <VBox id="container-element" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -172,7 +172,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox id="container-element" fx:id="assignTaskVbox" minWidth="100.0" prefHeight="670.0" prefWidth="800.0" spacing="10.0">
+            <VBox id="container-element" fx:id="assignTaskVbox" minWidth="100.0" prefHeight="1000.0" prefWidth="1000.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER_LEFT" minWidth="100.0" prefHeight="50.0" prefWidth="200.0">
                      <children>

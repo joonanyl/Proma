@@ -4,23 +4,21 @@ package r8.view.mainView.projectView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
 import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
+import r8.model.Sprint;
+import r8.model.Team;
 import r8.model.appState.AppState;
 import r8.model.appState.IAppStateMain;
-import r8.model.dao.ProjectDAO;
-import r8.model.dao.TeamDAO;
 import r8.view.IViewController;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class CreateProjectViewController {
@@ -35,13 +33,13 @@ public class CreateProjectViewController {
     private TextField textTeamName;
 
     @FXML
+    private TextField textSprintName;
+
+    @FXML
     private ListView<String> listViewTeamsToBeCreated;
 
     @FXML
-    private ListView listViewSprints;
-
-    @FXML
-    private TextField textSprintName;
+    private ListView<Sprint> listViewSprintsToBeCreated;
 
     @FXML
     private SearchableComboBox<Account> accountSearchableComboBox;
@@ -50,53 +48,54 @@ public class CreateProjectViewController {
     private ListView<Account> listViewAssignedAccounts;
 
     @FXML
+    private DatePicker datePickerStartDate;
+
+    @FXML
+    private DatePicker datePickerEndDate;
+
+    @FXML
     private Button btnCreateProject1;
+
     @FXML
     private Button btnCreateProject;
-
-    private ProjectDAO projectDAO;
-
-    private TeamDAO teamDAO;
 
     final IAppStateMain appStateMain = AppState.getInstance();
     final IControllerAccount controllerAccount = new Controller();
     final IControllerMain controller = new Controller();
 
-    public void initialize(){
+    public void initialize() {
         List<Account> accountList = controller.getAllAccounts();
         accountList.remove(AppState.getInstance().getLoggedAccount());
-        accountList.forEach((account)->{
-            accountSearchableComboBox.getItems().add(account);
-        });
-        projectDAO = new ProjectDAO();
-        teamDAO = new TeamDAO();
+        accountList.forEach((account)-> accountSearchableComboBox.getItems().add(account));
 
         // kummallekin create project -napille eventhandlerit
         btnCreateProject1.setOnAction(event -> createProject());
         btnCreateProject.setOnAction(event -> createProject());
+
+        initDatePickers();
     }
 
     @FXML
-    private void createTeam(){
+    private void createTeam() {
         System.out.println("create team");
         String tn = textTeamName.getText();
         if(!tn.matches("[a-zA-Z0-9 ]{2,20}")){
             return;
         }
-        Platform.runLater(()->{
+        Platform.runLater(()-> {
             listViewTeamsToBeCreated.getItems().add(tn);
             textTeamName.clear();
         });
     }
 
     @FXML
-    private void removeTeam(){
+    private void removeTeam() {
         String selected = listViewTeamsToBeCreated.getSelectionModel().getSelectedItem();
         listViewTeamsToBeCreated.getItems().remove(selected);
     }
 
     @FXML
-    private void AssignUser(){
+    private void assignUser() {
         Account account = accountSearchableComboBox.getSelectionModel().getSelectedItem();
         if(account != null){
             if(!listViewAssignedAccounts.getItems().contains(account)){
@@ -107,7 +106,17 @@ public class CreateProjectViewController {
     }
 
     @FXML
-    private void removeAssigned(){
+    private void assignSprint() {
+        if (textSprintName != null) {
+            Sprint sprint = new Sprint(textSprintName.getText(), datePickerStartDate.getValue(), datePickerEndDate.getValue());
+            listViewSprintsToBeCreated.getItems().add(sprint);
+        }
+
+            System.out.println("Sprint = " + listViewSprintsToBeCreated.getItems().toString());
+    }
+
+    @FXML
+    private void removeAssigned() {
         Account acc = listViewAssignedAccounts.getSelectionModel().getSelectedItem();
         if(acc != null){
             listViewAssignedAccounts.getItems().remove(acc);
@@ -115,28 +124,70 @@ public class CreateProjectViewController {
     }
 
     @FXML
-    private void createProject(){
-        System.out.println("CREATEPROJECT");
+    private void createProject() {
+        System.out.println("createProject() called");
 
         String projectName = textProjectName.getText();
         String projectDesc = textDescription.getText();
         if(!projectName.matches("[a-zA-Z0-9\\s ]{3,20}")){
+            System.out.println("Check project name");
             return;
         }
         if(projectDesc.length() > 255){
+            System.out.println("Check project description");
             return;
         }
-        Project newProject = new Project();
+        /*Project newProject = new Project();
         newProject.setDescription(projectDesc);
         newProject.setName(projectName);
+        System.out.println("New Project created");*/
 
-        controller.createProject(projectName, projectDesc, listViewAssignedAccounts.getItems(), listViewTeamsToBeCreated.getItems());
+        Thread thread = new Thread(() -> {
+            Project project = new Project(projectName, projectDesc);
+            project.addAccount(appStateMain.getAccount());
+            if (listViewAssignedAccounts.getItems() != null) {
+                for (Account a : listViewAssignedAccounts.getItems()) {
+                    project.addAccount(a);
+                }
+            }
+
+            if (listViewTeamsToBeCreated.getItems() != null) {
+                for (String name : listViewTeamsToBeCreated.getItems()) {
+                    project.addTeam(new Team(name, project));
+                }
+            }
+
+            if(listViewSprintsToBeCreated.getItems() != null) {
+                for (Sprint sprint : listViewSprintsToBeCreated.getItems()) {
+                    sprint.setProject(project);
+                    project.addSprint(sprint);
+                }
+            }
+            controller.getProjectDAO().persist(project);
+
+            Platform.runLater(() -> System.out.println("Project added to db"));
+        });
+        thread.start();
+
+        clearFields();
+        System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
+    }
+
+    private void initDatePickers() {
+        datePickerStartDate = new DatePicker(LocalDate.now());
+        datePickerEndDate = new DatePicker(LocalDate.now());
+    }
+
+    private void clearFields() {
         listViewAssignedAccounts.getItems().clear();
         listViewTeamsToBeCreated.getItems().clear();
         textProjectName.clear();
         textTeamName.clear();
         textDescription.clear();
-        System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
+        textSprintName.clear();
+        datePickerStartDate.setValue(null);
+        datePickerEndDate.setValue(null);
+        listViewSprintsToBeCreated.getItems().clear();
     }
 
     @FXML

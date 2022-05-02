@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,7 +18,7 @@
     <children>
       <VBox id="container-profile" fx:id="containerProfile" layoutX="6.0" layoutY="117.0" prefHeight="800.0" prefWidth="1660.0" stylesheets="@../styling/profile-view-styling.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-                    <Label text="%profileInformation" textFill="#757171">
+                    <Label fx:id="profileInfoLabel" text="%profileInformation" textFill="#757171">
                         <font>
                             <Font name="System Bold" size="17.0" />
                         </font>
@@ -23,7 +26,7 @@
                   <Insets left="40.0" top="33.0" />
                </VBox.margin>
                     </Label>
-            <VBox prefHeight="300.0" prefWidth="100.0">
+            <VBox prefHeight="300.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
                           <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
@@ -58,7 +61,7 @@
                                     <Insets left="100.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label text="%edit" />
+                              <Button mnemonicParsing="false" text="%edit" />
                            </children>
                         </HBox>
                      </children>
@@ -99,7 +102,7 @@
                                     <Insets left="100.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label text="%edit" />
+                              <Button mnemonicParsing="false" text="%edit" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="867.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
@@ -138,16 +141,16 @@
                                     <Insets left="100.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label text="%edit" />
+                              <Button mnemonicParsing="false" text="%edit" />
                            </children>
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="70.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="%phoneNumber">
+                              <Label text="%password">
                                  <HBox.margin>
                                     <Insets left="55.0" right="52.0" />
                                  </HBox.margin>
@@ -157,26 +160,55 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="281.0" prefWidth="332.0">
                            <children>
-                              <Label fx:id="labelUserPhoneDisplay" text="%userPhoneDisplay">
+                              <VBox fx:id="changePasswordBox" prefHeight="231.0" prefWidth="230.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="139.0" spacing="25.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <Label text="%oldPassword" />
+                                          <PasswordField fx:id="oldPasswordTF" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="139.0" spacing="25.0">
+                                       <children>
+                                          <Label text="%newPassword" />
+                                          <PasswordField fx:id="newPasswordTF" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="139.0" spacing="25.0">
+                                       <children>
+                                          <Label text="%newPassword" />
+                                          <PasswordField fx:id="confirmNewPasswordTF" />
+                                       </children>
+                                    </HBox>
+                                    <VBox>
+                                       <children>
+                                          <Label fx:id="characterCheck" text="%mustContainChar" textFill="#000000b2" />
+                                          <Label fx:id="uppercaseCheck" text="%upperAndLower" textFill="#000000b2" />
+                                          <Label fx:id="numberCheck" text="%oneNumber" textFill="#000000b2" />
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <ButtonBar prefHeight="40.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <buttons>
+                                                <Button fx:id="cancelPasswordChange" mnemonicParsing="false" onAction="#hidePasswordChange" text="%cancel" />
+                                                <Button fx:id="confirmChange" mnemonicParsing="false" onAction="#changePassword" text="%changePassword" />
+                                             </buttons>
+                                          </ButtonBar>
+                                       </children>
+                                    </HBox>
+                                 </children>
                                  <HBox.margin>
-                                    <Insets left="30.0" />
+                                    <Insets bottom="25.0" top="25.0" />
                                  </HBox.margin>
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
+                              </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="679.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="679.0" layoutY="10.0" prefHeight="281.0" prefWidth="190.0">
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets left="100.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label text="%edit" />
+                              <Button fx:id="changePassword" mnemonicParsing="false" onAction="#showPasswordChange" text="%changePassword" />
                            </children>
                         </HBox>
                      </children>
@@ -219,7 +251,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ComboBox fx:id="comboBoxUILanguage" prefWidth="220.0">
+                        <ComboBox fx:id="comboBoxUILanguage" onAction="#setSelectedLanguage" prefWidth="220.0">
                            <HBox.margin>
                               <Insets left="80.0" />
                            </HBox.margin></ComboBox>
@@ -250,7 +282,7 @@
                               <Insets />
                            </HBox.margin>
                         </HBox>
-                        <CheckBox fx:id="checkBoxEnableTooltips" mnemonicParsing="false">
+                        <CheckBox fx:id="checkBoxEnableTooltips" mnemonicParsing="false" onAction="#setTooltipChecked">
                            <HBox.margin>
                               <Insets left="80.0" />
                            </HBox.margin></CheckBox>

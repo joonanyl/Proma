@@ -14,8 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//Stores breadcrumb hBox contents info
-// TODO add history
+/**
+ * Stores breadcrumb navigation info
+ * generates breadcrumbObjects for each navigation step
+ * and stores them in a list that is used to generate buttons
+ * for UI breadcrumb element
+ *
+ * @author Aarni Pesonen
+ */
+
 public class BreadcrumbBar {
 
     private ObservableList<Button> breadcrumbButtons = FXCollections.observableArrayList();
@@ -23,6 +30,10 @@ public class BreadcrumbBar {
 
     private String currentView;
 
+    /**
+     * Creates list of buttons to populate the UI breadcrumb element
+     * @return breadcrumb buttons in ObservableList format
+     */
     public ObservableList<Button> createBreadcrumbs () {
 
         for (BreadcrumbObject bcObj : breadcrumbs) {
@@ -32,12 +43,9 @@ public class BreadcrumbBar {
 
             bcButton.setOnAction(event -> {
                 Node eventSource = (Node) event.getSource();
-                try {
+
                     if(!Objects.equals(eventSource.getUserData(), currentView))
                     AppState.getInstance().getViewController().handleNavigation(event);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             });
 
             System.out.println("hbox buttons in list: " + breadcrumbButtons);
@@ -47,6 +55,11 @@ public class BreadcrumbBar {
         return breadcrumbButtons;
     }
 
+    /**
+     * Extracts relevant breadcrumb information from an event source
+     * @param event button press that trigger the event
+     * @return updated list of breadcrumbs
+     */
     public ObservableList<Button> add(ActionEvent event) {
 
         final Node eventSource = (Node) event.getSource();
@@ -60,6 +73,11 @@ public class BreadcrumbBar {
         return createBreadcrumbs();
     }
 
+    /**
+     * Adds and existing breadcrumbObject to breadcrumb list
+     * @param bcObj breadcrumbObject to be added to breadcrumb list
+     * @return updated list of breadcrumbs
+     */
     public ObservableList<Button> add(BreadcrumbObject bcObj) {
 
         currentView = bcObj.getButtonInfo()[0];
@@ -67,6 +85,11 @@ public class BreadcrumbBar {
         return createBreadcrumbs();
     }
 
+    /**
+     * Extracts relevant breadcrumb information from a MenuItem event source
+     * @param event MenuItem click that triggered the event
+     * @return updated list of breadcrumbs
+     */
     public ObservableList<Button> addMenu(ActionEvent event) {
 
         MenuItem eventSource = (MenuItem) event.getSource();
@@ -77,6 +100,9 @@ public class BreadcrumbBar {
         return createBreadcrumbs();
     }
 
+    /**
+     * Clears the breadcrumbs
+     */
     public void clear() {
 
         breadcrumbButtons.clear();

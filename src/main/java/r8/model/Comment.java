@@ -1,8 +1,10 @@
 package r8.model;
 
+import org.hibernate.annotations.CreationTimestamp;
 import r8.model.task.Task;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,9 +46,14 @@ public class Comment {
 	@OneToMany(mappedBy = "parentComment", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Set<Comment> childComments = new HashSet<>();
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "account_id")
 	private Account account;
+
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "comment_date")
+	private Date timeStamp;
 
 	// Main-kommentin konstruktori
 	public Comment(Task task, Account account, String content) {
@@ -54,6 +61,7 @@ public class Comment {
 		this.content = content;
 		this.account = account;
 	}
+
 
 	// Replyn konstruktori
 	public Comment(Comment parentComment, Account account, String content) {
@@ -87,6 +95,10 @@ public class Comment {
 		for (Comment c : childComments) {
 			System.out.println(c);
 		}
+	}
+
+	public Date getTimeStamp() {
+		return this.timeStamp;
 	}
 
 	public int getCommentId() {
@@ -138,6 +150,6 @@ public class Comment {
 	}
 
 	public String toString() {
-		return content + " // author: " + account;
+		return content + " // author: " + account + " Date: " + timeStamp;
 	}
 }
