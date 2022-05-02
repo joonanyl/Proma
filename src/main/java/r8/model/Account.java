@@ -33,7 +33,7 @@ public class Account {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "password")
@@ -43,13 +43,13 @@ public class Account {
 	@Column(name="admin")
 	private Boolean admin;
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Project> projects = new HashSet<>();
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Team> teams = new HashSet<>();
 
-	@ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "accounts", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	private Set<Task> tasks = new HashSet<>();
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -64,6 +64,14 @@ public class Account {
 		this.email = email;
 		this.admin = false;
 		this.password = AuthService.hashPassword(password);
+	}
+
+	public Account(String firstName, String lastName, String email, String password, boolean admin) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = AuthService.hashPassword(password);
+		this.admin = admin;
 	}
 
 	public void removeFromProject(Project project) {
