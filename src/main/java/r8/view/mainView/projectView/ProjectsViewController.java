@@ -49,6 +49,7 @@ public class ProjectsViewController {
 
     @FXML
     public void initialize(){
+        labelPersonnelAmount = new Label();
         List<Project> projectsList = controller.loadProjects(AppState.getInstance().getAccount());
         allProjects = new HashSet<>();
         visibility.setTooltipVisibility(projectsViewTooltip);
