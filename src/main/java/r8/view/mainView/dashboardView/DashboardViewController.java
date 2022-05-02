@@ -12,7 +12,6 @@ import r8.model.Account;
 import r8.model.Event;
 import r8.model.activeTracker.ActiveTracker;
 import r8.model.appState.AppState;
-import r8.model.appState.IAppStateMain;
 import r8.model.task.Task;
 import r8.util.UIElementVisibility;
 import r8.util.lang.ResourceHandler;

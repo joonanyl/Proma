@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import r8.model.appState.AppState;
 import r8.util.lang.ResourceHandler;
+import r8.util.lang.LanguageHandler;
 import r8.view.IViewController;
 
 import java.io.IOException;
@@ -45,7 +46,6 @@ public class App extends Application
             String viewToLoad = displayLogin ? "login-view" : "main-view";
 
             FXMLLoader loader = new FXMLLoader();
-            ResourceHandler textLoader = ResourceHandler.getInstance();
             ResourceBundle resourceBundle = ResourceHandler.getInstance().getBundle();
             loader.setLocation(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
             loader.setResources(resourceBundle);
@@ -54,7 +54,7 @@ public class App extends Application
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle(displayLogin ? textLoader.getTextResource("loginTitle") : textLoader.getTextResource("appTitle"));
+            stage.setTitle(displayLogin ? LanguageHandler.getText("loginTitle") : LanguageHandler.getText("appTitle"));
             setStageSize();
 
             // pass App reference to controller to enable sceneSwitching

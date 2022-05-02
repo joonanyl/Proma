@@ -5,19 +5,22 @@ import static r8.util.lang.ResourceConstants.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * Class for handling app language.
+ * Handles localized language properties and switching locale.
  * 
  * @author Sebastian Lundin
  */
 public class LanguageHandler {
+    // No instantiation needed. Only static methods present.
+    private LanguageHandler() {};
 
     /**
-     * A static method for changing current application language.
+     * Changes current application language/locale.
      * 
      * @param key is the key for the wanted language property.
      */
@@ -25,29 +28,23 @@ public class LanguageHandler {
         Properties properties = new Properties();
         Locale newLocale;
 
-        // Read properties and create new Locale, ResourceBundle and Properties object.
+        // Read properties and create new Locale, ResourceBundle and Properties objects.
         try (FileInputStream inputStream = new FileInputStream(APP_RESOURCE_PATH)) {
             properties.load(inputStream);
             String[] languages = properties.getProperty(APP_LANGUAGES).split(":");
             String[] locales = properties.getProperty(APP_LOCALES).split(":");
 
-            int newLocaleIndex = 0;
-            for (int i = 0; i < languages.length; i++) {
-                if (languages[i].equals(key)) {
-                    newLocaleIndex = i;
-                }
-            }
-            String[] wantedLocale = locales[newLocaleIndex].split("_");
+            String[] wantedLocale = locales[Arrays.asList(languages).indexOf(key)].split("_");
             newLocale = new Locale(wantedLocale[0], wantedLocale[1]);
 
-            ResourceHandler.getInstance().setLocale(newLocale);
             ResourceHandler.getInstance().setBundle(ResourceBundle.getBundle(TEXT_RESOURCE_PATH, newLocale));
         } catch (IOException e) {
             e.printStackTrace();
             return;
         }
 
-        // Write new Properties object to app resource file (replacing the old one).
+        // Write new Properties object to main app resource file (replacing the old one,
+        // not appending).
         try (FileOutputStream outputStream = new FileOutputStream(APP_RESOURCE_PATH, false)) {
             properties.replace(APP_LANGUAGE, newLocale.getLanguage());
             properties.replace(APP_COUNTRY, newLocale.getCountry());
@@ -56,5 +53,16 @@ public class LanguageHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * A wrapper method for getting localized text resources with ResourceHandler
+     * from a static context.
+     * 
+     * @param key the property key
+     * @return localized string property
+     */
+    public static String getText(String key) {
+        return ResourceHandler.getInstance().getTextResource(key);
     }
 }
