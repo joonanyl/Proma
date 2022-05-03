@@ -80,6 +80,11 @@ public class App extends Application
         }
     }
 
+    public void reloadMainView() {
+        displayLogin = false;
+        switchScene();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
