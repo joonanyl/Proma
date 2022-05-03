@@ -125,6 +125,7 @@ public class ProfileViewController {
     private void setSelectedLanguage() {
         LanguageHandler.changeLanguage(
                 comboBoxUILanguage.getItems().get(comboBoxUILanguage.getSelectionModel().getSelectedIndex()));
+                AppState.getInstance().getViewController().getApp().reloadMainView();
     }
 
     @FXML
