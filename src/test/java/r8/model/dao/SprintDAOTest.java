@@ -1,5 +1,6 @@
 package r8.model.dao;
 
+import org.apache.commons.compress.harmony.unpack200.AttrDefinitionBands;
 import org.apache.poi.ss.formula.functions.T;
 import org.junit.jupiter.api.*;
 import r8.model.Project;
@@ -61,7 +62,14 @@ class SprintDAOTest {
         taskDAO.persist(task);
         sprintDAO.addTask(task, sprint);
         assertTrue(sprint.getTasks().contains(task), "Taskin lisääminen epäonnistui");
+        taskDAO.remove(task);
     }
 
+    @AfterAll
+    static void clearDB(){
+        sprintDAO.remove(sprint);
+        taskDAO.remove(task);
+        System.out.println("db cleared");
+    }
 
 }
