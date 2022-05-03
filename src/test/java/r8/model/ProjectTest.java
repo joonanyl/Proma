@@ -48,7 +48,7 @@ class ProjectTest {
 
         project1.setAccounts(accounts);
 
-        assertEquals(3, project1.getAccounts().size(), "Projektin työskentelijöiden määrässä ongelma");
+        assertEquals(accounts.size(), project1.getAccounts().size(), "Projektin työskentelijöiden määrässä ongelma");
     }
 
     @Test

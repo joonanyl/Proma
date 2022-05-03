@@ -76,34 +76,19 @@ class EventTest {
     }
 
     @Test
-    @Order(6)
-    void firstContructor() {
-        String d = "desc";
-        Account a = new Account();
-        Task t = new Task();
-
-        Event e = new Event(d, a, t);
-
-        assertEquals(d, e.getDescription(), "Desc ei täsmää");
-        assertEquals(a, e.getAccount(), "Account ei täsmää");
-        assertEquals(t, e.getTask(), "Task ei täsmää");
-
-    }
-
-    @Test
     @Order(7)
     void scndConstructor(){
         String d = "desc";
         LocalDate ld = LocalDate.now();
         float h = 30;
         Account a = new Account();
-
+        a.setFirstName("account");
         Event e = new Event(d, ld, h, a);
 
         assertEquals(d, e.getDescription(), "Desc ei täsmää");
         assertEquals(ld, e.getDate(), "Pvm ei täsmää");
         assertEquals(h, e.getHours(), "Tunnit eivät täsmää");
-        assertEquals(a, e.getAccount(), "Account ei täsmää");
+        assertEquals(a.getFirstName(), e.getAccount().getFirstName(), "Account ei täsmää");
 
     }
     @Test
@@ -114,13 +99,13 @@ class EventTest {
         float h = 30;
         Account a = new Account();
         Task t = new Task();
-
+        a.setFirstName("account");
         Event e = new Event(d, ld, h, a, t);
 
         assertEquals(d, e.getDescription(), "Desc ei täsmää");
         assertEquals(ld, e.getDate(), "Pvm ei täsmää");
         assertEquals(h, e.getHours(), "Tunnit eivät täsmää");
-        assertEquals(a, e.getAccount(), "Account ei täsmää");
+        assertEquals(a.getFirstName(), e.getAccount().getFirstName(), "Account ei täsmää");
         assertEquals(t, e.getTask(), "Task ei täsmää");
 
     }
@@ -134,13 +119,13 @@ class EventTest {
         Account a = new Account();
         Task t = new Task();
         Project p = new Project();
-
+        a.setFirstName("account");
         Event e = new Event(d, ld, h, a, t, p);
 
         assertEquals(d, e.getDescription(), "Desc ei täsmää");
         assertEquals(ld, e.getDate(), "Pvm ei täsmää");
         assertEquals(h, e.getHours(), "Tunnit eivät täsmää");
-        assertEquals(a, e.getAccount(), "Account ei täsmää");
+        assertEquals(a.getFirstName(), e.getAccount().getFirstName(), "Account ei täsmää");
         assertEquals(t, e.getTask(), "Task ei täsmää");
         assertEquals(p, e.getProject(), "Project ei täsmää");
 
@@ -157,14 +142,14 @@ class EventTest {
         Task t = new Task();
         Project p = new Project();
         Sprint s = new Sprint();
-
+        a.setFirstName("account");
         Event e = new Event(eId, d, ld, h, a, t, p, s);
 
         assertEquals(eId, e.getEventId(), "Id ei täsmää");
         assertEquals(d, e.getDescription(), "Desc ei täsmää");
         assertEquals(ld, e.getDate(), "Pvm ei täsmää");
         assertEquals(h, e.getHours(), "Tunnit eivät täsmää");
-        assertEquals(a, e.getAccount(), "Account ei täsmää");
+        assertEquals(a.getFirstName(), e.getAccount().getFirstName(), "Account ei täsmää");
         assertEquals(t, e.getTask(), "Task ei täsmää");
         assertEquals(p, e.getProject(), "Project ei täsmää");
         assertEquals(s, e.getSprint(), "Sprint ei täsmää");

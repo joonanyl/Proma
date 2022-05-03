@@ -21,6 +21,8 @@ class CommentTest {
         t = new Task();
         a = new Account();
         a2 = new Account();
+        a.setFirstName("account1");
+        a2.setFirstName("account2");
         c = "content";
         c2 = "content2";
         parent = new Comment(t, a, c);
@@ -30,7 +32,7 @@ class CommentTest {
     @Order(1)
     void mainContructor() {
         assertEquals(t, parent.getTask(), "Task ei täsmää");
-        assertEquals(a, parent.getAccount(), "Account ei täsmää");
+        assertEquals(a.getFirstName(), parent.getAccount().getFirstName(), "Account ei täsmää");
         assertEquals(c, parent.getContent(), "Teksti ei täsmää");
     }
 
@@ -38,7 +40,7 @@ class CommentTest {
     @Order(2)
     void replyConstructor(){
         reply = new Comment(parent, a2, c2);
-        assertEquals(a2, reply.getAccount(), "Account ei täsmää");
+        assertEquals(a2.getFirstName(), reply.getAccount().getFirstName(), "Account ei täsmää");
         assertEquals(c2, reply.getContent(), "Teksti ei täsmää");
         assertEquals(parent, reply.getParentComment(), "Alkuperäinen kommentti ei täsmää");
     }
