@@ -23,6 +23,7 @@ public class App extends Application
 {
     private Stage stage;
     private boolean displayLogin;
+    private boolean maxed = false;
 
     /**
      * Starts the UI of Proma application
@@ -52,7 +53,7 @@ public class App extends Application
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle(displayLogin ? textLoader.getTextResource("loginTitle") : textLoader.getTextResource("appTitle"));
-            setStageSize();
+            if (!maxed) setStageSize();
 
             // pass App reference to controller to enable sceneSwitching
             IViewController viewController = loader.getController();
@@ -81,8 +82,10 @@ public class App extends Application
     }
 
     public void reloadMainView() {
+        maxed = true;
         displayLogin = false;
         switchScene();
+        maxed = false;
     }
 
     public static void main(String[] args) {

@@ -42,7 +42,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" layoutX="544.0" minWidth="100.0" prefHeight="85.0" prefWidth="970.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button id="button-create-new-event" fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#toggleNewEvent" prefHeight="40.0" prefWidth="140.0" stylesheets="@../styling/time-management-styling.css" text="%createEvent" textFill="#f8f6f6">
+            <Button id="button-create-new-event" fx:id="btnAddNewEvent" mnemonicParsing="false" onAction="#toggleNewEvent" prefHeight="40.0" prefWidth="170.0" stylesheets="@../styling/time-management-styling.css" text="%toggleView" textFill="#f8f6f6">
                <font>
                   <Font size="16.0" />
                </font>
@@ -297,7 +297,7 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="911.0">
                            <children>
-                              <Button id="button-all-view" mnemonicParsing="false" onAction="#filterAll" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%all" userData="tracker-view-all">
+                              <Button id="button-all-view" mnemonicParsing="false" onAction="#filterAll" prefHeight="35.0" prefWidth="80.0" stylesheets="@../styling/time-management-styling.css" text="%all" userData="tracker-view-all">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -305,7 +305,7 @@
                                     <Insets top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button-day-view" mnemonicParsing="false" onAction="#filterProjects" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%project" userData="tracker-view-day">
+                              <Button id="button-day-view" mnemonicParsing="false" onAction="#filterProjects" prefHeight="35.0" prefWidth="80.0" stylesheets="@../styling/time-management-styling.css" text="%project" userData="tracker-view-day">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -313,7 +313,7 @@
                                     <Insets top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button-week-view" mnemonicParsing="false" onAction="#filterSprints" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%sprint" userData="tracker-view-week">
+                              <Button id="button-week-view" mnemonicParsing="false" onAction="#filterSprints" prefHeight="35.0" prefWidth="80.0" stylesheets="@../styling/time-management-styling.css" text="%sprint" userData="tracker-view-week">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -321,7 +321,7 @@
                                     <Insets top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button-sprint-view" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%week" userData="tracker-view-sprint">
+                              <Button id="button-sprint-view" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" stylesheets="@../styling/time-management-styling.css" text="%week" userData="tracker-view-sprint">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -329,7 +329,7 @@
                                     <Insets top="15.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button id="button-project-view" mnemonicParsing="false" onAction="#exportExcel" prefHeight="35.0" prefWidth="60.0" stylesheets="@../styling/time-management-styling.css" text="%day" userData="tracker-view-project">
+                              <Button id="button-project-view" mnemonicParsing="false" onAction="#exportExcel" prefHeight="35.0" prefWidth="80.0" stylesheets="@../styling/time-management-styling.css" text="%day" userData="tracker-view-project">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
