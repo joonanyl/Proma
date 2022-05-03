@@ -40,8 +40,6 @@ public enum AppState implements IAppStateMain {
 		this.viewController = viewController;
 	}
 
-
-
 	@Override
 	public Account getAccount() {
 		if(loggedAccount == null)
