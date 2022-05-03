@@ -76,8 +76,7 @@ public class ProfileViewController {
 
     @FXML
     private Label profileInfoLabel;
-
-    private ResourceHandler textLoader = ResourceHandler.getInstance();
+    
     private final String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
 
     // Retrieves loggedAccount data from AppState
@@ -147,7 +146,7 @@ public class ProfileViewController {
         Account account = AppState.INSTANCE.getLoggedAccount();
         if(checkPasswordInputs()){
             controllerAccount.updateAccount(account.getFirstName(), account.getLastName(),account.getEmail(), newPasswordTF.getText());
-            showNotification(textLoader.getTextResource("passwordChangeSuccess"), "", true);
+            showNotification(LanguageHandler.getText("passwordChangeSuccess"), "", true);
             hidePasswordChange();
         }
     }
@@ -155,15 +154,15 @@ public class ProfileViewController {
     private boolean checkPasswordInputs(){
         IControllerAccount controllerLogin = new Controller();
         if(!controllerLogin.authenticatePassword(oldPasswordTF.getText())){
-            showNotification(textLoader.getTextResource("oldPasswordInvalid"), textLoader.getTextResource("oldPasswordInvalidInfo"), false);
+            showNotification(LanguageHandler.getText("oldPasswordInvalid"), LanguageHandler.getText("oldPasswordInvalidInfo"), false);
             return false;
         }
         if(!newPasswordTF.getText().equals(confirmNewPasswordTF.getText())){
-            showNotification(textLoader.getTextResource("dontMatch"), textLoader.getTextResource("passwordMismatch"), false);
+            showNotification(LanguageHandler.getText("dontMatch"), LanguageHandler.getText("passwordMismatch"), false);
             return false;
         }
         if(!newPasswordTF.getText().matches(passwordRegEx)){
-            showNotification(textLoader.getTextResource("invalidPassword"), textLoader.getTextResource("invalidPasswordInfo"), false);
+            showNotification(LanguageHandler.getText("invalidPassword"), LanguageHandler.getText("invalidPasswordInfo"), false);
             return false;
         }
         return true;

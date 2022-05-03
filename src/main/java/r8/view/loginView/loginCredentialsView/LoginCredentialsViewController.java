@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import r8.App;
 import r8.controller.Controller;
 import r8.controller.IControllerLogin;
-import r8.util.lang.ResourceHandler;
+import r8.util.lang.LanguageHandler;
 import r8.view.IViewController;
 
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class LoginCredentialsViewController {
             if(controller.authenticateLogin(textFieldEmail.getText(), passwordField.getText())) toWorkScene();
             else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText(ResourceHandler.getInstance().getTextResource("invalidCredentials"));
+                alert.setContentText(LanguageHandler.getText("invalidCredentials"));
                 alert.show();
             }
         }

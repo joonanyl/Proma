@@ -12,7 +12,6 @@ import r8.util.lang.LanguageHandler;
 import r8.view.IViewController;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.ResourceBundle;
