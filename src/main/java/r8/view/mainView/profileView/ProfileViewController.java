@@ -169,7 +169,6 @@ public class ProfileViewController {
         return true;
     }
 
-
     private void showNotification(String title, String text, boolean success){
         ImageView icon = null;
         if(success) icon = new ImageView(new Image("/image/success-ico.png"));
