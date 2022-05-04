@@ -21,6 +21,9 @@ import r8.model.appState.IAppStateMain;
 import r8.util.lang.LanguageHandler;
 import r8.util.lang.ResourceHandler;
 
+/**
+ * @author Sebastian Lundin, Teemu Tallskog, Aarni Pesonen
+ */
 public class ProfileViewController {
 
     IAppStateMain adminAccount = AppState.getInstance();
@@ -28,59 +31,41 @@ public class ProfileViewController {
 
     @FXML
     private CheckBox checkBoxEnableTooltips;
-
     @FXML
     private CheckBox checkBoxIsAdmin;
-
     @FXML
     private ComboBox<String> comboBoxUILanguage;
-
-    @FXML
-    private ComboBox<?> comboBoxUiTheme;
-
-    @FXML
-    private VBox containerProfile;
-
     @FXML
     private Label labelUserEmailDisplay;
-
     @FXML
     private Label labelUserFirstNameDisplay;
-
     @FXML
     private Label labelUserLastNameDisplay;
-
     @FXML
     private Button changePassword;
-
     @FXML
     private VBox changePasswordBox;
-
     @FXML
     private PasswordField oldPasswordTF;
-
     @FXML
     private PasswordField newPasswordTF;
-
     @FXML
     private PasswordField confirmNewPasswordTF;
-
     @FXML
     private Label characterCheck;
-
     @FXML
     private Label uppercaseCheck;
-
     @FXML
     private Label numberCheck;
-
     @FXML
     private Label profileInfoLabel;
 
     private ResourceHandler textLoader = ResourceHandler.getInstance();
     private final String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
 
-    // Retrieves loggedAccount data from AppState
+    /**
+     * Initializes profile subview. Retrieves account information from {@link AppState}
+     */
     @FXML
     private void initialize() {
         ResourceHandler loader = ResourceHandler.getInstance();
@@ -110,18 +95,28 @@ public class ProfileViewController {
         }
     }
 
+    /**
+     * Sets user {@link Account} admin status.
+     * Only available in development builds.
+     */
     @FXML
     private void setAdminChecked() {
         if (controllerAccount.getAccount() != null)
             adminAccount.setIsAdmin(adminAccount.getIsAdmin());
     }
 
+    /**
+     * Sets user tooltip preferences
+     */
     @FXML
     private void setTooltipChecked() {
         if (controllerAccount.getAccount() != null)
             adminAccount.setTooltipsEnabled(adminAccount.getTooltipsEnabled());
     }
 
+    /**
+     * Sets selected UI display language and reloads the parent main view
+     */
     @FXML
     private void setSelectedLanguage() {
         LanguageHandler.changeLanguage(
@@ -129,6 +124,9 @@ public class ProfileViewController {
                 AppState.getInstance().getViewController().getApp().reloadMainView();
     }
 
+    /**
+     * Reveals password change related UI elements
+     */
     @FXML
     private void showPasswordChange(){
         changePassword.setVisible(false);
@@ -136,6 +134,9 @@ public class ProfileViewController {
         changePasswordBox.setManaged(true);
     }
 
+    /**
+     * Hides password change related UI elements
+     */
     @FXML
     private void hidePasswordChange(){
         changePassword.setVisible(true);
@@ -143,6 +144,9 @@ public class ProfileViewController {
         changePasswordBox.setManaged(false);
     }
 
+    /**
+     * Attemps to change user account password
+     */
     @FXML
     private void changePassword(){
         Account account = AppState.INSTANCE.getLoggedAccount();
@@ -153,6 +157,10 @@ public class ProfileViewController {
         }
     }
 
+    /**
+     * Checks if user input password data matches required criteria
+     * @return boolean based on input matching requested criteria
+     */
     private boolean checkPasswordInputs(){
         IControllerAccount controllerLogin = new Controller();
         if(!controllerLogin.authenticatePassword(oldPasswordTF.getText())){
@@ -170,7 +178,12 @@ public class ProfileViewController {
         return true;
     }
 
-
+    /**
+     * Displays notification info based on password change success status
+     * @param title of notification
+     * @param text content of notification
+     * @param success of password change action as boolean
+     */
     private void showNotification(String title, String text, boolean success){
         ImageView icon = null;
         if(success) icon = new ImageView(new Image("/image/success-ico.png"));
@@ -186,21 +199,19 @@ public class ProfileViewController {
         notification.show();
     }
 
+    /**
+     * Adds listeners password input and confirmation fields to and calls following compare method
+     * when changes to the fields are made
+     */
     private void addPasswordComparisonListener(){
-        newPasswordTF.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                compare();
-            }
-        });
-        confirmNewPasswordTF.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                compare();
-            }
-        });
+        newPasswordTF.textProperty().addListener((observable, oldValue, newValue) -> compare());
+        confirmNewPasswordTF.textProperty().addListener((observable, oldValue, newValue) -> compare());
         compare();
     }
+
+    /**
+     * Checks if user password input matches the required criteria
+     */
     private void compare(){
         if(!newPasswordTF.getText().matches(passwordRegEx)){
             newPasswordTF.setStyle("-fx-border-color: red;");

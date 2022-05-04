@@ -3,7 +3,7 @@ package r8.view.mainView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -17,6 +17,11 @@ import r8.view.IViewController;
 import r8.App;
 import java.util.Objects;
 
+/**
+ * Controller for applications Main View. All subviews are loaded within this parent view, giving the
+ * software it's single page app feel.
+ * @author Aarni Pesonen
+ */
 public class MainViewController implements IViewController {
 
     private App app;
@@ -43,18 +48,22 @@ public class MainViewController implements IViewController {
     private NavigationHandler nav = new NavigationHandler();
     private UIElementVisibility visibility = new UIElementVisibility();
 
-    // used to prevent loading current view repeatedly
-    // TODO must change when top bar nav is used
     private String currentView;
 
+    /**
+     * Initializes the application main view
+     */
     public void initialize() {
 
         initSubview(initialView);
         visibility.toggleOff(hBoxQuicknav);
     }
 
-    // reference to active view controller currently in AppState.
-    // method is called by left nav bar buttons
+    /**
+     * Retrieves requested subview information with {@link NavigationHandler}
+     * and sets the returned view in display on the mainViewPane where active subview loaded and displayed.
+     * @param event triggering the navigation
+     */
     @FXML
     public void handleNavigation(ActionEvent event) {
         mainViewPane.setCenter(nav.handleNavigation(event));
@@ -63,7 +72,10 @@ public class MainViewController implements IViewController {
         currentView = breadcrumbBar.getCurrentView();
     }
 
-    // Topbar dropdown menuItem navigation
+    /**
+     * Handles MenuItem navigation based on the triggering ActionEvent userData value
+     * @param event
+     */
     @FXML
     private void handleMenuItemNavigation(ActionEvent event) {
         mainViewPane.setCenter(nav.handleMenuItemNavigation(event));
@@ -71,18 +83,28 @@ public class MainViewController implements IViewController {
         createMenuBreadcrumb(event);
     }
 
-    // called by subview controllers navigate()
+    /**
+     * Used to handle subview navigation. Called by subview controllers
+     * @param event triggering the subview navigation event
+     */
     public void handleSubviewNavigation(ActionEvent event) {
         mainViewPane.setCenter(nav.handleNavigation(event));
         createBreadcrumb(event);
     }
 
+    /**
+     * Toggles the top quick navigation bar on/off
+     * *feature is not yet fully implemented*
+     */
     @FXML
     private void toggleQuicknav() {
         visibility.toggleVisibility(hBoxQuicknav);
     }
 
-    // loads initial subview based on BreadcrumbObject received as parameter
+    /**
+     * Loads the initial subview based on {@link BreadcrumbObject} data
+     * @param bcObj containing navigation data
+     */
     private void initSubview(BreadcrumbObject bcObj) {
         createBreadcrumb(initialView);
         GetView viewLoader = new GetView();
@@ -90,17 +112,31 @@ public class MainViewController implements IViewController {
         mainViewPane.setCenter(view);
     }
 
+    /**
+     * Creates a new {@link BreadcrumbObject} in {@link BreadcrumbBar}
+     * based on triggerin ActionEvent data
+     * @param event
+     */
     private void createBreadcrumb(ActionEvent event) {
         final Node eventSource = (Node) event.getSource();
         if (!Objects.equals(eventSource.getUserData(), breadcrumbBar.getCurrentView())){
             //hBoxBreadcrumb.getChildren().addAll(breadcrumbBar.add(event));
+            System.out.println("Breadcrumb feature is currently disabled.");
         }
     }
 
+    /**
+     * Adds a new {@link BreadcrumbObject} to {@link BreadcrumbBar}
+     * @param bcObj to be added to list of breadcrumbs
+     */
     private void createBreadcrumb(BreadcrumbObject bcObj) {
         hBoxBreadcrumb.getChildren().addAll(breadcrumbBar.add(bcObj));
     }
 
+    /**+
+     * Creates a new {@link BreadcrumbObject} based on triggering MenuItem event data
+     * @param event created by triggering button press
+     */
     private void createMenuBreadcrumb(ActionEvent event) {
         MenuItem eventSource = (MenuItem) event.getSource();
         if (!Objects.equals(eventSource.getUserData(), breadcrumbBar.getCurrentView())) {
@@ -108,26 +144,35 @@ public class MainViewController implements IViewController {
         }
     }
 
-    // called by left and top navbars
+    /**
+     * Removes all {@link BreadcrumbObject} from {@link BreadcrumbBar}
+     */
     private void clearBreadCrumbs() {
         hBoxBreadcrumb.getChildren().clear();
         breadcrumbBar.clear();
     }
 
-    @FXML
-    public void export() {
-
-    }
-
+    /**
+     * Switches from parent main view to parent login view.
+     * Used when user logs out of the application
+     */
     @FXML
     private void backToLoginScene(){
         app.switchScene();
     }
 
+    /**
+     * Returns reference to the main application
+     * @return main application reference
+     */
     public App getApp() {
         return this.app;
     }
 
+    /**
+     * Sets the reference to main application
+     * @param app main application reference
+     */
     public void setApp(App app) {
         this.app = app;
     }

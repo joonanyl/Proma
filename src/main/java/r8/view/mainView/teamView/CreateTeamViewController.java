@@ -21,32 +21,17 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * Controller for create {@link Team} subview
  * @author Aarni Pesonen
  */
 public class CreateTeamViewController {
 
     @FXML
-    private Button btnAddTeamToProject;
-    @FXML
-    private Button btnAddToProject;
-    @FXML
-    private Button btnNewTask;
-    @FXML
-    private Button btnRemoveAccountFromList;
-    @FXML
     private ComboBox<Account> comboBoxAccount;
     @FXML
     private ComboBox<Project> comboBoxProject;
     @FXML
-    private Text labelCreateTeams1;
-    @FXML
-    private Text labelProjectName;
-    @FXML
-    private Text labelProjectName1;
-    @FXML
     private ListView<Account> listViewTeamAccounts;
-    @FXML
-    private TextArea textTeamDescription;
     @FXML
     private TextField textTeamName;
     private Set<Account> allAccounts = new HashSet<>();
@@ -56,6 +41,9 @@ public class CreateTeamViewController {
     private final IControllerMain controller = new Controller();
     private Account account;
 
+    /**
+     * Initializes the subview
+     */
     @FXML
     public void initialize() {
         account = AppState.INSTANCE.getAccount();

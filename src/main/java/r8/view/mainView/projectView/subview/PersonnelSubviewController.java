@@ -18,16 +18,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controller for project personnel subview
+ * @author Aarni Pesonen
+ */
 public class PersonnelSubviewController {
 
-    @FXML
-    private Button btnAddPerson;
-    @FXML
-    private Button btnAddPersonnel;
-    @FXML
-    private Button btnRemoveFromProject;
-    @FXML
-    private Button btnRemovePerson;
     @FXML
     private SearchableComboBox<Account> comboBoxPerson;
     @FXML
@@ -44,6 +40,9 @@ public class PersonnelSubviewController {
     IControllerMain controller = new Controller();
     private Project project = appState.getSelectedProject();
 
+    /**
+     * Initializes the subview, retrieves all user {@link Project} and{@link Account} objects from database
+     */
     @FXML
     private void initialize() {
         project = appState.getSelectedProject();
@@ -54,11 +53,17 @@ public class PersonnelSubviewController {
         initProjectAccountList();
     }
 
+    /**
+     * Picks an {@link Account} from comboBox and adds it to listViewPersonnelToAdd
+     */
     @FXML
     void addPersonToList() {
         listViewPersonnelToAdd.getItems().add(comboBoxPerson.getSelectionModel().getSelectedItem());
     }
 
+    /**
+     * Adds selected {@link Account} objects to active {@link Project}
+     */
     @FXML
     void addPersonsToProject() {
 
@@ -78,12 +83,18 @@ public class PersonnelSubviewController {
         thread.start();
     }
 
+    /**
+     * Removes an {@link Account} from the listViewPersonnelToAdd
+     */
     @FXML
     void removePersonFromList() {
         int toRemove = listViewPersonnelToAdd.getSelectionModel().getSelectedIndex();
         listViewPersonnelToAdd.getItems().remove(toRemove);
     }
 
+    /**
+     * Removes {@link Account} and {@link Project} association
+     */
     @FXML
     void removePersonFromProject() {
         Account toRemove = listViewProjectPersonnel.getSelectionModel().getSelectedItem();
@@ -91,12 +102,18 @@ public class PersonnelSubviewController {
         controller.getProjectDAO().removeAccountAssociation(account, project);
     }
 
+    /**
+     * Retrieves all user {@link Project} objects from database
+     */
     private void getProjectsFromDB() {
         //not used
         accountProjects.addAll(controller.getProjectDAO().getByAccount(account));
         projectAccounts.addAll(project.getAccounts());
     }
 
+    /**
+     * Retrieves all {@link Account} objects from database
+     */
     private void getAccountsFromDB() {
         Thread thread = new Thread(() -> {
 
@@ -108,6 +125,9 @@ public class PersonnelSubviewController {
         thread.start();
     }
 
+    /**
+     * Initializes list containing all {@link Account} objects associated with selected {@link Project}
+     */
     private void initProjectAccountList() {
         ArrayList<Project> projects = new ArrayList<>(accountProjects);
 

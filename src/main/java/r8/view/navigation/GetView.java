@@ -6,10 +6,19 @@ import r8.util.lang.ResourceHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Used to load .fxml resources requested by {@link NavigationHandler}.
+ * @author Aarni Pesonen
+ */
 public class GetView {
 
     private Pane view;
 
+    /**
+     * Loads requested .fxml resources and gets language resources from {@link ResourceBundle}
+     * @param viewName corresponding to view resource file name
+     * @return loaded view as object inherting Pane
+     */
     public Pane getView(String viewName) {
         FXMLLoader loader = new FXMLLoader();
         try {

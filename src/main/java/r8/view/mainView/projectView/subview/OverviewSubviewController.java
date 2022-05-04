@@ -16,10 +16,11 @@ import r8.model.task.Task;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controller for project overview subview
+ * @author Aarni Pesonen
+ */
 public class OverviewSubviewController {
-
-    @FXML
-    private VBox containerProfile;
 
     @FXML
     private Label labelCurrentSprint;
@@ -40,16 +41,18 @@ public class OverviewSubviewController {
     private final AppState appState = AppState.getInstance();
     private Project project = appState.getSelectedProject();
 
+    /**
+     * Initializes the subview
+     */
     @FXML
     private void initialize() {
-        System.out.println("overview init");
+
         setStatistics();
     }
 
-    private void setInfo() {
-
-    }
-
+    /**
+     * Displays statistics of active {@link Project}
+     */
     private void setStatistics() {
         Thread thread = new Thread(() -> {
             int tasksComplete = 0;

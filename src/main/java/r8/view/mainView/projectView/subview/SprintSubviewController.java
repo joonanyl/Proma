@@ -3,7 +3,6 @@ package r8.view.mainView.projectView.subview;
 import javafx.application.Platform;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -22,16 +21,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controller for project sprint subview
+ * @author Aarni Pesonen
+ */
 public class SprintSubviewController {
 
-    @FXML
-    private Button btnAddSprint;
-    @FXML
-    private Button btnAddSprintToDB;
-    @FXML
-    private Button btnRemoveSprint;
-    @FXML
-    private Button btnRemoveSprintFromList;
     @FXML
     private DatePicker datePickerEndDate;
     @FXML
@@ -51,6 +46,9 @@ public class SprintSubviewController {
     private Set<Project> accountProjects = new HashSet<>();
     private Set<Sprint> projectSprints = new HashSet<>();
 
+    /**
+     * Initializes the subview, retrives user related {@link Project} and {@link Sprint} from database.
+     */
     @FXML
     private void initialize() {
         initDatePickers();
@@ -59,6 +57,9 @@ public class SprintSubviewController {
         initProjectSprintList();
     }
 
+    /**
+     * Adds {@link Sprint} to list that is used to generate DAO to add to db
+     */
     @FXML
     void addSprintToList() {
         if (textFieldSprintName != null && datePickerStartDate != null && datePickerEndDate != null) {
@@ -73,8 +74,11 @@ public class SprintSubviewController {
         }
     }
 
+    /**
+     * Creates new {@link Sprint} based on user input and adds these to database
+     */
     @FXML
-    void addSprintToDB() {
+    void addSprintsToDB() {
         Thread thread = new Thread(() -> {
             List<Sprint> sprints = listViewSprintsToAdd.getItems();
             for (Sprint sprint : sprints){
@@ -87,20 +91,24 @@ public class SprintSubviewController {
         thread.start();
     }
 
+    /**
+     * Removes {@link Sprint} from listViewSprintToAdd
+     */
     @FXML
     void removeSprintFromList() {
         int toRemove = listViewSprintsToAdd.getSelectionModel().getSelectedIndex();
         listViewSprintsToAdd.getItems().remove(toRemove);
     }
 
+    /**
+     * Removes {@link Sprint} and {@link Project} association
+     */
     @FXML
     void removeSprintFromProject() {
 
             Sprint toRemove = listViewProjectSprints.getSelectionModel().getSelectedItem();
             int indexToRemove = listViewProjectSprints.getSelectionModel().getSelectedIndex();
 
-            //does not get removed
-            //controller.getSprintDAO().remove(toRemove);
             project.removeSprint(toRemove);
             controller.getProjectDAO().update(project);
 
@@ -109,21 +117,33 @@ public class SprintSubviewController {
         System.out.println(project.getSprints());
     }
 
+    /**
+     * Retrieves {@link Sprint} objects from database based on active {@link Project
+     */
     private void getSprintsFromDB() {
         projectSprints.addAll(controller.getSprintDAO().getByProject(project));
     }
 
+    /**
+     * Retrieves all {@link Project} objects related to user from database
+     */
     private void getProjectsFromDB() {
         accountProjects.addAll(controller.getProjectDAO().getByAccount(account));
         ArrayList<Project> projects = new ArrayList<>(accountProjects);
         project = projects.get(0);
     }
 
+    /**
+     * Initializes datePickers used to determine {@link Sprint} start and end dates
+     */
     private void initDatePickers() {
         datePickerStartDate = new DatePicker(LocalDate.now());
         datePickerEndDate = new DatePicker(LocalDate.now());
     }
 
+    /**
+     * Initializes a list of {@link Sprint} objects contained in active {@link Project}
+     */
     private void initProjectSprintList() {
         listViewProjectSprints.getItems().addAll(projectSprints);
     }
