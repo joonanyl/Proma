@@ -46,6 +46,7 @@ public class App extends Application
             String viewToLoad = displayLogin ? "login-view" : "main-view";
 
             FXMLLoader loader = new FXMLLoader();
+            ResourceHandler textLoader = ResourceHandler.getInstance();
             ResourceBundle resourceBundle = ResourceHandler.getInstance().getBundle();
             loader.setLocation(Objects.requireNonNull(getClass().getResource("/fxml/" + viewToLoad + ".fxml")));
             loader.setResources(resourceBundle);

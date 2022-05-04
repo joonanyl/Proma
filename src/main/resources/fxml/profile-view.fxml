@@ -239,7 +239,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="350.0">
                            <children>
                               <Label text="%uiLanguage">
                                  <HBox.margin>
@@ -267,7 +267,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%enableTooltips">
                                  <HBox.margin>
@@ -295,7 +295,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%uiTheme">
                                  <HBox.margin>
@@ -320,7 +320,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%darkMode">
                                  <HBox.margin>
@@ -348,7 +348,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="1620.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0">
                            <children>
                               <Label text="%isAdmin">
                                  <HBox.margin>

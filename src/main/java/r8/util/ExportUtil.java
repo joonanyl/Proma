@@ -11,8 +11,19 @@ import r8.model.appState.AppState;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
 
+/**
+ * Exporting user work {@link Event} information in excel compatible format is made possible by this class
+ * Makes use of org.apache.poi API for Microsoft Document format compatibility
+ * @author Aarni Pesonen
+ */
 public class ExportUtil {
 
+    /**
+     * Exports user work {@link Event} list displayed in time management tableView
+     * Exported data can be further refined using the views filters
+     * @param tableView time management views table displaying filtered use work {@link Event} data
+     * @return boolean value indicating weather or not the export operation was successful
+     */
     public boolean exportExcel(TableView<Event> tableView) {
 
         try (Workbook workbook = new HSSFWorkbook()) {

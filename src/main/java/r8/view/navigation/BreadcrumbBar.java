@@ -109,6 +109,10 @@ public class BreadcrumbBar {
         breadcrumbs.clear();
     }
 
+    /**
+     * Returns current view information. Used to prevent loading active subview repeatedly.
+     * @return stored currentView information
+     */
     public String getCurrentView() {
         return currentView;
     }

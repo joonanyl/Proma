@@ -1,4 +1,5 @@
 package r8.view.loginView.createAccountView;
+import r8.model.dao.AccountDAO;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,8 +13,11 @@ import r8.model.Account;
 import r8.model.TextFieldValidator;
 import r8.util.lang.LanguageHandler;
 
-import java.io.IOException;
-
+/**
+ * Controller for the account creation subview
+ * Can be loaded within loginView
+ * @author Teemu Tallskog, Aarni Pesonen
+ */
 public class CreateAccountViewController {
 
     @FXML
@@ -46,6 +50,9 @@ public class CreateAccountViewController {
     private String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
     private String nameRegEx = "([A-Za-z0-9]{1,30})";
 
+    /**
+     * Initializes {@link Account} creation view
+     */
     public void initialize(){
         controller = new Controller();
 
@@ -55,26 +62,28 @@ public class CreateAccountViewController {
         comparePassword();
     }
 
+    /**
+     * Handles navigation based on received ActionEvent button userData
+     * @param event triggering the navigation
+     */
     @FXML
-    private void navigate(ActionEvent event) throws IOException {
+    private void navigate(ActionEvent event)  {
         controller.getActiveViewController().handleNavigation(event);
     }
 
+    /**
+     * Adds listeners password input and confirmation fields to and calls following compare method
+     * when changes to the fields are made
+     */
     private void comparePassword(){
-        passwordField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                compare();
-            }
-        });
-        confirmPasswordField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                compare();
-            }
-        });
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> compare());
+        confirmPasswordField.textProperty().addListener((observable, oldValue, newValue) -> compare());
         compare();
     }
+
+    /**
+     * Checks if user password input matches the required criteria
+     */
     private void compare(){
         if(!passwordField.getText().matches(passwordRegEx)){
             passwordField.setStyle("-fx-border-color: red;");
@@ -106,8 +115,14 @@ public class CreateAccountViewController {
         }
     }
 
+    /**
+     * Checks if {@link Account} data input fields data is in correct format. If format is acceptable
+     * new {@link Account} object is created with user provided data. Event data is then send to {@link AccountDAO}
+     * for new {@link Account} creation and view is changed back to loginCredentialsView.
+     * @param event triggering the creation action (Create {@link Account} button)
+     */
     @FXML
-    private void createAccount(ActionEvent event) throws IOException {
+    private void createAccount(ActionEvent event) {
         if(!passwordField.getText().equals(confirmPasswordField.getText())){
             //System.out.println("Password comparison");
             showAlert(LanguageHandler.getText("dontMatch"), LanguageHandler.getText("passwordMissmatch"));
@@ -136,6 +151,11 @@ public class CreateAccountViewController {
         navigate(event);
     }
 
+    /**
+     * Displays an alert with situation appropriate information for the user
+     * @param title of the alert
+     * @param text information to be displayed in alert window
+     */
     private void showAlert(String title, String text) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

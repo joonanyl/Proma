@@ -16,15 +16,16 @@ import r8.model.task.Task;
 import r8.util.UIElementVisibility;
 import r8.util.lang.ResourceHandler;
 import r8.view.IViewController;
-
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+/**
+ * Controller for applications main view's dashboard view.
+ * @author Aarni Pesonen
+ */
 public class DashboardViewController {
 
     @FXML
@@ -61,6 +62,10 @@ public class DashboardViewController {
     Set<Task> userTasks = new HashSet<>();
     private App app;
 
+    /**
+     * Includes operations necessary for loading the class first time
+     *
+     */
     @FXML
     private void initialize() {
         labelUserName.setText(account.getFirstName() + " " +account.getLastName());
@@ -73,6 +78,10 @@ public class DashboardViewController {
         btnToggleTracking.setText(btnText);
     }
 
+    /**
+     * Retrieves user work events from db and displays them in the user events table
+     * threaded operation
+     */
     private void getEvents() {
         Thread thread = new Thread(() -> {
 
@@ -83,6 +92,9 @@ public class DashboardViewController {
         thread.start();
     }
 
+    /**
+     * Retrieves user tasks from db and populates active tracker combobox with these events
+     */
     private void getTasks() {
         Thread thread = new Thread(() -> {
 
@@ -99,7 +111,6 @@ public class DashboardViewController {
     /**
      * Handles navigation calls made from dashboard view
      * @param event triggering the navigation event
-     * @throws IOException thrown if there is an error loading appropriate fxml file
      */
     @FXML
     private void navigate(ActionEvent event) {
@@ -113,6 +124,7 @@ public class DashboardViewController {
     private void updateEventsTable() {
         tableViewEvents.getItems().clear();
         tableViewEvents.getItems().addAll(userEvents);
+        sortTableView();
     }
 
     /**
@@ -162,6 +174,16 @@ public class DashboardViewController {
             btnToggleTracking.setText(rb.getString("stopTracking"));
         else
             btnToggleTracking.setText(rb.getString("startTracking"));
+    }
+
+    /**
+     * Arranges items in user work events tableview based on events dates
+     * descending order
+     */
+    private void sortTableView() {
+        tableColDate.setSortType(TableColumn.SortType.DESCENDING);
+        tableViewEvents.getSortOrder().add(tableColDate);
+        tableViewEvents.sort();
     }
 }
 

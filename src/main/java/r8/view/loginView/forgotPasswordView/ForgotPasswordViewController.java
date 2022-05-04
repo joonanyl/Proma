@@ -7,6 +7,12 @@ import r8.controller.IControllerLogin;
 
 import java.io.IOException;
 
+/**
+ * View controller for account password reset function.
+ * *Function not yet implemented in loginView, but available in mainView profile*
+ *
+ * @author
+ */
 public class ForgotPasswordViewController {
 
     @FXML

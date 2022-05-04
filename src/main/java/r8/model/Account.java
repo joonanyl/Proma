@@ -185,14 +185,12 @@ public class Account {
 		if(this.accountId != account.accountId){
 			return false;
 		}
-		if(!this.email.equals(account.email)){
-			return false;
-		}
+
 		return true;
 	}
 
 	@Override
 	public int hashCode(){
-		return (int) accountId * email.hashCode() * firstName.hashCode() * lastName.hashCode();
+		return accountId;
 	}
 }
