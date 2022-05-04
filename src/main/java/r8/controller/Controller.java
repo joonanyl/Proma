@@ -1,7 +1,6 @@
 package r8.controller;
 
 import javafx.collections.ObservableList;
-import r8.App;
 import r8.model.*;
 import r8.model.appState.AppState;
 import r8.model.dao.*;
@@ -14,6 +13,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Link between the UI and DAO objects. Eliminates the need to pass {@link DAO} objects
+ * directly to UI for operations.
+ *
+ * @author Joona Nylander, Teemu Tallskog, Aarni Pesonen
+ */
 public class Controller implements IControllerLogin, IControllerMain, IControllerAccount {
     private AccountDAO accountDAO;
     private CommentDAO commentDAO;
@@ -24,7 +29,6 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     private TaskTypeDAO taskTypeDAO;
     private TeamDAO teamDAO;
 
-    //Does not receive AppState as a parameter anymore
     public Controller() {
         this.accountDAO = new AccountDAO();
         this.commentDAO = new CommentDAO();

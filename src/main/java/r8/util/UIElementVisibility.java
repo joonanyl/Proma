@@ -5,6 +5,10 @@ import javafx.scene.layout.Pane;
 import r8.model.appState.AppState;
 
 /**
+ * Utility class for managing JavaFX element visible and managed state.
+ * Used to display or hide specific elements based on user admin status or
+ * tooltip preferences.
+ * Can alter states of any element inheriting Pane, or button
  * @author Aarni Pesonen
  */
 public class UIElementVisibility {
