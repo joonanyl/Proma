@@ -1,5 +1,7 @@
 package r8.util.lang;
 
+import r8.App;
+
 import static r8.util.lang.ResourceConstants.*;
 
 import java.io.FileInputStream;
@@ -29,8 +31,8 @@ public class LanguageHandler {
         Locale newLocale;
 
         // Read properties and create new Locale, ResourceBundle and Properties objects.
-        try (FileInputStream inputStream = new FileInputStream(APP_RESOURCE_PATH)) {
-            properties.load(inputStream);
+        try{
+            properties.load(App.class.getClassLoader().getResourceAsStream("proma.properties"));
             String[] languages = properties.getProperty(APP_LANGUAGES).split(":");
             String[] locales = properties.getProperty(APP_LOCALES).split(":");
 
@@ -45,14 +47,10 @@ public class LanguageHandler {
 
         // Write new Properties object to main app resource file (replacing the old one,
         // not appending).
-        try (FileOutputStream outputStream = new FileOutputStream(APP_RESOURCE_PATH, false)) {
             properties.replace(APP_LANGUAGE, newLocale.getLanguage());
             properties.replace(APP_COUNTRY, newLocale.getCountry());
             properties.replace(APP_LOCALE, key);
-            properties.store(outputStream, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     /**

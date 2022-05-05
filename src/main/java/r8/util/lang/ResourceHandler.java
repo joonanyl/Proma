@@ -1,13 +1,13 @@
 package r8.util.lang;
 
+import r8.App;
+
 import static r8.util.lang.ResourceConstants.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Singleton object for handling resource files.
@@ -48,10 +48,12 @@ public class ResourceHandler {
      * @throws IOException
      */
     public String getAppResource(String key) throws IOException {
-        try (FileInputStream inputStream = new FileInputStream(APP_RESOURCE_PATH)) {
+        try {
             Properties properties = new Properties();
-            properties.load(inputStream); 
+            properties.load(App.class.getClassLoader().getResourceAsStream("proma.properties"));
             return properties.getProperty(key);
+        }catch (IOException e){
+            return null;
         }
     }
 
