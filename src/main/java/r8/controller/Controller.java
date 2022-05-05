@@ -83,7 +83,7 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
     }
 
     public boolean checkIfEmailExists(String email) {
-        return accountDAO.getByEmail(email) != null;
+        return accountDAO.checkIfEmailExists(email);
     }
 
     public void updateAccount(String firstName, String lastName, String email, String password) {

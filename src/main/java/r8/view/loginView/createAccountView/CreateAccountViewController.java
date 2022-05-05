@@ -1,4 +1,5 @@
 package r8.view.loginView.createAccountView;
+import org.apache.commons.codec.language.bm.Lang;
 import r8.model.dao.AccountDAO;
 
 import javafx.beans.value.ChangeListener;
@@ -143,12 +144,17 @@ public class CreateAccountViewController {
             showAlert(LanguageHandler.getText("invalidName"), LanguageHandler.getText("invalidNameInfo"));
             return;
         }
-        Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
-        System.out.println(account.getFirstName());
-        showAlert(LanguageHandler.getText("success"), LanguageHandler.getText("accountSuccess"));
 
-        controller.createAccount(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
-        navigate(event);
+        if (!controller.checkIfEmailExists(textFieldEmail.getText())) {
+            Account account = new Account(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
+            System.out.println(account.getFirstName());
+            showAlert(LanguageHandler.getText("success"), LanguageHandler.getText("accountSuccess"));
+
+            controller.createAccount(textFieldFirstName.getText(), textFieldLastName.getText(), textFieldEmail.getText(), passwordField.getText());
+            navigate(event);
+        } else {
+            showAlert(LanguageHandler.getText("cannotCreate"), LanguageHandler.getText("alreadyExists"));
+        }
     }
 
     /**

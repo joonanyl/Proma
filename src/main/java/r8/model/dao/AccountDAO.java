@@ -13,6 +13,10 @@ import javax.transaction.Transactional;
 
 import java.util.List;
 
+/**
+ * Data Access Object for Account class.
+ * @author Joona Nylander
+ */
 
 public class AccountDAO extends DAO<Account> {
 
@@ -22,6 +26,11 @@ public class AccountDAO extends DAO<Account> {
         setClassType(Account.class);
     }
 
+    /**
+     *
+     * @param email Uses an email address for searching an account from the database.
+     * @return On match, returns an account object from the database.
+     */
     public Account getByEmail(String email) {
         em = DAOUtil.getEntityManager();
         try {
@@ -36,6 +45,11 @@ public class AccountDAO extends DAO<Account> {
         }
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public String getHashedPw(String email) {
         em = DAOUtil.getEntityManager();
         try {

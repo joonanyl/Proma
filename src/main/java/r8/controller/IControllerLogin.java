@@ -42,4 +42,6 @@ public interface IControllerLogin {
      * @param viewController to be set as active
      */
     void setActiveViewController(IViewController viewController);
+
+    boolean checkIfEmailExists(String email);
 }
