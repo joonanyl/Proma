@@ -7,13 +7,27 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author sanku
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class EventTest {
-
+    /**
+     * An event that will be used throughout EventTesting
+     */
     private static Event event;
+    /**
+     * A task that is required for initializing an event
+     */
     private static Task task;
+    /**
+     * An account that is required for initializing an event
+     */
     private static Account account;
 
+    /**
+     * BeforeAll-method that initializes the task, account and event that are required for testing
+     */
     @BeforeAll
     static void setUpBeforeTesting() {
         task = new Task();
@@ -21,6 +35,9 @@ class EventTest {
         event = new Event("desc", LocalDate.now(), 2, account);
     }
 
+    /**
+     * TestCase where setting and getting an event's description is being tested
+     */
     @Test
     @Order(1)
     void setAdnGetDescription() {
@@ -33,6 +50,9 @@ class EventTest {
         assertNotEquals("desc", event.getDescription(), "Descin muuttaminen epäonnistui (3)");
     }
 
+    /**
+     * Test case where setting and getting an event's date is being tested
+     */
     @Test
     @Order(2)
     void setAndGetDate() {
@@ -42,6 +62,9 @@ class EventTest {
         assertNotEquals(LocalDate.now(), event.getDate(), "Päivämäärän muuttaminen epäonnistui(2)");
     }
 
+    /**
+     * Test case where setting and getting the working hours of an event is being tested
+     */
     @Test
     @Order(3)
     void setAndGetHours() {
@@ -52,6 +75,9 @@ class EventTest {
         assertNotEquals(h, event.getHours(), "Tuntimäärän muuttaminen epäonnistui (2)");
     }
 
+    /**
+     * Test case where setting and getting an account assigned to an event is being tested
+     */
     @Test
     @Order(4)
     void setAndGetAccount() {
@@ -63,6 +89,9 @@ class EventTest {
         assertEquals(a2.getFirstName(), event.getAccount().getFirstName(), "Käyttäjätilin muuttaminen epäonnistui");
     }
 
+    /**
+     * Test case where setting and getting a task assigned to an event is being tested
+     */
     @Test
     @Order(5)
     void setAndGetTask() {
@@ -75,6 +104,9 @@ class EventTest {
         assertNotEquals(task, event.getTask(), "Taskin vaihtaminen epäonnistui (2)");
     }
 
+    /**
+     * Test case where event's second constructor is being tested
+     */
     @Test
     @Order(7)
     void scndConstructor(){
@@ -91,6 +123,10 @@ class EventTest {
         assertEquals(a.getFirstName(), e.getAccount().getFirstName(), "Account ei täsmää");
 
     }
+
+    /**
+     * Test case where event's third constructor is being tested
+     */
     @Test
     @Order(8)
     void thrdContructor(){
@@ -110,6 +146,9 @@ class EventTest {
 
     }
 
+    /**
+     * Test case where event's fourth contsructor is being tested
+     */
     @Test
     @Order(9)
     void frthContructor() {
@@ -131,6 +170,9 @@ class EventTest {
 
     }
 
+    /**
+     * Test case where event's fifth contsructor is being tested
+     */
     @Test
     @Order(10)
     void ffthContructor(){

@@ -8,20 +8,41 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author sanku
+ */
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TeamTest {
-
+    /**
+     * A team that will be used throughout TeamTesting
+     */
     private static Team team1;
+    /**
+     * A project that will be used throughout TeamTesting
+     */
     private static Project project1;
+    /**
+     * Accounts that will be required for TeamTesting
+     */
     private static Account account1, account2, account3, account4;
+    /**
+     * Tasks, that will be required for TeamTesting
+     */
     private static Task task1, task2, task3;
 
+    /**
+     * BeforeAll-method that will initialize a team and a project for testing
+     */
     @BeforeAll
     static void setUpBeforeTesting() {
         team1 = new Team();
         project1 = new Project("project1", "desc");
     }
 
+    /**
+     * Test case, where team's name is changed
+     */
     @Test
     @Order(1)
     void setTeamName() {
@@ -30,6 +51,9 @@ class TeamTest {
         assertEquals(newName, team1.getTeamName(), "Uuden tiiminnimen asettaminen epäonnistui");
     }
 
+    /**
+     * Test case, where a project is set to a team and then later changed to another team
+     */
     @Test
     @Order(2)
     void setAndSetProject() {
@@ -45,6 +69,9 @@ class TeamTest {
         assertEquals(project1, team2.getProject(), "Projektin vaihtamisessa ongelmia");
     }
 
+    /**
+     * Testcase, where a set of accounts is set and gotten from a team
+     */
     @Test
     @Order(3)
     void setAndSetAccounts() {
@@ -63,6 +90,9 @@ class TeamTest {
         assertEquals(accounts, team1.getAccounts(), "Käyttäjätililistat eivät täsmää - Lisääminen epäonnistui");
     }
 
+    /**
+     * Test case, where a single account is added to a team
+     */
     @Test
     @Order(4)
     void addAccount() {
@@ -74,6 +104,9 @@ class TeamTest {
         assertTrue(team1.getAccounts().contains(account4), "Yksittäisen työntekijän lisääminen tiimiin epäonnistui");
     }
 
+    /**
+     * Test case, where a single account is removed from a team
+     */
     @Test
     @Order(5)
     void removeAccount() {
@@ -81,6 +114,9 @@ class TeamTest {
         assertFalse(team1.getAccounts().contains(account4), "Työntekijän poistaminen tiimistä epäonnistui");
     }
 
+    /**
+     * Test case, where a set of tasks is set and gotten from a team
+     */
     @Test
     @Order(6)
     void setAndGetTasks() {

@@ -10,15 +10,39 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author sanku
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SprintDAOTest {
+    /**
+     * A project that is required for initializing a sprint
+     */
     private static Project project;
+    /**
+     * A sprint that will be used throughout SprintDAOTesting
+     */
     private static Sprint sprint;
+    /**
+     * SprintDAO that will be used throughout SprintDAOTesting
+     */
     private static SprintDAO sprintDAO;
+    /**
+     * ProjectDAO that will be used throughout SprintDAOTesting
+     */
     private static ProjectDAO projectDAO;
+    /**
+     * A task that is required for initializing a sprint
+     */
     private static Task task;
+    /**
+     * TaskDAO that will be used throughout SprintDAOTesting
+     */
     private static TaskDAO taskDAO;
 
+    /**
+     * BeforeAll-method that initializes the DAOs, a project and a sprint
+     */
     @BeforeAll
     static void setUpBeforeTesting() {
         project = new Project("project name ", "desc");
@@ -28,6 +52,9 @@ class SprintDAOTest {
         projectDAO.persist(project);
     }
 
+    /**
+     * Test case where saving and fetching a sprint from the DB is being tested
+     */
     @Test
     @Order(1)
     void addAndGetSprint() {
@@ -35,6 +62,9 @@ class SprintDAOTest {
         assertEquals(sprint.getSprintId(), sprintDAO.get(sprint.getSprintId()).getSprintId(), "Sprintin hakeminen tietokannasta epäonnistui");
     }
 
+    /**
+     * Test case where updating a sprint in a DB is being tested
+     */
     @Test
     @Order(2)
     void update() {
@@ -46,6 +76,9 @@ class SprintDAOTest {
         assertNotEquals(oldName, sprintFromDB.getName(), "Sprintin nimen päivittääminen tietokannassa epäonnistui");
     }
 
+    /**
+     * Test case where adding a task to a sprint that is already in DB is being tested
+     */
     @Test
     @Order(3)
     void task(){
@@ -60,7 +93,9 @@ class SprintDAOTest {
         assertTrue(sprint.getTasks().contains(task), "Taskin lisääminen epäonnistui");
         taskDAO.remove(task);
     }
-
+    /**
+     * Clearing the DB after testing
+     */
     @AfterAll
     static void clearDB(){
         sprintDAO.remove(sprint);

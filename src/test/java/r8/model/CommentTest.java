@@ -8,14 +8,31 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author sanku
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CommentTest {
-
+    /**
+     * A task that is required for initalizing a comment
+     */
     static Task t;
+    /**
+     * Accounts that are required for initalizing a comment
+     */
     static Account a, a2;
+    /**
+     * Strings that will be used troughout testing
+     */
     static String c, c2;
+    /**
+     * Comments and replies that will be used throughout testing
+     */
     static Comment parent, reply, reply2, reply3;
 
+    /**
+     * BeforeAll-method where all variables required for testing are being initialized
+     */
     @BeforeAll
     static void setUpBeforeTesting() {
         t = new Task();
@@ -28,6 +45,9 @@ class CommentTest {
         parent = new Comment(t, a, c);
     }
 
+    /**
+     * Test case where a parent comment's constructor is being tested
+     */
     @Test
     @Order(1)
     void mainContructor() {
@@ -35,7 +55,9 @@ class CommentTest {
         assertEquals(a.getFirstName(), parent.getAccount().getFirstName(), "Account ei täsmää");
         assertEquals(c, parent.getContent(), "Teksti ei täsmää");
     }
-
+    /**
+     * Test case where a reply comment's constructor is being tested
+     */
     @Test
     @Order(2)
     void replyConstructor(){
@@ -45,6 +67,9 @@ class CommentTest {
         assertEquals(parent, reply.getParentComment(), "Alkuperäinen kommentti ei täsmää");
     }
 
+    /**
+     * Test case where editing a comments content is being tested
+     */
     @Test
     @Order(3)
     void editText(){
@@ -55,6 +80,9 @@ class CommentTest {
         assertNotEquals(c, parent.getContent(), "Uusi teksti ei päivittynyt (2)");
     }
 
+    /**
+     * Test case where adding a reply to a comment is being tested
+     */
     @Test
     @Order(4)
     void addReply(){
@@ -63,6 +91,9 @@ class CommentTest {
         assertEquals(parent, reply.getParentComment(), "Alkuperäinen kommentti ei täsmää");
     }
 
+    /**
+     * Test cases where a parent comment's child comments ( set on reply comments) is being tested in various of ways
+     */
     @Test
     @Order(5)
     void testingChildcomments(){
@@ -77,6 +108,9 @@ class CommentTest {
         assertTrue(children.contains(reply3), "kolmatta vastausta ei löytynyt kommentin vastauksista");
     }
 
+    /**
+     * Test case where changing a reply comment's parent comment is being tested
+     */
     @Test
     @Order(6)
     void changeParent(){

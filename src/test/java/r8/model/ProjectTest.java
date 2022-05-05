@@ -10,12 +10,23 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author sanku
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProjectTest {
-
+    /**
+     * A project that will be used throughout ProjectTesting
+     */
     private static Project project1;
+    /**
+     * Accounts  that will be used throughout ProjectTesting
+     */
     private static Account account1, account2, account3;
 
+    /**
+     * BeforeAll-method that initializes the project and accounts required for testing
+     */
     @BeforeAll
     static void setUpBeforeTesting() {
         project1 = new Project("projektin nimi1", "desc1");
@@ -25,6 +36,10 @@ class ProjectTest {
         account3 = new Account("etunimi3", "sukunimi3",  "email",  "pwd");
     }
 
+    /**
+     * Test case where getting a set of accounts assigned to a project is being tested
+     * @throws Exception
+     */
     @Test
     @Order(1)
     void getAccounts() throws Exception{
@@ -38,6 +53,9 @@ class ProjectTest {
         assertEquals(accounts, project1.getAccounts(), "Projektin käyttäjätilit monikossa lisätty epäonnistuneesti");
     }
 
+    /**
+     * Test case where assigning multiple ( a set of ) accounts to a project is being tested
+     */
     @Test
     @Order(2)
     void setAccounts() {
@@ -51,12 +69,18 @@ class ProjectTest {
         assertEquals(accounts.size(), project1.getAccounts().size(), "Projektin työskentelijöiden määrässä ongelma");
     }
 
+    /**
+     * Test case where gettin a project's name is being tested
+     */
     @Test
     @Order(3)
     void getName() {
         assertEquals("projektin nimi1", project1.getName(), "Virheellinen projektin nimi");
     }
 
+    /**
+     * Test case where setting a name to a project is being tested
+     */
     @Test
     @Order(4)
     void setName() {
@@ -66,23 +90,32 @@ class ProjectTest {
         assertEquals(newName, project1.getName(), "Projektin nimen muutos epäonnistui");
     }
 
+    /**
+     * Test case where getting a projects description is being tested
+     */
     @Test
-    @Order(7)
+    @Order(5)
     void getDescription() {
         String desc = "desc1";
         assertEquals(desc, project1.getDescription(), "Palautettu desc virheellinen");
     }
 
+    /**
+     * Test case where setting and changing a projects description is being tested
+     */
     @Test
-    @Order(8)
+    @Order(6)
     void setDescription() {
         String newDesc = "Uusi description";
         project1.setDescription(newDesc);
         assertEquals(newDesc, project1.getDescription(), "Uuden descin asettamisessa virhe");
     }
 
+    /**
+     * Test cases where setting, getting and removing tasks from a project are being tested
+     */
     @Test
-    @Order(9)
+    @Order(7)
     void setAndGetAndRemoveTasks() {
         Set<Task> tasks = new HashSet<>();
         Task task1 = new Task();
@@ -122,8 +155,11 @@ class ProjectTest {
 
     }
 
+    /**
+     * Test cases where adding, getting and removing teams from a project are being tested
+     */
     @Test
-    @Order(10)
+    @Order(8)
     void addAndGetAndRemoveTeams(){
         Team t1 = new Team();
         Team t2 = new Team();

@@ -6,12 +6,27 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author sanku
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AccountDAOTest {
+    /**
+     * AccountDAO that will be used throughout AccountDAOTesting
+     */
     private static AccountDAO accountDAO;
+    /**
+     * Accounts that will be used throughout AccountDAOTesting
+     */
     private static Account account1, account2;
+    /**
+     * Required for generating a random number (accounts email)
+     */
     static Random rand;
 
+    /**
+     * BeforeAll-method that will initialize the rand, accountDAO and accounts for testing
+     */
     @BeforeAll
     static void setUpBeforeTesting() {
         rand = new Random();
@@ -20,6 +35,9 @@ class AccountDAOTest {
         account2 = new Account("etunimi2", "sukunimi2", "email4321"+ rand.nextInt(1000), "pwd2");
     }
 
+    /**
+     * Test cases where saving, fetching and updating accounts from a DB is being tested
+     */
     @Test
     @Order(1)
     void basics(){
@@ -45,6 +63,9 @@ class AccountDAOTest {
 
     }
 
+    /**
+     * Test case where changing an account's password is being tested
+     */
     @Test
     @Order(2)
     void pwd(){
@@ -52,6 +73,9 @@ class AccountDAOTest {
         assertEquals(pwd1, accountDAO.getHashedPw(account1.getEmail()), "Salasana väärin");
     }
 
+    /**
+     * Test case where an account is removed from a DB
+     */
     @Test
     @Order(3)
     void remove(){
@@ -60,6 +84,9 @@ class AccountDAOTest {
 
     }
 
+    /**
+     * Clearing the DB after testing
+     */
     @AfterAll
     static void clearDB(){
         accountDAO.remove(account1);

@@ -10,19 +10,35 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author sanku
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AccountTest {
-
+    /**
+     * Accounts that will be used thoughout AccountTesting
+     */
     static Account account, admin;
+    /**
+     * Projects that will be used thoughout AccountTesting
+     */
     static Project project, project2;
+    /**
+     * Teams that will be used thoughout AccountTesting
+     */
     static Team team, team2;
 
-
+    /**
+     * BeforeAll-method that initializes an account required for testing
+     */
     @BeforeAll
     static void setUpBeforeTesting(){
         account = new Account("fname", "lname", "email", "pwd");
     }
 
+    /**
+     * Test cases where an accounts setters/getters are being tested
+     */
     @Test
     @Order(1)
     void basics(){
@@ -40,6 +56,9 @@ class AccountTest {
         assertNotEquals(oldPwd, account.getPassword(), "Salasana ei muuttunut");
     }
 
+    /**
+     * Test case where assigning a set of projects to an account is being tested
+     */
     @Test
     @Order(2)
     void projects(){
@@ -54,6 +73,9 @@ class AccountTest {
         assertEquals(projects, account.getProjects(), "projektit eivät täsmää");
     }
 
+    /**
+     * Test case where assigning a set of teams to an account is being tested
+     */
     @Test
     @Order(3)
     void teams(){
@@ -68,6 +90,9 @@ class AccountTest {
         assertEquals(teams, account.getTeams(), "Tiimit eivät täsmää");
     }
 
+    /**
+     * Test case where setting an account as an admin is being tested
+     */
     @Test
     @Order(4)
     void admin(){
@@ -78,6 +103,9 @@ class AccountTest {
         assertFalse(account.getAdmin(), "Käyttäjätili ei pitäisi olla admin");
     }
 
+    /**
+     * Test case where setting a set of events to an account is being tested
+     */
     @Test
     @Order(5)
     void events(){
@@ -90,6 +118,9 @@ class AccountTest {
         assertEquals(events, account.getEvents(), "Eventit eivät täsmää");
     }
 
+    /**
+     * Test case where assigning a set of tasks to an account is being tested
+     */
     @Test
     @Order(6)
     void tasks(){

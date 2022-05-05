@@ -6,13 +6,28 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author sanku
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SprintTest {
 
+    /**
+     * A sprint that will be used throughout sprinttesting
+     */
     private static Sprint sprint;
+    /**
+     * LocalDates that are required for testing and initializing a sprint
+     */
     private static LocalDate startD, endD;
+    /**
+     * Projects that will be used throughout sprinttesting
+     */
     private static Project project, project2;
 
+    /**
+     * BeforeAll-method that will initialize the projects, dates and the sprint for SprintTesting
+     */
     @BeforeAll
     static void setUpBeforeTesting() {
         project = new Project("project", "desc");
@@ -23,6 +38,9 @@ class SprintTest {
         sprint = new Sprint("sprint", startD, endD, project);
     }
 
+    /**
+     * Test case where setting and getting the sprint's name is being tested ( as well as changing it )
+     */
     @Test
     @Order(1)
     void setName() {
@@ -32,6 +50,9 @@ class SprintTest {
         assertEquals(newName, sprint.getName(), "Sprintin nimen vaihtaminen epäonnistui");
     }
 
+    /**
+     * Test case where getting the sprint's date is being tested
+     */
     @Test
     @Order(2)
     void getStartDate() {
@@ -39,6 +60,9 @@ class SprintTest {
         assertEquals(testDate, sprint.getStartDate(), "Alkupvm ei täsmää");
     }
 
+    /**
+     * Test case where setting the start date of a sprint is being tested
+     */
     @Test
     @Order(3)
     void setStartDate() {
@@ -49,14 +73,19 @@ class SprintTest {
         assertEquals(LocalDate.now().plusDays(delayInDays), sprint.getStartDate(),"Alkupäivämäärän muuttaminen epäonnistui");
     }
 
+    /**
+     * Test case, where getting the sprints project is being tested
+     */
     @Test
     @Order(4)
     void getProject() {
-        System.out.println("sprintin palauttama projekti : " + sprint.getProject().getName());
         assertEquals(project, sprint.getProject(), "Projekti ei täsmää");
         assertNotEquals(project2.getName(), sprint.getProject().getName(), "Sprint palautti väärän projektin");
     }
 
+    /**
+     * Test case, where setting and changing a project of a sprint is being tested
+     */
     @Test
     @Order(5)
     void setProject() {

@@ -7,13 +7,31 @@ import r8.model.Team;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+/**
+ * @author sanku
+ */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TeamDAOTest {
+    /**
+     * Teams that will be required throughout TeamDAOTesting
+     */
     static Team team, team2;
+    /**
+     * TeamDAO that will be required throughout TeamDAOTesting
+     */
     static TeamDAO teamDAO;
+    /**
+     * ProjectDAO that will be required throughout TeamDAOTesting
+     */
     static ProjectDAO projectDAO;
+    /**
+     * A project that will be required throughout TeamDAOTesting
+     */
     static Project project;
 
+    /**
+     * BeforeAll-method that will initialize the required DAOs, project and teams required for testing
+     */
     @BeforeAll
     static void beforeTesting(){
         teamDAO = new TeamDAO();
@@ -25,6 +43,9 @@ class TeamDAOTest {
 
     }
 
+    /**
+     * Test case where adding a team to the DB is being tested
+     */
     @Order(1)
     @Test
     void persist(){
@@ -34,6 +55,9 @@ class TeamDAOTest {
         assertEquals(team2.getTeamId(), teamDAO.get(team2.getTeamId()).getTeamId(), "Tiimiä ei löydy tietokannasta(2)");
     }
 
+    /**
+     * Test case where fetching a team by an assigned project from DB is being tested
+     */
     @Order(2)
     @Test
     void byProject(){
@@ -56,6 +80,9 @@ class TeamDAOTest {
         assertTrue(foundByPr, "Tiimiä 2 ei saatu haettua projektin avulla");
     }
 
+    /**
+     * Test case where deleting teams from DB is being tested
+     */
     @Test
     @Order(3)
     void del(){
@@ -72,6 +99,9 @@ class TeamDAOTest {
         assertFalse(teamDAO.getAll().contains(team2), "Team2 ei poistunut tietokannasta(2)");
     }
 
+    /**
+     * Clearing the DB after testing
+     */
     @AfterAll
     static void clearDB(){
         teamDAO.remove(team);
