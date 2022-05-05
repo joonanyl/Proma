@@ -214,7 +214,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                              <Button mnemonicParsing="false" onAction="#navigate" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="%dbCreateProject" textFill="#f8f6f6" userData="create-project-view">
+                                                              <Button mnemonicParsing="false" onAction="#navigateNewProject" prefHeight="40.0" prefWidth="160.0" stylesheets="@../styling/task-view-styling.css" text="%dbCreateProject" textFill="#f8f6f6" userData="create-project-view">
                                                                   <font>
                                                                       <Font size="16.0" />
                                                                   </font>

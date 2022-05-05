@@ -80,7 +80,6 @@ public class ProfileViewController {
     @FXML
     private Label profileInfoLabel;
 
-    private ResourceHandler textLoader = ResourceHandler.getInstance();
     private final String passwordRegEx = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
 
     /**

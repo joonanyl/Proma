@@ -17,7 +17,7 @@ import java.util.Set;
  * Link between the UI and DAO objects. Eliminates the need to pass {@link DAO} objects
  * directly to UI for operations.
  *
- * @author Joona Nylander, Teemu Tallskog, Aarni Pesonen
+ * @author Joona Nylander, Aarni Pesonen, Teemu Tallskog
  */
 public class Controller implements IControllerLogin, IControllerMain, IControllerAccount {
     private AccountDAO accountDAO;
