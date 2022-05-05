@@ -2,17 +2,28 @@ package r8.model.dao;
 
 
 import r8.model.Account;
+import r8.model.Comment;
 import r8.model.Project;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
+/**
+ * Data Access Object for Project class.
+ * @see Project
+ * @author Joona Nylander
+ */
 public class ProjectDAO extends DAO<Project> {
     private EntityManager em;
     public ProjectDAO() {
         setClassType(Project.class);
     }
 
+    /**
+     *
+     * @param account
+     * @return Returns a list of projects where an account belongs to.
+     */
     public List<Project> getByAccount(Account account) {
         entityManager();
         try {
@@ -28,6 +39,11 @@ public class ProjectDAO extends DAO<Project> {
         }
     }
 
+    /**
+     * Adds an account to a project.
+     * @param account
+     * @param project
+     */
     public void addAccount(Account account, Project project) {
         doInTransaction(em -> {
             em.merge(account);
@@ -35,14 +51,15 @@ public class ProjectDAO extends DAO<Project> {
         });
     }
 
+    /**
+     * Removes the Many-to-Many relation between an account and a project. Does not remove the entities.
+     * @param account
+     * @param project
+     */
     public void removeAccountAssociation(Account account, Project project) {
-        doInTransaction(em -> project.removeAccountWithId(account.getAccountId()));
-    }
-
-    public void removeAccount(Account account, Project project) {
         doInTransaction(em -> {
-            em.merge(account);
-            project.removeAccount(account);
+            em.merge(project);
+            project.removeAccountWithId(account.getAccountId());
         });
     }
 

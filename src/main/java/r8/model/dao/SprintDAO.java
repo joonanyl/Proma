@@ -1,13 +1,18 @@
 package r8.model.dao;
 
 import org.hibernate.HibernateException;
+import r8.model.Comment;
 import r8.model.Project;
 import r8.model.Sprint;
 import r8.model.task.Task;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
+/**
+ * Data Access Object for Sprint class.
+ * @see Sprint
+ * @author Joona Nylander
+ */
 public class SprintDAO extends DAO<Sprint> {
     private EntityManager em;
 
@@ -15,6 +20,11 @@ public class SprintDAO extends DAO<Sprint> {
         setClassType(Sprint.class);
     }
 
+    /**
+     *
+     * @param project
+     * @return Returns a list sprints that belongs to a project.
+     */
     public List<Sprint> getByProject(Project project) {
         entityManager();
 
@@ -30,10 +40,21 @@ public class SprintDAO extends DAO<Sprint> {
         }
     }
 
+    /**
+     *
+     * @param task
+     * @param sprint
+     * Adds a task to a sprint
+     */
     public void addTask(Task task, Sprint sprint) {
         doInTransaction(em -> sprint.addTask(task));
     }
 
+    /**
+     * Removes the Many-to-Many association between a task and a sprint. Does not remove any entities.
+     * @param task
+     * @param sprint
+     */
     public void removeTaskAssociation(Task task, Sprint sprint) {
         doInTransaction(em -> sprint.removeTaskWithId(task.getTaskId()));
     }

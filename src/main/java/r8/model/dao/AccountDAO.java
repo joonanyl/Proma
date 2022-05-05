@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Data Access Object for Account class.
+ * @see Account
  * @author Joona Nylander
  */
 
@@ -47,8 +48,8 @@ public class AccountDAO extends DAO<Account> {
 
     /**
      *
-     * @param email
-     * @return
+     * @param email Finds an account from the database by the given email.
+     * @return Returns the hashed password for authentication purposes.
      */
     public String getHashedPw(String email) {
         em = DAOUtil.getEntityManager();
@@ -64,6 +65,11 @@ public class AccountDAO extends DAO<Account> {
         }
     }
 
+    /**
+     *
+     * @param email Finds if there is any account existing with the given email
+     * @return Returns boolean, true if account already exists, false if not.
+     */
     public boolean checkIfEmailExists(String email) {
         em = DAOUtil.getEntityManager();
         try {

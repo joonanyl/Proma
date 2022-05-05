@@ -6,6 +6,12 @@ import r8.model.task.Task;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+/**
+ * Data Access Object for Comment class.
+ * @see Comment
+ * @author Joona Nylander
+ */
+
 public class CommentDAO extends DAO<Comment> {
     private EntityManager em;
 
@@ -13,6 +19,12 @@ public class CommentDAO extends DAO<Comment> {
         setClassType(Comment.class);
     }
 
+
+    /**
+     *
+     * @param parentComment
+     * @return Returns a list of all replies to a single Comment.
+     */
     public List<Comment> getAllReplies(Comment parentComment) {
         entityManager();
         try {
@@ -27,6 +39,11 @@ public class CommentDAO extends DAO<Comment> {
         }
     }
 
+    /**
+     *
+     * @param task
+     * @return Returns a list of all comments under a task.
+     */
     public List<Comment> getCommentsByTask(Task task){
         entityManager();
         try {
