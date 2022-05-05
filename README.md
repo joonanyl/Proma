@@ -40,6 +40,8 @@ aarni.pesonen@metropolia.fi
 
 Teemu Tallskog
 
+Sebastian Lundin
+
 ## Version History
 
 * 0.1
