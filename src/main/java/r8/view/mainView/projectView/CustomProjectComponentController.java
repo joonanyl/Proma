@@ -1,6 +1,5 @@
 package r8.view.mainView.projectView;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +10,18 @@ import r8.model.CombinedObject;
 import r8.model.Project;
 import r8.model.appState.AppState;
 import r8.model.task.TaskState;
+import r8.model.Account;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Controller for custom project listView display component.
+ * Component is used to contain data about {@link Account}
+ * related {@link Project} objects
+ * @author Aarni Pesonen
+ */
 public class CustomProjectComponentController extends GridPane {
     @FXML
     private Label labelName;
@@ -32,6 +39,11 @@ public class CustomProjectComponentController extends GridPane {
     private ProjectsViewController controller;
     private Project project;
 
+    /**
+     * Constructor for the custom object
+     * @param project data that is used in custom component creation
+     * @param controller of projects list view, {@link ProjectsViewController}
+     */
     public CustomProjectComponentController(Project project, ProjectsViewController controller){
         this.controller = controller;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
@@ -66,12 +78,20 @@ public class CustomProjectComponentController extends GridPane {
         }
     }
 
+    /**
+     * Used to edit components {@link Project} data
+     * @param event triggering the edit call, button click
+     */
     @FXML
     private void editProject(ActionEvent event){
         AppState.getInstance().setSelectedProject(project);
         controller.navigateNewProject(event);
     }
 
+    /**
+     * Returns {@link Project} contained in the custom object
+     * @return custom component {@link Project} data
+     */
     public Project getProject(){
         return this.project;
     }

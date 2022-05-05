@@ -15,15 +15,11 @@ import r8.view.IViewController;
 import java.io.IOException;
 
 /**
- *
+ * Controller for project task subview
  * @author Aarni Pesonen
  */
 public class TaskSubviewController {
 
-    @FXML
-    private Button btnCreateTask;
-    @FXML
-    private Button btnGoToTask;
     @FXML
     private Label labelDescription;
     @FXML
@@ -42,6 +38,9 @@ public class TaskSubviewController {
     private Project project = appState.getSelectedProject();
     private Task selectedTask;
 
+    /**
+     * Initializes the subview and retrieves {@link Task} related to active {@link Project}.
+     */
     @FXML
     public void initialize() {
         System.out.println("project id " +project.getProjectId());
@@ -70,6 +69,9 @@ public class TaskSubviewController {
         viewController.handleNavigation(event);
     }
 
+    /**
+     * Adds listener to project tasks listview
+     */
     private void listViewListener() {
         listViewProjectTasks.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
@@ -79,6 +81,10 @@ public class TaskSubviewController {
         });
     }
 
+    /**
+     * Sets {@link Task} info based on user input
+     * @param task to be updated
+     */
     private void setTaskInfo(Task task) {
         labelTaskName.setText(task.getName());
         labelTaskState.setText(task.getTaskStateString());

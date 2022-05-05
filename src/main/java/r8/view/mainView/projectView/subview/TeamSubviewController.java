@@ -18,20 +18,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controller for project team subview
+ * @author Aarni Pesonen
+ */
 public class TeamSubviewController {
 
-    @FXML
-    private Button btnAddTeam;
-    @FXML
-    private Button btnRemoveTeam;
-    @FXML
-    private Button buttonCreateTeams;
-    @FXML
-    private Label labelHoursWorked;
-    @FXML
-    private Label labelPersonnelAmount;
-    @FXML
-    private Label labelTasksAmount;
     @FXML
     private ListView<Team> listViewProjectTeams;
     @FXML
@@ -47,6 +39,9 @@ public class TeamSubviewController {
     private Set<Team> projectTeams = new HashSet<>();
     private Set<Project> accountProjects = new HashSet<>();
 
+    /**
+     * Initializes view. Retrieves account projects from db.
+     */
     @FXML
     public void initialize() {
         project = appState.getSelectedProject();
@@ -54,12 +49,19 @@ public class TeamSubviewController {
         getProjectsTeamsDB();
     }
 
+    /**
+     * Adds a team to teamListView
+     */
     @FXML
     void addTeamToList() {
        listViewTeamsToAdd.getItems().add(textFieldTeamName.getText());
         textFieldTeamName.clear();
     }
 
+    /**
+     * Creates new {@link Team} objects based on listViewTeamsToAdd content
+     * and adds these to database.
+     */
     @FXML
     void addTeamsToDB() {
         List<Team> teamsToAdd = new ArrayList<>();
@@ -82,6 +84,9 @@ public class TeamSubviewController {
         thread.start();
     }
 
+    /**
+     * Removes an existing {@link Team} from database
+     */
     @FXML
     void deleteTeamFromDB() {
         Platform.runLater(() -> {
@@ -91,12 +96,18 @@ public class TeamSubviewController {
         });
     }
 
+    /**
+     * Removes a {@link Team} from listViewTeamsToAdd
+      */
     @FXML
     void removeTeamFromList() {
         int toRemove = listViewTeamsToAdd.getSelectionModel().getSelectedIndex();
         listViewTeamsToAdd.getItems().remove(toRemove);
     }
 
+    /**
+     * Retrieves user projects from database
+     */
     private void getProjectsTeamsDB() {
 
         Thread thread = new Thread(() -> {

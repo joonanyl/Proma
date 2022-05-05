@@ -1,106 +1,58 @@
 package r8.view.mainView.projectView;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import r8.controller.Controller;
+import r8.controller.IControllerAccount;
 import r8.controller.IControllerMain;
 import r8.model.Project;
-import r8.model.Sprint;
 import r8.model.appState.AppState;
-import r8.model.task.Task;
-import r8.model.task.TaskState;
-import r8.model.task.TaskType;
+import r8.model.appState.IAppStateMain;
 import r8.view.IViewController;
 import r8.view.navigation.GetView;
 
 import java.io.IOException;
 
+/**
+ * Controller for {@link Project} specific view
+ * @author Aarni Pesonen
+ */
 public class ProjectViewController {
 
     @FXML
-    private Button btnNewProject;
-
-    @FXML
-    private Label btnStatus;
-
-    @FXML
-    private Label btnStatus1;
-
-    @FXML
-    private ComboBox<?> comboBoxProjectStatus;
-
-    @FXML
-    private ImageView imageTaskType;
-
-    @FXML
-    private Label labelCreatedBy;
-
-    @FXML
     private Label labelDescription;
-
-    @FXML
-    private Label labelImplementationInfo;
-
     @FXML
     private Label labelProjectName;
-
-    @FXML
-    private Label labelQuickDescription;
-
-    @FXML
-    private Label labelRandomness;
-
-    @FXML
-    private ProgressBar progressBar;
-
-    @FXML
-    private VBox vboxProjectPersonnel;
-
-    @FXML
-    private VBox vboxProjectSprints;
-
-    @FXML
-    private VBox vboxProjectTasks;
-
-    @FXML
-    ListView listViewTask;
-
-    @FXML
-    ListView listViewSprint;
-
-    @FXML
-    TextArea textAreaTask;
-
-    @FXML
-    TextArea textAreaSprint;
-
     @FXML
     private BorderPane projectSubViewPane;
 
+    private final IAppStateMain appStateMain = AppState.getInstance();
     private final IControllerMain controller = new Controller();
+    private final IControllerAccount controllerAccount = new Controller();
     private final IViewController viewController = controller.getActiveViewController();
     private final AppState appState = AppState.getInstance();
     private final Project project = appState.getSelectedProject();
 
+    private boolean admin;
     private String currentSubview;
 
-    public void initialize() {
-        Task task = new Task("name", TaskState.NOT_STARTED, new TaskType("type"), 0, "desc");
-        System.out.println("Selected project: " + project.toString());
-        //listViewTask.getItems().add(task);
-        setProjectInfo();
-        setListeners();
+    @FXML
+    private void initialize() {
+        if (controllerAccount.getAccount() != null)
+            admin = appStateMain.getIsAdmin();
 
         handleNavigation("overview-subview");
+        setProjectInfo();
     }
 
+    /**
+     * Handles subview navigation based on triggering ActionEvents userData
+     * @param event event triggering navigation
+     */
     @FXML
     public void handleNavigation(ActionEvent event) {
         GetView viewLoader = new GetView();
@@ -114,48 +66,35 @@ public class ProjectViewController {
         }
     }
 
+    /**
+     * Handles subview navigation
+     * @param viewName string indicates requested .fxml resource name
+     */
     @FXML
     public void handleNavigation(String viewName) {
-        try {
+
             GetView viewLoader = new GetView();
             projectSubViewPane.setCenter(viewLoader.getView(viewName));
             currentSubview = viewName;
-        } catch (Exception e) {
-            System.out.println("Error loading " + viewName);
-        }
     }
 
+    /**
+     * Handles subview navigation based on trigger ActionEvent
+     * @param event triggering the navigation
+     */
+    @FXML
+    private void navigate (ActionEvent event) {
+        viewController.handleNavigation(event);
+    }
+
+    /**
+     * Sets {@link Project} to be display in current view
+     */
     private void setProjectInfo() {
         labelProjectName.setText(project.getName());
         labelDescription.setText(project.getDescription());
     }
 
-    private void setListeners() {
-        listViewTask.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Task>() {
-            @Override
-            public void changed(ObservableValue<? extends Task> observable, Task oldValue, Task newValue) {
-                selectTask(newValue);
-            }
-        });
-        listViewSprint.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Sprint>() {
-            @Override
-            public void changed(ObservableValue<? extends Sprint> observable, Sprint oldValue, Sprint newValue) {
-                selectSprint(newValue);
-            }
-        });
-    }
+}
 
-        private void selectTask(Task task){
-            textAreaTask.setText(task.getDescription());
-        }
-
-        private void selectSprint(Sprint sprint){
-            //sprintTextField.setText();
-        }
-
-        @FXML
-        private void navigate (ActionEvent event) throws IOException {
-            viewController.handleNavigation(event);
-        }
-    }
 

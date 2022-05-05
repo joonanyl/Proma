@@ -17,9 +17,9 @@ public class GetView {
     private Pane view;
 
     /**
-     * Loads requested view based on view name received as a parameter
-     * @param viewName is the name of fxml file to load without the .fxml extension
-     * @return loaded view
+     * Loads requested .fxml resources and gets language resources from {@link ResourceBundle}
+     * @param viewName corresponding to view resource file name
+     * @return loaded view as object inheriting Pane
      */
     public Pane getView(String viewName) {
         FXMLLoader loader = new FXMLLoader();

@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * Controller for project creation view
+ * @author Aarni Pesonen
+ */
 public class CreateProjectViewController {
 
     @FXML
@@ -63,18 +67,24 @@ public class CreateProjectViewController {
     final IControllerAccount controllerAccount = new Controller();
     final IControllerMain controller = new Controller();
 
+    /**
+     * Initializes the project creation view
+     */
     public void initialize() {
         List<Account> accountList = controller.getAllAccounts();
         accountList.remove(AppState.getInstance().getLoggedAccount());
         accountList.forEach((account)-> accountSearchableComboBox.getItems().add(account));
 
-        // kummallekin create project -napille eventhandlerit
         btnCreateProject1.setOnAction(event -> createProject());
         btnCreateProject.setOnAction(event -> createProject());
 
         initDatePickers();
     }
 
+    /**
+     * Adds team creation info to list of {@link Team} to be created
+     * along with the {@link Project}
+     */
     @FXML
     private void createTeam() {
         System.out.println("create team");
@@ -88,12 +98,18 @@ public class CreateProjectViewController {
         });
     }
 
+    /**
+     * Removes {@link Team} info from list of teams to be created
+     */
     @FXML
     private void removeTeam() {
         String selected = listViewTeamsToBeCreated.getSelectionModel().getSelectedItem();
         listViewTeamsToBeCreated.getItems().remove(selected);
     }
 
+    /**
+     * Associates {@link Account} with the active {@link Project}
+     */
     @FXML
     private void assignUser() {
         Account account = accountSearchableComboBox.getSelectionModel().getSelectedItem();
@@ -105,6 +121,9 @@ public class CreateProjectViewController {
         }
     }
 
+    /**
+     * Associates {@link Sprint} with the active {@link Project}
+     */
     @FXML
     private void assignSprint() {
         if (textSprintName != null) {
@@ -115,6 +134,10 @@ public class CreateProjectViewController {
             System.out.println("Sprint = " + listViewSprintsToBeCreated.getItems().toString());
     }
 
+    /**
+     * Removes {@link Account} from a list of personnel to be assigned to selected {@link Project}
+     * at the time of creation
+     */
     @FXML
     private void removeAssigned() {
         Account acc = listViewAssignedAccounts.getSelectionModel().getSelectedItem();
@@ -123,6 +146,10 @@ public class CreateProjectViewController {
         }
     }
 
+    /**
+     * Attempts to create {@link Project} with user defined associations
+     * Checks if input data matches the required criteria
+     */
     @FXML
     private void createProject() {
         System.out.println("createProject() called");
@@ -137,10 +164,6 @@ public class CreateProjectViewController {
             System.out.println("Check project description");
             return;
         }
-        /*Project newProject = new Project();
-        newProject.setDescription(projectDesc);
-        newProject.setName(projectName);
-        System.out.println("New Project created");*/
 
         Thread thread = new Thread(() -> {
             Project project = new Project(projectName, projectDesc);
@@ -173,11 +196,17 @@ public class CreateProjectViewController {
         System.out.println("Uusi projekti luotu ja sent to DB tiimeineen");
     }
 
+    /**
+     * Initializes date pickers
+     */
     private void initDatePickers() {
         datePickerStartDate = new DatePicker(LocalDate.now());
         datePickerEndDate = new DatePicker(LocalDate.now());
     }
 
+    /**
+     * Clear user input fields
+     */
     private void clearFields() {
         listViewAssignedAccounts.getItems().clear();
         listViewTeamsToBeCreated.getItems().clear();
@@ -190,8 +219,12 @@ public class CreateProjectViewController {
         listViewSprintsToBeCreated.getItems().clear();
     }
 
+    /**
+     * Used to navigate away from project creation view
+     * @param event triggering the navigation
+     */
     @FXML
-    private void navigate(ActionEvent event) throws IOException {
+    private void navigate(ActionEvent event) {
         IViewController viewController = controller.getActiveViewController();
         viewController.handleNavigation(event);
     }

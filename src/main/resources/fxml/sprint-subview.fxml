@@ -116,7 +116,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnAddSprintToDB" mnemonicParsing="false" onAction="#addSprintToDB" prefHeight="50.0" prefWidth="150.0" text="%createSprints" textFill="#f8f6f6">
+                        <Button fx:id="btnAddSprintToDB" mnemonicParsing="false" onAction="#addSprintsToDB" prefHeight="50.0" prefWidth="150.0" text="%createSprints" textFill="#f8f6f6">
                            <font>
                               <Font size="16.0" />
                            </font>

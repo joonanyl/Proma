@@ -24,9 +24,9 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
- *
+ * Controller for time management view which is used to log user work {@link Event} objects
+ * Class now contains all five subview functionality condensed into one.
  * @author Aarni Pesonen
- *
  */
 public class TimeManagementViewController {
 
@@ -238,8 +238,6 @@ public class TimeManagementViewController {
         }
     }
 
-    // TODO refactor Updates view comboboxes with all users tasks and also retrieve all available task types
-
     /**
      * Updates UI comboboxes with latest database entries
      */
@@ -308,10 +306,16 @@ public class TimeManagementViewController {
         sortTableView();
     }
 
+    /**
+     * Retrieves all {@link Event} objects associated with a specific {@link Sprint}
+     */
     private void getEventsBySprint() {
         eventsSet.addAll(controller.getEventDAO().getByAccountAndSprint(account,sprintsList.get(sprintIndex)));
     }
 
+    /**
+     * Retrieves all {@link Project} objects associated with user {@link Account}
+     */
     private void getProjectsByAccount() {
         projectsList.clear();
         projectsList.addAll(controller.getProjectDAO().getByAccount(account));
@@ -334,7 +338,7 @@ public class TimeManagementViewController {
 
     /**
      * Fetches all user account related events from database
-     * and adds the retuned event to tableView
+     * and adds the returned event to tableView
      */
     private void displayAllEvents() {
         clearTableView();
@@ -597,6 +601,11 @@ public class TimeManagementViewController {
         visibility.toggleVisibility(vBoxToggle);
     }
 
+    /**
+     * Creates new {@link ExportUtil} and sends user {@link Event} objects from
+     * tableView to be printed in .xls format.
+     * If a filter is active, filtered events will be exported
+     */
     @FXML
     public void exportExcel() {
         ExportUtil exp = new ExportUtil();

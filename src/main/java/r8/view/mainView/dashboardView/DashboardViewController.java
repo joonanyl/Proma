@@ -23,9 +23,10 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
- * Controller for applications main view's dashboard view.
+ * Controller for applications main view - dashboard subview.
  * @author Aarni Pesonen
  */
+
 public class DashboardViewController {
 
     @FXML

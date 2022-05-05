@@ -22,6 +22,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controller for the projects list view which displays all user {@link Account} {@link Project} data.
+ * @author Aarni Pesonen
+ */
 public class ProjectsViewController {
 
     @FXML
@@ -47,6 +51,9 @@ public class ProjectsViewController {
     private final IViewController viewController = controller.getActiveViewController();
     private Set<Project> allProjects;
 
+    /**
+     * Initializes the projects list view
+     */
     @FXML
     public void initialize(){
         labelPersonnelAmount = new Label();
@@ -59,6 +66,10 @@ public class ProjectsViewController {
         listViewChangeListener();
     }
 
+    /**
+     * Used in subview navigation
+     * @param event triggering the navigation
+     */
     @FXML
     void navigate(ActionEvent event) {
         try {
@@ -69,6 +80,10 @@ public class ProjectsViewController {
         }
     }
 
+    /**
+     * Navigates to create project view
+     * @param event triggering the navigation
+     */
     @FXML
     void navigateNewProject(ActionEvent event) {
         viewController.handleSubviewNavigation(event);
@@ -84,6 +99,9 @@ public class ProjectsViewController {
         });
     }
 
+    /**
+     * Retrieves all {@link Account} related {@link Project} objects from database
+     */
     @Transactional
     public void retrieveProjects(){
 
@@ -93,6 +111,9 @@ public class ProjectsViewController {
         updateView();
     }
 
+    /**
+     * Updates the list of {@link CustomProjectComponentController} objects displayed
+     */
     private void updateView(){
         System.out.println("Update View called");
         Platform.runLater(()->{
