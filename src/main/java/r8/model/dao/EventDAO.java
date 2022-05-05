@@ -1,15 +1,17 @@
 package r8.model.dao;
 
-import r8.model.Account;
-import r8.model.Event;
-import r8.model.Project;
-import r8.model.Sprint;
+import r8.model.*;
 import r8.model.task.Task;
 
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
+/**
+ * Data Access Object for Event class.
+ * @see Event
+ * @author Joona Nylander
+ */
 public class EventDAO extends DAO<Event> {
     private EntityManager em;
 
@@ -17,6 +19,11 @@ public class EventDAO extends DAO<Event> {
         setClassType(Event.class);
     }
 
+    /**
+     *
+     * @param account
+     * @return Returns a list of events that belongs to a single account.
+     */
     public List<Event> getByAccount(Account account) {
         entityManager();
         try {
@@ -31,6 +38,12 @@ public class EventDAO extends DAO<Event> {
         }
     }
 
+
+    /**
+     *
+     * @param task
+     * @return Returns a list of events that are assigned to a single task.
+     */
     public List<Event> getByTask(Task task) {
         entityManager();
         try {
@@ -45,6 +58,12 @@ public class EventDAO extends DAO<Event> {
         }
     }
 
+    /**
+     *
+     * @param account
+     * @param project
+     * @return Returns a list of events which belongs to an account and are inside a project.
+     */
     public List<Event> getByAccountAndProject(Account account, Project project) {
         entityManager();
         try {
@@ -61,6 +80,12 @@ public class EventDAO extends DAO<Event> {
         }
     }
 
+    /**
+     *
+     * @param account
+     * @param sprint
+     * @return Returns a list of events which belongs to an account and are inside a sprint.
+     */
     public List<Event> getByAccountAndSprint(Account account, Sprint sprint) {
         entityManager();
         try {
