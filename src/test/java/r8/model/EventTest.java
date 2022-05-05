@@ -58,9 +58,9 @@ class EventTest {
         event.setAccount(account);
         Account a2 = new Account("a", "b", "c", "d");
         assertEquals(account, event.getAccount(), "Käyttäjätilin asetttaminen epäonnistui");
-        assertNotEquals(a2, event.getAccount(), "Palautti väärän käyttäjätilin");
+        assertNotEquals(a2.getFirstName(), event.getAccount().getFirstName(), "Palautti väärän käyttäjätilin");
         event.setAccount(a2);
-        assertEquals(a2, event.getAccount(), "Käyttäjätilin muuttaminen epäonnistui");
+        assertEquals(a2.getFirstName(), event.getAccount().getFirstName(), "Käyttäjätilin muuttaminen epäonnistui");
     }
 
     @Test
