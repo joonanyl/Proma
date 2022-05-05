@@ -53,8 +53,6 @@ public class CreateTaskViewController {
     public void initialize(){
 
         comboBoxTeam.getItems().addAll(controller.getAllTeams());
-
-        // TODO refactor getting account
         projectComboBox.getItems().addAll(controller.loadProjects(AppState.getInstance().getLoggedAccount()));
 
         List<Account> accountList = controller.getAllAccounts();
@@ -67,7 +65,6 @@ public class CreateTaskViewController {
         TextFieldValidator.setValidation(taskName, "([A-Za-z0-9\\s ]{1,20})");
     }
 
-    // TODO does not accept all names, needs testing
     @FXML
     private void createTaskType(){
         String tt = createTaskTypeField.getText();

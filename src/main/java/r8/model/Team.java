@@ -114,7 +114,7 @@ public class Team {
 	
 	/**
 	 *
-	 * @return account
+	 * @return Returns a Set of accounts that are part of the team
 	 */
 	public Set<Account> getAccounts(){
 		return this.accounts;

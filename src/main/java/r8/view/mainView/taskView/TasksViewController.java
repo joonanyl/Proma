@@ -140,6 +140,9 @@ public class TasksViewController {
         });
     }
 
+    /**
+     * Retrieves tasks into the tasks view
+     */
     @Transactional
     public void retrieveTasks(){
         selectedProject = controller.getProjectById(selectedProject.getProjectId());

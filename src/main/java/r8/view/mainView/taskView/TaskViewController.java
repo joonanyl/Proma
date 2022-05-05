@@ -181,6 +181,10 @@ public class TaskViewController {
         }
     }
 
+    /**
+     * Opens input elements to leave a reply on a comment
+     * @param commentController
+     */
     void openReplyToComment(CustomCommentComponentController commentController){
         if(replyingToComment != null){
             replyingToComment.hideReplyInput();
@@ -190,6 +194,11 @@ public class TaskViewController {
         }
         replyingToComment = commentController;
     }
+
+    /**
+     * opens input elements to leave a reply to another reply
+     * @param commentController
+     */
     void openReplyToReply(CommentReplyComponentController commentController){
         if(replyingToReply != null){
             replyingToReply.hideReplyInput();

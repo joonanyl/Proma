@@ -248,6 +248,10 @@ public class Task {
 		this.endDate = endDate;
 	}
 
+	/**
+	 *
+	 * @return Returns a Set of Accounts assigned to the Task.
+	 */
 	public Set<Account> getAccounts() {
 		return accounts;
 	}
@@ -264,6 +268,10 @@ public class Task {
 		this.sprints = sprints;
 	}
 
+	/**
+	 *
+	 * @return Returns the Project that the Task is assigned to.
+	 */
 	public Project getProject() {
 		return project;
 	}
@@ -272,6 +280,10 @@ public class Task {
 		this.project = project;
 	}
 
+	/**
+	 *
+	 * @return Returns a Set of Teams assigned to the Task.
+	 */
 	public Set<Team> getTeams() {
 		return teams;
 	}

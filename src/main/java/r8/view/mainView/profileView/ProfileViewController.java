@@ -199,6 +199,7 @@ public class ProfileViewController {
         });
         compare();
     }
+    //compares the new passwords and changes the CSS of the input elements to give the user feedback
     private void compare(){
         if(!newPasswordTF.getText().matches(passwordRegEx)){
             newPasswordTF.setStyle("-fx-border-color: red;");

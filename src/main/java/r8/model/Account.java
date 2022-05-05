@@ -89,6 +89,10 @@ public class Account {
 		this.accountId = accountId;
 	}
 
+	/**
+	 *
+	 * @return Returns a Set of projects the Account is assigned to.
+	 */
 	public Set<Project> getProjects() {
 		return projects;
 	}
@@ -105,6 +109,10 @@ public class Account {
 		return lastName;
 	}
 
+	/**
+	 *
+	 * @return Returns a Set of Teams the Account is a part of.
+	 */
 	public Set<Team> getTeams() {
 		return teams;
 	}
@@ -113,6 +121,10 @@ public class Account {
 		this.teams = teams;
 	}
 
+	/**
+	 *
+	 * @return Returns a Set of Tasks assigned to the Account
+	 */
 	public Set<Task> getTasks() {
 		return tasks;
 	}
@@ -125,10 +137,18 @@ public class Account {
 		this.tasks = tasks;
 	}
 
+	/**
+	 *
+	 * @return Returns the hashed password of the user
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Hashes the password String and assigns it to the user.
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = AuthService.hashPassword(password);
 	}

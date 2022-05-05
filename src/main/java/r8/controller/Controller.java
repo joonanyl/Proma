@@ -48,6 +48,10 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         return false;
     }
 
+    /**
+     * @param password received as user input
+     * @return True or False based on if the given password matches the password of the Logged in Account.
+     */
     public boolean authenticatePassword(String password){
         System.out.println(AppState.getInstance().getLoggedAccount().getEmail());
         return AuthService.authenticatePassword(AppState.getInstance().getLoggedAccount().getEmail(), password);
@@ -149,6 +153,10 @@ public class Controller implements IControllerLogin, IControllerMain, IControlle
         projectDAO.remove(project);
     }
 
+    /**
+     * @param account
+     * @return A List of projects that are assigned to the given Account
+     */
     public List<Project> loadProjects(Account account) {
         return projectDAO.getByAccount(account);
     }
