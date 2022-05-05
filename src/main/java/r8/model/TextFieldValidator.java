@@ -7,6 +7,7 @@ import javafx.scene.control.TextInputControl;
 
 /**
  * Used to apply validation styling Change listeners to text input controls.
+ * @author Teemu Tallskog
  */
 public class TextFieldValidator {
     /**

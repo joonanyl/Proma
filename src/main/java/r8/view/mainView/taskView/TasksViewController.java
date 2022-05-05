@@ -21,6 +21,10 @@ import r8.view.IViewController;
 import javax.transaction.Transactional;
 import java.util.*;
 
+/**
+ * Controller for {@link Task} list view
+ * @author Teemu Tallskog
+ */
 public class TasksViewController {
 
     @FXML

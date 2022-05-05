@@ -2,6 +2,7 @@ package r8.model;
 
 /**
  * An object containing either an account or a team object
+ * @author Teemu Tallskog
  */
 public class CombinedObject {
     private final Object object;

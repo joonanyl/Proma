@@ -8,7 +8,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * @see Task
- * @author sanku, Joona Nylander
+ * @author sanku
+ * @author Joona Nylander
  *
  */
 

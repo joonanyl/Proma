@@ -13,10 +13,15 @@ import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Comment;
 import r8.model.appState.AppState;
+import r8.model.task.Task;
 import r8.util.lang.ResourceHandler;
 
 import java.io.IOException;
 
+/**
+ * Controller for {@link Comment} reply input component
+ * @author Teemu Tallskog
+ */
 public class ReplyInputComponentController extends GridPane {
 
 

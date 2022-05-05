@@ -30,6 +30,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Controller for {@link Task} view
+ * @author Teemu Tallskog
+ */
 public class TaskViewController {
 
     @FXML

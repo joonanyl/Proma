@@ -11,19 +11,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import r8.model.Account;
 import r8.model.Comment;
-import r8.model.appState.AppState;
-import r8.model.task.Task;
-import r8.util.lang.LanguageHandler;
 import r8.util.lang.ResourceHandler;
-
 import java.io.IOException;
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
+/**
+ * Controller for {@link Comment} component
+ * @author Teemu Tallskog
+ */
 public class CustomCommentComponentController extends GridPane {
 
     private TaskViewController controller;

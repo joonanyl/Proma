@@ -10,6 +10,7 @@ import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.*;
 import r8.model.appState.AppState;
+import r8.model.task.Task;
 import r8.model.task.TaskState;
 import r8.model.task.TaskType;
 import r8.util.UIElementVisibility;
@@ -17,6 +18,10 @@ import r8.util.lang.LanguageHandler;
 
 import java.util.*;
 
+/**
+ * Controller for create {@link Task} view
+ * @author Teemu Tallskog
+ */
 public class CreateTaskViewController {
 
     @FXML

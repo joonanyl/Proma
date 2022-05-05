@@ -10,8 +10,9 @@ import java.util.Set;
 
 /**
  * @see Task
- * @author sanku, Joona Nylander
- *
+ * @author sanku
+ * @author Joona Nylander
+ * @author Teemu Tallskog
  */
 
 @Entity

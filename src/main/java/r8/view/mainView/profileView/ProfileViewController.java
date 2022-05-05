@@ -22,7 +22,10 @@ import r8.util.lang.LanguageHandler;
 import r8.util.lang.ResourceHandler;
 
 /**
- * @author Sebastian Lundin, , Aarni Pesonen, Teemu Tallskog
+ * Controller for profile view which displays settings for {@link Account}
+ * @author Sebastian Lundin
+ * @author Aarni Pesonen
+ * @author Teemu Tallskog
  */
 public class ProfileViewController {
 

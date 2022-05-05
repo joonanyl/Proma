@@ -9,7 +9,8 @@ import java.util.Set;
 
 /**
  * 
- * @author sanku, Joona Nylander
+ * @author sanku
+ * @author Joona Nylander
  *
  */
 

@@ -17,7 +17,8 @@ import r8.util.lang.LanguageHandler;
 /**
  * Controller for the account creation subview
  * Can be loaded within loginView
- * @author Teemu Tallskog, Aarni Pesonen
+ * @author Teemu Tallskog
+ * @author Aarni Pesonen
  */
 public class CreateAccountViewController {
 

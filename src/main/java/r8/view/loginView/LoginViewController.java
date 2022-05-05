@@ -17,6 +17,7 @@ import java.io.IOException;
  * All login subviews are loaded within this view
  * creating a single page app feel for the software.
  * @author Aarni Pesonen
+ * @author Teemu Tallskog
  */
 public class LoginViewController implements IViewController {
 

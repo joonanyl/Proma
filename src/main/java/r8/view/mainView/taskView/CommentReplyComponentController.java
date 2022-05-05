@@ -10,11 +10,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import r8.model.Comment;
+import r8.model.task.Task;
 import r8.util.lang.ResourceHandler;
 
 import java.io.IOException;
 import java.text.DateFormat;
 
+/**
+ * Controller for {@link Comment} reply component
+ * @author Teemu Tallskog
+ */
 public class CommentReplyComponentController extends GridPane {
     private TaskViewController controller;
 

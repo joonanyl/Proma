@@ -18,6 +18,10 @@ import r8.model.task.TaskState;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Controller for {@link Task} component
+ * @author Teemu Tallskog
+ */
 public class CustomTaskComponentController extends GridPane {
     @FXML
     private Label labelName;
