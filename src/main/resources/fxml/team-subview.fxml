@@ -14,7 +14,7 @@
     <children>
         <HBox prefHeight="780.0" prefWidth="870.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox id="container-element" prefHeight="780.0" prefWidth="410.0">
+                <VBox id="container-element" fx:id="vBoxAddTeams" prefHeight="780.0" prefWidth="820.0">
                     <children>
                         <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%addTeams">
                             <font>
@@ -99,7 +99,7 @@
                         <Insets bottom="25.0" left="25.0" />
                     </HBox.margin>
                 </VBox>
-                <VBox id="container-element" prefHeight="780.0" prefWidth="410.0">
+                <VBox id="container-element" prefHeight="780.0" prefWidth="820.0">
                     <children>
                   <VBox prefHeight="1000.0" prefWidth="396.0">
                      <children>

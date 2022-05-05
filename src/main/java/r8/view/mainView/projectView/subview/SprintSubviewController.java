@@ -4,9 +4,11 @@ import javafx.application.Platform;
 
 import javafx.fxml.FXML;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Account;
@@ -14,6 +16,7 @@ import r8.model.Project;
 import r8.model.Sprint;
 
 import r8.model.appState.AppState;
+import r8.util.UIElementVisibility;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,9 +40,14 @@ public class SprintSubviewController {
     private ListView<Sprint> listViewSprintsToAdd;
     @FXML
     private TextField textFieldSprintName;
+    @FXML
+    private VBox vBoxAddSprints = new VBox();
+    @FXML
+    private Button btnRemoveSprint;
 
     AppState appState = AppState.INSTANCE;
     IControllerMain controller = new Controller();
+    UIElementVisibility visibility = new UIElementVisibility();
     Account account = appState.getLoggedAccount();
     private Project project = appState.getSelectedProject();
 
@@ -51,6 +59,8 @@ public class SprintSubviewController {
      */
     @FXML
     private void initialize() {
+        visibility.toggleAdminVisibility(vBoxAddSprints, account.getAdmin());
+        visibility.toggleAdminVisibility(btnRemoveSprint, account.getAdmin());
         initDatePickers();
         getProjectsFromDB();
         getSprintsFromDB();

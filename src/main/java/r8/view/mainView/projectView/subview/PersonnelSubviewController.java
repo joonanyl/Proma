@@ -6,12 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.SearchableComboBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.appState.AppState;
+import r8.util.UIElementVisibility;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,6 +32,10 @@ public class PersonnelSubviewController {
     private ListView<Account> listViewPersonnelToAdd;
     @FXML
     private ListView<Account> listViewProjectPersonnel;
+    @FXML
+    private Button btnRemoveFromProject;
+    @FXML
+    private VBox vBoxAddPersonnel;
 
     private final AppState appState = AppState.getInstance();
     private final Account account = appState.getAccount();
@@ -37,7 +43,8 @@ public class PersonnelSubviewController {
     private ArrayList<Account> projectAccounts = new ArrayList<>();
     private List<Project> accountProjects = new ArrayList<>();
 
-    IControllerMain controller = new Controller();
+    private IControllerMain controller = new Controller();
+    private UIElementVisibility visibility = new UIElementVisibility();
     private Project project = appState.getSelectedProject();
 
     /**
@@ -45,6 +52,8 @@ public class PersonnelSubviewController {
      */
     @FXML
     private void initialize() {
+        visibility.toggleAdminVisibility(vBoxAddPersonnel, account.getAdmin());
+        visibility.toggleAdminVisibility(btnRemoveFromProject, account.getAdmin());
         project = appState.getSelectedProject();
 
         getProjectsFromDB();

@@ -6,12 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import r8.controller.Controller;
 import r8.controller.IControllerMain;
 import r8.model.Account;
 import r8.model.Project;
 import r8.model.Team;
 import r8.model.appState.AppState;
+import r8.util.UIElementVisibility;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,11 +32,16 @@ public class TeamSubviewController {
     private ListView<String> listViewTeamsToAdd;
     @FXML
     private TextField textFieldTeamName;
+    @FXML
+    private Button btnDeleteTeam;
+    @FXML
+    private VBox vBoxAddTeams;
 
     private final AppState appState = AppState.INSTANCE;
     private final Account account = appState.getLoggedAccount();
     private Project project;
     private final IControllerMain controller = new Controller();
+    private final UIElementVisibility visibility = new UIElementVisibility();
     private Set<Account> allAccounts = new HashSet<>();
     private Set<Team> projectTeams = new HashSet<>();
     private Set<Project> accountProjects = new HashSet<>();
@@ -44,6 +51,8 @@ public class TeamSubviewController {
      */
     @FXML
     public void initialize() {
+        visibility.toggleAdminVisibility(vBoxAddTeams, account.getAdmin());
+        visibility.toggleAdminVisibility(btnDeleteTeam, account.getAdmin());
         project = appState.getSelectedProject();
         System.out.println(project);
         getProjectsTeamsDB();

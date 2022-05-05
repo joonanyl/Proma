@@ -14,7 +14,7 @@
     <children>
         <HBox prefHeight="1200.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <VBox id="container-element" prefHeight="1000.0" prefWidth="1400.0">
+                <VBox id="container-element" fx:id="vBoxAddPersonnel" prefHeight="1000.0" prefWidth="1400.0">
                     <children>
                         <Text fill="#000000b2" strokeType="OUTSIDE" strokeWidth="0.0" text="%addPersonnelTo">
                             <font>

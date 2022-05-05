@@ -28,6 +28,11 @@ public class UIElementVisibility {
         pane.setManaged(!pane.isManaged());
     }
 
+    public void toggleAdminVisibility(Button button, boolean admin) {
+        if(admin) { button.setVisible(true); button.setManaged(true); }
+        if(!admin) { button.setVisible(false); button.setManaged(false); }
+    }
+
     public void toggleAdminVisibility(Pane pane, boolean admin) {
         if(admin) { pane.setVisible(true); pane.setManaged(true); }
         if(!admin) { pane.setVisible(false); pane.setManaged(false); }
