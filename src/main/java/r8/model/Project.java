@@ -25,7 +25,6 @@ public class Project {
 	@Column(name = "name")
 	private String name;
 
-	//TODO changed cascade type to persist (and back to merge), fetchtype to eager
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "project_account",
@@ -57,46 +56,78 @@ public class Project {
 
 	public Project() {}
 
+	/**
+	 * Adds an account to the project.
+	 * @param account
+	 */
 	public void addAccount(Account account) {
 		accounts.add(account);
 		account.getProjects().remove(this);
 	}
 
+	/**
+	 * Removes an account from the project
+	 * @param account
+	 */
 	public void removeAccount(Account account) {
 		accounts.remove(account);
 		account.getProjects().remove(this);
 	}
 
+	/**
+	 * Adds a task to the project
+	 * @param task
+	 */
 	public void addTask(Task task) {
 		tasks.add(task);
 		task.setProject(this);
 	}
-
+	/**
+	 * Removes a task from the project
+	 * @param task
+	 */
 	public void removeTask(Task task) {
 		tasks.remove(task);
 		task.setProject(null);
 	}
 
+	/**
+	 * Adds a team to the project
+	 * @param team
+	 */
 	public void addTeam(Team team) {
 		teams.add(team);
 		team.setProject(this);
 	}
-
+	/**
+	 * Removes a team from the project
+	 * @param team
+	 */
 	public void removeTeam(Team team) {
 		teams.remove(team);
 		team.setProject(null);
 	}
-
+	/**
+	 * Adds a sprint to the project
+	 * @param sprint
+	 */
 	public void addSprint(Sprint sprint) {
 		sprints.add(sprint);
 		sprint.setProject(this);
 	}
-
+	/**
+	 * Removes a sprint from the project
+	 * @param sprint
+	 */
 	public void removeSprint(Sprint sprint) {
 		sprints.remove(sprint);
 		sprint.setProject(null);
 	}
 
+	/**
+	 * Removes an account from the project by account's id
+	 * @param id
+	 */
 	public void removeAccountWithId(int id) {
 		for (Account a : accounts) {
 			if (a.getAccountId() == id) {
@@ -161,6 +192,11 @@ public class Project {
 		return sprints;
 	}
 
+	/**
+	 *
+	 * @return Returns a sprint from the project that is currently going on.
+	 * @see Sprint
+	 */
 	public Sprint getActiveSprint() {
 		if (sprints != null) {
 			for (Sprint sprint : sprints) {

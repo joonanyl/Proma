@@ -9,19 +9,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 
- * @author sanku
+ * @see Task
+ * @author sanku, Joona Nylander
  *
  */
 
-/*
- * kelasin et hashmap<comment, linkedlist<comment>> -mapillä pystyis ehkä tulostamaan koko puun.
- *  
- */
 @Entity
 @Table(name = "comment")
 public class Comment {
-	//authorID or account?? date/time?
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +37,6 @@ public class Comment {
 	@Column(name = "content")
 	private String content;
 
-	// Kenties tämä hakisi tietokannasta kommentit, jossa parent_comment_id == comment_id
 	@OneToMany(mappedBy = "parentComment", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Set<Comment> childComments = new HashSet<>();
 
@@ -62,11 +56,9 @@ public class Comment {
 		this.account = account;
 	}
 
-
 	// Replyn konstruktori
 	public Comment(Comment parentComment, Account account, String content) {
 		this.parentComment = parentComment;
-		//this.task = parentComment.getTask();
 		this.content = content;
 		this.account = account;
 	}
@@ -81,6 +73,10 @@ public class Comment {
 		this.content = newText;
 	}
 
+	/**
+	 * Adds a reply comment to another comment.
+	 * @param reply Parent comment to be replied to
+	 */
 	public void addReply(Comment reply) {
 		// Comment is already a reply
 		if (parentComment != null) {
@@ -89,12 +85,6 @@ public class Comment {
 
 		childComments.add(reply);
 		reply.setParentComment(this);
-	}
-
-	public void printChildComments() {
-		for (Comment c : childComments) {
-			System.out.println(c);
-		}
 	}
 
 	public Date getTimeStamp() {

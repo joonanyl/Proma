@@ -8,13 +8,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 
+ * @see TaskState
+ * @see TaskType
  * @author sanku, Joona Nylander
  *
  */
 
-/* direct association w/  */
-/* COMMENT, tasktype, taskstate*/
 @Entity
 @Table(name = "task")
 public class Task {
@@ -108,16 +107,28 @@ public class Task {
 
 	public Task() {}
 
+	/**
+	 * Adds a team to the task.
+	 * @param team
+	 */
 	public void addTeam(Team team) {
 		teams.add(team);
 		team.getTasks().add(this);
 	}
 
+	/**
+	 * Removes a team from the task.
+	 * @param team
+	 */
 	public void removeTeam(Team team) {
 		teams.remove(team);
 		team.getTasks().remove(this);
 	}
 
+	/**
+	 * Removes a team from the task by team's id.
+	 * @param id
+	 */
 	public void removeTeamWithId(int id) {
 		for (Team t : teams) {
 			if (t.getTeamId() == id) {
@@ -127,35 +138,59 @@ public class Task {
 		}
 	}
 
+	/**
+	 * Adds an account to the task.
+	 * @param account
+	 */
 	public void addAccount(Account account) {
 		accounts.add(account);
 		account.getTasks().add(this);
 	}
 
+	/**
+	 * Removes an account from the task.
+	 * @param account
+	 */
 	public void removeAccount(Account account) {
 		accounts.remove(account);
 		account.getTasks().remove(this);
 	}
 
+	/**
+	 * Removes an account from the task by account's id.
+	 * @param id
+	 */
 	public void removeAccountWithId(int id) {
 		for (Account a : accounts) {
 			if (a.getAccountId() == id) {
 				accounts.remove(a);
-				a.getProjects().remove(this);
+				a.getTasks().remove(this);
 			}
 		}
 	}
 
+	/**
+	 * Adds an event to the task.
+	 * @param event
+	 */
 	public void addEvent(Event event) {
 		events.add(event);
 		event.setTask(this);
 	}
 
+	/**
+	 * Removes an event from the task.
+	 * @param event
+	 */
 	public void removeEvent(Event event) {
 		events.remove(event);
 		event.setTask(null);
 	}
 
+	/**
+	 * Removes an event from the task by event's id.
+	 * @param id
+	 */
 	public void removeEventWithId(int id) {
 		for (Event e : events) {
 			if (e.getEventId() == id) {
@@ -177,6 +212,10 @@ public class Task {
 		return name;
 	}
 
+	/**
+	 *
+	 * @return Returns the currently active sprint of which task belongs to.
+	 */
 	public Sprint getActiveSprint() {
 		if (sprints != null) {
 			for (Sprint sprint : sprints) {

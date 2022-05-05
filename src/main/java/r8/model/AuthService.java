@@ -8,6 +8,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
+/** Service class for login authorization.
+ * @author Joona Nylander
+ */
 public class AuthService {
 
     /**

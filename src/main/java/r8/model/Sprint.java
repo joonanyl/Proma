@@ -9,11 +9,10 @@ import java.util.Set;
 
 /**
  * 
- * @author sanku
+ * @author sanku, Joona Nylander
  *
  */
-/* direct association w/ */
-/* TASK */
+
 @Entity
 @Table(name = "sprint")
 public class Sprint {
@@ -46,10 +45,6 @@ public class Sprint {
 	)
 	private Set<Task> tasks = new HashSet<>();
 
-	/**
-	 * Constructor
-	 * @param name Sprint's name
-	 */
 	public Sprint(String name, LocalDate startDate, LocalDate endDate, Project project) {
 		this.name = name;
 		this.startDate = startDate;
@@ -69,16 +64,27 @@ public class Sprint {
 
 	public Sprint() {}
 
+	/**
+	 * Adds a task to the sprint
+	 * @param task
+	 */
 	public void addTask(Task task) {
 		tasks.add(task);
 		task.getSprints().add(this);
 	}
-
+	/**
+	 * Removes a task from the sprint
+	 * @param task
+	 */
 	public void removeTask(Task task) {
 		tasks.remove(task);
 		task.getSprints().remove(this);
 	}
 
+	/**
+	 * Removes a task from the sprint by the task's id.
+	 * @param id
+	 */
 	public void removeTaskWithId(int id) {
 		for (Task t : tasks) {
 			if (t.getTaskId() == id) {

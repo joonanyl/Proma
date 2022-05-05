@@ -65,15 +65,6 @@ class TeamTest {
 
     @Test
     @Order(4)
-    void getAccountByName() {
-        String fName = account1.getFirstName();
-        String lName = account1.getLastName();
-
-        assertEquals(account1, team1.getAccountByName(fName, lName), "Käyttäjän hakeminen nimen mukaan epäonnistui");
-    }
-
-    @Test
-    @Order(5)
     void addAccount() {
 
         account4 = new Account("etunimi4", "sukunimi4", "email",  "pwd");
@@ -84,14 +75,14 @@ class TeamTest {
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     void removeAccount() {
         team1.removeAccount(account4);
         assertFalse(team1.getAccounts().contains(account4), "Työntekijän poistaminen tiimistä epäonnistui");
     }
 
     @Test
-    @Order(7)
+    @Order(6)
     void setAndGetTasks() {
         task1 = new Task();
         task2 = new Task();

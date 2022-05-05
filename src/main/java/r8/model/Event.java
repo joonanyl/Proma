@@ -7,14 +7,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * 
- * @author sanku
+ * @see Task
+ * @author sanku, Joona Nylander
  *
  */
 
-
-/* direct association w/ */
-/* TASK */
 @Entity
 @Table(name = "event")
 public class Event {
@@ -102,6 +99,10 @@ public class Event {
 
     public LocalDate getDate() { return date; }
 
+    /**
+     * @param locale Localization setting
+     * @return Returns a date formatted based on user's selected language option.
+     */
     public String getFormattedDate(String locale) {
         if (locale.equals("fi_FI")) return date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         else return date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));

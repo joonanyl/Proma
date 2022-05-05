@@ -7,22 +7,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Luokka, joka kuvaa työryhmiä
- * 
- * @author sanku
+ * @author sanku, Joona Nylander
  *
  */
 
-/*
- * oisko tiimeillekin enum?
- */
-
-/* direct association w/ */
-/* ACCOUNT, TASK */
 @Entity
 @Table(name = "team")
 public class Team {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "team_id")
@@ -51,16 +42,12 @@ public class Team {
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "teams")
 	private Set<Task> tasks = new HashSet<>();
 
-	/**
-	 * Constructor
-	 * @param tn name
-	 */
-	public Team(String tn, Project project) {
-		this.teamName = tn;
+	public Team(String teamName, Project project) {
+		this.teamName = teamName;
 		this.project = project;
 	}
-	public Team(String tn){
-		this.teamName = tn;
+	public Team(String teamName){
+		this.teamName = teamName;
 	}
 
 	public Team() {}
@@ -73,10 +60,6 @@ public class Team {
 		this.teamId = teamId;
 	}
 
-	/**
-	 * palauttaa tiimin nimen
-	 * @return tiimin nimi
-	 */
 	public String getTeamName() {
 		return teamName;
 	}
@@ -86,7 +69,7 @@ public class Team {
 	}
 	
 	/**
-	 * Lisää jäsen
+	 * Adds an account to the team.
 	 * @param account
 	 */
 	public void addAccount(Account account) {
@@ -98,11 +81,19 @@ public class Team {
 		}
 	}
 
+	/**
+	 * Removes an account from the team.
+	 * @param account
+	 */
 	public void removeAccount(Account account) {
 		accounts.remove(account);
 		account.getTeams().remove(this);
 	}
 
+	/**
+	 * Removes an account from the team by the account's id.
+	 * @param id
+	 */
 	public void removeAccountById(int id) {
 		for (Account a : accounts) {
 			if (a.getAccountId() == id) {
@@ -118,23 +109,6 @@ public class Team {
 	 */
 	public Set<Account> getAccounts(){
 		return this.accounts;
-	}
-
-	// Seuraavasta kahdesta metodista tulee DAO-versiot tietokannan avulla
-	public Account getMemberById(int id) {
-		for (Account a: accounts) {
-			if (a.getAccountId() == id)
-				return a;
-		}
-		return null;
-	}
-
-	public Account getAccountByName(String fName, String lName) {
-		for (Account a: accounts) {
-			if (a.getFirstName().equals(fName) && a.getLastName().equals(lName))
-				return a;
-		}
-		return null;
 	}
 
 	public Project getProject() {

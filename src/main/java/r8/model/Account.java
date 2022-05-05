@@ -8,16 +8,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 
  * @author sanku, Joona Nylander
  *
  */
 
-
-/* direct association w/ */
-/* EVENT, TASK */
-
-/* association w/ PROJECT */
 @Entity
 @Table(name = "account")
 public class Account {
@@ -72,11 +66,6 @@ public class Account {
 		this.email = email;
 		this.password = AuthService.hashPassword(password);
 		this.admin = admin;
-	}
-
-	public void removeFromProject(Project project) {
-		projects.remove(project);
-		project.getAccounts().remove(this);
 	}
 
 	public Account() {}
@@ -202,11 +191,7 @@ public class Account {
 			return false;
 		}
 		final Account account = (Account) object;
-		if(this.accountId != account.accountId){
-			return false;
-		}
-
-		return true;
+		return this.accountId == account.accountId;
 	}
 
 	@Override
