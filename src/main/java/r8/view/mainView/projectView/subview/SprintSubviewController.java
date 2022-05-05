@@ -49,22 +49,23 @@ public class SprintSubviewController {
     IControllerMain controller = new Controller();
     UIElementVisibility visibility = new UIElementVisibility();
     Account account = appState.getLoggedAccount();
-    private Project project = appState.getSelectedProject();
-
     private Set<Project> accountProjects = new HashSet<>();
     private Set<Sprint> projectSprints = new HashSet<>();
+    private Project project;
 
     /**
      * Initializes the subview, retrives user related {@link Project} and {@link Sprint} from database.
      */
     @FXML
     private void initialize() {
+        project = appState.getSelectedProject();
+
         visibility.toggleAdminVisibility(vBoxAddSprints, account.getAdmin());
         visibility.toggleAdminVisibility(btnRemoveSprint, account.getAdmin());
         initDatePickers();
-        getProjectsFromDB();
         getSprintsFromDB();
         initProjectSprintList();
+        System.out.println(project);
     }
 
     /**
@@ -82,6 +83,7 @@ public class SprintSubviewController {
         } else {
             System.out.println("Check input field values.");
         }
+        initDatePickers();
     }
 
     /**
@@ -96,9 +98,14 @@ public class SprintSubviewController {
             }
             controller.getProjectDAO().update(project);
 
-            Platform.runLater(() -> listViewProjectSprints.getItems().addAll(sprints));
+            Platform.runLater(() -> {
+                listViewProjectSprints.getItems().addAll(sprints);
+                listViewSprintsToAdd.getItems().clear();
+                clearDatePickers();
+            });
         });
         thread.start();
+        appState.setSelectedProject(project);
     }
 
     /**
@@ -131,16 +138,8 @@ public class SprintSubviewController {
      * Retrieves {@link Sprint} objects from database based on active {@link Project
      */
     private void getSprintsFromDB() {
-        projectSprints.addAll(controller.getSprintDAO().getByProject(project));
-    }
-
-    /**
-     * Retrieves all {@link Project} objects related to user from database
-     */
-    private void getProjectsFromDB() {
-        accountProjects.addAll(controller.getProjectDAO().getByAccount(account));
-        ArrayList<Project> projects = new ArrayList<>(accountProjects);
-        project = projects.get(0);
+        Thread thread = new Thread(() -> projectSprints.addAll(controller.getSprintDAO().getByProject(project)));
+        thread.start();
     }
 
     /**
@@ -155,7 +154,12 @@ public class SprintSubviewController {
      * Initializes a list of {@link Sprint} objects contained in active {@link Project}
      */
     private void initProjectSprintList() {
-        listViewProjectSprints.getItems().addAll(projectSprints);
+        listViewProjectSprints.getItems().addAll(project.getSprints());
+    }
+
+    private void clearDatePickers() {
+        datePickerEndDate.setValue(null);
+        datePickerStartDate.setValue(null);
     }
 
 }

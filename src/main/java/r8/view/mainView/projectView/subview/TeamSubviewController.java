@@ -39,12 +39,12 @@ public class TeamSubviewController {
 
     private final AppState appState = AppState.INSTANCE;
     private final Account account = appState.getLoggedAccount();
-    private Project project;
     private final IControllerMain controller = new Controller();
     private final UIElementVisibility visibility = new UIElementVisibility();
     private Set<Account> allAccounts = new HashSet<>();
     private Set<Team> projectTeams = new HashSet<>();
     private Set<Project> accountProjects = new HashSet<>();
+    private Project project;
 
     /**
      * Initializes view. Retrieves account projects from db.
@@ -81,12 +81,14 @@ public class TeamSubviewController {
                 teamsToAdd.add(teamToAdd);
                 project.addTeam(teamToAdd);
             }
+            teams.clear();
 
             controller.getProjectDAO().update(project);
 
             Platform.runLater(() -> {
                 listViewTeamsToAdd.getItems().clear();
                 listViewProjectTeams.getItems().addAll(teamsToAdd);
+                teamsToAdd.clear();
                 System.out.println("Project updated with new teams");
             });
         });
@@ -121,13 +123,14 @@ public class TeamSubviewController {
 
         Thread thread = new Thread(() -> {
 
+            projectTeams.clear();
             projectTeams.addAll(controller.getTeamDAO().getByProject(project));
 
             Platform.runLater(() -> listViewProjectTeams.getItems().addAll(projectTeams));
         });
         thread.start();
+        appState.setSelectedProject(project);
     }
-
 }
 
 

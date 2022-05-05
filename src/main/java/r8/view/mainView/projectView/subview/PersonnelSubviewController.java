@@ -60,6 +60,7 @@ public class PersonnelSubviewController {
         getAccountsFromDB();
 
         initProjectAccountList();
+        System.out.println(project);
     }
 
     /**
@@ -81,11 +82,11 @@ public class PersonnelSubviewController {
             for (Account account : acs)
                 project.addAccount(account);
 
-            System.out.println("adding to bd accounts: " + acs.toString());
+            System.out.println("adding to bd accounts: " + acs);
                 controller.getProjectDAO().update(project);
 
             Platform.runLater(() -> {
-                //listViewProjectPersonnel.getItems().addAll(acs);
+                listViewProjectPersonnel.getItems().addAll(acs);
                 System.out.println("Project updated.");
             });
         });
