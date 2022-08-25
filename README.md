@@ -36,7 +36,6 @@ Sanna Kukkonen
 Joona Nylander
 
 Aarni Pesonen
-aarni.pesonen@metropolia.fi
 
 Teemu Tallskog
 
